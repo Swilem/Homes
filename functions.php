@@ -628,7 +628,3 @@ function generate_pdf_data($unit_id,$tower_id,$wishlist){
 
    return $output_link;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
