@@ -46,10 +46,7 @@ define [ 'marionette' ], ( Marionette )->
                                 <label for="unselectall">Select/Unselect All</label>
                             </div>
                             <div class="text-right"><span class="variantClose glyphicon glyphicon-remove text-grey"></span></div>
-<<<<<<< HEAD
                             <div class="clearfix"></div>
-=======
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                         
                             {{#unitVariants}}
                             <div class="grid-block-3 {{filtername}}" >
@@ -891,11 +888,7 @@ define [ 'marionette' ], ( Marionette )->
             object = @     
             capability = usermodel.get('all_caps')
             if usermodel.get('id') != "0" && $.inArray('see_special_filters',capability) >= 0
-<<<<<<< HEAD
                 $('.special').removeClass 'hidden'
-=======
-                # $('.special').removeClass 'hidden'
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                 originalviews  = Marionette.getOption( @, 'views' )
                 originalOviews  = Marionette.getOption( @, 'Oviews' )
                 originalfacings  = Marionette.getOption( @, 'facings' )
@@ -2006,7 +1999,6 @@ define [ 'marionette' ], ( Marionette )->
                                                 $('#'+temp1[ii]+value1).attr('class', 'unit-hover range')
 
                                 )
-<<<<<<< HEAD
                                 $.map(indexvalue, (index,value)->
                                             if App.unit['name'] != ""
                                                 if parseInt($('#'+temp[ii]+value).attr('data-value'))  == App.unit['name']
@@ -2027,8 +2019,6 @@ define [ 'marionette' ], ( Marionette )->
                                                     $("#"+textid+value).attr('x','-30')
                                             
                                 )
-=======
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                                 rangClass = ['LOWRISE','MIDRISE','HIGHRISE']
                                 i= 0
                                 $.each(floorange, (index,value)->
@@ -2680,10 +2670,7 @@ define [ 'marionette' ], ( Marionette )->
                         $("#screen-three-button").addClass 'btn-primary'
                         #@trigger 'unit:item:selected'
                     else
-<<<<<<< HEAD
                         App.unit['name'] = ""
-=======
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                         rangeunitArray=[]
                         $("#select"+@model.get('id')).val "0"
                         $('#check'+@model.get('id')).removeClass 'selected'

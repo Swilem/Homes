@@ -173,11 +173,7 @@ define [ 'marionette' ], ( Mariontte )->
         onShow:->
             $('#showRightPush').hide()
             $(".2dlayout").fancybox
-<<<<<<< HEAD
                 margin: [90, 15, 20, 15]
-=======
-                margin: 90
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 
 
 

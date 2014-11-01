@@ -83,11 +83,8 @@
 		
 		// current index
 		this.current = this.selOpts.indexOf( this.selEl.querySelector( 'li.cs-selected' ) ) || -1;
-<<<<<<< HEAD
 
 		
-=======
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 		
 		// placeholder elem
 		this.selPlaceholder = this.selEl.querySelector( 'span.cs-placeholder' );
@@ -99,18 +96,11 @@
 	/**
 	 * creates the structure for the select element
 	 */
-<<<<<<< HEAD
 	
 	SelectFx.prototype._createSelectEl = function() {
 		var self = this, options = '', createOptionHTML = function(el,classname) {
 			var optclass = '', classes = '', link = '';
 			
-=======
-	SelectFx.prototype._createSelectEl = function() {
-		var self = this, options = '', createOptionHTML = function(el) {
-			var optclass = '', classes = '', link = '';
-
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 			if( el.selectedOpt && !this.foundSelected && !this.hasDefaultPlaceholder ) {
 				classes += 'cs-selected ';
 				this.foundSelected = true;
@@ -127,24 +117,16 @@
 			if( classes !== '' ) {
 				optclass = 'class="' + classes + '" ';
 			}
-<<<<<<< HEAD
 			
 			return '<li ' + optclass + link + ' data-option data-value="' + el.value + '" class="'+classname+'"><span>' + el.textContent + '</span></li>';
 		};
 		var i  = 0 ;
-=======
-
-			return '<li ' + optclass + link + ' data-option data-value="' + el.value + '"><span>' + el.textContent + '</span></li>';
-		};
-
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 		[].slice.call( this.el.children ).forEach( function(el) {
 			if( el.disabled ) { return; }
 
 			var tag = el.tagName.toLowerCase();
 
 			if( tag === 'option' ) {
-<<<<<<< HEAD
 				var classname = "";
 					if(i == 0){
 						classname = "cs-selected" }
@@ -153,19 +135,12 @@
 					
 				options += createOptionHTML(el,classname);
 				i++;
-=======
-				options += createOptionHTML(el);
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 			}
 			else if( tag === 'optgroup' ) {
 				options += '<li class="cs-optgroup"><span>' + el.label + '</span><ul>';
 				[].slice.call( el.children ).forEach( function(opt) {
-<<<<<<< HEAD
 					options += createOptionHTML(opt,classname);
 					
-=======
-					options += createOptionHTML(opt);
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 				} )
 				options += '</ul></li>';
 			}

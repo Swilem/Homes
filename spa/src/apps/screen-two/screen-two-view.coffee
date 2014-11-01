@@ -768,11 +768,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             object = @     
             capability = usermodel.get('all_caps')
             if usermodel.get('id') != "0" && $.inArray('see_special_filters',capability) >= 0
-<<<<<<< HEAD
                 $('.special').removeClass 'hidden'
-=======
-                # $('.special').removeClass 'hidden'
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                 originalviews  = Marionette.getOption( @, 'views' )
                 originalOviews  = Marionette.getOption( @, 'Oviews' )
                 originalfacings  = Marionette.getOption( @, 'facings' )

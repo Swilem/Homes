@@ -24,15 +24,7 @@ define [ 'marionette' ], ( Marionette )->
 
                             <div class="step4Actions">
                                 <div class="grid-container">
-<<<<<<< HEAD
                                     <div class="grid-block-4 addtowishlist ">
-=======
-<<<<<<< HEAD
-                                    <div class="grid-block-4 addtowishlist ">
-=======
-                                    <div class="grid-block-4 hidden">
->>>>>>> 35bca7327313c95399aa926806710e0ac0d7a654
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                                         <a class="grid-link remove" name="list" id="list">
                                             <h3 class="m-t-0 m-b-0"><span class="skyicon sky-heart"></span></h3>
                                             <h4 class="m-t-0 m-b-0 ">Add to Wishlist</h4>
@@ -50,18 +42,8 @@ define [ 'marionette' ], ( Marionette )->
                                             <h4 class="m-t-0 m-b-0">Email</h4>
                                         </a>
                                     </div>
-<<<<<<< HEAD
                                     <div class="grid-block-4 costsheetbutton " >
                                         <a class="grid-link" >
-=======
-<<<<<<< HEAD
-                                    <div class="grid-block-4 costsheetbutton " >
-                                        <a class="grid-link" >
-=======
-                                    <div class="grid-block-4 costsheetbutton hidden" >
-                                        <a class="grid-link" data-remodal-target="modal">
->>>>>>> 35bca7327313c95399aa926806710e0ac0d7a654
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                                             <h3 class="m-t-0 m-b-0"><span class="sky-coin"></span></h3>
                                             <h4 class="m-t-0 m-b-0 ">Cost Sheet</h4>
                                         </a>
@@ -74,10 +56,7 @@ define [ 'marionette' ], ( Marionette )->
 
 
                     <div class="costsheetclass" style="display:none" >
-<<<<<<< HEAD
                         <div class="b-close costClose"><span class="glyphicon glyphicon-remove"></span></div>
-=======
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 
             			<div id="invoice" class="paid">
 
@@ -205,10 +184,7 @@ define [ 'marionette' ], ( Marionette )->
                 	</div>
 
                     <div class="formPopup" style="display:none">
-<<<<<<< HEAD
                         <div class="b-close formClose"><span class="glyphicon glyphicon-remove"></span></div>
-=======
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                         <div class="formIntro">I\'m interested in <br>Flat <span id="emailflatno"></span> in <span id="emailtower"></span></div>
                         <div class="formFields"></div>                        
                     </div><div class="inframamout hidden" data-a-sign="Rs. " data-m-dec="" data-d-group="2"></div>'
@@ -680,14 +656,9 @@ define [ 'marionette' ], ( Marionette )->
             flag = 0
             count = 0
             discountClass = ""
-<<<<<<< HEAD
             @loadPrint()
             $('a.print-preview').printPreview();
             return
-=======
-            $('a.print-preview').printPreview();
-            @loadPrint()
->>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 
         showWishList:->
             table = ""
