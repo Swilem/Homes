@@ -2,6 +2,7 @@ define [ 'marionette'], ( Marionette )->
 
     class ApartmentSelector extends Marionette.AppRouter
 
+<<<<<<< HEAD
         initialize: ->
             @bind 'route', @_trackPageview
          
@@ -10,6 +11,8 @@ define [ 'marionette'], ( Marionette )->
             ga('send', 'pageview', "/#{url}")
         
 
+=======
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
         appRoutes:
             'wishList' :  'showpopup'
             'screen-four' : 'showSelectedUnit'

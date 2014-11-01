@@ -471,6 +471,7 @@ define [ 'extm'], ( Extm)->
                 #verticalCentered: false
                 #easing: 'easeInOutQuad'
 
+<<<<<<< HEAD
             if "createTouch" of document
               try
                 ignore = /:hover/
@@ -486,6 +487,8 @@ define [ 'extm'], ( Extm)->
                     j--
                   i++
 
+=======
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
             
             height = $(window).scrollTop()
 

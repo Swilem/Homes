@@ -28,7 +28,11 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
     };
 
     PopupController.prototype._getUnitsCountCollection = function(modelstring) {
+<<<<<<< HEAD
       var act, actroom, actroomColl, actualroom, buildingModel, classnamearr, coll, cookeArray, element, exceptionObject, facingModel, facingModelArray, facingssArray, floorLayoutimage, floorriserange, i, id, mainArr, rangeArrayVal, roomSizesArray, roomSizesObject, roomTypeArr, roomcoll, roomsizearr, roomsizearray, roomsizesCollection, terraceoptions, terraceoptionstext, unitCollection, unitModel, unitModelArray, unitTypeModel, unitTypeModelName, unitVariantModel, view, viewModel, viewModelArray, viewsArray, _i, _j, _k, _l, _len, _len1, _len2, _len3;
+=======
+      var act, actroom, actroomColl, actualroom, buildingModel, classnamearr, coll, cookeArray, element, exceptionObject, facingModel, facingModelArray, facingssArray, floorLayoutimage, floorriserange, i, mainArr, rangeArrayVal, roomSizesArray, roomSizesObject, roomTypeArr, roomcoll, roomsizearr, roomsizearray, roomsizesCollection, terraceoptions, terraceoptionstext, unitCollection, unitModel, unitModelArray, unitTypeModel, unitTypeModelName, unitVariantModel, view, viewModel, viewModelArray, viewsArray, _i, _j, _k, _l, _len, _len1, _len2, _len3;
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
       cookeArray = modelstring;
       unitModelArray = [];
       classnamearr = [];
@@ -45,10 +49,14 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
           });
           roomSizesObject = unitVariantModel.get('roomsizes');
           roomSizesArray = $.map(roomSizesObject, function(index, value1) {
+<<<<<<< HEAD
             return roomcoll.push({
               id: index.room_type_id,
               name: index.room_type
             });
+=======
+            return roomcoll.push(index.room_type_id);
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
           });
         }
       }
@@ -169,6 +177,7 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
             var roomtype, roomtypeid, roomtypename;
             roomsizearr = [];
             roomtypename = '';
+<<<<<<< HEAD
             roomtypeid = val.id;
             roomtypename = val.name;
             roomtype = roomsizesCollection.where({
@@ -176,6 +185,16 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
             });
             if (roomtype !== void 0) {
               $.each(roomtype, function(index1, value1) {
+=======
+            roomtypeid = "";
+            roomtype = roomsizesCollection.where({
+              room_type_id: parseInt(val)
+            });
+            if (roomtype !== void 0) {
+              $.each(roomtype, function(index1, value1) {
+                roomtypename = value1.get('room_type');
+                roomtypeid = value1.get('room_type_id');
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                 return roomsizearr.push({
                   room_size: value1.get('room_size'),
                   room_type: value1.get('room_type')
@@ -185,9 +204,13 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
                 return b.room_size - a.room_size;
               });
               if (roomsizearr.length === 0) {
+<<<<<<< HEAD
                 roomsizearr.push({
                   room_size: '----'
                 });
+=======
+                roomsizearr = '------------';
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
               }
               return mainArr.push({
                 id: roomtypeid,
@@ -209,11 +232,16 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
               subarray: val.subarray
             });
           });
+<<<<<<< HEAD
           id = "";
+=======
+          console.log(actroom);
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
           actroomColl = new Backbone.Collection(actroom);
           actualroom = [];
           coll = [];
           $.each(roomcoll, function(inde, value) {
+<<<<<<< HEAD
             var classname;
             classname = '';
             coll = [];
@@ -231,10 +259,29 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
             });
             if (coll.length === 0) {
               return id = actroomColl.get(value);
+=======
+            var classname, id;
+            classname = '';
+            coll = [];
+            $.each(classnamearr, function(ind, val) {
+              if (parseInt(val.id) === parseInt(value)) {
+                return coll.push({
+                  id: value,
+                  name: val.name,
+                  subarray: val.subarray,
+                  classname: classname
+                });
+              }
+            });
+            if (coll.length === 0) {
+              id = actroomColl.get(value);
+              return actroomColl.remove(id);
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
             }
           });
           act = [];
           actroomColl.each(function(item) {
+<<<<<<< HEAD
             if (id !== item.get('id')) {
               if (item.get('subarray') !== '----') {
                 return act.push({
@@ -251,6 +298,23 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
               }
             }
           });
+=======
+            if (item.get('subarray').length !== 0) {
+              return act.push({
+                id: item.get('id'),
+                name: item.get('name'),
+                subarray: item.get('subarray')
+              });
+            } else {
+              return act.push({
+                id: item.get('id'),
+                name: item.get('name'),
+                subarray: "-----------"
+              });
+            }
+          });
+          console.log(act);
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
           unitModel.set('mainArr', act);
           unitModelArray.push(unitModel);
         }

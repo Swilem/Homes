@@ -1,13 +1,20 @@
 /*!
 	Theme Name: <%= themeName %>
 	Author: <%= themeAuthor %>
+<<<<<<< HEAD
 	Version: 1.4
+=======
+	Version: 1.0
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 	Author URI: <%= themeAuthorURI %>
 	Theme URI: <%= themeURI %>
 	Tags: <%= themeTags %>
 	Description: <%= themeDescription %>
 	License: GNU General Public License v2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
+<<<<<<< HEAD
 	GitHub Theme URI: https://github.com/ajency/Homes.git
 	GitHub Branch:    master
+=======
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 */

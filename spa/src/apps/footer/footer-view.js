@@ -11,16 +11,23 @@ define(['marionette'], function(Mariontte) {
       return FooterView.__super__.constructor.apply(this, arguments);
     }
 
+<<<<<<< HEAD
     FooterView.prototype.template = '<div class="text-center"> <div class="link small termsLink" >Terms &amp; Conditions</div> | <div class="salesLink text-center small">Sales Login</div> </div>';
+=======
+    FooterView.prototype.template = '<div class="link text-center small termsLink" >Terms &amp; Conditions</div>';
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 
     FooterView.prototype.events = {
       'click .link': function(e) {
         var win;
         return win = window.open('http://manaslake.com/terms-conditions/', '_blank');
+<<<<<<< HEAD
       },
       'click .salesLink': function(e) {
         var win;
         return win = window.open('http://homes.skyi.com/wp-admin/', '_self');
+=======
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
       }
     };
 

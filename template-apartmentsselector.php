@@ -75,6 +75,7 @@
 
 
 <script>
+<<<<<<< HEAD
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -83,6 +84,16 @@
   ga('create', 'UA-55969484-1', 'auto');
   ga('send', 'pageview');
 
+=======
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54261289-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 </script>
 
 <?php wp_footer(); ?>

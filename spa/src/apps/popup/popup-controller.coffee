@@ -34,7 +34,11 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
                     roomSizesObject = unitVariantModel.get 'roomsizes'
                     
                     roomSizesArray = $.map(roomSizesObject, (index,value1)->
+<<<<<<< HEAD
                            roomcoll.push({id:index.room_type_id,name:index.room_type})
+=======
+                           roomcoll.push(index.room_type_id)
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 
 
 
@@ -149,6 +153,7 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
                     $.each(roomTypeArr, (ind,val)->
                         roomsizearr = []
                         roomtypename = ''
+<<<<<<< HEAD
                         roomtypeid = val.id
                         roomtypename = val.name
                         roomtype = roomsizesCollection.where({room_type_id:parseInt(val.id)})
@@ -156,6 +161,14 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
                             $.each(roomtype, (index1,value1)->
                                 
                                 
+=======
+                        roomtypeid = ""
+                        roomtype = roomsizesCollection.where({room_type_id:parseInt(val)})
+                        if roomtype != undefined
+                            $.each(roomtype, (index1,value1)->
+                                roomtypename = value1.get('room_type')
+                                roomtypeid = value1.get('room_type_id')
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                                 roomsizearr.push({room_size:value1.get('room_size'),room_type:value1.get('room_type')})
 
 
@@ -165,14 +178,21 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
 
                             )
                             if roomsizearr.length ==0
+<<<<<<< HEAD
                                 roomsizearr.push({room_size:'----'})
+=======
+                                roomsizearr = '------------'
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                             mainArr.push({id:roomtypeid,name:roomtypename,subarray:roomsizearr})
 
                         
 
 
                     )
+<<<<<<< HEAD
                     
+=======
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                     actroom = []
                     $.each(mainArr, (ind,val)->
                         classnamearr.push({id:val.id, name:val.name,subarray:val.subarray})
@@ -181,31 +201,48 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
 
 
                     )
+<<<<<<< HEAD
                     id = ""
                     actroomColl =  new Backbone.Collection actroom
                     actualroom = []
                     coll = []
                     
+=======
+                    console.log actroom
+                    actroomColl =  new Backbone.Collection actroom
+                    actualroom = []
+                    coll = []
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                     $.each(roomcoll, (inde,value)->
                         classname = ''
                         coll = []
                         $.each(classnamearr, (ind,val)->
+<<<<<<< HEAD
                             if parseInt(val.id) == parseInt(value.id)
                                 if val.subarray != '----'
                                     coll.push({id:value.id,name:val.name,subarray:val.subarray,classname:classname})
+=======
+                            if parseInt(val.id) == parseInt(value)
+                                coll.push({id:value,name:val.name,subarray:val.subarray,classname:classname})
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 
                         )
 
                         
                         if coll.length == 0
                             id = actroomColl.get value
+<<<<<<< HEAD
                             
+=======
+                            actroomColl.remove(id)
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
 
                        
 
                     )
                     act = []
                     actroomColl.each (item)->
+<<<<<<< HEAD
                         if id != item.get('id')
                             if item.get('subarray') != '----'
                                 act.push({id:item.get('id'),name:item.get('name'),subarray:item.get('subarray')})
@@ -213,6 +250,14 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
                                 act.push({id:item.get('id'),name:item.get('name'),subarray:"-----------"}) 
 
                     
+=======
+                        if item.get('subarray').length != 0
+                            act.push({id:item.get('id'),name:item.get('name'),subarray:item.get('subarray')})
+                        else
+                           act.push({id:item.get('id'),name:item.get('name'),subarray:"-----------"}) 
+
+                    console.log act
+>>>>>>> 51410a74a73becccecf5df23db6f2537364aec4e
                     unitModel.set 'mainArr',act
                     
 
