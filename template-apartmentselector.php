@@ -19,8 +19,11 @@
 <!--[if gt IE 9]><!-->
 <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
+
     <script type="text/javascript"  src="../wp-content/themes/Homes/js/src/preload/modernizr.custom.js"></script>
     <script type="text/javascript"  src="../wp-content/themes/Homes/js/src/preload/classie.js"></script>
+
+
 
     <meta charset="<?php bloginfo( 'charset' ); ?>"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
