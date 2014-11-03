@@ -1,12 +1,13 @@
 /*!
-	Theme Name:       Homes
-	Theme URI:        http://drfragen.info/
-	Version:          v1.5.0
-	Description:      Child theme of TwentyTwelve.
-	Author:           Andy Fragen
-	Template:         twentytwelve
-	Template Version: 1.0.0
+	Theme Name: <%= themeName %>
+	Author: <%= themeAuthor %>
+	Version: v1.5.0
+	Author URI: <%= themeAuthorURI %>
+	Theme URI: <%= themeURI %>
+	Tags: <%= themeTags %>
+	Description: <%= themeDescription %>
+	License: GNU General Public License v2 or later
+	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	GitHub Theme URI: https://github.com/ajency/Homes.git
-	GitHub Branch:    master
-	
+	GitHub Branch: master
 */
