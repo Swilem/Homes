@@ -1586,7 +1586,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
       });
       i = 1;
       building = Marionette.getOption(this, 'buildingColl').toArray();
-      buidlingValue = _.first(building);
+      console.log(buidlingValue = _.first(building));
       while (window['mapplic' + i] !== void 0) {
         params = window['mapplic' + i];
         selector = '#mapplic' + i;

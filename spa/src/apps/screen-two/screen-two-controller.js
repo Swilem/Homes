@@ -102,7 +102,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
       this.layout.buildingRegion.$el.append(itemview1.render().el);
       this.layout.unitRegion.$el.append(itemview2.render().el);
       scr = document.createElement('script');
-      scr.src = '../wp-content/themes/apartmentselector/js/src/preload/main2.js';
+      scr.src = '../wp-content/themes/Homes/js/src/preload/main2.js';
       document.body.appendChild(scr);
       building = this.Collection[0].toArray();
       buidlingValue = _.first(building);

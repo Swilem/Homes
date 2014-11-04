@@ -1724,7 +1724,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
             i = 1
             building = Marionette.getOption( @, 'buildingColl' ).toArray()
-            buidlingValue = _.first(building)
+            console.log buidlingValue = _.first(building)
             while (window['mapplic' + i] != undefined)
                 params = window['mapplic' + i]
                 selector = '#mapplic' + i
