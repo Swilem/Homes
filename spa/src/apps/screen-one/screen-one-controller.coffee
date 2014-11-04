@@ -115,7 +115,7 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
             )
             priceArray = _.uniq(priceArray)
             i = 0 
-            
+            console.log priceArray
             for element in priceArray
                 if i == 0
                     classname = 'selected' 
