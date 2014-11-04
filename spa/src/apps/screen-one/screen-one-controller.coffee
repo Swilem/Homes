@@ -55,11 +55,12 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
 
 
 
-            priceRange = ['10-35 lakhs ','35-45 lakhs ','45-55 lakhs ','55-65 lakhs ']
+            priceRange = ['10-35 lakhs ','35-55 lakhs ','55-75 lakhs ']
             priceArray = []
             rangeArray = []
             units = App.currentStore.unit.where({'status':status.get('id')})
             $.each(units , (index,value)->
+                
                 unitTypemodel = App.currentStore.unit_type.findWhere({'id':value.get 'unitType'})
                 if unitTypemodel.get('id') != 14 && unitTypemodel.get('id') != 16
                     NewUnitCollection = App.currentStore.unit.where({ unitType : unitTypemodel.get( 'id' ) } )
@@ -115,7 +116,7 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
             )
             priceArray = _.uniq(priceArray)
             i = 0 
-            console.log priceArray
+            
             for element in priceArray
                 if i == 0
                     classname = 'selected' 

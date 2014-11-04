@@ -745,6 +745,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
             });
             if (parseInt(item.id) === 9) {
               classname = 'twoBHK';
+            } else if (parseInt(item.id) === 19) {
+              classname = 'oneBHK';
             } else {
               classname = 'threeBHK';
             }
@@ -760,7 +762,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
       });
       buildingUnits = [];
       $.each(buildingArray, function(index, value) {
-        var availableunits, buildingid, data, disablehigh, disablelow, disablemedium, flag1, flag2, flag3, flag4, flag5, floors, hclassname, hcount, hfloorvalue, highArray, high_max_val, high_min_val, hunique, hunitTypeArray, itemCollection, lclassname, lcount, lfloorvalue, lowArray, low_max_val, low_min_val, lunique, lunitTypeArray, mclassname, mcount, mediumArray, medium_max_val, medium_min_val, mfloorvalue, munique, munitTypeArray, newarr, newunits, totalfloorcollection, totalunits, uniqFloors, unique, unitTypeArray, variantsDataValues, viewmodels;
+        var availableunits, buildingid, data, disablehigh, disablelow, disablemedium, flag1, flag11, flag2, flag3, flag33, flag4, flag5, flag55, floors, hclassname, hcount, hfloorvalue, highArray, high_max_val, high_min_val, hunique, hunitTypeArray, itemCollection, lclassname, lcount, lfloorvalue, lowArray, low_max_val, low_min_val, lunique, lunitTypeArray, mclassname, mcount, mediumArray, medium_max_val, medium_min_val, mfloorvalue, munique, munitTypeArray, newarr, newunits, totalfloorcollection, totalunits, uniqFloors, unique, unitTypeArray, variantsDataValues, viewmodels;
         buildingid = value;
         unitTypeArray = Array();
         newarr = [];
@@ -796,6 +798,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         data = [];
         flag = 0;
         flag1 = 0;
+        flag11 = 0;
         $.each(mainunitTypeArray, function(key, item) {
           var count;
           if (!lunique[item.id]) {
@@ -818,16 +821,22 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
                 flag = 1;
               }
               if (value.get('unitType') === 10) {
-                return flag1 = 1;
+                flag1 = 1;
+              }
+              if (value.get('unitType') === 19) {
+                return flag11 = 1;
               }
             });
+            if (parseInt(flag11) === 1) {
+              lclassname = 'oneBHK';
+            }
             if (parseInt(flag) === 1) {
               lclassname = 'twoBHK';
             }
             if (parseInt(flag1) === 1) {
               lclassname = 'threeBHK';
             }
-            if (parseInt(flag) === 1 && parseInt(flag1) === 1) {
+            if (parseInt(flag) === 1 && parseInt(flag1) === 1 && parseInt(flag11)) {
               lclassname = 'multiBHK';
             }
             lnewarr.push({
@@ -841,6 +850,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         });
         flag2 = 0;
         flag3 = 0;
+        flag33 = 0;
         $.each(mainunitTypeArray, function(key, item) {
           var count;
           if (!munique[item.id]) {
@@ -863,16 +873,22 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
                 flag2 = 1;
               }
               if (value.get('unitType') === 10) {
-                return flag3 = 1;
+                flag3 = 1;
+              }
+              if (value.get('unitType') === 19) {
+                return flag33 = 1;
               }
             });
             if (parseInt(flag2) === 1) {
               mclassname = 'twoBHK';
             }
+            if (parseInt(flag33) === 1) {
+              mclassname = 'oneBHK';
+            }
             if (parseInt(flag3) === 1) {
               mclassname = 'threeBHK';
             }
-            if (parseInt(flag2) === 1 && parseInt(flag3) === 1) {
+            if (parseInt(flag2) === 1 && parseInt(flag3) === 1 && parseInt(flag33) === 1) {
               mclassname = 'multiBHK';
             }
             mnewarr.push({
@@ -886,6 +902,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         });
         flag4 = 0;
         flag5 = 0;
+        flag55 = 0;
         $.each(mainunitTypeArray, function(key, item) {
           var count;
           if (!hunique[item.id]) {
@@ -908,7 +925,10 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
                 flag4 = 1;
               }
               if (value.get('unitType') === 10) {
-                return flag5 = 1;
+                flag5 = 1;
+              }
+              if (value.get('unitType') === 19) {
+                return flag55 = 1;
               }
             });
             if (parseInt(flag4) === 1) {
@@ -917,7 +937,10 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
             if (parseInt(flag5) === 1) {
               hclassname = 'threeBHK';
             }
-            if (parseInt(flag4) === 1 && parseInt(flag5) === 1) {
+            if (parseInt(flag55) === 1) {
+              hclassname = 'oneBHK';
+            }
+            if (parseInt(flag4) === 1 && parseInt(flag5) === 1 && parseInt(flag55)) {
               hclassname = 'multiBHK';
             }
             hnewarr.push({

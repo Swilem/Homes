@@ -687,6 +687,8 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
 
                         if parseInt(item.id) == 9
                             classname = 'twoBHK'
+                        else if parseInt(item.id) == 19
+                            classname = 'oneBHK'
                         else
                             classname = 'threeBHK'
 
@@ -746,6 +748,7 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                 #)
                 flag = 0
                 flag1 = 0
+                flag11 = 0
                 $.each(mainunitTypeArray, (key,item)->
                     if (!lunique[item.id])
                         lunitTypeArray = []
@@ -761,13 +764,17 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                                 flag = 1
                             if value.get('unitType') == 10
                                 flag1 = 1
+                            if value.get('unitType') == 19
+                                flag11 = 1
 
                         )
+                        if parseInt(flag11) == 1
+                            lclassname = 'oneBHK'
                         if parseInt(flag) == 1
                             lclassname = 'twoBHK'
                         if parseInt(flag1) == 1
                             lclassname = 'threeBHK'
-                        if parseInt(flag) == 1 && parseInt(flag1) == 1
+                        if parseInt(flag) == 1 && parseInt(flag1) == 1 && parseInt(flag11)
                             lclassname = 'multiBHK'
 
 
@@ -780,6 +787,7 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                 )
                 flag2 = 0
                 flag3 = 0
+                flag33 = 0
 
                 $.each(mainunitTypeArray, (key,item)->
                     if (!munique[item.id])
@@ -795,13 +803,17 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                                 flag2 = 1
                             if value.get('unitType') == 10
                                 flag3 = 1
+                            if value.get('unitType') == 19
+                                flag33 = 1
 
                         )
                         if parseInt(flag2) == 1
                             mclassname = 'twoBHK'
+                        if parseInt(flag33) == 1
+                            mclassname = 'oneBHK'
                         if parseInt(flag3) == 1
                             mclassname = 'threeBHK'
-                        if parseInt(flag2) == 1 && parseInt(flag3) == 1
+                        if parseInt(flag2) == 1 && parseInt(flag3) == 1 && parseInt(flag33) == 1
                             mclassname = 'multiBHK'
 
 
@@ -812,6 +824,7 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                 )
                 flag4 = 0
                 flag5 = 0
+                flag55 = 0
                 $.each(mainunitTypeArray, (key,item)->
 
                     if (!hunique[item.id])
@@ -828,6 +841,8 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                                 flag4 = 1
                             if value.get('unitType') == 10
                                 flag5 = 1
+                            if value.get('unitType') == 19
+                                flag55 = 1
 
                         )
 
@@ -835,7 +850,9 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                             hclassname = 'twoBHK'
                         if parseInt(flag5) == 1
                             hclassname = 'threeBHK'
-                        if parseInt(flag4) == 1 && parseInt(flag5) == 1
+                        if parseInt(flag55) == 1
+                            hclassname = 'oneBHK'
+                        if parseInt(flag4) == 1 && parseInt(flag5) == 1 && parseInt(flag55)
                             hclassname = 'multiBHK'
 
                         hnewarr.push({id:item.id,name:item.name,count:hunitTypeArray.length,classname:hclassname})
