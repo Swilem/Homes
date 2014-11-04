@@ -778,7 +778,7 @@ define [ 'marionette' ], ( Marionette )->
                 unitVariantMemeber = unitTypeMemeber.get('unit_variant')
                 unitVariantMemeberColl = new Backbone.Collection unitVariantMemeber
                 univariantmem = unitVariantMemeberColl.findWhere({unit_variant:parseInt(unitModel.get('unitVariant'))})
-                membershipfees = univariantmem.get('membership_fees')
+                membershipfees = unitTypeMemeber.get('membership_fees')
             else
                 membershipfees = unitTypeMemeber.get('membership_fees')
             infratxt = ''
