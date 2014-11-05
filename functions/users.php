@@ -205,9 +205,11 @@ function get_ap_user( $user_ID = 0 ) {
 }
 function get_ap_roles() {
    global $wp_roles;
+
    $all_roles = array();
    $ignore = array("editor","subscriber","author");
      $roles = $wp_roles->get_names();
+    
      foreach($roles as $role_key=>$role) {
 
      	if(!in_array($role_key,$ignore)){

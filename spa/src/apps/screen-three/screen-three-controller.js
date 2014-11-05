@@ -546,11 +546,13 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
             var apartment;
             if (parseInt(val.get('status')) === parseInt(status.get('id'))) {
               apartment = val.get('apartment_views');
-              apartment = apartment.map(function(item) {
-                return parseInt(item);
-              });
-              if ($.inArray(parseInt(value), apartment) >= 0) {
-                return $.merge(count, val.get('apartment_views'));
+              if (val.get('apartment_views') !== "" && val.get('apartment_views').length !== 0) {
+                apartment = apartment.map(function(item) {
+                  return parseInt(item);
+                });
+                if ($.inArray(parseInt(value), apartment) >= 0) {
+                  return $.merge(count, val.get('apartment_views'));
+                }
               }
             }
           });

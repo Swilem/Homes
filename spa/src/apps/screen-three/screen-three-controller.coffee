@@ -525,11 +525,12 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                     $.each(floorCollunits1, (ind,val)->
                         if parseInt(val.get('status')) == parseInt(status.get('id'))
                             apartment = val.get('apartment_views')
-                            apartment = apartment.map((item)->
-                                return parseInt(item)
-                                )
-                            if $.inArray(parseInt(value),apartment) >= 0
-                                $.merge(count,val.get('apartment_views'))
+                            if val.get('apartment_views') !="" && val.get('apartment_views').length !=0
+                                apartment = apartment.map((item)->
+                                    return parseInt(item)
+                                    )
+                                if $.inArray(parseInt(value),apartment) >= 0
+                                    $.merge(count,val.get('apartment_views'))
 
 
 
