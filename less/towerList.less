@@ -44,6 +44,8 @@
 			left: 0%;
 			width: 100%;
 			padding: 0 0 20px;
+			background: lighten(@color-grey, 38%);
+			.ease;
 		}
 		.vs-content{
 			width: 100%;
@@ -108,8 +110,10 @@
 
 .vs-header{
 	.vs-nav{
-		li a{
-			.ease;
+		.vs-nav-right, .vs-nav-left, .vs-nav-current{
+			a{
+				.ease;
+			}
 		}
 	}
 }

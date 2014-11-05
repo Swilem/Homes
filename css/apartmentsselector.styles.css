@@ -9632,10 +9632,6 @@ h5 {
   .grid-container .grid-block-1 .grid-link2 .grid-text-wrap {
     line-height: 18px;
   }
-  .grid-container .grid-block-1:nth-child(even),
-  .grid-container .grid-block-1:nth-child(3n) {
-    margin-right: 1.66113%;
-  }
   .grid-container .grid-block-1:nth-child(6n) {
     margin-right: 0;
   }
@@ -11088,6 +11084,15 @@ fieldset[disabled] .formPopup .with_frm_style .frm_submit input[type=submit].act
   left: 0%;
   width: 100%;
   padding: 0 0 20px;
+  background: #f6f6f7;
+  -webkit-transition: all 0.3s ease-out;
+  /* Chrome 1-25, Safari 3.2+ */
+  -moz-transition: all 0.3s ease-out;
+  /* Firefox 4-15 */
+  -o-transition: all 0.3s ease-out;
+  /* Opera 10.50–12.00 */
+  transition: all 0.3s ease-out;
+  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 .vs-triplelayout .vs-wrapper .vs-content {
   width: 100%;
@@ -11141,7 +11146,9 @@ fieldset[disabled] .formPopup .with_frm_style .frm_submit input[type=submit].act
     float: left;
   }
 }
-.vs-header .vs-nav li a {
+.vs-header .vs-nav .vs-nav-right a,
+.vs-header .vs-nav .vs-nav-left a,
+.vs-header .vs-nav .vs-nav-current a {
   -webkit-transition: all 0.3s ease-out;
   /* Chrome 1-25, Safari 3.2+ */
   -moz-transition: all 0.3s ease-out;

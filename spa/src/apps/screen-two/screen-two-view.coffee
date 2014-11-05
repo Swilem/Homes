@@ -2135,7 +2135,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
         tagName : 'li'
 
-        className : 'vs-nav-current'
+        # className : 'vs-nav-current'
 
         events:
             'click .link':(e)->
