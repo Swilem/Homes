@@ -9,15 +9,17 @@ define [ 'marionette' ], ( Mariontte )->
         			</div>'
 
         events:
-        	'click .link':(e)->
-        		win = window.open('http://manaslake.com/terms-conditions/', '_blank')
-
-        	'click .salesLink':(e)->
-        		win = window.open(SITEURL+'/wp-admin/', '_self')
-
-            'click .salesLogout':(e)->
+        	'click .salesLogout':(e)->
                 localStorage.setItem("login" , 0)
                 win = window.open(SITEURL+'/wp-login/', '_self')
+
+            'click .link':(e)->
+                win = window.open('http://manaslake.com/terms-conditions/', '_blank')
+
+            'click .salesLink':(e)->
+                win = window.open(SITEURL+'/wp-admin/', '_self')
+
+            
 
         onShow:->
             login = localStorage.getItem("login")

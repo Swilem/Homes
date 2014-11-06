@@ -632,6 +632,7 @@ function generate_pdf_data($unit_id,$tower_id,$wishlist){
 if ( is_user_logged_in() ) 
     { 
 
+       
         ?>
         <SCRIPT TYPE="text/javascript">
         localStorage.setItem("login", 1)
@@ -640,3 +641,4 @@ if ( is_user_logged_in() )
         <?php
 
     }
+
