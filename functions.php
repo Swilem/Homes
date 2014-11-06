@@ -629,7 +629,7 @@ function generate_pdf_data($unit_id,$tower_id,$wishlist){
    return $output_link;
 }
 
-add_action('wp_login', 'check_user_login');
+/*add_action('wp_login', 'check_user_login11');
 
 function check_user_login(){
 
@@ -647,6 +647,6 @@ function check_user_login(){
     }
 
 
-}
+}*/
 
 
