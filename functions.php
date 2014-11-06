@@ -629,3 +629,14 @@ function generate_pdf_data($unit_id,$tower_id,$wishlist){
    return $output_link;
 }
 
+if ( is_user_logged_in() ) 
+    { 
+
+        ?>
+        <SCRIPT TYPE="text/javascript">
+        localStorage.setItem("login", 1)
+        
+        </SCRIPT>
+        <?php
+
+    }

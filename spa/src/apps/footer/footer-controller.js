@@ -12,7 +12,9 @@ define(['extm', 'src/apps/footer/footer-view'], function(Extm, FooterView) {
     }
 
     FooterController.prototype.initialize = function() {
-      return this.show(new FooterView());
+      return this.show(new FooterView({
+        SITEURL: SITEURL
+      }));
     };
 
     return FooterController;
