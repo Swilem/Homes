@@ -121,13 +121,13 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ffff', 'fff', 'ff', 'f'];
-        temp1 = ['tttt', 'ttt', 'tt', 't'];
-        temp2 = ['cccc', 'ccc', 'cc', 'c'];
+        temp = ['ff', 'f'];
+        temp1 = ['tt', 't'];
+        temp2 = ['cc', 'cc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff', 'fff', 'ffff'];
-          temp1 = ['t', 'tt', 'ttt', 'ttt'];
-          temp2 = ['c', 'cc', 'ccc', 'cccc'];
+          temp = ['f', 'ff'];
+          temp1 = ['t', 'tt'];
+          temp2 = ['c', 'cc'];
         }
         id = $('#' + e.target.id).attr('data-value');
         flatid = $('#' + e.target.id).attr('data-id');
@@ -165,9 +165,7 @@ define(['marionette'], function(Marionette) {
                 indexvalue1 = unitsarray[val1];
                 $.map(indexvalue1, function(index, value) {
                   $('#f' + value).attr('class', 'unselected-floor ');
-                  $('#ff' + value).attr('class', 'unselected-floor ');
-                  $('#fff' + value).attr('class', 'unselected-floor ');
-                  return $('#ffff' + value).attr('class', 'unselected-floor ');
+                  return $('#ff' + value).attr('class', 'unselected-floor ');
                 });
                 $.map(indexvalue, function(index, value) {
                   var floorArr;
@@ -262,13 +260,13 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ffff', 'fff', 'ff', 'f'];
-        temp1 = ['tttt', 'ttt', 'tt', 't'];
-        temp2 = ['cccc', 'ccc', 'cc', 'c'];
+        temp = ['ff', 'f'];
+        temp1 = ['tt', 't'];
+        temp2 = ['cc', 'cc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff', 'fff', 'ffff'];
-          temp1 = ['t', 'tt', 'ttt', 'ttt'];
-          temp2 = ['c', 'cc', 'ccc', 'cccc'];
+          temp = ['f', 'ff'];
+          temp1 = ['t', 'tt'];
+          temp2 = ['c', 'cc'];
         }
         id = $('#' + e.target.id).attr('data-value');
         flatid = $('#' + e.target.id).attr('data-id');
@@ -308,9 +306,7 @@ define(['marionette'], function(Marionette) {
                 unit = indexvalue[parseInt(flatid)];
                 $.map(indexvalue1, function(index, value) {
                   $('#f' + value).attr('class', 'unselected-floor ');
-                  $('#ff' + value).attr('class', 'unselected-floor ');
-                  $('#fff' + value).attr('class', 'unselected-floor ');
-                  return $('#ffff' + value).attr('class', 'unselected-floor ');
+                  return $('#ff' + value).attr('class', 'unselected-floor ');
                 });
                 $.map(indexvalue, function(index, value) {
                   var floorArr;
@@ -363,13 +359,13 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ffff', 'fff', 'ff', 'f'];
-        temp1 = ['tttt', 'ttt', 'tt', 't'];
-        temp2 = ['cccc', 'ccc', 'cc', 'c'];
+        temp = ['ff', 'f'];
+        temp1 = ['tt', 't'];
+        temp2 = ['cc', 'cc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff', 'fff', 'ffff'];
-          temp1 = ['t', 'tt', 'ttt', 'ttt'];
-          temp2 = ['c', 'cc', 'ccc', 'cccc'];
+          temp = ['f', 'ff'];
+          temp1 = ['t', 'tt'];
+          temp2 = ['c', 'cc'];
         }
         id = $('#' + e.target.id).attr('data-value');
         flatid = $('#' + e.target.id).attr('data-id');
@@ -440,13 +436,13 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ffff', 'fff', 'ff', 'f'];
-        temp1 = ['tttt', 'ttt', 'tt', 't'];
-        temp2 = ['cccc', 'ccc', 'cc', 'c'];
+        temp = ['ff', 'f'];
+        temp1 = ['tt', 't'];
+        temp2 = ['cc', 'cc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff', 'fff', 'ffff'];
-          temp1 = ['t', 'tt', 'ttt', 'ttt'];
-          temp2 = ['c', 'cc', 'ccc', 'cccc'];
+          temp = ['f', 'ff'];
+          temp1 = ['t', 'tt'];
+          temp2 = ['c', 'cc'];
         }
         id = $('#' + e.target.id).attr('data-value');
         flatid = $('#' + e.target.id).attr('data-id');
@@ -517,13 +513,13 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ffff', 'fff', 'ff', 'f'];
-        temp1 = ['tttt', 'ttt', 'tt', 't'];
-        temp2 = ['cccc', 'ccc', 'cc', 'c'];
+        temp = ['ff', 'f'];
+        temp1 = ['tt', 't'];
+        temp2 = ['cc', 'cc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff', 'fff', 'ffff'];
-          temp1 = ['t', 'tt', 'ttt', 'ttt'];
-          temp2 = ['c', 'cc', 'ccc', 'cccc'];
+          temp = ['f', 'ff'];
+          temp1 = ['t', 'tt'];
+          temp2 = ['c', 'cc'];
         }
         id = $('#' + e.target.id).attr('data-value');
         flatid = $('#' + e.target.id).attr('data-id');
@@ -1809,13 +1805,13 @@ define(['marionette'], function(Marionette) {
       unitvalues = "";
       indexvalue = "";
       $('#positionsvg').text("");
-      temp = ['ffff', 'fff', 'ff', 'f'];
-      temp1 = ['tttt', 'ttt', 'tt', 't'];
-      temp2 = ['cccc', 'ccc', 'cc', 'c'];
+      temp = ['ff', 'f'];
+      temp1 = ['tt', 't'];
+      temp2 = ['cc', 'cc'];
       if (parseInt(building.get('id')) === 11) {
-        temp = ['f', 'ff', 'fff', 'ffff'];
-        temp1 = ['t', 'tt', 'ttt', 'ttt'];
-        temp2 = ['c', 'cc', 'ccc', 'cccc'];
+        temp = ['f', 'ff'];
+        temp1 = ['t', 'tt'];
+        temp2 = ['c', 'cc'];
       }
       $.each(svgdata, function(index, value) {
         var ii, unitsarray;
@@ -1865,12 +1861,8 @@ define(['marionette'], function(Marionette) {
                       $("#" + idvalue + value).attr('class', 'selected-flat');
                       if (idvalue === 'f') {
                         textid = 't';
-                      } else if (idvalue === 'ff') {
-                        textid = 'tt';
-                      } else if (idvalue === 'fff') {
-                        textid = 'ttt';
                       } else {
-                        textid = 'tttt';
+                        textid = 'tt';
                       }
                       $("#" + textid + value).attr('class', 'selected-flat');
                       unit = App.master.unit.findWhere({
