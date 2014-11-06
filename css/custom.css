@@ -9680,7 +9680,8 @@ a.im-clear-button {
 }
 /**** end print modal styles ****/
 .termsLink,
-.salesLink {
+.salesLink,
+.salesLogout {
   color: #ff6600;
   cursor: pointer;
   margin: 10px auto;
@@ -9689,10 +9690,14 @@ a.im-clear-button {
   display: inline-block;
 }
 .termsLink:hover,
-.salesLink:hover {
+.salesLink:hover,
+.salesLogout:hover {
   color: #e65c00;
   text-decoration: underline;
 }
 .salesLink {
   width: 100px;
+}
+.salesLogout {
+  width: 75px;
 }
