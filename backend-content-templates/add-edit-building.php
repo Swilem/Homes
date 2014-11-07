@@ -39,7 +39,7 @@ $heading = "Edit";
     $building_milestone = $building["milestone"];
 
     $building_milestone_completion = $building["milestonecompletion"];
-    print_r($building_milestone_completion);
+    
     $building_views = $building["buildingviews"];
 
     $position_in_project = $building["positioninproject"];

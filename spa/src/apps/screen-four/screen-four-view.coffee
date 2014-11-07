@@ -58,14 +58,14 @@ define [ 'marionette' ], ( Marionette )->
                     <div class="costsheetclass" style="display:none" >
                         <div class="b-close costClose"><span class="glyphicon glyphicon-remove"></span></div>
 
-            			<div id="invoice" class="paid">
+                        <div id="invoice" class="paid">
 
-            				<div class="this-is">
-            					<h3 class="light">Estimated Cost for Flat No. <span class="text-primary flatno"></span> in <span class="text-primary building"></span></h3>
-            				</div><!-- invoice headline -->
+                            <div class="this-is">
+                                <h3 class="light">Estimated Cost for Flat No. <span class="text-primary flatno"></span> in <span class="text-primary building"></span></h3>
+                            </div><!-- invoice headline -->
 
-            				<header id="header">
-            					<div class="invoice-intro">
+                            <header id="header">
+                                <div class="invoice-intro">
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <h5>Prepared for:</h5>
@@ -80,9 +80,9 @@ define [ 'marionette' ], ( Marionette )->
                                             <h4 class="preparedon"></h4>
                                         </div>
                                     </div>
-            						<!--<h2 class="medium m-t-0 m-b-5 text-primary">Skyi</h2>
-            						<p class="italic">Tagline comes here</p>-->
-            					</div>
+                                    <!--<h2 class="medium m-t-0 m-b-5 text-primary">Skyi</h2>
+                                    <p class="italic">Tagline comes here</p>-->
+                                </div>
 
                                 <div class="paymentDetails">
                                     <div class="row">
@@ -148,40 +148,40 @@ define [ 'marionette' ], ( Marionette )->
 
 
                                         
-            				</header><!-- e: invoice header -->
+                            </header><!-- e: invoice header -->
 
-            				<section class="invoice-financials">
+                            <section class="invoice-financials">
 
                                 <div class="invoice-items">
-            						<div id="costSheetTable">
+                                    <div id="costSheetTable">
                                     </div>
                                     <!--<table id="costSheetTable">
-            							<caption>Your Invoice</caption>
-            							<thead>
-            								<tr>
-            									<th>Item &amp; Description</th>
-            									<th>Quantity</th>
-            									<th>Price (GPL)</th>
-            								</tr>
-            							</thead>
-            							<tbody>
+                                        <caption>Your Invoice</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Item &amp; Description</th>
+                                                <th>Quantity</th>
+                                                <th>Price (GPL)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-            							</tbody>
+                                        </tbody>
 
-            						</table>-->
-            					</div>
+                                    </table>-->
+                                </div>
 
                                 <div class="invoice-items">
                                     <h4 class="text-primary">Payment Schedule</h4>
-            						<ul id="paymentTable">
+                                    <ul id="paymentTable">
 
-            						</ul>
-            					</div><!-- e: invoice items -->
+                                    </ul>
+                                </div><!-- e: invoice items -->
 
-            				</section><!-- e: invoice financials -->
+                            </section><!-- e: invoice financials -->
 
-            			</div><!-- e: invoice -->
-                	</div>
+                        </div><!-- e: invoice -->
+                    </div>
 
                     <div class="formPopup" style="display:none">
                         <div class="b-close formClose"><span class="glyphicon glyphicon-remove"></span></div>
@@ -437,7 +437,7 @@ define [ 'marionette' ], ( Marionette )->
                 $("#floorlayoutbasic").load(units.get('floor_layout_basic'), (x)->
                         $('#'+units.get('unitAssigned')).attr('class','floor-pos position')
                 )
-                $('#printmapplic1').load(SITEURL+'/wp-content/uploads/sites/5/2014/08/first-map.svg', (x)->
+                $('#printmapplic1').load(SITEURL+'/wp-content/uploads/2014/08/first-map.svg', (x)->
                         $('#hglighttower'+units.get('building')).attr('class','overlay highlight')
 
                 )
@@ -770,15 +770,13 @@ define [ 'marionette' ], ( Marionette )->
             
             infraArray = SettingModel.get('infrastructure_charges' )
             membership_fees = SettingModel.get('membership_fees' )
-            console.log membership_feesColl = new Backbone.Collection membership_fees
-            console.log unitModel
-            console.log unitModel.get('unitType')
-            console.log unitTypeMemeber = membership_feesColl.findWhere({unit_type:parseInt(unitModel.get('unitType'))})
-            if unitTypeMemeber.get('membership_fees') == 0
+            membership_feesColl = new Backbone.Collection membership_fees
+            unitTypeMemeber = membership_feesColl.findWhere({unit_type:parseInt(unitModel.get('unitType'))})
+            if unitTypeMemeber.get('membership_fees') == 0 && unitTypeMemeber.get('unit_variant') != 0
                 unitVariantMemeber = unitTypeMemeber.get('unit_variant')
                 unitVariantMemeberColl = new Backbone.Collection unitVariantMemeber
                 univariantmem = unitVariantMemeberColl.findWhere({unit_variant:parseInt(unitModel.get('unitVariant'))})
-                membershipfees = unitTypeMemeber.get('membership_fees')
+                membershipfees = univariantmem.get('membership_fees')
             else
                 membershipfees = unitTypeMemeber.get('membership_fees')
             infratxt = ''
@@ -970,7 +968,8 @@ define [ 'marionette' ], ( Marionette )->
             else
                 totalcost = parseInt(tempstamp_duty) + parseInt( reg_amt) + parseInt(vat) + parseInt(sales_tax)
                 totalcost1 =  parseInt(temp_stamp_duty) + parseInt( reg_amt1) + parseInt(vat1) + parseInt(sales_tax1)
-            finalcost1 =  parseInt(maintenance) + parseInt(membershipfees)
+            #finalcost1 =  parseInt(maintenance) + parseInt(membershipfees)
+            finalcost1 =  parseInt(maintenance) 
 
 
             console.log paymentColl = App.master.paymentplans
@@ -1007,7 +1006,8 @@ define [ 'marionette' ], ( Marionette )->
                     addon = parseInt($('#payment').val()) - parseInt(count)
 
             
-            finalcost = parseInt(maintenance) + parseInt(membershipfees)
+            #finalcost = parseInt(maintenance) + parseInt(membershipfees)
+            finalcost = parseInt(maintenance) 
             $('.totalcost').text totalcost
             finalvalue = parseInt(totalcost) + parseInt(finalcost) + parseInt(agreement)
             finalvalue1 = parseInt(totalcost1) + parseInt(finalcost1) + parseInt(agreement1)
@@ -1073,11 +1073,11 @@ define [ 'marionette' ], ( Marionette )->
                             <div class="costCell discCol '+discountClass+' maintenance" data-m-dec="" data-a-sign="Rs. " data-d-group="2">'+maintenance+'</div>
                             <div class="costCell maintenance" data-a-sign="Rs. " data-m-dec="" data-d-group="2">'+maintenance+'</div>
                         </div>
-                        <div class="costsRow">
+                        <!--<div class="costsRow">
                             <div class="costCell costName">Club membership + Service Tax</div>
                             <div class="costCell discCol '+discountClass+' membershipfees" data-m-dec="" data-a-sign="Rs. " data-d-group="2">'+membershipfees+'</div>
                             <div class="costCell membershipfees" data-a-sign="Rs. " data-m-dec="" data-d-group="2">'+membershipfees+'</div>
-                        </div>
+                        </div>-->
                         <div class="costsRow totals">
                             <div class="costCell costName">Total Maintenance Cost</div>
                             <div class="costCell discCol '+discountClass+' finalcost" data-m-dec="" data-a-sign="Rs. " data-d-group="2">'+finalcost+'</div>
@@ -1366,7 +1366,7 @@ define [ 'marionette' ], ( Marionette )->
             membership_fees = SettingModel.get('membership_fees' )
             membership_feesColl = new Backbone.Collection membership_fees
             unitTypeMemeber = membership_feesColl.findWhere({unit_type:parseInt(unitModel.get('unitType'))})
-            if unitTypeMemeber.get('membership_fees') == 0
+            if unitTypeMemeber.get('membership_fees') == 0 && unitTypeMemeber.get('unit_variant') != 0
                 unitVariantMemeber = unitTypeMemeber.get('unit_variant')
                 unitVariantMemeberColl = new Backbone.Collection unitVariantMemeber
                 univariantmem = unitVariantMemeberColl.findWhere({unit_variant:parseInt(unitModel.get('unitVariant'))})
@@ -1465,7 +1465,8 @@ define [ 'marionette' ], ( Marionette )->
                         count = count + percentageValue
                 addon = parseInt($('#payment').val()) - parseInt(count)
 
-            finalcost = parseInt(maintenance) + parseInt(membershipfees)
+            #finalcost = parseInt(maintenance) + parseInt(membershipfees)
+            finalcost = parseInt(maintenance) 
             finalvalue = parseInt(totalcost) + parseInt(finalcost) + parseInt(agreement)
             if parseInt($('#scheme').val()) == 1
                 $('.stamp_duty').autoNumeric('init')
@@ -1542,7 +1543,7 @@ define [ 'marionette' ], ( Marionette )->
             membership_fees = SettingModel.get('membership_fees' )
             membership_feesColl = new Backbone.Collection membership_fees
             unitTypeMemeber = membership_feesColl.findWhere({unit_type:parseInt(unitModel.get('unitType'))})
-            if unitTypeMemeber.get('membership_fees') == 0
+            if unitTypeMemeber.get('membership_fees') == 0 && unitTypeMemeber.get('unit_variant') != 0
                 unitVariantMemeber = unitTypeMemeber.get('unit_variant')
                 unitVariantMemeberColl = new Backbone.Collection unitVariantMemeber
                 univariantmem = unitVariantMemeberColl.findWhere({unit_variant:parseInt(unitModel.get('unitVariant'))})
@@ -1615,7 +1616,8 @@ define [ 'marionette' ], ( Marionette )->
                 totalcost1 = parseInt(temp_stamp_duty) + parseInt( reg_amt1) + parseInt(vat) + parseInt(sales_tax1)
                 
             
-            finalcost1 = parseInt(maintenance) + parseInt(membershipfees)
+            #finalcost1 = parseInt(maintenance) + parseInt(membershipfees)
+            finalcost1 = parseInt(maintenance) 
             finalvalue1 = parseInt(totalcost1) + parseInt(finalcost1) + parseInt(agreement1)
             if parseInt($('#scheme').val()) == 1
                 $('.stamp_duty').autoNumeric('init')
@@ -1729,7 +1731,7 @@ define [ 'marionette' ], ( Marionette )->
     class UnitMainView extends Marionette.CompositeView
 
         template : '<div class="row m-l-0 m-r-0 bgClass">
-						<div class="col-md-5 col-lg-4 p-b-10 b-grey b-r">
+                        <div class="col-md-5 col-lg-4 p-b-10 b-grey b-r">
                             <div class="unitDetails">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -1794,7 +1796,7 @@ define [ 'marionette' ], ( Marionette )->
                                     </div>
                                 </div>-->
                             </div>
-						</div>
+                        </div>
 
                         <div class="col-md-7 col-lg-8">
                             <div class="liquid-slider center-block" id="slider-plans">
@@ -1816,8 +1818,8 @@ define [ 'marionette' ], ( Marionette )->
                                 </div>
                             </div>
                         </div>
-					</div>
-					
+                    </div>
+                    
                     '
 
 

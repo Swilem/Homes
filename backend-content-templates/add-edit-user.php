@@ -98,7 +98,7 @@ $heading = "Edit";
                         <label class="form-label">Password</label>
                         <div class="input-with-icon  right">                                       
               <i class=""></i>
-              <input type="password" name="password"  id="password" class="form-control">                                 
+              <input type="text" name="password"  id="password" class="form-control">                                 
             </div>
                       </div>
         
