@@ -1382,7 +1382,9 @@ define [ 'marionette' ], ( Marionette )->
 
 
             table = ""
-            basicCost1 = (costSheetArray[0] * costSheetArray[1])
+            ratepersqftfloorval = (parseInt(costSheetArray[1]) + parseInt(floorRiseValue))
+            basicCost = Math.round((parseInt(costSheetArray[0]) * parseInt(ratepersqftfloorval)))
+            
             agreement1 = Math.round(parseInt(basicCost1) + parseFloat($('#infra').val()))
             agreementValue1 = agreement1
             agreement = Math.round(parseInt(basicCost) + parseFloat($('#infra').val()))
@@ -1559,7 +1561,8 @@ define [ 'marionette' ], ( Marionette )->
 
 
             table = ""
-            basicCost1 = (costSheetArray[0] * costSheetArray[1])
+            ratepersqftfloorval = (parseInt(costSheetArray[1]) + parseInt(floorRiseValue))
+            basicCost1 = Math.round((parseInt(costSheetArray[0]) * parseInt(ratepersqftfloorval)))
             agreement1 = Math.round(parseInt(basicCost1) + parseFloat($('#infra1').val()))
             agreementValue1 = agreement1
             agreement = Math.round(parseInt(basicCost) + parseFloat($('#infra').val()))
@@ -1613,20 +1616,20 @@ define [ 'marionette' ], ( Marionette )->
                 totalcost1 = parseInt(vat1) + parseInt(sales_tax1)
                 
             else
-                totalcost1 = parseInt(temp_stamp_duty) + parseInt( reg_amt1) + parseInt(vat) + parseInt(sales_tax1)
+                totalcost1 = parseInt(temp_stamp_duty) + parseInt( reg_amt1) + parseInt(vat1) + parseInt(sales_tax1)
                 
             
             #finalcost1 = parseInt(maintenance) + parseInt(membershipfees)
             finalcost1 = parseInt(maintenance) 
             finalvalue1 = parseInt(totalcost1) + parseInt(finalcost1) + parseInt(agreement1)
             if parseInt($('#scheme').val()) == 1
-                $('.stamp_duty').autoNumeric('init')
-                $('.stamp_duty').autoNumeric('set', temp_stamp_duty);
-                $('.reg_amt').autoNumeric('init')
-                $('.reg_amt').autoNumeric('set', reg_amt1);
+                $('.stamp_duty1').autoNumeric('init')
+                $('.stamp_duty1').autoNumeric('set', temp_stamp_duty);
+                $('.reg_amt1').autoNumeric('init')
+                $('.reg_amt1').autoNumeric('set', reg_amt1);
             else
-                $('.stamp_duty').text(temp_stamp_duty)
-                $('.reg_amt').text(reg_amt1);
+                $('.stamp_duty1').text(temp_stamp_duty)
+                $('.reg_amt1').text(reg_amt1);
 
                 
             $('.vat1').autoNumeric('init')
@@ -1676,6 +1679,22 @@ define [ 'marionette' ], ( Marionette )->
             # $('#finalcost').autoNumeric('init')
             # $('#totalcost' ).text $('#totalcost').autoNumeric('set', totalcost).text()
             # $('#finalcost' ).text $('#finalcost').autoNumeric('set', finalcost).text()
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
