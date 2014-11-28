@@ -598,15 +598,16 @@ define [ 'marionette' ], ( Marionette )->
             )
             $('#infra').on('change' , ()->
                     infraid = $('#infra' ).val()
-                    object.updated()
+                    object.updated();
+                    object.generatePaymentSchedule(('#paymentplans').val())
 
 
 
             )
             $('#infra1').on('change' , ()->
                     infraid = $('#infra1' ).val()
-                    object.updated1()
-
+                    object.updated1();
+                    object.generatePaymentSchedule(('#paymentplans').val());
 
             )
             $('.numeric').on('keypress', (e)->
@@ -1143,13 +1144,15 @@ define [ 'marionette' ], ( Marionette )->
             #object.getMilestones(id1)
             $('#infra').on('change' , ()->
                 infraid = $('#infra' ).val()
-                object.updated()
+                object.updated();
+                object.generatePaymentSchedule(('#paymentplans').val());
 
 
             )
             $('#infra1').on('change' , ()->
                 infraid = $('#infra1' ).val()
-                object.updated1()
+                object.updated1();
+                object.generatePaymentSchedule(('#paymentplans').val());
 
 
             )

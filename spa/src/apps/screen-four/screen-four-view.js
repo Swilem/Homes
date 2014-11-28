@@ -387,11 +387,13 @@ define(['marionette'], function(Marionette) {
       });
       $('#infra').on('change', function() {
         infraid = $('#infra').val();
-        return object.updated();
+        object.updated();
+        return object.generatePaymentSchedule('#paymentplans'.val());
       });
       $('#infra1').on('change', function() {
         infraid = $('#infra1').val();
-        return object.updated1();
+        object.updated1();
+        return object.generatePaymentSchedule('#paymentplans'.val());
       });
       $('.numeric').on('keypress', function(e) {
         var keyCode, ret;
@@ -762,11 +764,13 @@ define(['marionette'], function(Marionette) {
       object.generatePaymentSchedule(id);
       $('#infra').on('change', function() {
         infraid = $('#infra').val();
-        return object.updated();
+        object.updated();
+        return object.generatePaymentSchedule('#paymentplans'.val());
       });
       $('#infra1').on('change', function() {
         infraid = $('#infra1').val();
-        return object.updated1();
+        object.updated1();
+        return object.generatePaymentSchedule('#paymentplans'.val());
       });
       $('#discountvalue').on('change', function() {
         perFlag = 1;
