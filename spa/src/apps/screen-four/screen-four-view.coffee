@@ -75,6 +75,14 @@ define [ 'marionette' ], ( Marionette )->
                                             <h5>Prepared by:</h5>
                                             <h4 class="preparedby"></h4>
                                         </div>
+                                        <div class="col-sm-5">
+                                            <h5>Email Address:</h5>
+                                            <h4 class="email"></h4>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <h5>Contact No:</h5>
+                                            <h4 class="contactno"></h4>
+                                        </div>
                                         <div class="col-sm-2">
                                             <h5>Prepared on:</h5>
                                             <h4 class="preparedon"></h4>
@@ -225,7 +233,7 @@ define [ 'marionette' ], ( Marionette )->
                 unit = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
                 building = App.master.building.findWhere({id:parseInt(unit.get('building'))})
                 $(".formFields").html(EMAILFORM)
-                $('.formIntro').html  'I\'m interested in <br>Flat <span id="emailflatno">'+unit.get('name')+'</span> in <span id="emailtower">'+building.get('name')+'</span></div>'
+                $('.formIntro').html  'email apartment details of <span id="emailflatno">'+unit.get('name')+'</span> in <span id="emailtower">'+building.get('name')+'</span></div>'
                 $(".formPopup").bPopup
                     appendTo: '#screen-four-region'
                 # inst = $.remodal.lookup[$("[data-remodal-id=emailpop]").data("remodal")]
@@ -599,7 +607,7 @@ define [ 'marionette' ], ( Marionette )->
             $('#infra').on('change' , ()->
                     infraid = $('#infra' ).val()
                     object.updated();
-                    object.generatePaymentSchedule(('#paymentplans').val())
+                    object.generatePaymentSchedule($('#paymentplans').val())
 
 
 
@@ -607,7 +615,7 @@ define [ 'marionette' ], ( Marionette )->
             $('#infra1').on('change' , ()->
                     infraid = $('#infra1' ).val()
                     object.updated1();
-                    object.generatePaymentSchedule(('#paymentplans').val());
+                    object.generatePaymentSchedule($('#paymentplans').val());
 
             )
             $('.numeric').on('keypress', (e)->
@@ -673,11 +681,17 @@ define [ 'marionette' ], ( Marionette )->
                     unitType = App.master.unit_type.findWhere(id:model.get('unitType'))
                     unitVariant = App.master.unit_variant.findWhere(id:model.get('unitVariant'))
                     building = App.master.building.findWhere(id:model.get('building'))
-                    table +='<li>
-                                <a href="#" id="unit'+element+'" data-id="'+element+'"  class="selectedunit">'+model.get('name')+' - '+building.get('name')+'</a>
-                                <a href="#" class="del" id="'+element+'" data-id="'+element+'"  ></a>
-                                <div class="clearfix"></div>
-                            </li>'
+                    $('#currency_main').autoNumeric('init')
+                    $('#currency_main').autoNumeric('set', model.get('unitPrice'));
+                    currency = $('#currency_main').val()
+                    table +='
+                                <li>
+                                    <a href="#" id="unit'+element+'" data-id="'+element+'" class="selectedunit">'+model.get('name')+' - 
+                                        '+building.get('name')+' - '+unitVariant.get('name')+' - '+currency+'</a>
+                                    <a href="#" class="del" id="'+element+'" data-id="'+element+'"  ></a>
+                                    <div class="clearfix"></div>
+                                </li>
+                            '
 
                 # table += '</table>'
             $('#showWishlist').html table
@@ -717,6 +731,11 @@ define [ 'marionette' ], ( Marionette )->
             costSheetArray = []
             usermodel = new Backbone.Model USER
             $('.preparedby').text usermodel.get 'display_name'
+            $('.email').text usermodel.get 'user_email'
+            phone = usermodel.get('user_phone')
+            if usermodel.get('user_phone') == ""
+                phone = 'NA'
+            $('.contactno').text phone
             date = new Date()
             $('.preparedon').text date.getDate()+'/'+(parseInt(date.getMonth()) + 1)+'/'+date.getFullYear()
             unitModel = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
@@ -1145,14 +1164,14 @@ define [ 'marionette' ], ( Marionette )->
             $('#infra').on('change' , ()->
                 infraid = $('#infra' ).val()
                 object.updated();
-                object.generatePaymentSchedule(('#paymentplans').val());
+                object.generatePaymentSchedule($('#paymentplans').val());
 
 
             )
             $('#infra1').on('change' , ()->
                 infraid = $('#infra1' ).val()
                 object.updated1();
-                object.generatePaymentSchedule(('#paymentplans').val());
+                object.generatePaymentSchedule($('#paymentplans').val());
 
 
             )
@@ -1203,7 +1222,7 @@ define [ 'marionette' ], ( Marionette )->
             flag = 0
             $('#rec' ).text ""
             $('.rec' ).text ""
-            
+            console.log id
             #get_apratment_selector_settings()
             unitModel = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
             buildingModel = App.master.building.findWhere({id:unitModel.get('building')})
@@ -1236,11 +1255,16 @@ define [ 'marionette' ], ( Marionette )->
 
                 table = ""
                 count = 0
+                SettingModel = new Backbone.Model SETTINGS
+                servicetax = SettingModel.get('service_tax')
+                    
                 milestoneColl = new Backbone.Collection MILESTONES
                 #milestonecompletion = {48:'26/08/2014', 52:'30/08/2014'}
                 for element,index in milestonesArray
                     percentageValue = Math.round((agreementValue * ((parseFloat(element.payment_percentage))/100)))
                     percentageValue1 = Math.round((agreementValue1 * ((parseFloat(element.payment_percentage))/100)))
+                    
+                    
                     proposed_date = $.map(milestonecompletion, (index,value)->
                         if parseInt(element.milestone) == parseInt(value)
                             return index
@@ -1264,12 +1288,20 @@ define [ 'marionette' ], ( Marionette )->
                     $('.percentageValue1').autoNumeric('init')
                     $('.percentageValue').autoNumeric('init')
                     milestoneModel = milestoneColl.get(element.milestone)
-                    
                     table += '  <span class="msPercent">'+element.payment_percentage+'%</span>
                                 <li class="milestoneList '+trClass+'">
-                                    <div class="msName">'+milestoneModel.get('name')+' <span class="completionDate">(Estimated date: '+proposed_date+')</span></div>
-                                    <div class="msVal discCol '+discountClass+' percentageValue'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
-                                    <div class="msVal percentageValue1'+index+'" data-a-sign="Rs. " data-m-dec="" data-d-group="2"></div>
+                                    <div class="msName">'+milestoneModel.get('name')+'</div>
+                                    <div class="msVal discCol'+discountClass+'">
+                                            <div class="percentageValue'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
+                                            <div class="service'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
+                                            <div class="total'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
+                                    </div>
+                                    <div class="msVal">
+                                        <div class="percentageValue1'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
+                                            <div class="service1'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
+                                            <div class="total1'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
+
+                                        </div>
                                     <span class="barBg" style="width:'+element.payment_percentage+'%"></span>
                                 </li>
                                 <div class="clearfix"></div>
@@ -1299,10 +1331,22 @@ define [ 'marionette' ], ( Marionette )->
                 for element,index in milestonesArray
                     percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage))/100))
                     percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage))/100))
+                    sales_tax = Math.round(parseInt(percentageValue) * (parseFloat(servicetax)/100))
+                    sales_tax1 = Math.round(parseInt(percentageValue1) * (parseFloat(servicetax)/100))
+                    total = parseInt(percentageValue) + parseInt(sales_tax)
+                    total1 = parseInt(percentageValue1) + parseInt(sales_tax1)
                     $('.percentageValue'+index).autoNumeric('init')
                     $('.percentageValue'+index).autoNumeric('set', percentageValue)
                     $('.percentageValue1'+index).autoNumeric('init')
                     $('.percentageValue1'+index).autoNumeric('set', percentageValue1)
+                    $('.service'+index).autoNumeric('init')
+                    $('.service'+index).autoNumeric('set', sales_tax)
+                    $('.service1'+index).autoNumeric('init')
+                    $('.service1'+index).autoNumeric('set', sales_tax1)
+                    $('.total'+index).autoNumeric('init')
+                    $('.total'+index).autoNumeric('set', total)
+                    $('.total1'+index).autoNumeric('init')
+                    $('.total1'+index).autoNumeric('set', total1)
            
             
 

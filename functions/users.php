@@ -119,6 +119,8 @@ function ajax_save_user(){
 
                     $user_id = create_ap_user( $user_array );
 
+                    update_user_meta($user_id,'phone_no',$_REQUEST[ 'user_phone' ]);
+
                     $msg = "User Created Successfully!";
 
                  }else{
@@ -149,6 +151,8 @@ function ajax_save_user(){
                     $user_array["ID"] = $user_id ;
 
             	   create_ap_user( $user_array );
+
+                   update_user_meta($user_id,'phone_no',$_REQUEST[ 'user_phone' ]);
 
                     $msg = "User Updated Successfully!";
                 }else{
@@ -234,6 +238,8 @@ function get_ap_current_user(){
         
         $ap_current_user['id'] = $user_ID;
 
+        $ap_current_user['user_phone'] = get_user_meta($user_ID,'phone_no',true);
+
         $ap_current_user['user_login'] = $user_info->data->user_login;
 
         $ap_current_user['user_email'] = $user_info->data->user_email;
@@ -245,7 +251,7 @@ function get_ap_current_user(){
         $ap_current_user['display_role'] = $wp_roles->role_names[key($user_info->caps)] ;
 
         $all_caps = array();
-
+        
         foreach($user_info->allcaps as $key=>$capability){
 
             $all_caps[] = $key;
@@ -255,6 +261,8 @@ function get_ap_current_user(){
     }else{
 
          $ap_current_user['id'] = 0;
+
+         $ap_current_user['user_phone'];
 
          $ap_current_user['user_login'] = '';
 

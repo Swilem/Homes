@@ -1,5 +1,5 @@
-<?
-//form heading
+<?php
+
 
 if(!current_user_can('manage_users') && !current_user_can('manage_options')){
 
@@ -25,6 +25,8 @@ $heading = "Edit";
     $user_email = $user_data["user_email"];
  
     $user_role = $user_data["role"];
+
+    $user_phone = get_user_meta($user_id, 'phone_no', true);
 
 
 
@@ -67,6 +69,13 @@ $heading = "Edit";
                         <div class="input-with-icon  right">                                       
               <i class=""></i>
               <input type="email"  name="user_email" required="" id="user_email" class="form-control" value="<?php echo $user_email;?>">                                 
+            </div>
+                      </div>
+            <div class="form-group">
+                        <label class="form-label">Phone No</label>
+                        <div class="input-with-icon  right">                                       
+              <i class=""></i>
+              <input type="text"  onkeypress="return check_number(event)" name="user_phone" required="" id="user_phone" class="form-control" value="<?php echo $user_phone;?>">                                 
             </div>
                       </div>
              <div class="row">
@@ -119,3 +128,24 @@ $heading = "Edit";
 </div>
 </div>
 </div>
+
+<script type="text/javascript">
+
+function check_number(evt){
+
+    if(document.getElementById('user_phone').value.length > 9)
+    {
+      return false;
+    }
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    
+    if(charCode > 46 && charCode < 58){
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+</script>

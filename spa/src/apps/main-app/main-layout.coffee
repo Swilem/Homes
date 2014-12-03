@@ -50,7 +50,7 @@ define [ 'extm'], ( Extm)->
                 <li><a href="#"><span class="glyphicon glyphicon-heart"></span> Wishlist</a>
                     <div id="comparetext" class="compareTxt">
                         Compare Apartments here!<br>You can compare up to 4 apartments.
-                    </div>
+                    </div><input type="hidden" name="currency_main" id="currency_main" class="demo" data-a-sign="Rs. " data-m-dec=""  data-d-group="2" >
                     <ul class="menuWishlist" id="showWishlist">
                     </ul>
                 </li>
@@ -527,9 +527,13 @@ define [ 'extm'], ( Extm)->
                     unitType = App.master.unit_type.findWhere(id:model.get('unitType'))
                     unitVariant = App.master.unit_variant.findWhere(id:model.get('unitVariant'))
                     building = App.master.building.findWhere(id:model.get('building'))
+                    $('#currency_main').autoNumeric('init')
+                    $('#currency_main').autoNumeric('set', model.get('unitPrice'));
+                    currency = $('#currency_main').val()
                     table +='
                                 <li>
-                                    <a href="#" id="unit'+element+'" data-id="'+element+'" class="selectedunit">'+model.get('name')+' - '+building.get('name')+'</a>
+                                    <a href="#" id="unit'+element+'" data-id="'+element+'" class="selectedunit">'+model.get('name')+' - 
+                                        '+building.get('name')+' - '+unitVariant.get('name')+' - '+currency+'</a>
                                     <a href="#" class="del" id="'+element+'" data-id="'+element+'"  ></a>
                                     <div class="clearfix"></div>
                                 </li>

@@ -514,7 +514,7 @@ $heading = "Edit";
                                         ?>
                                         <div class='col-md-4 flatposition<?php echo $flat;?>'>
                                                 <div class='checkbox check-default' >
-                                                        <input type='checkbox' name='flatpostion-2[]' id='flatpostion<?php echo $flat;?>-2' value='<?php echo $flat;?>'  <?php echo $checked;?> <label for='flatpostion<?php echo $flat;?>-2'><?php echo $flat;?></label>
+                                                        <input type='checkbox' name='flatpostion-2[]' id='flatpostion<?php echo $flat;?>-2' value='<?php echo $flat;?>'  <?php echo $checked;?>> <label for='flatpostion<?php echo $flat;?>-2'><?php echo $flat;?></label>
                                                 </div>
                                         </div>
                                         <?php
@@ -572,7 +572,7 @@ $heading = "Edit";
                                         ?>
                                         <div class='col-md-4 flatposition<?php echo $flat;?>'>
                                                 <div class='checkbox check-default' >
-                                                        <input type='checkbox' name='flatpostion-3[]' id='flatpostion<?php echo $flat;?>-3' value='<?php echo $flat;?>'  <?php echo $checked;?> <label for='flatpostion<?php echo $flat;?>-3'><?php echo $flat;?></label>
+                                                        <input type='checkbox' name='flatpostion-3[]' id='flatpostion<?php echo $flat;?>-3' value='<?php echo $flat;?>'  <?php echo $checked;?>> <label for='flatpostion<?php echo $flat;?>-3'><?php echo $flat;?></label>
                                                 </div>
                                         </div>
                                         <?php
@@ -630,7 +630,7 @@ $heading = "Edit";
                                         ?>
                                         <div class='col-md-4 flatposition<?php echo $flat;?>'>
                                                 <div class='checkbox check-default' >
-                                                        <input type='checkbox' name='flatpostion-4[]' id='flatpostion<?php echo $flat;?>-4' value='<?php echo $flat;?>'  <?php echo $checked;?> <label for='flatpostion<?php echo $flat;?>-4'><?php echo $flat;?></label>
+                                                        <input type='checkbox' name='flatpostion-4[]' id='flatpostion<?php echo $flat;?>-4' value='<?php echo $flat;?>'  <?php echo $checked;?>> <label for='flatpostion<?php echo $flat;?>-4'><?php echo $flat;?></label>
                                                 </div>
                                         </div>
                                         <?php

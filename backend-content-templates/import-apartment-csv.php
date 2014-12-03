@@ -1,4 +1,4 @@
-<?
+<?php
 
 if(!current_user_can('manage_apartments') && !current_user_can('manage_options')){
 
