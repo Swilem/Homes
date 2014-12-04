@@ -66,26 +66,28 @@ define [ 'marionette' ], ( Marionette )->
 
                             <header id="header">
                                 <div class="invoice-intro">
-                                    <div class="row">
-                                        <div class="col-sm-5">
+                                    <div class="row"> 
+                                        <div class="col-sm-6">
                                             <h5>Prepared for:</h5>
                                             <input type="text" id="customer_name" value="" class="form-control" placeholder="Customer Name"/>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <h5>Prepared on:</h5>
+                                            <h4 class="preparedon"></h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
                                             <h5>Prepared by:</h5>
                                             <h4 class="preparedby"></h4>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4">
                                             <h5>Email Address:</h5>
                                             <h4 class="email"></h4>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4">
                                             <h5>Contact No:</h5>
                                             <h4 class="contactno"></h4>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <h5>Prepared on:</h5>
-                                            <h4 class="preparedon"></h4>
                                         </div>
                                     </div>
                                     <!--<h2 class="medium m-t-0 m-b-5 text-primary">Skyi</h2>
@@ -687,8 +689,9 @@ define [ 'marionette' ], ( Marionette )->
                     table +='
                                 <li>
                                     <a href="#" id="unit'+element+'" data-id="'+element+'" class="selectedunit">'+model.get('name')+' - 
-                                        '+building.get('name')+' - '+unitVariant.get('name')+' - '+currency+'</a>
+                                        '+building.get('name')+'</a>
                                     <a href="#" class="del" id="'+element+'" data-id="'+element+'"  ></a>
+                                    <span class="label pull-left wlInfo">'+unitVariant.get('name')+' sq.ft. - '+currency+'</span>
                                     <div class="clearfix"></div>
                                 </li>
                             '
@@ -1292,16 +1295,15 @@ define [ 'marionette' ], ( Marionette )->
                                 <li class="milestoneList '+trClass+'">
                                     <div class="msName">'+milestoneModel.get('name')+'</div>
                                     <div class="msVal discCol'+discountClass+'">
-                                            <div class="percentageValue'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
-                                            <div class="service'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
-                                            <div class="total'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
+                                        <div><span class="label">Amount: </span><span class="percentageValue'+index+' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div>
+                                        <div><span class="label">Service Tax: </span><span class="service'+index+' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div>
+                                        <div>Total: <span class="total'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div>
                                     </div>
                                     <div class="msVal">
-                                        <div class="percentageValue1'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
-                                            <div class="service1'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
-                                            <div class="total1'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></div>
-
-                                        </div>
+                                        <div><span class="label">Amount: </span><span class="percentageValue1'+index+' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div>
+                                        <div><span class="label">Service Tax: </span><span class="service1'+index+' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div>
+                                        <div>Total: <span class="total1'+index+'" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div>
+                                    </div>
                                     <span class="barBg" style="width:'+element.payment_percentage+'%"></span>
                                 </li>
                                 <div class="clearfix"></div>
