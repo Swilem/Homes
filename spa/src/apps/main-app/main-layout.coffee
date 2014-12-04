@@ -533,8 +533,9 @@ define [ 'extm'], ( Extm)->
                     table +='
                                 <li>
                                     <a href="#" id="unit'+element+'" data-id="'+element+'" class="selectedunit">'+model.get('name')+' - 
-                                        '+building.get('name')+' - '+unitVariant.get('name')+' - '+currency+'</a>
+                                        '+building.get('name')+'</a>
                                     <a href="#" class="del" id="'+element+'" data-id="'+element+'"  ></a>
+                                    <span class="label pull-left wlInfo">'+unitVariant.get('name')+' sq.ft. - '+currency+'</span>
                                     <div class="clearfix"></div>
                                 </li>
                             '
