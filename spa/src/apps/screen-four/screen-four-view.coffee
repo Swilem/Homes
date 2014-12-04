@@ -235,7 +235,7 @@ define [ 'marionette' ], ( Marionette )->
                 unit = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
                 building = App.master.building.findWhere({id:parseInt(unit.get('building'))})
                 $(".formFields").html(EMAILFORM)
-                $('.formIntro').html  'email apartment details of <span id="emailflatno">'+unit.get('name')+'</span> in <span id="emailtower">'+building.get('name')+'</span></div>'
+                $('.formIntro').html  'Email Apartment details of <span id="emailflatno">'+unit.get('name')+'</span> in <span id="emailtower">'+building.get('name')+'</span></div>'
                 $(".formPopup").bPopup
                     appendTo: '#screen-four-region'
                 # inst = $.remodal.lookup[$("[data-remodal-id=emailpop]").data("remodal")]
