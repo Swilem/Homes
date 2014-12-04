@@ -266,6 +266,31 @@ function room_type_sizes(data){
     }
     data.push({name:$('#add_more_room_sizes').attr('field-name'),value:room_sizes})
   }
+  persqft = [];
+  if($('#add_more_sqft').length!=0){
+
+    for(i=1;i<=$('#add_more_sqft').attr("last-sr-no");i++){
+  
+      
+        if($("#persqft_label_"+i).val()!=""  && $("#persqft_value_"+i).val()!=""){
+
+          persqft.push({'persqft_type':$("#persqft_label_"+i).val(),'persqft_size':$("#persqft_value_"+i).val()})
+        }
+     
+        else{
+          alert("Please Enter proer data for Per sgft price ");
+          return false;
+        }
+        
+     
+
+    }
+ 
+    if (persqft.length==0) {
+      persqft = ""
+    }
+    data.push({name:$('#add_more_sqft').attr('field-name'),value:persqft})
+  }
   return data;
 }
 
@@ -295,6 +320,30 @@ function room_type_sizes(data){
     $('#room_type_for_size_'+itemNo).trigger('change');
   });
 
+  $(document).on("click", "#add_more_sqft", function(e) {
+
+    itemNo = parseInt($(e.target).attr("last-sr-no"))+1;
+
+    $(e.target).attr("last-sr-no",itemNo);
+    cloneElement = $("#persqft-size-item-1").html()
+
+    html = '<div id="persqft-size-item-'+itemNo+'">';
+
+    elements_html = cloneElement.replace(/1/g,itemNo);
+
+    html +=elements_html;
+
+    html +='</div>';
+ 
+   $('#persqft-size-container div:last').before( html );
+ 
+    $('#persqft_label_'+itemNo).val('');
+
+    $('#persqft_value_'+itemNo).val('');
+    
+    
+  });
+
  
    $(document).on("click", ".delete_room_type_size_item", function(e) {
 
@@ -307,6 +356,23 @@ function room_type_sizes(data){
       else{
 
         $("#room-type-for-size-item-"+itemNo).remove();
+
+      }
+
+  });
+
+
+   $(document).on("click", ".delete_persqft", function(e) {
+
+      itemNo =  parseInt($(e.target).attr("item-no"));
+
+      if(itemNo==1){
+
+        alert("Not allowed to delete the first Item");
+      }
+      else{
+
+        $("#persqft-size-item-"+itemNo).remove();
 
       }
 
