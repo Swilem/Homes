@@ -193,14 +193,14 @@ function ajax_upload_file(){
                 );
 
                 $_FILES = array("upload_attachment" => $file);
-
+                
 
 
                 $attach_data = array();
 
  
                 foreach ($_FILES as $file => $array) { 
-                    $attach_id = upload_attachment($file, 0, true);
+                	$attach_id = upload_attachment($file, 0, true);
                     $attachment_id = $attach_id;
                     $attachment_url = wp_get_attachment_thumb_url($attach_id);
                 }

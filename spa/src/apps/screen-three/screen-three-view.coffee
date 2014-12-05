@@ -250,9 +250,9 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f']
-                temp1 = ['tt','t']
-                temp2 = ['cc','cc']
+                temp = ['ff','f','fff','ffff']
+                temp1 = ['tt','t','ttt','tttt']
+                temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
                         temp = ['f','ff']
@@ -293,6 +293,8 @@ define [ 'marionette' ], ( Marionette )->
                                 $.map(indexvalue1, (index,value)->
                                     $('#f'+value).attr('class', 'unselected-floor ')
                                     $('#ff'+value).attr('class', 'unselected-floor ')
+                                    $('#fff'+value).attr('class', 'unselected-floor ')
+                                    $('#ffff'+value).attr('class', 'unselected-floor ')
                                     
 
                                 )
@@ -399,9 +401,9 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f']
-                temp1 = ['tt','t']
-                temp2 = ['cc','cc']
+                temp = ['ff','f','fff','ffff']
+                temp1 = ['tt','t','ttt','tttt']
+                temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
                         temp = ['f','ff']
@@ -446,6 +448,8 @@ define [ 'marionette' ], ( Marionette )->
                                 $.map(indexvalue1, (index,value)->
                                     $('#f'+value).attr('class', 'unselected-floor ')
                                     $('#ff'+value).attr('class', 'unselected-floor ')
+                                    $('#fff'+value).attr('class', 'unselected-floor ')
+                                    $('#ffff'+value).attr('class', 'unselected-floor ')
                                     
 
                                 )
@@ -515,9 +519,9 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f']
-                temp1 = ['tt','t']
-                temp2 = ['cc','cc']
+                temp = ['ff','f','fff','ffff']
+                temp1 = ['tt','t','ttt','tttt']
+                temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
                         temp = ['f','ff']
@@ -587,9 +591,9 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f']
-                temp1 = ['tt','t']
-                temp2 = ['cc','cc']
+                temp = ['ff','f','fff','ffff']
+                temp1 = ['tt','t','ttt','tttt']
+                temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
                         temp = ['f','ff']
@@ -672,9 +676,9 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f']
-                temp1 = ['tt','t']
-                temp2 = ['cc','cc']
+                temp = ['ff','f','fff','ffff']
+                temp1 = ['tt','t','ttt','tttt']
+                temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
                         temp = ['f','ff']
@@ -1948,9 +1952,9 @@ define [ 'marionette' ], ( Marionette )->
             unitvalues = ""
             indexvalue = ""
             $('#positionsvg').text ""
-            temp = ['ff','f']
-            temp1 = ['tt','t']
-            temp2 = ['cc','cc']
+            temp = ['ff','f','fff','ffff']
+            temp1 = ['tt','t','ttt','tttt']
+            temp2 = ['cc','cc','ccc','cccc']
             
             if  parseInt(building.get('id')) == 11
                     temp = ['f','ff']
@@ -1964,6 +1968,7 @@ define [ 'marionette' ], ( Marionette )->
                     if value.svgfile != ""
                         svgposition = value.svgfile
                         unitsarray = value.units
+                        svg_position = value.svgposition
                         $('#positionsvg').load(svgposition,  (x)->
                             value.svgposition.sort( (a,b)->
                                 b - a
@@ -1977,16 +1982,19 @@ define [ 'marionette' ], ( Marionette )->
                                             $('#'+temp[ii]+value).attr('class', 'unselected-floor')
                                             $('#'+temp[ii]+value).attr('data-value', index)
                                             $('#'+temp[ii]+value).attr('data-idvalue', temp[ii])
+                                            $('#'+temp[ii]+value).attr('data-position', val1)
                                             
                                 )
                                 $.map(indexvalue, (index1,value1)->
                                             if App.defaults['floor'] != "All"
                                                 floorArr  = App.defaults['floor'].split(',')
                                                 if floorid == val1
+                                                    console.log tempid = $('[data-position="'+floorid+'"]')[0].id
+                                                    console.log tempidval = $('#'+tempid).attr('data-idvalue')
                                                     $.each(floorArr, (ind,val)->
                                                         if parseInt(value1) == parseInt(val)
-                                                            $('#'+temp[ii]+value1).attr('class', 'unit-hover range')
-                                                            $('#'+temp1[ii]+value1).attr('class', 'unit-hover range')
+                                                            $('#'+tempidval+value1).attr('class', 'unit-hover range')
+                                                            $('#'+tempidval+value1).attr('class', 'unit-hover range')
                                                             
 
 
@@ -2007,10 +2015,14 @@ define [ 'marionette' ], ( Marionette )->
                                                    idvalue = $('#'+temp[ii]+value).attr('data-idvalue')
                                                 if parseInt(index) == parseInt(App.unit['name'])
                                                     $("#"+idvalue+value).attr('class','selected-flat')
-                                                    if idvalue == 'f'
-                                                        textid = 't'
-                                                    else
+                                                    if idvalue == 'ffff'
+                                                        textid = 'tttt'
+                                                    else if idvalue == 'fff'
+                                                        textid = 'ttt'
+                                                    else if idvalue == 'ff'
                                                         textid = 'tt'
+                                                    else
+                                                        textid = 't'
                                                     $("#"+textid+value).attr('class','selected-flat')
                                                     unit = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
                                                     unittpe = App.master.unit_type.findWhere({id:unit.get('unitType')})
@@ -2548,10 +2560,11 @@ define [ 'marionette' ], ( Marionette )->
                     svgposition = ""
                     unitvalues = ""
                     indexvalue = ""
-                    temp = ['f','ff']
-                    temp1 = ['t','tt']
-                    temp2 = ['c','cc']
+                    temp = ['ff','f','fff','ffff']
+                    temp1 = ['tt','t','ttt','tttt']
+                    temp2 = ['cc','cc','ccc','cccc']
                     idValue = ""
+                    console.log position
                     $.each(svgdata, (index,value)->
                         if $.inArray(position,value.svgposition ) >= 0 && value.svgposition != null
                             $.each(value.svgposition, (index1,val1)->
@@ -2565,6 +2578,9 @@ define [ 'marionette' ], ( Marionette )->
                                     $.map(indexvalue1,  (index,value)->
                                         $('#f'+value).attr('class', 'unit-hover')
                                         $('#ff'+value).attr('class', 'unit-hover')
+                                        $('#fff'+value).attr('class', 'unit-hover')
+                                        $('#ffff'+value).attr('class', 'unit-hover')
+
 
                                     )
                                         
@@ -2588,6 +2604,10 @@ define [ 'marionette' ], ( Marionette )->
                            idvalue = $('#f'+index).attr('data-idvalue')
                         else if parseInt($('#ff'+index).attr('data-value'))  == obj.model.get('id')
                            idvalue = $('#ff'+index).attr('data-idvalue')
+                        else if parseInt($('#fff'+index).attr('data-value'))  == obj.model.get('id')
+                           idvalue = $('#fff'+index).attr('data-idvalue')
+                        else if parseInt($('#ffff'+index).attr('data-value'))  == obj.model.get('id')
+                           idvalue = $('#ffff'+index).attr('data-idvalue')
 
                         )
                     $('#screen-four-region').removeClass 'section'
@@ -2628,8 +2648,12 @@ define [ 'marionette' ], ( Marionette )->
                                         $('#'+idvalue+value).attr('class', 'unit-hover range')
                                         if idvalue == 'f'
                                             textid = 't'
-                                        else
+                                        else if idvalue == 'ff'
                                             textid = 'tt'
+                                        else if idvalue == 'fff'
+                                            textid = 'ttt'
+                                        else
+                                            textid = 'tttt'
                                         $('#'+textid+value).text ""
                                         
 
@@ -2642,6 +2666,10 @@ define [ 'marionette' ], ( Marionette )->
                                 $('#t'+value).text ""
                                 $('#ff'+value).attr('class', 'unit-hover')
                                 $('#tt'+value).text ""
+                                $('#fff'+value).attr('class', 'unit-hover')
+                                $('#ttt'+value).text ""
+                                $('#ffff'+value).attr('class', 'unit-hover')
+                                $('#tttt'+value).text ""
 
                         )
                         $.map(indexvalue,  (index,value)->
@@ -2650,8 +2678,12 @@ define [ 'marionette' ], ( Marionette )->
                                 $("#"+idvalue+value).attr('class','selected-flat')
                                 if idvalue == 'f'
                                     textid = 't'
-                                else
+                                else if idvalue == 'ff'
                                     textid = 'tt'
+                                else if idvalue == 'fff'
+                                    textid = 'ttt'
+                                else
+                                    textid = 'tttt'
                                 $("#"+textid+value).attr('class','selected-flat')
                                 $('#currency2').autoNumeric('init')
                                 $('#currency2').autoNumeric('set', obj.model.get('unitPrice'));

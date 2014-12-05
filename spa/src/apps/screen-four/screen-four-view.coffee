@@ -863,8 +863,8 @@ define [ 'marionette' ], ( Marionette )->
                         </div>
                         <div class="costsRow">
                             <div class="costCell costName">Rate per Sq.Ft.</div>
-                            <div class="costCell discCol '+discountClass+' ratepersqft" ><select id="sqftprice"></select></div>
-                            <div class="costCell ratepersqft" ><select id="sqftprice1"></select></div>
+                            <div class="costCell discCol '+discountClass+'" ><select id="sqftprice"></select></div>
+                            <div class="costCell" ><select id="sqftprice1"></select></div>
                         </div>
                         <div class="costsRow">
                             <div class="costCell costName">Rate per Sq.Ft. with Floor Rise</div>
@@ -908,13 +908,13 @@ define [ 'marionette' ], ( Marionette )->
                         </div>
                         <div class="costsRow">
                             <div class="costCell costName">Rate per Sq.Ft.</div>
-                            <div class="costCell discCol '+discountClass+' ratepersqft"><select id="sqftprice"></div>
-                            <div class="costCell ratepersqft" ><select id="sqftprice1"></div>
+                            <div class="costCell discCol '+discountClass+' ratepersqft" data-a-sign="Rs. " data-m-dec="" data-d-group="2">'+infraid+'</div>
+                            <div class="costCell ratepersqft1" data-a-sign="Rs. " data-m-dec="" data-d-group="2" >'+infraid+'</div>
                         </div>
                         <div class="costsRow">
                             <div class="costCell costName">Rate per Sq.Ft. with Floor Rise</div>
-                            <div class="costCell discCol '+discountClass+' ratepersqftfloor1" data-a-sign="Rs. " data-m-dec="" data-d-group="2">'+revisedrate+'</div>
-                            <div class="costCell ratepersqftfloor" data-a-sign="Rs. " data-m-dec=""  data-d-group="2">'+ratepersqftfloorval+'</div>
+                            <div class="costCell discCol '+discountClass+' ratepersqftfloor" data-a-sign="Rs. " data-m-dec="" data-d-group="2">'+revisedrate+'</div>
+                            <div class="costCell ratepersqftfloor1" data-a-sign="Rs. " data-m-dec=""  data-d-group="2">'+ratepersqftfloorval+'</div>
                         </div>
                         <!--<div class="costsRow revised '+revisedhidden+'">
                             <div class="costCell costName">Revised Rate</div>
@@ -952,6 +952,7 @@ define [ 'marionette' ], ( Marionette )->
             $('.ratepersqftfloor').autoNumeric('set', ratepersqftfloorval);
             $('.ratepersqftfloor1').autoNumeric('init')
             $('.ratepersqftfloor1').autoNumeric('set', revisedrate);
+            
 
 
             table = ""
@@ -1170,6 +1171,10 @@ define [ 'marionette' ], ( Marionette )->
             $('.infra1').autoNumeric('set', $('#infra1' ).val());
             $('.infra').autoNumeric('init')
             $('.infra').autoNumeric('set', $('#infra' ).val());
+            $('.ratepersqft').autoNumeric('init')
+            $('.ratepersqft').autoNumeric('set', $('#sqftprice').val());
+            $('.ratepersqft1').autoNumeric('init')
+            $('.ratepersqft1').autoNumeric('set', $('#sqftprice1').val());
             $('.finalvalue1').autoNumeric('init')
             $('.finalvalue1').autoNumeric('set', finalvalue1);
             $('.finalvalue').autoNumeric('init')

@@ -239,7 +239,41 @@ if(isset($_REQUEST["id"])){
                                 }
                                     ?>
                                         <div class="col-md-4 radio radio-default"><input type="radio" name="unit_assigned"  <?php if($unit_assigned==$flat["flat_no"]){ echo "checked";}?> value="<?php echo $flat["flat_no"]?>" id="unit_assigned<?php echo $flat["flat_no"]?>"><label for="unit_assigned<?php echo $flat["flat_no"]?>">Flat <?php echo $flat["flat_no"]." ".$unit_assigned_highlight;?> </label></div>
-                                         
+                                        
+                                            <div class="form-group">
+                                                <label class="form-label">
+                                                    Position image
+                                                </label>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="input-with-icon  right">
+                                                            <span class="btn btn-success fileinput-button">
+                                                                 
+                                                                <span>Select file..</span>
+                                                                <input id="fileuploadposition_image" class="fileuploadposition_image" type="file" name="files">
+                                                            </span> 
+                                                             <span class="btn btn-danger fileinput-button"  id="position_imagetrash-image-option"  <?php if($zoomed_in_image["id"]==""){?> style="display:none"<?php } ?>>
+                                                               <a href="javascript:void(0)" class="common-trash-image" style="text-decoration:none;color:#fff"  fileField="position_image">  
+                                                               Delete 
+                                                                </a>
+                                                            </span>
+                                                            <input type="hidden" class="position_image" id="position_image" name="position_image" value="<?php echo @$zoomed_in_image["id"];?>">
+                                                            <div id="progresszoomed_in_image" class="progress" >
+                                                                <div class="progress-bar progress-bar-success"></div>
+                                                            </div>
+                                                            <div id="filesposition_in_image" class="files"></div>
+                                                            <br>
+                                                            <div class="row-fluid">
+                                                                <div class="col-md-12">
+                                                                    <img src="<?php echo @$zoomed_in_image["thumbnail_url"];?>" id="image_displayposition_image" <?php if(@$zoomed_in_image["thumbnail_url"]==""){?>style="display:none"<?php } ?>/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                 
+                                                </div> 
+                                            </div>
+    
                                  <?php
                             }
                             ?>

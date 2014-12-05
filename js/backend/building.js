@@ -51,7 +51,7 @@ if($("#svg_position_file_4").length>0){
  
     fileUploadById("svg_position_file_4")
 }
- 
+
     
 if($("#slider").length!=0){
     displaySlider($("#no_of_floors").val())

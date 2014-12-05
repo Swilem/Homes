@@ -177,7 +177,8 @@ function fileUploadByIndex(field){
     }) 
 }
 
-function fileUploadById(field){  
+function fileUploadById(field){ 
+
     // Change this to the location of your server-side upload handler:
  
     jQuery('#fileupload'+field).fileupload({
@@ -218,7 +219,7 @@ function fileUploadById(field){
 
 function fileUploadById(field){  
     // Change this to the location of your server-side upload handler:
- 
+    console.log(field)
     jQuery('#fileupload'+field).fileupload({
         url: AJAXURL+"?action=upload_file",
         

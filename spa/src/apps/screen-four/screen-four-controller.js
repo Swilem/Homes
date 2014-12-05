@@ -102,7 +102,7 @@ define(['extm', 'src/apps/screen-four/screen-four-view'], function(Extm, ScreenF
         });
         viewModelArray = [];
         facingModelArray = [];
-        if (value.get('views').length !== 0) {
+        if (value.get('views').length !== 0 && value.get('views') !== "") {
           viewsArray = value.get('views');
           for (_i = 0, _len = viewsArray.length; _i < _len; _i++) {
             element = viewsArray[_i];
@@ -116,7 +116,7 @@ define(['extm', 'src/apps/screen-four/screen-four-view'], function(Extm, ScreenF
         }
         value.set('facings_name', viewModelArray.join(', '));
         facingssArray = value.get('facing');
-        if (facingssArray.length !== 0) {
+        if (facingssArray.length !== 0 && facingssArray !== "") {
           for (_j = 0, _len1 = facingssArray.length; _j < _len1; _j++) {
             element = facingssArray[_j];
             facingModel = App.master.facings.findWhere({

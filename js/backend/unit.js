@@ -13,6 +13,12 @@ jQuery(document).ready(function($) {
         loadUnitVariants()
 
     });
+
+
+    if($("#fileuploadposition_image").length>0){
+ 
+    fileUploadById("position_image")
+}
  
 
  function loadUnitVariants(){

@@ -117,7 +117,7 @@ define [ 'extm', 'src/apps/screen-four/screen-four-view' ], ( Extm, ScreenFourVi
                 )
                 viewModelArray = []
                 facingModelArray = []
-                if value.get('views').length != 0
+                if value.get('views').length != 0 && value.get('views') !=""
                     viewsArray = value.get('views')
                     for element in viewsArray
                         viewModel = App.master.view.findWhere({id:parseInt(element)})
@@ -126,7 +126,7 @@ define [ 'extm', 'src/apps/screen-four/screen-four-view' ], ( Extm, ScreenFourVi
                     viewModelArray.push('-----')
                 value.set 'facings_name' , viewModelArray.join(', ')
                 facingssArray = value.get('facing')
-                if facingssArray.length != 0
+                if facingssArray.length != 0 && facingssArray != ""
                     for element in facingssArray
                         facingModel = App.master.facings.findWhere({id:parseInt(element)})
                         facingModelArray.push(facingModel.get('name'))

@@ -278,7 +278,7 @@ function room_type_sizes(data){
         }
      
         else{
-          alert("Please Enter proer data for Per sgft price ");
+          alert("Please Enter proper data for Per sqft price ");
           return false;
         }
         
@@ -340,6 +340,8 @@ function room_type_sizes(data){
     $('#persqft_label_'+itemNo).val('');
 
     $('#persqft_value_'+itemNo).val('');
+
+
     
     
   });
@@ -434,7 +436,7 @@ function room_type_sizes(data){
    //allow only number
 
 
- $(".amount-data").keydown(function (e) {
+ $(".amount-data").live('keydown',function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
              // Allow: Ctrl+A
