@@ -535,7 +535,7 @@ define [ 'extm'], ( Extm)->
                                     <a href="#" id="unit'+element+'" data-id="'+element+'" class="selectedunit">'+model.get('name')+' - 
                                         '+building.get('name')+'</a>
                                     <a href="#" class="del" id="'+element+'" data-id="'+element+'"  ></a>
-                                    <span class="label pull-left wlInfo">'+unitVariant.get('name')+' sq.ft. - '+currency+'</span>
+                                    <span class="label pull-left wlInfo">'+unitVariant.get('sellablearea')+' sq.ft. - '+currency+'</span>
                                     <div class="clearfix"></div>
                                 </li>
                             '

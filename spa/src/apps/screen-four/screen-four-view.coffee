@@ -697,7 +697,7 @@ define [ 'marionette' ], ( Marionette )->
                                     <a href="#" id="unit'+element+'" data-id="'+element+'" class="selectedunit">'+model.get('name')+' - 
                                         '+building.get('name')+'</a>
                                     <a href="#" class="del" id="'+element+'" data-id="'+element+'"  ></a>
-                                    <span class="label pull-left wlInfo">'+unitVariant.get('name')+' sq.ft. - '+currency+'</span>
+                                    <span class="label pull-left wlInfo">'+unitVariant.get('sellablearea')+' sq.ft. - '+currency+'</span>
                                     <div class="clearfix"></div>
                                 </li>
                             '
@@ -1356,10 +1356,12 @@ define [ 'marionette' ], ( Marionette )->
                 
 
                 $('#paymentTable' ).append table
-                
+                console.log milestonesArray
+                console.log agreementValue
+                console.log agreementValue1
                 for element,index in milestonesArray
-                    percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage))/100))
-                    percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage))/100))
+                    console.log percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage))/100))
+                    console.log percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage))/100))
                     sales_tax = Math.round(parseInt(percentageValue) * (parseFloat(servicetax)/100))
                     sales_tax1 = Math.round(parseInt(percentageValue1) * (parseFloat(servicetax)/100))
                     total = parseInt(percentageValue) + parseInt(sales_tax)
@@ -1406,7 +1408,7 @@ define [ 'marionette' ], ( Marionette )->
             unitModel = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
             uniVariantModel = App.master.unit_variant.findWhere({id:unitModel.get('unitVariant')})
             costSheetArray.push(Math.round(uniVariantModel.get('sellablearea')))
-            costSheetArray.push(Math.round(unitModel.get('persqftprice')))
+            costSheetArray.push(Math.round($('#sqftprice').val()))
             buildingModel = App.master.building.findWhere({id:unitModel.get('building')})
             floorRise = buildingModel.get 'floorrise'
             floorRiseValue = floorRise[unitModel.get 'floor']
@@ -1584,7 +1586,7 @@ define [ 'marionette' ], ( Marionette )->
             unitModel = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
             uniVariantModel = App.master.unit_variant.findWhere({id:unitModel.get('unitVariant')})
             costSheetArray.push(Math.round(uniVariantModel.get('sellablearea')))
-            costSheetArray.push(Math.round(unitModel.get('persqftprice')))
+            costSheetArray.push(Math.round($('#sqftprice1').val()))
             buildingModel = App.master.building.findWhere({id:unitModel.get('building')})
             floorRise = buildingModel.get 'floorrise'
             floorRiseValue = floorRise[unitModel.get 'floor']

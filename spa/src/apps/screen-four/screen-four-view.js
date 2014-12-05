@@ -467,7 +467,7 @@ define(['marionette'], function(Marionette) {
           $('#currency_main').autoNumeric('init');
           $('#currency_main').autoNumeric('set', model.get('unitPrice'));
           currency = $('#currency_main').val();
-          table += '<li> <a href="#" id="unit' + element + '" data-id="' + element + '" class="selectedunit">' + model.get('name') + ' -' + building.get('name') + '</a> <a href="#" class="del" id="' + element + '" data-id="' + element + '"  ></a> <span class="label pull-left wlInfo">' + unitVariant.get('name') + ' sq.ft. - ' + currency + '</span> <div class="clearfix"></div> </li>';
+          table += '<li> <a href="#" id="unit' + element + '" data-id="' + element + '" class="selectedunit">' + model.get('name') + ' -' + building.get('name') + '</a> <a href="#" class="del" id="' + element + '" data-id="' + element + '"  ></a> <span class="label pull-left wlInfo">' + unitVariant.get('sellablearea') + ' sq.ft. - ' + currency + '</span> <div class="clearfix"></div> </li>';
         }
       }
       return $('#showWishlist').html(table);
@@ -929,11 +929,14 @@ define(['marionette'], function(Marionette) {
         $('.addonpay').autoNumeric('init');
         $('.addonpay').autoNumeric('set', addon);
         $('#paymentTable').append(table);
+        console.log(milestonesArray);
+        console.log(agreementValue);
+        console.log(agreementValue1);
         _results = [];
         for (index = _j = 0, _len1 = milestonesArray.length; _j < _len1; index = ++_j) {
           element = milestonesArray[index];
-          percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage)) / 100));
-          percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage)) / 100));
+          console.log(percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage)) / 100)));
+          console.log(percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage)) / 100)));
           sales_tax = Math.round(parseInt(percentageValue) * (parseFloat(servicetax) / 100));
           sales_tax1 = Math.round(parseInt(percentageValue1) * (parseFloat(servicetax) / 100));
           total = parseInt(percentageValue) + parseInt(sales_tax);
@@ -991,7 +994,7 @@ define(['marionette'], function(Marionette) {
         id: unitModel.get('unitVariant')
       });
       costSheetArray.push(Math.round(uniVariantModel.get('sellablearea')));
-      costSheetArray.push(Math.round(unitModel.get('persqftprice')));
+      costSheetArray.push(Math.round($('#sqftprice').val()));
       buildingModel = App.master.building.findWhere({
         id: unitModel.get('building')
       });
@@ -1157,7 +1160,7 @@ define(['marionette'], function(Marionette) {
         id: unitModel.get('unitVariant')
       });
       costSheetArray.push(Math.round(uniVariantModel.get('sellablearea')));
-      costSheetArray.push(Math.round(unitModel.get('persqftprice')));
+      costSheetArray.push(Math.round($('#sqftprice1').val()));
       buildingModel = App.master.building.findWhere({
         id: unitModel.get('building')
       });
