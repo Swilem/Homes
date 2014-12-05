@@ -408,10 +408,10 @@ function get_unit_variants_persqftprice($variant_id=0){
     }else{
        $results=   $frm_entry->getAll(array('it.id' => $variant_id),'','',true);  
     }
-   
- $persqftprice = floatval($results[$variant_id]->metas['persqftprice']);
+  
+ $persqftprice = get_persqft_for_sizes_name($results[$variant_id]->metas['persqft']);
 
- return ($persqftprice=="")?0:$persqftprice;
+ return $persqftprice;
  
 
 }
@@ -472,6 +472,24 @@ function get_room_type_for_sizes_name($data){
     }
    
     return $updated_data;
+}
+
+function get_persqft_for_sizes_name($data){
+
+    $updated_data = array();
+ 
+    if(is_array($data)){
+         foreach ($data as $key => $value) {
+
+        
+
+         $updated_data[] = $value;
+    }
+
+    }
+   
+    return $updated_data;
+
 }
 
 /*get all units*/
@@ -584,12 +602,14 @@ function get_unit_price($unit_id)
     $floor =   get_post_meta($unit_id, 'floor', true);
  
     $persqftprice   = get_unit_variants_persqftprice($unit_variant);
+    
+    $perft = is_array($persqftprice)? $persqftprice[0]['persqft_size'] : 0 ;
      
     $sellablearea = get_unit_variants_sellablearea($unit_variant); 
 
     $floorrise = get_building_floorrise($unit_building,$floor);
  
-    return  (intval($persqftprice)+intval($floorrise))* intval($sellablearea);
+    return  (intval($perft)+intval($floorrise))* intval($sellablearea);
   
 }
 

@@ -19,6 +19,8 @@ function add_custom_fields($fields){
 
 	$fields['roomsizes']= __('Room Sizes', 'formidable')  ; 
 
+	$fields['persqft']= __('Per sqft Price', 'formidable')  ; 
+
 	return $fields;
 
 }
@@ -84,6 +86,47 @@ function frm_form_fields_customize($field, $field_name){
  		?>
  						<input type="button" name="add_rooms" class="add-rooms show_sub_form" value="+" form-id="23" store-entry-data="room_variant_entry_id"   count-of-rooms="0">
  						<?php
+
+
+ 		break;
+
+ 		case "persqft": 
+ 		$key = 0;
+ 		?>				
+ 						<div id="persqft-size-container">
+ 							<?php
+ 		if($field['value']==""){
+ 			?>
+ 							<div id="persqft-size-item-1">
+ 							<input type="textbox" name="persqft_label_1" id="persqft_label_1" value="" />
+ 							<input type="textbox" name="persqft_value_1" id="persqft_value_1" class="amount-data" value="" /> sq ft
+ 							<input type="button" value="x" item-no="1" class="delete_persqft">
+ 						</div>
+ 						<?php
+
+	 		}else
+	 		{
+	 			foreach($field['value'] as $key=>$field_value_item){
+
+	 				?>
+	 					<div id="persqft-size-item-<?php echo $key+1;?>">
+ 							<input type="textbox" name="persqft_label_<?php echo $key+1;?>" id="persqft_label_<?php echo $key+1;?>" value="<?php echo $field_value_item["persqft_type"];?>" />
+ 							<input type="textbox" name="persqft_value_<?php echo $key+1;?>" id="persqft_value_<?php echo $key+1;?>" value="<?php echo $field_value_item["persqft_size"];?>" class="amount-data" value="" /> sq ft
+ 							<input type="button" value="x" item-no="<?php echo $key+1;?>" class="delete_persqft">
+ 						</div>
+
+	 				<?php
+
+	 			}
+	 		}
+
+	 		?>
+	 		<div>Add More <input last-sr-no="<?php echo $key+1; ?>" type="button" name="add_more_sqft" id="add_more_sqft"  value="+" field-name="<?php echo $field_name ?>" >
+	 			</div>
+
+
+
+	 		<?php
 
 
  		break;
