@@ -152,7 +152,7 @@ body {
   border: 1px solid #555555;
   border-left: 0;
   border-top: 0;
-  min-height: 22mm;
+  min-height: 18mm;
   font-size: 9pt;
   max-height: initial;
 }
@@ -189,11 +189,12 @@ body {
   width: 220px;
 }
 .termsTxt,
-.invoice-items {
+.invoice-items,
+#footer-region {
   display: none;
 }
 .costsheetPrint {
-  padding: 0 20px;
+  padding: 85px 20px 0;
 }
 .costsheetPrint .light.step1 {
   margin: 5px 0 0;
@@ -218,4 +219,10 @@ body {
 .costsheetPrint .costsRow.totals {
   font-size: 16px;
   font-weight: 600;
+}
+.costsheetPrint .costsRow.totals.final {
+  margin-bottom: 0;
+}
+.costsheetPrint h5 {
+  line-height: 8px;
 }

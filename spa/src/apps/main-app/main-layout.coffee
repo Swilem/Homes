@@ -92,7 +92,7 @@ define [ 'extm'], ( Extm)->
                 </div>
                 <div class="row">
                     <div class="col-sm-5">
-                        <div id="floorlayoutbasic" class="floorlayout"></div>
+                        <img src="" id="threeDimage" />
                     </div>
                     <div class="col-sm-7">
                         <div id="towerview" ></div>
@@ -110,31 +110,15 @@ define [ 'extm'], ( Extm)->
                 <div class="row extra-details">
                     <div class="col-sm-4">
                         <h5>Terrace</h5>
-                        <span id="terrace"></span>
+                        <h6 id="terrace"></h6>
                     </div>
                     <div class="col-sm-4">
                         <h5>Entrance</h5>
-                        <span id="printfacing"></span>
+                        <h6 id="printfacing"></h6>
                     </div>
                     <div class="col-sm-4">
                         <h5>Views</h5>
-                        <span id="printview"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="print-row areaInfo last">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4 class="layout-header">2D Layout</h4>
-                        <div class="details ">
-                            <img src="" id="twoDimage" />
-                        </div>
-
-                        <h4 class="layout-header">3D Layout</h4>
-                        <div class="details ">
-
-                            <img src="" id="threeDimage" />
-                        </div>
+                        <h6 id="printview"></h6>
                     </div>
                 </div>
             </div>
@@ -192,12 +176,6 @@ define [ 'extm'], ( Extm)->
 
                     </ul>
                 </div>
-            </div>
-
-            <div class="tandc text-center">
-                <h4 class="bold">Terms and Conditions</h4>
-                <h5>This website and its contents are purely conceptual and merely to assist reader to navigate into images, architectural drawings, area, price & other information only. Enerrgia SKYi does not take responsibility that may rise from any information given in this website. None of the objects/representation mentioned herein constitute a legally binding offer or invitation to treat. Enerrgia SKYi reserves right to add, delete, alter or in any manner change the plans, specifications, images, architectural drawings, prices, data & other information in its endeavour to make improvements as and when required without prior notice or obligation.</h5>
-                <p>To read full Terms &amp; Conditions, visit www.manaslake.com/terms-conditions</p>
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 /**** Print Styles Here ****/
-@import url('../../../../HTML/assets/less/skyi-master/custom-variables.less');
+@import url('../less/skyi-master/custom-variables.less');
 @import url('apartmentsselector.styles.css');
 
 * {
@@ -128,7 +128,7 @@ body {
 				border: 1px solid @gray;
 				border-left: 0;
 				border-top: 0;
-				min-height: 22mm;
+				min-height: 18mm;
 				font-size: 9pt;
 				max-height: initial;
 				h5 {
@@ -174,13 +174,13 @@ body {
   width: 220px;
 }
 
-.termsTxt, .invoice-items{
+.termsTxt, .invoice-items, #footer-region{
 	display: none;
 }
 
 
 .costsheetPrint{
-	padding: 0 20px;
+	padding: 85px 20px 0;
 	.light.step1{
 		margin: 5px 0 0;
 		font-size: 24px;
@@ -202,6 +202,12 @@ body {
 		&.totals{
 			font-size: 16px;
 			font-weight: 600;
+			&.final{
+				margin-bottom: 0;
+			}
 		}
+	}
+	h5{
+		line-height: 8px;
 	}
 }
