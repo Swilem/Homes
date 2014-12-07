@@ -109,10 +109,7 @@ define [ 'marionette' ], ( Marionette )->
                                         </div>
                                         <div class="col-sm-6 form-inline">
                                             <h5>Schemes: </h5>
-                                            <select id="scheme" class="form-control" >
-                                                <option value="1">Regular Scheme</option>
-                                                <option value="2">Lowest upfront payment scheme</option>
-                                            </select>
+                                            Regular Scheme
                                             
                                         </div>
                                     </div>

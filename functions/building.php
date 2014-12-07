@@ -363,7 +363,18 @@ function save_extra_building_fields( $term_id ) {
 
 
         //save the option array
+    $images = array();
 
+    foreach($no_of_flats as $flat){
+
+        $images[$flat["flat_no"]] = $_REQUEST["position_image".$flat["flat_no"]];
+
+            
+
+
+    }
+                     
+    $image_ids = serialize($images);
 
     update_option( "building_".$term_id."_phase", $building_phase );
 
@@ -394,6 +405,8 @@ function save_extra_building_fields( $term_id ) {
     update_option( "building_".$term_id."_floorrise_range", $floorrise_range ); 
 
     update_option( "building_".$term_id."_svg_data", $svg_data );
+
+    update_option( "building_".$term_id."_position_image_id", $image_ids );
 
     return;
 }
@@ -543,7 +556,24 @@ function get_buildings($ids=array())
 
         $floorrise_range = format_floorrise_range(maybe_unserialize(get_option( "building_".$category->term_id."_floorrise_range")));
     
-        $buildings[] = array('id'=>intval($category->term_id),"name"=>$category->name,"phase"=>intval($building_phase),"nooffloors"=>$building_no_of_floors,"floorrise"=> array_map('floatval', $building_floor_rise),'positioninproject'=> $position_in_project,"zoomedinimage"=>$zoomed_in_image,"floor_layout_basic"=>$floor_layout_basic,"floor_layout_detailed"=>$floor_layout_detailed,'floorpositions'=>$floor_positions,'floorexceptionpositions'=>$floor_exception_positions,'views'=>$building_views,'payment_plan'=>intval($building_payment_plan),'milestone'=>intval($building_milestone),'floorriserange'=>$floorrise_range,'milestonecompletion'=>$building_milestone_completion,'svgdata'=>$svg_data);
+        $unit_images =   get_option('building_'.$category->term_id.'_position_image_id');
+        $serialize_images = unserialize($unit_images);
+        
+        $position_images  = array();
+        foreach ($floor_positions as $flat) {
+            
+            $images = wp_get_attachment_image_src( $serialize_images[$flat['flat_no']] );
+                
+            $image = is_array( $images ) && count( $images ) > 1 ? $images[ 0 ] : '';
+
+
+            $position_images[$flat['flat_no']] = $image;
+        }
+    
+        
+                
+
+        $buildings[] = array('id'=>intval($category->term_id),"name"=>$category->name,'position_images'=>$position_images,"phase"=>intval($building_phase),"nooffloors"=>$building_no_of_floors,"floorrise"=> array_map('floatval', $building_floor_rise),'positioninproject'=> $position_in_project,"zoomedinimage"=>$zoomed_in_image,"floor_layout_basic"=>$floor_layout_basic,"floor_layout_detailed"=>$floor_layout_detailed,'floorpositions'=>$floor_positions,'floorexceptionpositions'=>$floor_exception_positions,'views'=>$building_views,'payment_plan'=>intval($building_payment_plan),'milestone'=>intval($building_milestone),'floorriserange'=>$floorrise_range,'milestonecompletion'=>$building_milestone_completion,'svgdata'=>$svg_data);
 
     }
 
@@ -713,8 +743,28 @@ function get_building_by_id($building_id){
     // $floorrise_range =  (maybe_unserialize(get_option( "building_".$building_id."_floorrise_range")));
     $floorrise_range = format_floorrise_range(maybe_unserialize(get_option( "building_".$building_id."_floorrise_range")));
     
+    $unit_images =   get_option('building_'.$building_id.'_position_image_id');
+    $serialize_images = unserialize($unit_images);
+    $position_images = array();
+   
     
-   $result = array('id'=>intval($building->term_id) ,'name'=>$building->name,'phase'=>$building_phase,'nooffloors'=>$building_no_of_floors,'noofflats'=>$building_no_of_flats,'exceptions'=>$building_exceptions,'floorrise'=>$building_floor_rise,'positioninproject'=> $position_in_project,'zoomedinimage'=> $zoomed_in_image,'floor_layout_basic'=>$floor_layout_basic ,'floor_layout_detailed'=>$floor_layout_detailed ,'buildingviews'=>$building_views,'payment_plan'=>$building_payment_plan,'milestone'=>$building_milestone,'floorriserange'=>$floorrise_range,'milestonecompletion'=>$building_milestone_completion,'svgdata'=>$svg_data);
+    foreach ($building_no_of_flats  as $flat) {
+            
+            $images = wp_get_attachment_image_src( $serialize_images[$flat['flat_no']] );
+            
+            $image = is_array( $images ) && count( $images ) > 1 ? $images[ 0 ] : '';
+            $position_images[$flat['flat_no']] = array(
+                'id'         =>  $flat['flat_no'],
+                'image_id'   =>  $serialize_images[$flat['flat_no']],
+                'image'      =>  $image
+
+
+                );
+          
+
+    }
+   
+   $result = array('id'=>intval($building->term_id) ,'name'=>$building->name,'position_images'=>$position_images,'phase'=>$building_phase,'nooffloors'=>$building_no_of_floors,'noofflats'=>$building_no_of_flats,'exceptions'=>$building_exceptions,'floorrise'=>$building_floor_rise,'positioninproject'=> $position_in_project,'zoomedinimage'=> $zoomed_in_image,'floor_layout_basic'=>$floor_layout_basic ,'floor_layout_detailed'=>$floor_layout_detailed ,'buildingviews'=>$building_views,'payment_plan'=>$building_payment_plan,'milestone'=>$building_milestone,'floorriserange'=>$floorrise_range,'milestonecompletion'=>$building_milestone_completion,'svgdata'=>$svg_data);
  
    return ($result);
 }

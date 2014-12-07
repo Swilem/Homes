@@ -29,6 +29,7 @@ define(['marionette'], function(Marionette) {
 
     UnitTypeView.prototype.unitTypeSelected = function(evt) {
       var buildings, element, index, masterbuilding, newColl, newUnits, status, uniqBuildings, unitTypeModel, unitTypeString, _i, _j, _len, _len1;
+      $('#printmapplic1').text("");
       if (this.model.get('id') === 'nopreferences') {
         if (parseInt($("#check" + this.model.get('id')).val()) === 0) {
           $('#unittype' + this.model.get("id") + ' a').addClass('selected');
@@ -282,6 +283,7 @@ define(['marionette'], function(Marionette) {
       },
       'click .cs-selected': function(e) {
         var budget_price, budget_val, buildings, element, newColl, newUnits, uniqBuildings, _i, _len;
+        $('#printmapplic1').text("");
         $.map(App.backFilter, function(value, index) {
           var element, key, screenArray, _i, _len, _results;
           screenArray = App.backFilter[index];
@@ -353,20 +355,24 @@ define(['marionette'], function(Marionette) {
       },
       'mouseover a': function(e) {
         var id, locationData;
+        $('#printmapplic1').text("");
         id = e.target.id;
         return locationData = m.getLocationData(id);
       },
       'click .tower-over': function(e) {
         var id;
+        $('#printmapplic1').text("");
         e.preventDefault();
         id = e.target.id;
         return m.showLocation(id, 800);
       },
       'mouseout .tower-over': function(e) {
+        $('#printmapplic1').text("");
         return $('.im-tooltip').hide();
       },
       'mouseover .tower-over': function(e) {
         var buildigmodel, countunits, currency, element, floorCollunits, floorUnitsArray, floorarray, id, key, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, screenonearray, selectorname, status, str1, text, units, units1, unitslen, unittypemodel, unittypetext, _i, _len;
+        $('#printmapplic1').text("");
         e.preventDefault();
         id = e.target.id;
         str1 = id.replace(/[^\d.]/g, '');
@@ -585,6 +591,7 @@ define(['marionette'], function(Marionette) {
 
     ScreenOneView.prototype.onShow = function() {
       var ajaxurl, i, params, selector;
+      $('#printmapplic1').text("");
       $('#finalButton').on('click', function() {
         return new jBox('Notice', {
           content: 'Finding available apartments matching your selection...',

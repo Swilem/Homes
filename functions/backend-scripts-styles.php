@@ -97,6 +97,11 @@ function apartmentselector_backend_enqueue_scripts(){
         wp_enqueue_script( 'unit',
             get_template_directory_uri() . "/js/backend/unit.js",
             array( "jquery" ), false, true );
+        wp_enqueue_script( 'fileuploadjs',
+            get_template_directory_uri() . "/js/backend/jquery.fileupload.js",
+            array( "jquery" ), false, true );
+
+        
         }
 
     ///load unit.js if any of the specifed is loaded
@@ -110,6 +115,7 @@ function apartmentselector_backend_enqueue_scripts(){
         wp_enqueue_script( 'unit',
             get_template_directory_uri() . "/js/backend/building.js",
             array( "jquery" ), false, true );
+
     }
 
     ///load settings.js if any of the specifed is loaded

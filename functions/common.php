@@ -176,7 +176,7 @@ function check_backend_template(){
 
 function ajax_upload_file(){
 
-		 $targetFolder = '/uploads'; // Relative to the root
+		$targetFolder = '/uploads'; // Relative to the root
 
             global $user_ID;
 
@@ -194,8 +194,7 @@ function ajax_upload_file(){
 
                 $_FILES = array("upload_attachment" => $file);
                 
-
-
+               
                 $attach_data = array();
 
  

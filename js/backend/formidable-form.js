@@ -24,7 +24,7 @@ $(file).remove()
   }
 
       jQuery(".trash-image").on('click', function (e) { 
- 
+        console.log('aaaaaaaaa');
     return_value = confirm('Are you sure you want to delete this image?')
 
     if(return_value==true){

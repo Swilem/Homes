@@ -28,6 +28,8 @@ $heading = "Edit";
 
     $building_payment_plan = $building["payment_plan"];
 
+    $building_position_images = $building["position_images"];
+
     $query= "SELECT option_value FROM ".$wpdb->prefix ."options where   option_id  = '$building_payment_plan'";
     
     $data = $wpdb->get_var($query);
@@ -56,6 +58,8 @@ $heading = "Edit";
     $building_no_of_flats = $building["noofflats"];
 
     $no_of_flats = count($building_no_of_flats);
+
+    $no_of_flats_positions = count($building_no_of_flats);
 
     $floorrise = $building["floorrise"];
 
@@ -910,11 +914,55 @@ $heading = "Edit";
          
     </div>
 </div>
+<div id="floor_positions">
+<?php
+         $i= 0 ;
+         for($i=1;$i<=$no_of_flats_positions;$i++){
 
-</div>
+
+            ?>
+         <div class="form-group " id="flat<?php echo $i;?>">
+                                                <label class="form-label">
+                                                    Position image <?php echo  $i;?>
+                                                </label>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="input-with-icon  right">
+                                                            <span class="btn btn-success fileinput-button">
+                                                                 
+                                                                <span>Select file..</span>
+                                                                <input id="fileuploadposition_image<?php echo $i?>" class="fileuploadposition_image" type="file" name="files" data-pos="<?php echo $i?>">
+                                                            </span> 
+                                                             <span class="btn btn-danger fileinput-button"   id="position_image<?php echo $i?>trash-image-option" <?php if(@$building_position_images[$i]['image_id']==""){?> style="display:none"<?php } ?>>
+                                                               <a href="javascript:void(0)" class="common-trash-image"  style="text-decoration:none;color:#fff"  fileField="position_image<?php echo $i?>">  
+                                                               Delete 
+                                                                </a>
+                                                            </span>
+                                                            <input type="hidden" class="position_image" id="position_image<?php echo $i?>" name="position_image<?php echo $i?>" value="<?php echo $building_position_images[$i]['image_id'];?>">
+                                                            <div id="progressposition_image<?php echo $i?>" class="progress" >
+                                                                <div class="progress-bar progress-bar-success"></div>
+                                                            </div>
+                                                            <div id="filesposition_image<?php echo $i?>" class="files"></div>
+                                                            <br>
+                                                            <div class="row-fluid">
+                                                                <div class="col-md-12">
+                                                                    <img src="<?php echo $building_position_images[$i]['image'];?>" id="image_displayposition_image<?php echo $i?>"  <?php if(@$building_position_images[$i]['image']==""){?> style="display:none"<?php } ?> />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                 
+                                                </div> 
+                                            </div>
+                                            <?php
+
+                                        }
+                                        ?>
+</div></div>
 </div>
 
 
          </div>
+         
 </form>
 </div>

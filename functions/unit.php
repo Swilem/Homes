@@ -198,6 +198,22 @@ function save_unit($post_id, $post){
 
     update_post_meta($post->ID, 'apartment_views', $views);
 
+    // $flats = get_flats_on_floor($building ,$floor,$post_id);
+
+    // $images = array();
+
+    // foreach($flats["flats"] as $flat){
+
+    //     $images[$flat["flat_no"]] = $_REQUEST["position_image".$flat["flat_no"]];
+
+            
+
+
+    // }
+                     
+    // $image_ids = serialize($images);
+    // update_post_meta($post->ID, 'unit_images', $image_ids);
+
     
 
     return $post->ID;
@@ -546,6 +562,20 @@ function get_units(){
         $block_status_comments =   get_post_meta($result->ID, 'block_status_comments', true);
        
        $terrace = get_unit_variants_property($unit_variant,'terraceoptions');
+
+        // $unit_images =   get_post_meta($result->ID, 'unit_images', true);
+        // $serialize_images = unserialize($unit_images);
+        
+       
+    
+        
+        //         $images = wp_get_attachment_image_src( $serialize_images[$unit_assigned] );
+                
+        //         $image = is_array( $images ) && count( $images ) > 1 ? $images[ 0 ] : '';
+                
+              
+
+       
        $single_unit = array(   'id'=>intval($result->ID),
                                     'name'=>$result->post_title,
                                     'unitType'=>intval($unit_type),
@@ -673,8 +703,29 @@ function get_unit_by_id($id){
 
     $block_status_comments =   get_post_meta($result->ID, 'block_status_comments', true);
 
-    $unit_type = get_unit_type_by_unit_variant($unit_variant);
+    // $unit_images =   get_post_meta($result->ID, 'unit_images', true);
+    // $serialize_images = unserialize($unit_images);
+    // $position_images = array();
+   
+    // $flats_info = get_flats_on_floor($unit_building ,$floor,$id);
+    
+    // foreach ($flats_info["flats"]  as $flat) {
+            
+    //         $images = wp_get_attachment_image_src( $serialize_images[$flat['flat_no']] );
+            
+    //         $image = is_array( $images ) && count( $images ) > 1 ? $images[ 0 ] : '';
+    //         $position_images[$flat['flat_no']] = array(
+    //             'id'         =>  $value['position'],
+    //             'image_id'   =>  $value['image_id'],
+    //             'image'      =>  $image
 
+
+    //             );
+          
+
+    // }
+    $unit_type = get_unit_type_by_unit_variant($unit_variant);
+    
     return array(   'id'=>$result->ID,
                     'name'=>$result->post_title,
                     'unit_type'=>$unit_type,
@@ -708,6 +759,7 @@ function ajax_save_apartment(){
     $apartment_id = $_REQUEST["apartment_id"]==""?0:$_REQUEST["apartment_id"]; 
 
     $flats_info = get_flats_on_floor($building ,$floor,$apartment_id);
+    
 
     if($flats_info["created_flats"]==count($flats_info["flats"]) && empty($_REQUEST['apartment_id'])){
          $msg = "Cannot add more apartments on the selected floor and building!";

@@ -51,7 +51,19 @@ if($("#svg_position_file_4").length>0){
  
     fileUploadById("svg_position_file_4")
 }
+ //code added by Surekha//
+ function load(){
+    for (var i = 1; i <= $('#no_of_flats').val(); i++) {
+        if($("#fileuploadposition_image"+i).length>0){
+             
+                fileUploadById("position_image"+i)
+            }
+    };
 
+}
+
+load();
+     //code added by Surekha//
     
 if($("#slider").length!=0){
     displaySlider($("#no_of_floors").val())
@@ -60,7 +72,7 @@ if($("#slider").length!=0){
 
  
 
-      jQuery(".common-trash-image").on('click', function (e) { 
+      jQuery(".common-trash-image").live('click', function (e) { 
  
     return_value = confirm('Are you sure you want to delete this image?')
 
@@ -705,12 +717,13 @@ function addException(exception_no){
 
    }
 
-    $(document).on("change", "#no_of_flats", function(e) {
+    $(document).live("change", "#no_of_flats", function(e) {
 
         prevFlatCount = $(e.target).attr('prev_flat_count');
 
         flatCount = $(e.target).val();
 
+        
        
        
 
@@ -732,15 +745,54 @@ function addException(exception_no){
 
     function addFloorpositions(flat_count,prev_flat_count){
  
-        for(i=1;i<=flat_count;i++){
+        for(i=parseInt(prev_flat_count)+1;i<=parseInt(flat_count);i++){
         $('.flat-positions').each(function(e, obj) {
-            console.log(obj)
-            console.log(e)
-            console.log("--------------")
             $(obj).append("<div class='col-md-4 flatposition"+i+"'><div class='checkbox check-default' ><input type='checkbox' name='flatpostion-"+$(obj).attr('item-id')+"[]' id='flatpostion"+i+"-"+e+"' value='"+i+"'> <label for='flatpostion"+i+"-"+e+"'>"+i+"</label></div></div>")
         });
             
         }
+        html = "";
+        var i = 0;
+        for(i=parseInt(prev_flat_count)+1;i<=parseInt(flat_count);i++){
+            html += '<div class="form-group " id="flat'+i+'">'+
+                                                '<label class="form-label">'+
+                                                   ' Position image '+i+
+                                                '</label>'+
+                                                '<div class="row">'+
+                                                    '<div class="col-md-12">'+
+                                                        '<div class="input-with-icon  right">'+
+                                                            '<span class="btn btn-success fileinput-button">'+
+                                                                 
+                                                                '<span>Select file..</span>'+
+                                                                '<input id="fileuploadposition_image'+i+'" class="fileuploadposition_image" type="file" name="files" data-pos="'+i+'">'+
+                                                           ' </span>'+ 
+                                                             '<span class="btn btn-danger fileinput-button"  style="display:none" id="position_image'+i+'trash-image-option" >'+
+                                                               '<a href="javascript:void(0)" class="common-trash-image"  style="text-decoration:none;color:#fff"  fileField="position_image'+i+'">  '+
+                                                               'Delete '+
+                                                                '</a>'+
+                                                            '</span>'+
+                                                            '<input type="hidden" class="position_image" id="position_image'+i+'" name="position_image'+i+'" value="">'+
+                                                            '<div id="progressposition_image'+i+'" class="progress" >'+
+                                                                '<div class="progress-bar progress-bar-success"></div>'+
+                                                            '</div>'+
+                                                            '<div id="filesposition_image'+i+'" class="files"></div>'+
+                                                            '<br>'+
+                                                            '<div class="row-fluid">'+
+                                                                '<div class="col-md-12">'+
+                                                                    '<img src="" id="image_displayposition_image'+i+'" />'+
+                                                                '</div>'+
+                                                            '</div>'+
+                                                        '</div>'+
+                                                   ' </div> '+
+                                                 
+                                                '</div> '+
+                                            '</div>'; 
+
+            
+        }
+
+        load();
+        $('#floor_positions').append(html);
     }
 
     function removeFloorpositions(flat_count,prev_flat_count){
@@ -748,6 +800,8 @@ function addException(exception_no){
         for(i=parseInt(flat_count)+1;i<=prev_flat_count;i++){
             
             $(".flatposition"+i).remove()
+
+            $("#flat"+i).remove()
         }
     }
 

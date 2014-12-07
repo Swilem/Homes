@@ -30,7 +30,7 @@ define [ 'marionette' ], ( Marionette )->
             @$el.prop("id", 'unittype'+@model.get("id"))
 
         unitTypeSelected : ( evt )->
-
+            $('#printmapplic1').text ""
             if @model.get('id') == 'nopreferences'
                 if  parseInt($("#check"+@model.get 'id').val()) == 0
                     $('#unittype'+@model.get("id")+' a' ).addClass 'selected'
@@ -286,6 +286,8 @@ define [ 'marionette' ], ( Marionette )->
 
 
             'click .cs-selected':(e)->
+
+                $('#printmapplic1').text ""
                 $.map(App.backFilter, (value, index)->
                     screenArray  = App.backFilter[index]
                     for element in screenArray
@@ -350,12 +352,14 @@ define [ 'marionette' ], ( Marionette )->
 
 
             'mouseover a':(e)->
+                $('#printmapplic1').text ""
                 id  = e.target.id
                 locationData = m.getLocationData(id)
                 #m.showTooltip(locationData)
 
 
             'click .tower-over':(e)->
+                $('#printmapplic1').text ""
                 e.preventDefault()
                 id  = e.target.id
                 m.showLocation(id, 800)
@@ -363,9 +367,11 @@ define [ 'marionette' ], ( Marionette )->
                 #m.showTooltip(locationData)
 
             'mouseout .tower-over':(e)->
+                $('#printmapplic1').text ""
                 $('.im-tooltip').hide()
 
             'mouseover .tower-over':(e)->
+                $('#printmapplic1').text ""
                 e.preventDefault()
                 id  = e.target.id
                 str1 = id.replace( /[^\d.]/g, '' )
@@ -537,7 +543,7 @@ define [ 'marionette' ], ( Marionette )->
 
 
         onShow:->
-            
+            $('#printmapplic1').text ""
             $('#finalButton').on('click',  ()->
                 new jBox('Notice', 
                     content: 'Finding available apartments matching your selection...',

@@ -14,11 +14,10 @@ jQuery(document).ready(function($) {
 
     });
 
+   
 
-    if($("#fileuploadposition_image").length>0){
- 
-    fileUploadById("position_image")
-}
+
+
  
 
  function loadUnitVariants(){
@@ -144,7 +143,22 @@ $(document).on("change", "#floor", function(e) {
         });
 
 });
+ jQuery(".common-trash-image").on('click', function (e) { 
+ 
+    return_value = confirm('Are you sure you want to delete this image?')
 
+    if(return_value==true){
+        
+        jQuery('#image_display'+jQuery(e.target).attr('fileField')).attr('src','').hide()
+        jQuery('#'+jQuery(e.target).attr('fileField')).val('') 
+        jQuery("#"+jQuery(e.target).attr('fileField')+'trash-image-option').hide();
+
+    }else{
+        return
+    }
+
+
+  });
 //save apartment ajax call
     $(document).on("click", "#save_apartment", function(e) {
 
@@ -160,8 +174,9 @@ $(document).on("change", "#floor", function(e) {
 
             $(e.target).hide().parent().append("<div class='loading-animator'></div>")
 
+            url = AJAXURL+'?action=save_apartment'
 
-            $.post(AJAXURL, data, function(response) {
+            $.post(url, data, function(response) {
 
                 resetForm(e,$('#apartment_id').val(),response);
        
