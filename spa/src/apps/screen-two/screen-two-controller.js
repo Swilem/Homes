@@ -151,7 +151,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
     };
 
     ScreenTwoController.prototype._getUnitsCountCollection = function(paramid) {
-      var Countunits, MainCollection, ModelActualArr, arrayvalue, buildingArray, buildingArrayModel, buildingCollection, buildingModel, buildingUnits, buildingsactual, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, first, flag, floorCollection, floorCollectionCur, floorCollectionmaster, floorCollunits, floorCollunits1, floorUnitsArray, floorriserange, flooruniqUnitvariant, floorunitvariant, highLength, hnewarr, i, index, itemCollection, j, key, keycheck, lnewarr, mainArray, mainnewarr, mainunique, mainunitTypeArray, mainunitTypeArray1, mainunitsTypeArray, mnewarr, modelArr, modelIdArr, myArray, myArray1, param, paramkey, range, status, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, uniqUnitvariant, uniqfacings, uniqterrace, uniqviews, unitColl, unitVariantID, unitVariantModels, units, units1, unitsactual, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
+      var Countunits, MainCollection, ModelActualArr, arrayvalue, buildingArray, buildingArrayModel, buildingCollection, buildingUnits, buildingsactual, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, flag, floorCollection, floorCollectionCur, floorCollectionmaster, floorCollunits, floorCollunits1, floorUnitsArray, flooruniqUnitvariant, floorunitvariant, highLength, hnewarr, i, index, itemCollection, j, key, keycheck, lnewarr, mainArray, mainnewarr, mainunique, mainunitTypeArray, mainunitTypeArray1, mainunitsTypeArray, mnewarr, modelArr, modelIdArr, myArray, myArray1, param, paramkey, status, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, uniqUnitvariant, uniqfacings, uniqterrace, uniqviews, unitColl, unitVariantID, unitVariantModels, units, units1, unitsactual, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
       if (paramid == null) {
         paramid = {};
       }
@@ -188,88 +188,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
       flag = 0;
       mainunitsTypeArray = [];
       mainArray = [];
-      $.each(App.defaults, function(index, value) {
-        var budget_Val, element, string_val, valuearr, _i, _len, _results;
-        if (value !== 'All') {
-          param[index] = value;
-          string_val = _.isString(value);
-          valuearr = "";
-          if (string_val === true) {
-            valuearr = value.split(',');
-          }
-          if (valuearr.length > 1) {
-            _results = [];
-            for (_i = 0, _len = valuearr.length; _i < _len; _i++) {
-              element = valuearr[_i];
-              if (index === 'unitType') {
-                key = App.master.unit_type.findWhere({
-                  id: parseInt(element)
-                });
-                templateArr.push(key.get('name'));
-              }
-              if (index === 'building') {
-                key = App.master.building.findWhere({
-                  id: parseInt(element)
-                });
-                templateArr.push(key.get('name'));
-              }
-              if (index === 'budget') {
-                budget_Val = value + 'lakhs';
-                templateArr.push(budget_Val);
-              }
-              if (index === 'floor') {
-                _results.push(templateArr.push(value));
-              } else {
-                _results.push(void 0);
-              }
-            }
-            return _results;
-          } else {
-            if (index === 'unitType') {
-              key = App.master.unit_type.findWhere({
-                id: parseInt(value)
-              });
-              templateArr.push(key.get('name'));
-            }
-            if (index === 'building') {
-              key = App.master.building.findWhere({
-                id: parseInt(value)
-              });
-              templateArr.push(key.get('name'));
-            }
-            if (index === 'budget') {
-              budget_Val = value;
-              templateArr.push(budget_Val);
-            }
-            if (index === 'floor') {
-              return templateArr.push(value);
-            }
-          }
-        }
-      });
-      if (templateArr.length === 0) {
-        templateArr.push('All');
-      }
-      if (flag === 1) {
-        first = _.first(templateArr);
-        buildingModel = App.master.building.findWhere({
-          id: App.building['name']
-        });
-        floorriserange = buildingModel.get('floorriserange');
-        if (parseInt(first) >= floorriserange[0].start && parseInt(first) <= floorriserange[0].end) {
-          range = 'LOWRISE' + ',' + buildingModel.get('name');
-        }
-        if (parseInt(first) >= floorriserange[1].start && parseInt(first) <= floorriserange[1].end) {
-          range = 'MIDRISE' + ',' + buildingModel.get('name');
-        }
-        if (parseInt(first) >= floorriserange[2].start && parseInt(first) <= floorriserange[2].end) {
-          range = 'HIGHRISE' + ',' + buildingModel.get('name');
-        }
-        templateString = range;
-      } else {
-        templateString = templateArr.join(',');
-      }
       param = {};
+      templateString = "";
       paramkey = {};
       flag = 0;
       floorUnitsArray = [];
@@ -316,7 +236,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
       $.each(floorUnitsArray, function(index, value1) {
         flag = 0;
         $.each(myArray, function(index, value) {
-          var budget_arr, budget_price, element, floorRise, floorRiseValue, initvariant, paramKey, temp, tempnew, tempstring, unitPrice, unitVariantmodel, _i, _len, _results;
+          var budget_arr, budget_price, buildingModel, element, floorRise, floorRiseValue, initvariant, paramKey, temp, tempnew, tempstring, unitPrice, unitVariantmodel, _i, _len, _results;
           paramKey = {};
           paramKey[value.key] = value.value;
           if (value.key === 'budget') {
@@ -390,7 +310,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
       $.each(floorUnitsArray, function(index, value1) {
         flag = 0;
         $.each(myArray1, function(index, value) {
-          var budget_arr, budget_price, element, floorRise, floorRiseValue, initvariant, paramKey, temp, tempnew, tempstring, unitPrice, unitVariantmodel, _i, _len, _results;
+          var budget_arr, budget_price, buildingModel, element, floorRise, floorRiseValue, initvariant, paramKey, temp, tempnew, tempstring, unitPrice, unitVariantmodel, _i, _len, _results;
           paramKey = {};
           paramKey[value.key] = value.value;
           if (value.key === 'budget') {
@@ -764,7 +684,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
       });
       buildingUnits = [];
       $.each(buildingArray, function(index, value) {
-        var availableunits, buildingid, data, disablehigh, disablelow, disablemedium, flag1, flag11, flag2, flag3, flag33, flag4, flag5, flag55, floors, hclassname, hcount, hfloorvalue, highArray, high_max_val, high_min_val, hunique, hunitTypeArray, itemCollection, lclassname, lcount, lfloorvalue, lowArray, low_max_val, low_min_val, lunique, lunitTypeArray, mclassname, mcount, mediumArray, medium_max_val, medium_min_val, mfloorvalue, munique, munitTypeArray, newarr, newunits, totalfloorcollection, totalunits, uniqFloors, unique, unitTypeArray, variantsDataValues, viewmodels;
+        var availableunits, buildingModel, buildingid, data, disablehigh, disablelow, disablemedium, flag1, flag11, flag2, flag3, flag33, flag4, flag5, flag55, floorriserange, floors, hclassname, hcount, hfloorvalue, highArray, high_max_val, high_min_val, hunique, hunitTypeArray, itemCollection, lclassname, lcount, lfloorvalue, lowArray, low_max_val, low_min_val, lunique, lunitTypeArray, mclassname, mcount, mediumArray, medium_max_val, medium_min_val, mfloorvalue, munique, munitTypeArray, newarr, newunits, totalfloorcollection, totalunits, uniqFloors, unique, unitTypeArray, variantsDataValues, viewmodels;
         buildingid = value;
         unitTypeArray = Array();
         newarr = [];

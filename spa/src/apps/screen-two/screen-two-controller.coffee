@@ -215,67 +215,8 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
             flag = 0
             mainunitsTypeArray = []
             mainArray = []
-            $.each(App.defaults, (index,value)->
-                if(value !='All')
-                    param[index] = value
-                    string_val = _.isString(value)
-                    valuearr = ""
-                    if string_val == true
-                        valuearr = value.split(',')
-                    if valuearr.length > 1
-                        for element  in valuearr
-                            if index == 'unitType'
-                                key = App.master.unit_type.findWhere({id:parseInt(element)})
-                                templateArr.push key.get 'name'
-                            if index == 'building'
-                                key = App.master.building.findWhere({id:parseInt(element)})
-                                templateArr.push key.get 'name'
-                            if index == 'budget'
-                                budget_Val = value+'lakhs'
-                                templateArr.push budget_Val
-                            if index == 'floor'
-                                templateArr.push value
-                                #flag = 1
-                    else
-                        if index == 'unitType'
-                            key = App.master.unit_type.findWhere({id:parseInt(value)})
-                            templateArr.push key.get 'name'
-                        if index == 'building'
-                            key = App.master.building.findWhere({id:parseInt(value)})
-                            templateArr.push key.get 'name'
-                        if index == 'budget'
-                            budget_Val = value
-                            templateArr.push budget_Val
-                        if index == 'floor'
-                            templateArr.push value
-                            #flag = 1
-
-
-
-
-            )
-            if templateArr.length == 0
-                templateArr.push 'All'
-            if(flag==1)
-                first = _.first(templateArr)
-                buildingModel = App.master.building.findWhere({id:App.building['name']})
-                floorriserange = buildingModel.get('floorriserange')
-                if parseInt(first) >= floorriserange[0].start &&  parseInt(first) <= floorriserange[0].end
-                    range = 'LOWRISE'+',' +buildingModel.get('name')
-
-
-
-                if parseInt(first) >= floorriserange[1].start &&  parseInt(first) <= floorriserange[1].end
-                    range = 'MIDRISE'+',' +buildingModel.get('name')
-
-
-                if parseInt(first) >= floorriserange[2].start &&  parseInt(first) <= floorriserange[2].end
-                    range = 'HIGHRISE'+',' +buildingModel.get('name')
-                templateString = range
-            else
-                templateString  = templateArr.join(',')
-
             param = {}
+            templateString = ""
             paramkey = {}
             flag = 0
             floorUnitsArray = []

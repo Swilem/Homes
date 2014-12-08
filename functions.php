@@ -92,19 +92,26 @@ add_action( 'init', 'apartmentselector_after_init' );
 
 function get_data(){
 
-    $building = get_buildings();
+            $building = get_buildings();
             $unit = get_units();
             $unit_type = get_unit_types();
             $buildingarray = array();
             $unitarray = array();
             $unittype = array();
             $temparray = array();
+            $tempclone = array();
+            $tempclone1 = array();
+            $tempphasearray = array();
             $unit_typetemparray = array();
             $temparray1 = array();
             foreach ($building as $value) {
+                $tempphasearray[id] = $value['id'];
+
+                $tempclone1 =  array_merge($tempclone1,$tempphasearray);
                 if($value['phase'] == 26){
                     array_push($buildingarray, $value);
                     array_push($temparray, $value['id']);
+
 
                 }
 
@@ -120,7 +127,8 @@ function get_data(){
 
                 # code...
             }
-    return array($buildingarray,$unitarray);
+            print_r($tempclone1);
+    return array($buildingarray,$unitarray,$tempclone1);
 }
 
 if ( is_development_environment() ) {
@@ -164,7 +172,7 @@ if ( is_development_environment() ) {
             $data = get_data();
             $buildings = $data[0];
             $units = $data[1];
-            
+            $phases = $data[2];
            
             // localized variables
             wp_localize_script( "requirejs", "SITEURL", site_url() );
@@ -173,6 +181,7 @@ if ( is_development_environment() ) {
             wp_localize_script( "requirejs", "UPLOADURL", admin_url( "async-upload.php" ) );
             wp_localize_script( "requirejs", "_WPNONCE", wp_create_nonce( 'media-form' ) );
             wp_localize_script( "requirejs", "BUILDINGS", $buildings );
+            wp_localize_script( "requirejs", "BUILDINGS_PHASES", $phases );
             wp_localize_script( "requirejs", "UNITS", $units );
             wp_localize_script( "requirejs", "STATUS", get_unit_status() );
             wp_localize_script( "requirejs", "UNITTYPES", get_unit_types() );
@@ -229,13 +238,14 @@ if (! is_development_environment() ) {
             $data = get_data();
             $buildings = $data[0];
             $units = $data[1];
-            
+            $phases = $data[2];
             wp_localize_script(  "$module-script", "SITEURL", site_url() );
             wp_localize_script(  "$module-script", "AJAXURL", admin_url( "admin-ajax.php" ) );
             wp_localize_script(  "$module-script", "ajaxurl", admin_url( "admin-ajax.php" ) );
             wp_localize_script(  "$module-script", "UPLOADURL", admin_url( "async-upload.php" ) );
             wp_localize_script(  "$module-script", "_WPNONCE", wp_create_nonce( 'media-form' ) );
             wp_localize_script( "$module-script", "BUILDINGS", $buildings );
+            wp_localize_script( "$module-script", "BUILDINGS_PHASES", $phases );
             wp_localize_script( "$module-script", "UNITS", $units );
             wp_localize_script( "$module-script", "STATUS", get_unit_status() );
             wp_localize_script( "$module-script", "UNITTYPES", get_unit_types() );

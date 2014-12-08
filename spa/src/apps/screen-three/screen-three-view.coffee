@@ -1628,8 +1628,6 @@ define [ 'marionette' ], ( Marionette )->
                                 teraace.push(value)
 
                             )
-                            console.log originalOviews.length
-                            console.log viewtemp1.length
                             if viewtemp1.length != originalviews.length
                                 App.defaults['view'] = viewtemp1.join(',')
                             else
@@ -1989,8 +1987,8 @@ define [ 'marionette' ], ( Marionette )->
                                             if App.defaults['floor'] != "All"
                                                 floorArr  = App.defaults['floor'].split(',')
                                                 if floorid == val1
-                                                    console.log tempid = $('[data-position="'+floorid+'"]')[0].id
-                                                    console.log tempidval = $('#'+tempid).attr('data-idvalue')
+                                                    tempid = $('[data-position="'+floorid+'"]')[0].id
+                                                    tempidval = $('#'+tempid).attr('data-idvalue')
                                                     $.each(floorArr, (ind,val)->
                                                         if parseInt(value1) == parseInt(val)
                                                             $('#'+tempidval+value1).attr('class', 'unit-hover range')
@@ -2564,7 +2562,7 @@ define [ 'marionette' ], ( Marionette )->
                     temp1 = ['tt','t','ttt','tttt']
                     temp2 = ['cc','cc','ccc','cccc']
                     idValue = ""
-                    console.log position
+                    
                     $.each(svgdata, (index,value)->
                         if $.inArray(position,value.svgposition ) >= 0 && value.svgposition != null
                             $.each(value.svgposition, (index1,val1)->

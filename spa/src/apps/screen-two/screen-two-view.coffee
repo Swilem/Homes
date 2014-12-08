@@ -207,7 +207,9 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                 floorUnitsArray = []
                 myArray = []
                 buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
+                phasemodel = App.master.phases.findWhere({id:parseInt(str1)})
                 if buildigmodel == undefined || buildigmodel == ""
+                    $("#highlighttower"+phasemodel.get('id')).attr('class','fadeoutClass')
                     return false
                 # screenonearray = App.backFilter['screen1']
                 # for element in screenonearray

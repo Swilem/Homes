@@ -139,11 +139,11 @@ define(['extm', 'src/apps/screen-four/screen-four-view'], function(Extm, ScreenF
         } else {
           terraceoptionstext = terraceModel.get('name');
         }
+        position_images = building.get('position_images');
         value.set('floorLayoutimage', floorLayoutimage);
-        value.set('BuildingPositionimage', building.get('positioninproject').image_url);
+        value.set('BuildingPositionimage', position_images[value.get('unitAssigned')]);
         value.set('roomsizearray', roomsizearray);
         value.set('terraceoptions', terraceoptionstext);
-        position_images = building.get('position_images');
         value.set('zoomedinimage', position_images[value.get('unitAssigned')]);
         value.set('floor_layout_basic', building.get('floor_layout_basic').image_url);
         floorriserange = building.get('floorriserange');
@@ -198,7 +198,6 @@ define(['extm', 'src/apps/screen-four/screen-four-view'], function(Extm, ScreenF
         return ModelActualArr.push(unitCollection.get(value));
       });
       unitCollection = new Backbone.Collection(ModelActualArr);
-      console.log(App.master.paymentplans.toArray());
       payment = [];
       payColl = App.master.paymentplans;
       i = 0;
@@ -234,7 +233,6 @@ define(['extm', 'src/apps/screen-four/screen-four-view'], function(Extm, ScreenF
           unitModel.set('views', result.views);
           unitModel.set('facing', result.facings);
           object.Collection = object._getSelelctedUnit();
-          console.log(result.payment_plans);
           payment = [];
           arr = $.map(result.payment_plans, function(el) {
             return payment.push({

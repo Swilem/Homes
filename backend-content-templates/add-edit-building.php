@@ -148,7 +148,7 @@ $heading = "Edit";
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
         <div class="form-group">
             <label class="form-label">
                 Position in project 
@@ -182,8 +182,8 @@ $heading = "Edit";
              
             </div> 
         </div>
-    </div>
-    <div class="col-md-6">
+    </div> -->
+    <!-- <div class="col-md-6">
         <div class="form-group">
             <label class="form-label">
                 Zoomed in image
@@ -217,7 +217,7 @@ $heading = "Edit";
              
             </div> 
         </div>
-    </div>
+    </div> -->
     <div style="clear:both"></div>
    <!-- <div class="col-md-12">
         <div class="form-group">

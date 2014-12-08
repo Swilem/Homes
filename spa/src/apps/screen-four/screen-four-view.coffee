@@ -961,6 +961,8 @@ define [ 'marionette' ], ( Marionette )->
             stamp_duty = Math.round((parseInt(agreement) * (parseFloat(SettingModel.get('stamp_duty'))/100))) 
             shift = Math.pow(10, -2);
 
+
+
            
             tempstamp_duty = parseInt(Math.ceil(stamp_duty*shift)/shift ) + 110 
             reg_amt = parseFloat(SettingModel.get('registration_amount'))
@@ -1008,7 +1010,7 @@ define [ 'marionette' ], ( Marionette )->
             finalcost1 =  parseInt(maintenance) 
 
 
-            console.log paymentColl = App.master.paymentplans
+            paymentColl = App.master.paymentplans
             if paymentColl.length != 0
                 milestones = paymentColl.get(parseInt($('#paymentplans').val()))
                 milestonesArray = milestones.get('milestones')
@@ -1230,13 +1232,13 @@ define [ 'marionette' ], ( Marionette )->
 
 
             )
-            $('#paymentplans').on('change' , ()->
-                id = $('#'+this.id ).val()
-                object.generatePaymentSchedule(id)
-                #object.getMilestones(id)
+            # $('#paymentplans').on('change' , ()->
+            #     id = $('#'+this.id ).val()
+            #     object.generatePaymentSchedule(id)
+            #     #object.getMilestones(id)
 
 
-            )
+            # )
 
             $(".skyiCost").click ->
                 $(".skyiCostDtls").slideToggle()
@@ -1254,17 +1256,19 @@ define [ 'marionette' ], ( Marionette )->
             flag = 0
             $('#rec' ).text ""
             $('.rec' ).text ""
-            console.log id
+            
             #get_apratment_selector_settings()
             unitModel = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
             buildingModel = App.master.building.findWhere({id:unitModel.get('building')})
             milestonecompletion = buildingModel.get 'milestonecompletion'
             $('#paymentTable' ).text ""
-            
-            paymentColl = App.master.paymentplans
+            milestonesArray = []
+            paymentColl = []
+            console.log paymentColl = App.master.paymentplans
             if paymentColl.length != 0
-                milestones = paymentColl.get(parseInt(id))
-                milestonesArray = milestones.get('milestones')
+                console.log milestones = paymentColl.get(parseInt(id))
+                console.log milestones.get('milestones')
+                console.log milestonesArray = milestones.get('milestones')
                 $('.paymentplan').text milestones.get('name')
                 milestonesArrayColl = new Backbone.Collection milestonesArray
                 milestonemodel = milestonesArrayColl.findWhere({'milestone':parseInt(buildingModel.get('milestone'))})
@@ -1289,7 +1293,8 @@ define [ 'marionette' ], ( Marionette )->
                 count = 0
                 SettingModel = new Backbone.Model SETTINGS
                 servicetax = SettingModel.get('service_tax')
-                    
+                salestax = Math.round((parseInt(agreementValue) * (parseFloat(servicetax)/100)))
+                salestax1 = Math.round((parseInt(agreementValue1) * (parseFloat(servicetax)/100)))
                 milestoneColl = new Backbone.Collection MILESTONES
                 #milestonecompletion = {48:'26/08/2014', 52:'30/08/2014'}
                 for element,index in milestonesArray
@@ -1358,14 +1363,12 @@ define [ 'marionette' ], ( Marionette )->
                 
 
                 $('#paymentTable' ).append table
-                console.log milestonesArray
-                console.log agreementValue
-                console.log agreementValue1
+                
                 for element,index in milestonesArray
-                    console.log percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage))/100))
-                    console.log percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage))/100))
-                    sales_tax = Math.round(parseInt(percentageValue) * (parseFloat(servicetax)/100))
-                    sales_tax1 = Math.round(parseInt(percentageValue1) * (parseFloat(servicetax)/100))
+                    percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage))/100))
+                    percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage))/100))
+                    console.log sales_tax = Math.round(parseInt(salestax) * (parseFloat(element.payment_percentage)/100))
+                    console.log sales_tax1 = Math.round(parseInt(salestax1) * (parseFloat(element.payment_percentage)/100))
                     total = parseInt(percentageValue) + parseInt(sales_tax)
                     total1 = parseInt(percentageValue1) + parseInt(sales_tax1)
                     $('.percentageValue'+index).autoNumeric('init')
@@ -1387,7 +1390,7 @@ define [ 'marionette' ], ( Marionette )->
         getMilestones:(id)->
             milesstones = ''
             $('#milestones option' ).remove()
-            paymentColl = app.master.paymentplans
+            paymentColl = App.master.paymentplans
             if paymentColl.length != 0
                 milestones = paymentColl.get(parseInt(id))
                 $('.paymentplan').text milestones.get('name')
@@ -1823,7 +1826,7 @@ define [ 'marionette' ], ( Marionette )->
 
             table = ""
             ratepersqftfloorval = (parseInt(costSheetArray[1]) + parseInt(floorRiseValue))
-            console.log ratepersqftfloorval
+            
             basicCost1 = Math.round((parseInt(costSheetArray[0]) * parseInt(ratepersqftfloorval)))
             agreement1 = Math.round(parseInt(basicCost1) + parseFloat($('#infra1').val()))
             agreementValue1 = agreement1
@@ -1925,7 +1928,7 @@ define [ 'marionette' ], ( Marionette )->
             $('.finalvalue1').autoNumeric('set', finalvalue1)
 
 
-            paymentColl = App.master.paymentplans
+            console.log paymentColl = App.master.paymentplans
             if paymentColl.length != 0
                 milestones = paymentColl.get(parseInt($('#paymentplans').val()))
                 milestonesArray = milestones.get('milestones')
@@ -1950,7 +1953,7 @@ define [ 'marionette' ], ( Marionette )->
             finalcost = parseInt(totalcost) + parseInt(maintenance)
 
         persqft:->
-            console.log "aaaaaaaa"
+           
             $('.sqftprice1').autoNumeric('init')
             $('.sqftprice1').autoNumeric('set', $('#sqftprice1' ).val());
             $('.sqftprice').autoNumeric('init')

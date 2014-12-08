@@ -153,7 +153,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
     };
 
     ScreenThreeController.prototype._getUnits = function() {
-      var Countunits, buildingArray, buildingArrayModel, buildingCollection, buildingModel, buildings, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, first, flag, floorArray, floorCollectionCur, floorCollunits, floorCollunits1, floorCountArray, floorUnitsArray, flooruniqUnitvariant, floorunitvariant, highUnits, lowUnits, mainnewarr, maxvalue, mediumUnits, myArray, myArray1, newunitCollection, param, paramkey, range, status, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, track, trackArray, trackposition, uniqBuildings, uniqUnitvariant, uniqfacings, uniqterrace, uniqunitAssigned, uniqunitAssignedval, uniqviews, unitArray, unitAssigned, unitColl, unitVariantID, unitVariantModels, units, units1, unitsArray, unitsCollection, unitscur, unitsfilter, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
+      var Countunits, buildingArray, buildingArrayModel, buildingCollection, buildingModel, buildings, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, flag, floorArray, floorCollectionCur, floorCollunits, floorCollunits1, floorCountArray, floorUnitsArray, flooruniqUnitvariant, floorunitvariant, mainnewarr, maxvalue, myArray, myArray1, newunitCollection, param, paramkey, range, status, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, track, trackArray, trackposition, uniqBuildings, uniqUnitvariant, uniqfacings, uniqterrace, uniqunitAssigned, uniqunitAssignedval, uniqviews, unitArray, unitAssigned, unitColl, unitVariantID, unitVariantModels, units, units1, unitsArray, unitsCollection, unitscur, unitsfilter, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
       buildingArray = [];
       unitArray = [];
       unitsArray = [];
@@ -162,9 +162,11 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
       param = {};
       paramkey = {};
       flag = 0;
+      range = "";
       track = 0;
       trackArray = [];
       floorUnitsArray = [];
+      templateString = "";
       myArray = [];
       myArray1 = [];
       units = App.master.unit;
@@ -190,85 +192,6 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
           }
         }
       });
-      $.each(myArray, function(index, value) {
-        var budget_Val, element, key, string_val, valuearr, _i, _len, _results;
-        if (value.value !== 'All') {
-          param[value.key] = value.value;
-          string_val = _.isString(value.value);
-          valuearr = "";
-          if (string_val === true) {
-            valuearr = value.value.split(',');
-          }
-          if (valuearr.length > 1) {
-            _results = [];
-            for (_i = 0, _len = valuearr.length; _i < _len; _i++) {
-              element = valuearr[_i];
-              if (value.key === 'unitType') {
-                key = App.master.unit_type.findWhere({
-                  id: parseInt(element)
-                });
-                templateArr.push(key.get('name'));
-              }
-              if (value.key === 'budget') {
-                budget_Val = value + 'lakhs';
-                templateArr.push(budget_Val);
-              }
-              if (value.key === 'floor') {
-                if (track === 0) {
-                  trackArray.push(value.value);
-                }
-                _results.push(track = 1);
-              } else {
-                _results.push(void 0);
-              }
-            }
-            return _results;
-          } else {
-            if (value.key === 'unitType') {
-              key = App.master.unit_type.findWhere({
-                id: parseInt(value.value)
-              });
-              templateArr.push(key.get('name'));
-            }
-            if (value.key === 'budget') {
-              budget_Val = value.value;
-              templateArr.push(budget_Val);
-            }
-            if (value.key === 'floor') {
-              if (track === 0) {
-                trackArray.push(value.value);
-              }
-              return track = 1;
-            }
-          }
-        }
-      });
-      if (templateArr.length === 0) {
-        templateArr.push('All');
-      }
-      if (flag === 1) {
-        first = _.first(trackArray);
-        lowUnits = App.master.range.findWhere({
-          name: 'low'
-        });
-        if (parseInt(first) >= lowUnits.get('start') && parseInt(first) <= lowUnits.get('end')) {
-          range = 'LOWRISE';
-        }
-        mediumUnits = App.master.range.findWhere({
-          name: 'medium'
-        });
-        if (parseInt(first) >= mediumUnits.get('start') && parseInt(first) <= mediumUnits.get('end')) {
-          range = 'MIDRISE';
-        }
-        highUnits = App.master.range.findWhere({
-          name: 'high'
-        });
-        if (parseInt(first) >= highUnits.get('start') && parseInt(first) <= highUnits.get('end')) {
-          range = 'HIGHRISE';
-        }
-      } else {
-        templateString = templateArr.join(',');
-      }
       flag = 0;
       status = App.master.status.findWhere({
         'name': 'Available'

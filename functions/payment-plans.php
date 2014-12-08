@@ -61,6 +61,7 @@ function get_payment_plans_building($id){
  	 $payment_plans_data = array();
  	 $miles_stone_data = array();
    	foreach($payment_plans as $payment_plan){ 
+      $milestones_data = array();
    			$option_value= maybe_unserialize($payment_plan["value"]);
    			$miles_stones =  $option_value["milestones"] ;
        $milestonearr = array();
@@ -72,7 +73,7 @@ function get_payment_plans_building($id){
 
           foreach($milestones as $milestone){
             array_push($milestonearr, intval($milestone['milestone']));
-            $milestones_data[] = array('sort_index'=>intval($milestone['sort_index']),'milestone'=>intval($milestone['milestone']),'payment_percentage'=>intval($milestone['payment_percentage']));
+            $milestones_data[] = array('sort_index'=>intval($milestone['sort_index']),'milestone'=>intval($milestone['milestone']),'payment_percentage'=>($milestone['payment_percentage']));
         }
         if(in_array(intval($building_milestone), $milestonearr)){ 
         $payment_plans_data[] = array("id"=>$payment_plan["id"],
@@ -89,7 +90,7 @@ function get_payment_plans_building($id){
 			$milestones_data = array();
    			foreach($milestones as $milestone){
             array_push($milestonearr, intval($milestone['milestone']));
-   					$milestones_data[] = array('sort_index'=>intval($milestone['sort_index']),'milestone'=>intval($milestone['milestone']),'payment_percentage'=>intval($milestone['payment_percentage']));
+   					$milestones_data[] = array('sort_index'=>intval($milestone['sort_index']),'milestone'=>intval($milestone['milestone']),'payment_percentage'=>($milestone['payment_percentage']));
    			}
    			 
    			if(in_array(intval($building_milestone), $milestonearr)){ 

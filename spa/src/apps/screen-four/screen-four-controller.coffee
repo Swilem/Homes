@@ -147,11 +147,11 @@ define [ 'extm', 'src/apps/screen-four/screen-four-view' ], ( Extm, ScreenFourVi
                 
                 
                 #value.set 'facings_name',facingModelArray.join(', ')
+                position_images = building.get('position_images')
                 value.set 'floorLayoutimage' , floorLayoutimage
-                value.set 'BuildingPositionimage' , building.get('positioninproject').image_url
+                value.set 'BuildingPositionimage' , position_images[value.get('unitAssigned')]
                 value.set 'roomsizearray' , roomsizearray
                 value.set 'terraceoptions' , terraceoptionstext
-                position_images = building.get('position_images')
                 value.set 'zoomedinimage' , position_images[value.get('unitAssigned')]
                 value.set 'floor_layout_basic' , building.get('floor_layout_basic').image_url
 
@@ -225,7 +225,7 @@ define [ 'extm', 'src/apps/screen-four/screen-four-view' ], ( Extm, ScreenFourVi
             )
 
             unitCollection = new Backbone.Collection(ModelActualArr)
-            console.log App.master.paymentplans.toArray()
+            
             payment = [];
             payColl = App.master.paymentplans
             i = 0
@@ -252,7 +252,7 @@ define [ 'extm', 'src/apps/screen-four/screen-four-view' ], ( Extm, ScreenFourVi
                     unitModel.set 'views' , result.views
                     unitModel.set 'facing' , result.facings
                     object.Collection = object._getSelelctedUnit()
-                    console.log result.payment_plans
+                    
                     payment = []
                     arr = $.map(result.payment_plans,  (el)->
                          payment.push({id:el.id,name:el.name,milestones:el.milestones}) 

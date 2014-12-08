@@ -638,8 +638,46 @@ function get_unit_price($unit_id)
     $sellablearea = get_unit_variants_sellablearea($unit_variant); 
 
     $floorrise = get_building_floorrise($unit_building,$floor);
+
+    $basic_cost = round((floatval($perft)+floatval($floorrise))* floatval($sellablearea));
+
+    $settings = get_apratment_selector_settings();
+
+    $agreement_amt = round(intval($basic_cost) + floatval($settings['infrastructure_charges'][0]));
+
+    $stamp_duty = round(intval($agreement_amt) * (floatval(($settings['stamp_duty'])/100)));
+
+    $shift = pow(10, -2);
+
+    $stamp_duty_amt = floatval(ceil($stamp_duty*$shift)/$shift) + 110 ;
+
+    $registration_amount = floatval($settings['registration_amount']);
+
+    $vat = round(intval($agreement_amt) * (floatval($settings['vat'])/100));
+
+    if(intval($agreement_amt) > 10000000)
+    {
+        $servicetax = $settings['service_tax_agval_ab1'];
+    }
+    else
+    {
+        $servicetax = $settings['service_tax'];
+
+    }
+
+    $sales_tax = round(intval($agreement_amt) * (floatval(($servicetax)/100)));
+
+    $govt_cost = intval($stamp_duty_amt) + intval($registration_amount) + intval($vat)  + intval($sales_tax);
+
+    $maintenance = (intval($sellablearea) * 100);
+
+    $totalcost = $maintenance;
+
+    $finalcost = intval($agreement_amt) + intval($govt_cost)  + intval($totalcost);
+                
+    
  
-    return  (intval($perft)+intval($floorrise))* intval($sellablearea);
+    return  $finalcost;
   
 }
 

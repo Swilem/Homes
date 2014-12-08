@@ -1479,8 +1479,6 @@ define(['marionette'], function(Marionette) {
             $('#terrace' + value).prop('checked', true);
             return teraace.push(value);
           });
-          console.log(originalOviews.length);
-          console.log(viewtemp1.length);
           if (viewtemp1.length !== originalviews.length) {
             App.defaults['view'] = viewtemp1.join(',');
           } else {
@@ -1843,8 +1841,8 @@ define(['marionette'], function(Marionette) {
                   if (App.defaults['floor'] !== "All") {
                     floorArr = App.defaults['floor'].split(',');
                     if (floorid === val1) {
-                      console.log(tempid = $('[data-position="' + floorid + '"]')[0].id);
-                      console.log(tempidval = $('#' + tempid).attr('data-idvalue'));
+                      tempid = $('[data-position="' + floorid + '"]')[0].id;
+                      tempidval = $('#' + tempid).attr('data-idvalue');
                       return $.each(floorArr, function(ind, val) {
                         if (parseInt(value1) === parseInt(val)) {
                           $('#' + tempidval + value1).attr('class', 'unit-hover range');
@@ -2454,7 +2452,6 @@ define(['marionette'], function(Marionette) {
           temp1 = ['tt', 't', 'ttt', 'tttt'];
           temp2 = ['cc', 'cc', 'ccc', 'cccc'];
           idValue = "";
-          console.log(position);
           $.each(svgdata, function(index, value) {
             if ($.inArray(position, value.svgposition) >= 0 && value.svgposition !== null) {
               return $.each(value.svgposition, function(index1, val1) {

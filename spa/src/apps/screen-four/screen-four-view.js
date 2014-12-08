@@ -685,7 +685,7 @@ define(['marionette'], function(Marionette) {
         totalcost1 = parseInt(temp_stamp_duty) + parseInt(reg_amt1) + parseInt(vat1) + parseInt(sales_tax1);
       }
       finalcost1 = parseInt(maintenance);
-      console.log(paymentColl = App.master.paymentplans);
+      paymentColl = App.master.paymentplans;
       if (paymentColl.length !== 0) {
         milestones = paymentColl.get(parseInt($('#paymentplans').val()));
         milestonesArray = milestones.get('milestones');
@@ -828,10 +828,6 @@ define(['marionette'], function(Marionette) {
       $('#payment').on('change', function() {
         return object.generateCostSheet();
       });
-      $('#paymentplans').on('change', function() {
-        id = $('#' + this.id).val();
-        return object.generatePaymentSchedule(id);
-      });
       $(".skyiCost").click(function() {
         $(".skyiCostDtls").slideToggle();
       });
@@ -844,11 +840,10 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenFourLayout.prototype.generatePaymentSchedule = function(id) {
-      var SettingModel, addon, amtalue, buildingModel, count, element, flag, index, milesotneVal, milestoneColl, milestoneCollection, milestoneModel, milestonecompletion, milestonemodel, milestonename, milestones, milestonesArray, milestonesArrayColl, milstoneModelName, paymentColl, percentageValue, percentageValue1, proposed_date, reccount, recount, sales_tax, sales_tax1, servicetax, table, total, total1, trClass, unitModel, _i, _j, _len, _len1, _results;
+      var SettingModel, addon, amtalue, buildingModel, count, element, flag, index, milesotneVal, milestoneColl, milestoneCollection, milestoneModel, milestonecompletion, milestonemodel, milestonename, milestones, milestonesArray, milestonesArrayColl, milstoneModelName, paymentColl, percentageValue, percentageValue1, proposed_date, reccount, recount, sales_tax, sales_tax1, salestax, salestax1, servicetax, table, total, total1, trClass, unitModel, _i, _j, _len, _len1, _results;
       flag = 0;
       $('#rec').text("");
       $('.rec').text("");
-      console.log(id);
       unitModel = App.master.unit.findWhere({
         id: parseInt(App.unit['name'])
       });
@@ -857,10 +852,13 @@ define(['marionette'], function(Marionette) {
       });
       milestonecompletion = buildingModel.get('milestonecompletion');
       $('#paymentTable').text("");
-      paymentColl = App.master.paymentplans;
+      milestonesArray = [];
+      paymentColl = [];
+      console.log(paymentColl = App.master.paymentplans);
       if (paymentColl.length !== 0) {
-        milestones = paymentColl.get(parseInt(id));
-        milestonesArray = milestones.get('milestones');
+        console.log(milestones = paymentColl.get(parseInt(id)));
+        console.log(milestones.get('milestones'));
+        console.log(milestonesArray = milestones.get('milestones'));
         $('.paymentplan').text(milestones.get('name'));
         milestonesArrayColl = new Backbone.Collection(milestonesArray);
         milestonemodel = milestonesArrayColl.findWhere({
@@ -886,6 +884,8 @@ define(['marionette'], function(Marionette) {
         count = 0;
         SettingModel = new Backbone.Model(SETTINGS);
         servicetax = SettingModel.get('service_tax');
+        salestax = Math.round(parseInt(agreementValue) * (parseFloat(servicetax) / 100));
+        salestax1 = Math.round(parseInt(agreementValue1) * (parseFloat(servicetax) / 100));
         milestoneColl = new Backbone.Collection(MILESTONES);
         for (index = _i = 0, _len = milestonesArray.length; _i < _len; index = ++_i) {
           element = milestonesArray[index];
@@ -933,16 +933,13 @@ define(['marionette'], function(Marionette) {
         $('.addonpay').autoNumeric('init');
         $('.addonpay').autoNumeric('set', addon);
         $('#paymentTable').append(table);
-        console.log(milestonesArray);
-        console.log(agreementValue);
-        console.log(agreementValue1);
         _results = [];
         for (index = _j = 0, _len1 = milestonesArray.length; _j < _len1; index = ++_j) {
           element = milestonesArray[index];
-          console.log(percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage)) / 100)));
-          console.log(percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage)) / 100)));
-          sales_tax = Math.round(parseInt(percentageValue) * (parseFloat(servicetax) / 100));
-          sales_tax1 = Math.round(parseInt(percentageValue1) * (parseFloat(servicetax) / 100));
+          percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage)) / 100));
+          percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage)) / 100));
+          console.log(sales_tax = Math.round(parseInt(salestax) * (parseFloat(element.payment_percentage) / 100)));
+          console.log(sales_tax1 = Math.round(parseInt(salestax1) * (parseFloat(element.payment_percentage) / 100)));
           total = parseInt(percentageValue) + parseInt(sales_tax);
           total1 = parseInt(percentageValue1) + parseInt(sales_tax1);
           $('.percentageValue' + index).autoNumeric('init');
@@ -966,7 +963,7 @@ define(['marionette'], function(Marionette) {
       var element, milesstones, milestoneColl, milestoneModel, milestones, milestonesArray, paymentColl, _i, _len;
       milesstones = '';
       $('#milestones option').remove();
-      paymentColl = app.master.paymentplans;
+      paymentColl = App.master.paymentplans;
       if (paymentColl.length !== 0) {
         milestones = paymentColl.get(parseInt(id));
         $('.paymentplan').text(milestones.get('name'));
@@ -1380,7 +1377,6 @@ define(['marionette'], function(Marionette) {
       }
       table = "";
       ratepersqftfloorval = parseInt(costSheetArray[1]) + parseInt(floorRiseValue);
-      console.log(ratepersqftfloorval);
       basicCost1 = Math.round(parseInt(costSheetArray[0]) * parseInt(ratepersqftfloorval));
       agreement1 = Math.round(parseInt(basicCost1) + parseFloat($('#infra1').val()));
       agreementValue1 = agreement1;
@@ -1466,7 +1462,7 @@ define(['marionette'], function(Marionette) {
       $('.finalcost1').autoNumeric('set', finalcost1);
       $('.finalvalue1').autoNumeric('init');
       $('.finalvalue1').autoNumeric('set', finalvalue1);
-      paymentColl = App.master.paymentplans;
+      console.log(paymentColl = App.master.paymentplans);
       if (paymentColl.length !== 0) {
         milestones = paymentColl.get(parseInt($('#paymentplans').val()));
         milestonesArray = milestones.get('milestones');
@@ -1500,7 +1496,6 @@ define(['marionette'], function(Marionette) {
 
     ScreenFourLayout.prototype.persqft = function() {
       var SettingModel, addon, agreement, agreement1, basicCost, buildingModel, costSheetArray, count, discount, element, finalcost, finalvalue, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
-      console.log("aaaaaaaa");
       $('.sqftprice1').autoNumeric('init');
       $('.sqftprice1').autoNumeric('set', $('#sqftprice1').val());
       $('.sqftprice').autoNumeric('init');

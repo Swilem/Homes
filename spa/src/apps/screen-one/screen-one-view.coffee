@@ -376,7 +376,9 @@ define [ 'marionette' ], ( Marionette )->
                 id  = e.target.id
                 str1 = id.replace( /[^\d.]/g, '' )
                 buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
+                phasemodel = App.master.phases.findWhere({id:parseInt(str1)})
                 if buildigmodel == undefined || buildigmodel == ""
+                    $("#hglighttower"+phasemodel.get('id')).attr('class','fadeoutClass')
                     return false
                 floorUnitsArray = []
                 myArray = []

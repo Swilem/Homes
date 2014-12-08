@@ -189,9 +189,11 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
             param = {}
             paramkey = {}
             flag = 0
+            range = ""
             track = 0
             trackArray = []
             floorUnitsArray = []
+            templateString = ""
             myArray = []
             myArray1 = []
             units = App.master.unit
@@ -205,77 +207,6 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                         myArray1.push({key:index,value:value})
 
             )
-            $.each(myArray, (index,value)->
-                if(value.value !='All')
-                    param[value.key] = value.value
-                    string_val = _.isString(value.value)
-                    valuearr = ""
-                    if string_val == true
-                        valuearr = value.value.split(',')
-                    if valuearr.length > 1
-                        for element  in valuearr
-                            if value.key == 'unitType'
-                                key = App.master.unit_type.findWhere({id:parseInt(element)})
-                                templateArr.push key.get 'name'
-                            #if value.key == 'building'
-                                #key = App.master.building.findWhere({id:parseInt(element)})
-                            #templateArr.push key.get 'name'
-                            if value.key == 'budget'
-                                budget_Val = value+'lakhs'
-                                templateArr.push budget_Val
-                            if value.key == 'floor'
-                                if track == 0
-                                    trackArray.push value.value
-                                #flag = 1
-                                track = 1
-                    else
-                        if value.key == 'unitType'
-                            key = App.master.unit_type.findWhere({id:parseInt(value.value)})
-                            templateArr.push key.get 'name'
-                        #if value.key == 'building'
-                            #key = App.master.building.findWhere({id:parseInt(value.value)})
-                            #templateArr.push key.get 'name'
-                        if value.key == 'budget'
-                            budget_Val = value.value
-                            templateArr.push budget_Val
-                        if value.key == 'floor'
-                            if track == 0
-                                trackArray.push value.value
-                            #flag = 1
-                            track = 1
-
-
-
-
-            )
-            if templateArr.length == 0
-                templateArr.push 'All'
-            if(flag==1)
-                first = _.first(trackArray)
-                lowUnits = App.master.range.findWhere({name:'low'})
-                if parseInt(first) >= lowUnits.get('start') &&  parseInt(first) <= lowUnits.get 'end'
-                    range = 'LOWRISE'
-                    #templateArr.push range
-
-
-
-                mediumUnits = App.master.range.findWhere({name:'medium'})
-                if parseInt(first) >= mediumUnits.get('start') &&  parseInt(first) <= mediumUnits.get 'end'
-                    range = 'MIDRISE'
-                    #templateArr.push range
-
-
-                highUnits = App.master.range.findWhere({name:'high'})
-                if parseInt(first) >= highUnits.get('start') &&  parseInt(first) <= highUnits.get 'end'
-                    range = 'HIGHRISE'
-                    #templateArr.push range
-                #templateString  = templateArr.join(',')
-
-            else
-                templateString  = templateArr.join(',')
-
-
-
             flag  = 0
             status = App.master.status.findWhere({'name':'Available'})
             unitslen = App.master.unit.toArray()

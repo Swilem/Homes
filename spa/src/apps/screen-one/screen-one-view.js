@@ -371,7 +371,7 @@ define(['marionette'], function(Marionette) {
         return $('.im-tooltip').hide();
       },
       'mouseover .tower-over': function(e) {
-        var buildigmodel, countunits, currency, element, floorCollunits, floorUnitsArray, floorarray, id, key, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, screenonearray, selectorname, status, str1, text, units, units1, unitslen, unittypemodel, unittypetext, _i, _len;
+        var buildigmodel, countunits, currency, element, floorCollunits, floorUnitsArray, floorarray, id, key, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, phasemodel, screenonearray, selectorname, status, str1, text, units, units1, unitslen, unittypemodel, unittypetext, _i, _len;
         $('#printmapplic1').text("");
         e.preventDefault();
         id = e.target.id;
@@ -379,7 +379,11 @@ define(['marionette'], function(Marionette) {
         buildigmodel = App.master.building.findWhere({
           id: parseInt(str1)
         });
+        phasemodel = App.master.phases.findWhere({
+          id: parseInt(str1)
+        });
         if (buildigmodel === void 0 || buildigmodel === "") {
+          $("#hglighttower" + phasemodel.get('id')).attr('class', 'fadeoutClass');
           return false;
         }
         floorUnitsArray = [];
