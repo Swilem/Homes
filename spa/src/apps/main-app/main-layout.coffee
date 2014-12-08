@@ -84,18 +84,18 @@ define [ 'extm'], ( Extm)->
             <div class="print-row">
                 <div class="row">
                     <div class="col-sm-5">
-                        <img src="" id="zoomedinimage" />
+                        <div id="printmapplic1" class="towersMap center-block"></div>
                     </div>
                     <div class="col-sm-7">
-                        <div id="printmapplic1" class="towersMap center-block"></div>
+                        <img src="" id="zoomedinimage" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-5">
-                        <img src="" id="threeDimage" />
+                        <div id="towerview" ></div>
                     </div>
                     <div class="col-sm-7">
-                        <div id="towerview" ></div>
+                        <img src="" id="threeDimage" />
                     </div>
                 </div>
             </div>
