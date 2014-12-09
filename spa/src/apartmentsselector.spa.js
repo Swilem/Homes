@@ -35,7 +35,7 @@ require(['plugin-loader', 'extm', 'src/classes/ap-store', 'src/apps/router', 'ap
     'facings': new Backbone.Collection(FACINGS),
     'terrace': new Backbone.Collection(TERRACEOPTIONS),
     'paymentplans': new Backbone.Collection(PAYMENTPLANS),
-    'phases': new Backbone.Collection(BUILDINGS_PHASES)
+    'phases': BUILDINGS_PHASES
   };
   App.backFilter = {
     'screen1': [],

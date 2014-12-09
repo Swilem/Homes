@@ -207,9 +207,23 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                 floorUnitsArray = []
                 myArray = []
                 buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
-                phasemodel = App.master.phases.findWhere({id:parseInt(str1)})
+                phasemodel = App.master.phases
+                phasemodelint = $.map(phasemodel, (item)->
+                        return parseInt(item)
+                    )
+                
+                buildingmodes = App.master.building
+                buildingarray = []
+                buildingmodes.each (unit)->
+                    buildingarray.push(parseInt(unit.get('id')))
+                
+                differnecearr = _.difference(phasemodelint,buildingarray)
                 if buildigmodel == undefined || buildigmodel == ""
-                    $("#highlighttower"+phasemodel.get('id')).attr('class','fadeoutClass')
+                    $.each(differnecearr, (index,value)->
+                        $("#highlighttower"+value).attr('class','fadeout')
+                        
+                        )
+                    
                     return false
                 # screenonearray = App.backFilter['screen1']
                 # for element in screenonearray

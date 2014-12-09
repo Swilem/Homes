@@ -51,7 +51,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         return $('.im-tooltip').hide();
       },
       'mouseover a.tower-link': function(e) {
-        var buildigmodel, countunits, currency, floorCollunits, floorUnitsArray, floorarray, id, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, phasemodel, selectorname, status, str1, text, units, units1, unitslen, unittypemodel, unittypetext;
+        var buildigmodel, buildingarray, buildingmodes, countunits, currency, differnecearr, floorCollunits, floorUnitsArray, floorarray, id, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, phasemodel, phasemodelint, selectorname, status, str1, text, units, units1, unitslen, unittypemodel, unittypetext;
         id = e.target.id;
         str1 = id.replace(/[^\d.]/g, '');
         floorUnitsArray = [];
@@ -59,11 +59,20 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         buildigmodel = App.master.building.findWhere({
           id: parseInt(str1)
         });
-        phasemodel = App.master.phases.findWhere({
-          id: parseInt(str1)
+        phasemodel = App.master.phases;
+        phasemodelint = $.map(phasemodel, function(item) {
+          return parseInt(item);
         });
+        buildingmodes = App.master.building;
+        buildingarray = [];
+        buildingmodes.each(function(unit) {
+          return buildingarray.push(parseInt(unit.get('id')));
+        });
+        differnecearr = _.difference(phasemodelint, buildingarray);
         if (buildigmodel === void 0 || buildigmodel === "") {
-          $("#highlighttower" + phasemodel.get('id')).attr('class', 'fadeoutClass');
+          $.each(differnecearr, function(index, value) {
+            return $("#highlighttower" + value).attr('class', 'fadeout');
+          });
           return false;
         }
         $.map(App.defaults, function(value, index) {

@@ -92,22 +92,18 @@ add_action( 'init', 'apartmentselector_after_init' );
 
 function get_data(){
 
-            $building = get_buildings();
+    $building = get_buildings();
             $unit = get_units();
             $unit_type = get_unit_types();
             $buildingarray = array();
             $unitarray = array();
             $unittype = array();
             $temparray = array();
-            $tempclone = array();
-            $tempclone1 = array();
             $tempphasearray = array();
             $unit_typetemparray = array();
             $temparray1 = array();
             foreach ($building as $value) {
-                $tempphasearray[id] = $value['id'];
-
-                $tempclone1 =  array_merge($tempclone1,$tempphasearray);
+                array_push($tempphasearray,intval($value['id']));
                 if($value['phase'] == 26){
                     array_push($buildingarray, $value);
                     array_push($temparray, $value['id']);
@@ -127,8 +123,7 @@ function get_data(){
 
                 # code...
             }
-            print_r($tempclone1);
-    return array($buildingarray,$unitarray,$tempclone1);
+    return array($buildingarray,$unitarray,$tempphasearray);
 }
 
 if ( is_development_environment() ) {

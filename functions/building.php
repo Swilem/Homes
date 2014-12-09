@@ -562,7 +562,7 @@ function get_buildings($ids=array())
         $position_images  = array();
         foreach ($floor_positions as $flat) {
             
-            $images = wp_get_attachment_image_src( $serialize_images[$flat['flat_no']] );
+            $images = wp_get_attachment_image_src( $serialize_images[$flat['flat_no']] , 'large');
                 
             $image = is_array( $images ) && count( $images ) > 1 ? $images[ 0 ] : '';
 

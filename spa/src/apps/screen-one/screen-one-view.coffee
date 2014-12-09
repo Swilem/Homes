@@ -376,9 +376,23 @@ define [ 'marionette' ], ( Marionette )->
                 id  = e.target.id
                 str1 = id.replace( /[^\d.]/g, '' )
                 buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
-                phasemodel = App.master.phases.findWhere({id:parseInt(str1)})
+                phasemodel = App.master.phases
+                phasemodelint = $.map(phasemodel, (item)->
+                        return parseInt(item)
+                    )
+                
+                buildingmodes = App.master.building
+                buildingarray = []
+                buildingmodes.each (unit)->
+                    buildingarray.push(parseInt(unit.get('id')))
+                
+                differnecearr = _.difference(phasemodelint,buildingarray)
                 if buildigmodel == undefined || buildigmodel == ""
-                    $("#hglighttower"+phasemodel.get('id')).attr('class','fadeoutClass')
+                    $.each(differnecearr, (index,value)->
+                        $("#hglighttower"+value).attr('class','fadeout')
+                        
+                        )
+                    
                     return false
                 floorUnitsArray = []
                 myArray = []

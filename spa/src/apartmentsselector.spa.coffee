@@ -70,7 +70,7 @@ require [ 'plugin-loader'
         'facings': new Backbone.Collection  FACINGS
         'terrace': new Backbone.Collection  TERRACEOPTIONS
         'paymentplans' : new Backbone.Collection PAYMENTPLANS
-        'phases' : new Backbone.Collection BUILDINGS_PHASES
+        'phases' : BUILDINGS_PHASES
 
     # global variable to keep track of the filter the user has selected on the previous screen
     App.backFilter = {'screen1':[],'screen2':[],'screen3':[],'back':""}
