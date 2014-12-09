@@ -100,31 +100,17 @@ define [ 'marionette' ], ( Marionette )->
                                             <h5 >Total Cost:</h5> <h4><span class="actualcost" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></h4>
                                         <input type="hidden" id="actualcostvalue" data-m-dec="" data-a-sign="Rs. " data-d-group="2" value="" /></div>
                                         <div class="col-sm-6">
-                                            <h5 >Amount Receivable as on Date:</h5> <h4><span class="rec" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></h4>
+                                            <h5>Current Milestone:</h5> <h4> <span class="currentmile"></span></h4>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h5>Current Milestone:</h5> <h4> <span class="currentmile"></span></h4>
-                                        </div>
-                                        <div class="col-sm-6 form-inline">
                                             <h5>Schemes: </h5>
-                                            Regular Scheme
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6 form-inline">
-                                            <h5>Payment Plan: </h5>
-                                            <select id="paymentplans" class="form-control">
-                                            {{#paymentplans}}
-                                            <option value="{{id}}" {{classname}}>{{name}}</option>
-                                            {{/paymentplans}}
-                                            </select>
+                                            <h4>Regular Scheme</h4>
                                         </div>
                                         <div class="col-sm-6 form-inline">
                                             <h5>Actual Payment:</h5> 
-                                            <input type="text" class="form-control"  id="payment" value="0"/> <span class="glyphicon glyphicon-plus discountToggle"></span>
+                                            <input type="text" class="form-control"  id="payment" value="0"/> <span class="glyphicon glyphicon-plus discountToggle"></span>                                            
                                         </div>
                                     </div>
                                     <div class="row">
@@ -180,6 +166,20 @@ define [ 'marionette' ], ( Marionette )->
 
                                 <div class="invoice-items">
                                     <h4 class="text-primary">Payment Schedule</h4>
+                                        <div class="row">
+                                            <div class="col-sm-5 form-inline m-b-20">
+                                                <h5 class="inline">Payment Plan: </h5>
+                                                <select id="paymentplans" class="form-control">
+                                                {{#paymentplans}}
+                                                <option value="{{id}}" {{classname}}>{{name}}</option>
+                                                {{/paymentplans}}
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-7 text-right">
+                                                <h5 class="inline">Amount Receivable as on Date:</h5> <h4 class="inline"><span class="rec" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></h4>
+                                            </div>
+                                        </div>
+                                        
                                     <ul id="paymentTable">
 
                                     </ul>

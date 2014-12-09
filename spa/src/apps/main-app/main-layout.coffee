@@ -62,6 +62,19 @@ define [ 'extm'], ( Extm)->
         
         <div class="prntLoader hidden"></div>
 
+        <div id="screen-one-region" class="section">
+
+        </div>
+        <div id="screen-two-region" >
+
+        </div>
+        <div id="screen-three-region" >
+
+        </div>
+        <div id="screen-four-region" >
+
+        </div>
+
         <div id="print-view" class="visible-print">
             <div class="print-header">
                 <div class="row print-head">
@@ -177,19 +190,6 @@ define [ 'extm'], ( Extm)->
                     </ul>
                 </div>
             </div>
-
-        </div>
-        
-        <div id="screen-one-region" class="section">
-
-        </div>
-        <div id="screen-two-region" >
-
-        </div>
-        <div id="screen-three-region" >
-
-        </div>
-        <div id="screen-four-region" >
 
         </div>'
 
