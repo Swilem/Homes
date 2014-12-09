@@ -215,7 +215,7 @@ define [ 'marionette' ], ( Marionette )->
                 $("#finalButton").addClass 'btn-primary'
                 $("#finalButton").text "Show Apartments in my Budget"
                 budget_val = $(".cs-selected").text().split(' ')
-                newUnits = App.getBudget(budget_val[0])
+                newUnits = App.getBudget(budget_val[0],budget_val[1])
                 newColl = new Backbone.Collection newUnits
                 buildings = newColl.pluck("building")
                 uniqBuildings = _.uniq(buildings)
@@ -341,7 +341,7 @@ define [ 'marionette' ], ( Marionette )->
                 $("#finalButton").addClass 'btn-primary'
                 $("#finalButton").text "Show Apartments in my Budget"
                 budget_val = $(".cs-selected").text().split(' ')
-                newUnits = App.getBudget(budget_val[0])
+                newUnits = App.getBudget(budget_val[0],budget_val[1])
                 newColl = new Backbone.Collection newUnits
                 buildings = newColl.pluck("building")
                 uniqBuildings = _.uniq(buildings)

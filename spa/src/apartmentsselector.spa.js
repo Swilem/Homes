@@ -122,7 +122,7 @@ require(['plugin-loader', 'extm', 'src/classes/ap-store', 'src/apps/router', 'ap
         if (param_val_arr[0].toUpperCase() === 'ALL') {
           collection = App.currentStore.unit.toArray();
         } else if (budget_val.length > 1) {
-          budgetUnitArray = App.getBudget(budget_val[0]);
+          budgetUnitArray = App.getBudget(budget_val[0], budget_val[1]);
           collection = budgetUnitArray;
         } else {
           unitSplitArray = [];
@@ -178,12 +178,16 @@ require(['plugin-loader', 'extm', 'src/classes/ap-store', 'src/apps/router', 'ap
     App.currentStore.view.reset(viewArray);
     return App.currentStore.unit;
   };
-  App.getBudget = function(budget) {
+  App.getBudget = function(budget, unitm) {
     var budgetUnitArray, budget_arr, status, units, unitsColl;
     budgetUnitArray = [];
     budget_arr = budget.split('-');
     budget_arr[0] = budget_arr[0] + '00000';
     budget_arr[1] = budget_arr[1] + '00000';
+    if (unitm === 'crores') {
+      budget_arr[0] = budget_arr[0] + '0000000';
+      budget_arr[1] = budget_arr[1] + '0000000';
+    }
     status = App.currentStore.status.findWhere({
       'name': 'Available'
     });

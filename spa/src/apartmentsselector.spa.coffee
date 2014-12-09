@@ -172,7 +172,7 @@ require [ 'plugin-loader'
                     collection =  App.currentStore.unit.toArray()
                     # if filter is set to budget value
                 else if budget_val.length>1
-                    budgetUnitArray = App.getBudget(budget_val[0])
+                    budgetUnitArray = App.getBudget(budget_val[0],budget_val[1])
                     collection  = budgetUnitArray
                     #if filter is set to a value
                 else
@@ -229,11 +229,15 @@ require [ 'plugin-loader'
         App.currentStore.view.reset viewArray
         App.currentStore.unit
 
-    App.getBudget = (budget)->
+    App.getBudget = (budget,unitm)->
         budgetUnitArray = []
         budget_arr = budget.split('-')
         budget_arr[0] = budget_arr[0] + ('00000')
         budget_arr[1] = budget_arr[1]+ ('00000')
+        if unitm == 'crores'
+            budget_arr[0] = budget_arr[0] + ('0000000')
+            budget_arr[1] = budget_arr[1]+ ('0000000')
+        
         status = App.currentStore.status.findWhere({'name':'Available'})
 
         units = App.currentStore.unit.where({'status':status.get('id')})

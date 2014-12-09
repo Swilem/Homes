@@ -67,7 +67,7 @@ define(['extm', 'src/apps/screen-one/screen-one-view'], function(Extm, ScreenOne
           unitPrice: unitPrice
         });
       });
-      priceRange = ['10-35 lakhs ', '35-55 lakhs ', '55-75 lakhs '];
+      priceRange = ['10-40 lakhs ', '40-70 lakhs ', '70-100 lakhs ', '1-1.3 crores '];
       priceArray = [];
       rangeArray = [];
       units = App.currentStore.unit.where({
@@ -89,6 +89,10 @@ define(['extm', 'src/apps/screen-one/screen-one-view'], function(Extm, ScreenOne
             budget_price = elementArray[0].split('-');
             budget_price[0] = budget_price[0] + '00000';
             budget_price[1] = budget_price[1] + '00000';
+            if (elementArray[1] === 'crores') {
+              budget_price[0] = budget_price[0] + '0000000';
+              budget_price[1] = budget_price[1] + '0000000';
+            }
             if (parseInt(value.get('unitPrice')) >= parseInt(budget_price[0]) && parseInt(value.get('unitPrice')) <= parseInt(budget_price[1])) {
               priceArray.push(element);
             }
