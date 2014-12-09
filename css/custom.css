@@ -9175,6 +9175,10 @@ polygon.selected-flat + text {
   opacity: 1 !important;
   fill: #000 !important;
 }
+.fadeout {
+  fill: #ff6600 !important;
+  color: #000 !important;
+}
 rect.range,
 polygon.range {
   fill: #FF6600 !important;
@@ -9637,7 +9641,7 @@ a.im-clear-button {
   -webkit-box-shadow: 0 0 10px #000;
 }
 #print-modal-content {
-  margin: 68px 0;
+  margin: 50px 0;
   border: none;
   height: 100%;
   overflow: hidden;
