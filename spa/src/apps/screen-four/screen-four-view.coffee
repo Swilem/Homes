@@ -905,8 +905,8 @@ define [ 'marionette' ], ( Marionette )->
                         </div>
                         <div class="costsRow">
                             <div class="costCell costName">Rate per Sq.Ft.</div>
-                            <div class="costCell discCol '+discountClass+' ratepersqft" data-a-sign="Rs. " data-m-dec="" data-d-group="2">'+infraid+'</div>
-                            <div class="costCell ratepersqft1" data-a-sign="Rs. " data-m-dec="" data-d-group="2" >'+infraid+'</div>
+                            <div class="costCell discCol '+discountClass+' ratepersqft" data-a-sign="Rs. " data-m-dec="" data-d-group="2"></div>
+                            <div class="costCell ratepersqft1" data-a-sign="Rs. " data-m-dec="" data-d-group="2" ></div>
                         </div>
                         <div class="costsRow">
                             <div class="costCell costName">Rate per Sq.Ft. with Floor Rise</div>
@@ -1171,9 +1171,10 @@ define [ 'marionette' ], ( Marionette )->
             $('.infra').autoNumeric('init')
             $('.infra').autoNumeric('set', $('#infra' ).val());
             $('.ratepersqft').autoNumeric('init')
-            $('.ratepersqft').autoNumeric('set', $('#sqftprice').val());
+            $('.ratepersqft').text $("#sqftprice :selected").text();
             $('.ratepersqft1').autoNumeric('init')
-            $('.ratepersqft1').autoNumeric('set', $('#sqftprice1').val());
+            $('.ratepersqft1').text $("#sqftprice1 :selected").text();
+            
             $('.finalvalue1').autoNumeric('init')
             $('.finalvalue1').autoNumeric('set', finalvalue1);
             $('.finalvalue').autoNumeric('init')
@@ -1264,11 +1265,11 @@ define [ 'marionette' ], ( Marionette )->
             $('#paymentTable' ).text ""
             milestonesArray = []
             paymentColl = []
-            console.log paymentColl = App.master.paymentplans
+            paymentColl = App.master.paymentplans
             if paymentColl.length != 0
-                console.log milestones = paymentColl.get(parseInt(id))
-                console.log milestones.get('milestones')
-                console.log milestonesArray = milestones.get('milestones')
+                milestones = paymentColl.get(parseInt(id))
+                milestones.get('milestones')
+                milestonesArray = milestones.get('milestones')
                 $('.paymentplan').text milestones.get('name')
                 milestonesArrayColl = new Backbone.Collection milestonesArray
                 milestonemodel = milestonesArrayColl.findWhere({'milestone':parseInt(buildingModel.get('milestone'))})
@@ -1367,8 +1368,8 @@ define [ 'marionette' ], ( Marionette )->
                 for element,index in milestonesArray
                     percentageValue = Math.round(parseInt(agreementValue) * ((parseFloat(element.payment_percentage))/100))
                     percentageValue1 = Math.round(parseInt(agreementValue1) * ((parseFloat(element.payment_percentage))/100))
-                    console.log sales_tax = Math.round(parseInt(salestax) * (parseFloat(element.payment_percentage)/100))
-                    console.log sales_tax1 = Math.round(parseInt(salestax1) * (parseFloat(element.payment_percentage)/100))
+                    sales_tax = Math.round(parseInt(salestax) * (parseFloat(element.payment_percentage)/100))
+                    sales_tax1 = Math.round(parseInt(salestax1) * (parseFloat(element.payment_percentage)/100))
                     total = parseInt(percentageValue) + parseInt(sales_tax)
                     total1 = parseInt(percentageValue1) + parseInt(sales_tax1)
                     $('.percentageValue'+index).autoNumeric('init')
@@ -1768,6 +1769,12 @@ define [ 'marionette' ], ( Marionette )->
             $('.sqftprice1').autoNumeric('set', $('#sqftprice1' ).val());
             $('.sqftprice').autoNumeric('init')
             $('.sqftprice').autoNumeric('set', $('#sqftprice' ).val());
+            $('.ratepersqft').autoNumeric('init')
+            $('.ratepersqft').text $("#sqftprice :selected").text();
+            $('.ratepersqft1').autoNumeric('init')
+            $('.ratepersqft1').text $("#sqftprice1 :selected").text();
+            $("#sqftprice1 :selected").text()
+            $("#sqftprice :selected").text()
             costSheetArray = []
             unitModel = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
             uniVariantModel = App.master.unit_variant.findWhere({id:unitModel.get('unitVariant')})
@@ -1928,7 +1935,7 @@ define [ 'marionette' ], ( Marionette )->
             $('.finalvalue1').autoNumeric('set', finalvalue1)
 
 
-            console.log paymentColl = App.master.paymentplans
+            paymentColl = App.master.paymentplans
             if paymentColl.length != 0
                 milestones = paymentColl.get(parseInt($('#paymentplans').val()))
                 milestonesArray = milestones.get('milestones')
@@ -1958,6 +1965,10 @@ define [ 'marionette' ], ( Marionette )->
             $('.sqftprice1').autoNumeric('set', $('#sqftprice1' ).val());
             $('.sqftprice').autoNumeric('init')
             $('.sqftprice').autoNumeric('set', $('#sqftprice' ).val());
+            $('.ratepersqft').autoNumeric('init')
+            $('.ratepersqft').text $("#sqftprice :selected").text();
+            $('.ratepersqft1').autoNumeric('init')
+            $('.ratepersqft1').text $("#sqftprice1 :selected").text();
             costSheetArray = []
             unitModel = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
             uniVariantModel = App.master.unit_variant.findWhere({id:unitModel.get('unitVariant')})
