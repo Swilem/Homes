@@ -444,7 +444,7 @@ define [ 'marionette' ], ( Marionette )->
                 $("#floorlayoutbasic").load(units.get('floor_layout_basic'), (x)->
                         $('#'+units.get('unitAssigned')).attr('class','floor-pos position')
                 )
-                $('#printmapplic1').load(SITEURL+'/wp-content/uploads/sites/5/2014/08/first-map.svg', (x)->
+                $('#printmapplic1').load(SITEURL+'/wp-content/uploads/sites/2/2014/08/first-map.svg', (x)->
                         $('#hglighttower'+units.get('building')).attr('class','overlay highlight')
 
                 )
@@ -452,9 +452,9 @@ define [ 'marionette' ], ( Marionette )->
                 svgdata = building.get 'svgdata'
                 indexvalue = ""
                 indexvalue1 = ""
-                temp = ['ff','f']
-                temp1 = ['tt','t']
-                temp2 = ['cc','cc']
+                temp = ['ff','f','fff','ffff']
+                temp1 = ['tt','t','ttt','tttt']
+                temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
                         temp = ['f','ff']
@@ -478,6 +478,7 @@ define [ 'marionette' ], ( Marionette )->
                                             indexvalue = unitsarray[units.get('unitAssigned')]
                                             indexvalue1 = unitsarray[val1]
                                             $.map(indexvalue1, (index,value)->
+                                                
                                                 $('#'+temp[ii]+value).attr('class', 'unselected-floor')
                                                 $('#'+temp[ii]+value).attr('data-value', index)
                                                 $('#'+temp[ii]+value).attr('data-idvalue', temp[ii])
@@ -495,21 +496,33 @@ define [ 'marionette' ], ( Marionette )->
 
                                
                                 position = ""
+                                console.log $('#f'+index).attr('data-value')
                                 $.each(indexvalue, (index,value)->
                                     if parseInt($('#f'+index).attr('data-value'))  == units.get('id')
                                        idvalue = $('#f'+index).attr('data-idvalue')
                                        position = index 
                                     else if parseInt($('#ff'+index).attr('data-value'))  == units.get('id')
                                        idvalue = $('#ff'+index).attr('data-idvalue')
+                                       position = index
+                                    else if parseInt($('#fff'+index).attr('data-value'))  == units.get('id')
+                                       idvalue = $('#fff'+index).attr('data-idvalue')
+                                       position = index
+                                    else if parseInt($('#ffff'+index).attr('data-value'))  == units.get('id')
+                                       idvalue = $('#ffff'+index).attr('data-idvalue')
                                        position = index 
+
 
                                     )
                                 textid = ""
                                 $('#'+idvalue+position).attr('class', 'selected-flat')
                                 if idvalue == 'f'
                                     textid = 't'
-                                else
+                                else if idvalue == 'ff'
                                     textid = 'tt'
+                                else if idvalue == 'fff'
+                                    textid = 'ttt'
+                                else
+                                    textid = 'tttt'
                                 $("#"+textid+position).attr('class','selected-flat')
                                 unittpe = App.master.unit_type.findWhere({id:units.get('unitType')})
                                 text = units.get('name')+' | '+unittpe.get('name')
@@ -539,7 +552,7 @@ define [ 'marionette' ], ( Marionette )->
                 true
             else
                 $('.costsheetbutton').hide()
-                $('.addtowishlist').hide()
+                # $('.addtowishlist').hide()
                 $('.special').hide()
                 #@trigger "get:perSqft:price"
                 

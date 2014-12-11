@@ -253,7 +253,7 @@ define(['marionette'], function(Marionette) {
       $("#floorlayoutbasic").load(units.get('floor_layout_basic'), function(x) {
         return $('#' + units.get('unitAssigned')).attr('class', 'floor-pos position');
       });
-      $('#printmapplic1').load(SITEURL + '/wp-content/uploads/sites/5/2014/08/first-map.svg', function(x) {
+      $('#printmapplic1').load(SITEURL + '/wp-content/uploads/sites/2/2014/08/first-map.svg', function(x) {
         return $('#hglighttower' + units.get('building')).attr('class', 'overlay highlight');
       });
       building = App.master.building.findWhere({
@@ -262,9 +262,9 @@ define(['marionette'], function(Marionette) {
       svgdata = building.get('svgdata');
       indexvalue = "";
       indexvalue1 = "";
-      temp = ['ff', 'f'];
-      temp1 = ['tt', 't'];
-      temp2 = ['cc', 'cc'];
+      temp = ['ff', 'f', 'fff', 'ffff'];
+      temp1 = ['tt', 't', 'ttt', 'tttt'];
+      temp2 = ['cc', 'cc', 'ccc', 'cccc'];
       if (parseInt(building.get('id')) === 11) {
         temp = ['f', 'ff'];
         temp1 = ['t', 'tt'];
@@ -294,6 +294,7 @@ define(['marionette'], function(Marionette) {
               });
               idvalue = "";
               position = "";
+              console.log($('#f' + index).attr('data-value'));
               $.each(indexvalue, function(index, value) {
                 if (parseInt($('#f' + index).attr('data-value')) === units.get('id')) {
                   idvalue = $('#f' + index).attr('data-idvalue');
@@ -301,14 +302,24 @@ define(['marionette'], function(Marionette) {
                 } else if (parseInt($('#ff' + index).attr('data-value')) === units.get('id')) {
                   idvalue = $('#ff' + index).attr('data-idvalue');
                   return position = index;
+                } else if (parseInt($('#fff' + index).attr('data-value')) === units.get('id')) {
+                  idvalue = $('#fff' + index).attr('data-idvalue');
+                  return position = index;
+                } else if (parseInt($('#ffff' + index).attr('data-value')) === units.get('id')) {
+                  idvalue = $('#ffff' + index).attr('data-idvalue');
+                  return position = index;
                 }
               });
               textid = "";
               $('#' + idvalue + position).attr('class', 'selected-flat');
               if (idvalue === 'f') {
                 textid = 't';
-              } else {
+              } else if (idvalue === 'ff') {
                 textid = 'tt';
+              } else if (idvalue === 'fff') {
+                textid = 'ttt';
+              } else {
+                textid = 'tttt';
               }
               $("#" + textid + position).attr('class', 'selected-flat');
               unittpe = App.master.unit_type.findWhere({
@@ -334,7 +345,6 @@ define(['marionette'], function(Marionette) {
         true;
       } else {
         $('.costsheetbutton').hide();
-        $('.addtowishlist').hide();
         $('.special').hide();
       }
       $('#customer_name').on('change', function() {
