@@ -253,7 +253,7 @@ define(['marionette'], function(Marionette) {
       $("#floorlayoutbasic").load(units.get('floor_layout_basic'), function(x) {
         return $('#' + units.get('unitAssigned')).attr('class', 'floor-pos position');
       });
-      $('#printmapplic1').load(SITEURL + '/wp-content/uploads/sites/2/2014/08/first-map.svg', function(x) {
+      $('#printmapplic1').load(SITEURL + '/wp-content/uploads/sites/5/2014/08/first-map.svg', function(x) {
         return $('#hglighttower' + units.get('building')).attr('class', 'overlay highlight');
       });
       building = App.master.building.findWhere({
