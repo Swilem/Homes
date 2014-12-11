@@ -478,7 +478,6 @@ define [ 'marionette' ], ( Marionette )->
                                             indexvalue = unitsarray[units.get('unitAssigned')]
                                             indexvalue1 = unitsarray[val1]
                                             $.map(indexvalue1, (index,value)->
-                                                
                                                 $('#'+temp[ii]+value).attr('class', 'unselected-floor')
                                                 $('#'+temp[ii]+value).attr('data-value', index)
                                                 $('#'+temp[ii]+value).attr('data-idvalue', temp[ii])
@@ -496,7 +495,7 @@ define [ 'marionette' ], ( Marionette )->
 
                                
                                 position = ""
-                                console.log $('#f'+index).attr('data-value')
+                                
                                 $.each(indexvalue, (index,value)->
                                     if parseInt($('#f'+index).attr('data-value'))  == units.get('id')
                                        idvalue = $('#f'+index).attr('data-idvalue')
@@ -552,7 +551,7 @@ define [ 'marionette' ], ( Marionette )->
                 true
             else
                 $('.costsheetbutton').hide()
-                # $('.addtowishlist').hide()
+                $('.addtowishlist').hide()
                 $('.special').hide()
                 #@trigger "get:perSqft:price"
                 

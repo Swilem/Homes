@@ -294,7 +294,6 @@ define(['marionette'], function(Marionette) {
               });
               idvalue = "";
               position = "";
-              console.log($('#f' + index).attr('data-value'));
               $.each(indexvalue, function(index, value) {
                 if (parseInt($('#f' + index).attr('data-value')) === units.get('id')) {
                   idvalue = $('#f' + index).attr('data-idvalue');
@@ -345,6 +344,7 @@ define(['marionette'], function(Marionette) {
         true;
       } else {
         $('.costsheetbutton').hide();
+        $('.addtowishlist').hide();
         $('.special').hide();
       }
       $('#customer_name').on('change', function() {

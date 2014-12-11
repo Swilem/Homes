@@ -62,19 +62,6 @@ define [ 'extm'], ( Extm)->
         
         <div class="prntLoader hidden"></div>
 
-        <div id="screen-one-region" class="section">
-
-        </div>
-        <div id="screen-two-region" >
-
-        </div>
-        <div id="screen-three-region" >
-
-        </div>
-        <div id="screen-four-region" >
-
-        </div>
-
         <div id="print-view" class="visible-print">
             <div class="print-header">
                 <div class="row print-head">
@@ -97,18 +84,18 @@ define [ 'extm'], ( Extm)->
             <div class="print-row">
                 <div class="row">
                     <div class="col-sm-5">
-                        <img src="" id="zoomedinimage" />                        
+                        <div id="printmapplic1" class="towersMap center-block"></div>
                     </div>
                     <div class="col-sm-7">
-                        <div id="printmapplic1" class="towersMap center-block"></div>
+                        <img src="" id="zoomedinimage" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-5">
-                        <img src="" id="threeDimage" />
+                        <div id="towerview" ></div>
                     </div>
                     <div class="col-sm-7">
-                        <div id="towerview" ></div>
+                        <img src="" id="threeDimage" />
                     </div>
                 </div>
             </div>
@@ -191,7 +178,22 @@ define [ 'extm'], ( Extm)->
                 </div>
             </div>
 
-        </div>'
+        </div>
+
+        <div id="screen-one-region" class="section">
+
+        </div>
+        <div id="screen-two-region" >
+
+        </div>
+        <div id="screen-three-region" >
+
+        </div>
+        <div id="screen-four-region" >
+
+        </div>
+
+        '
 
         events:
             'click .view':(e)->
