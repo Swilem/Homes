@@ -551,7 +551,7 @@ define [ 'marionette' ], ( Marionette )->
                 true
             else
                 $('.costsheetbutton').hide()
-                $('.addtowishlist').hide()
+                # $('.addtowishlist').hide()
                 $('.special').hide()
                 #@trigger "get:perSqft:price"
                 
