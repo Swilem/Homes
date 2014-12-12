@@ -28,7 +28,7 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
     };
 
     PopupController.prototype._getUnitsCountCollection = function(modelstring) {
-      var act, actroom, actroomColl, actualroom, buildingModel, classnamearr, coll, cookeArray, element, exceptionObject, facingModel, facingModelArray, facingssArray, floorLayoutimage, floorriserange, i, id, mainArr, rangeArrayVal, roomSizesArray, roomSizesObject, roomTypeArr, roomcoll, roomsizearr, roomsizearray, roomsizesCollection, terraceoptions, terraceoptionstext, unitCollection, unitModel, unitModelArray, unitTypeModel, unitTypeModelName, unitVariantModel, view, viewModel, viewModelArray, viewsArray, _i, _j, _k, _l, _len, _len1, _len2, _len3;
+      var act, actroom, actroomColl, actualroom, buildingModel, classnamearr, coll, cookeArray, element, exceptionObject, facingModel, facingModelArray, facingssArray, floorLayoutimage, floorriserange, i, id, mainArr, position_images, rangeArrayVal, roomSizesArray, roomSizesObject, roomTypeArr, roomcoll, roomsizearr, roomsizearray, roomsizesCollection, terraceoptions, terraceoptionstext, unitCollection, unitModel, unitModelArray, unitTypeModel, unitTypeModelName, unitVariantModel, view, viewModel, viewModelArray, viewsArray, _i, _j, _k, _l, _len, _len1, _len2, _len3;
       cookeArray = modelstring;
       unitModelArray = [];
       classnamearr = [];
@@ -106,6 +106,7 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
           });
           viewModelArray = [];
           facingModelArray = [];
+          position_images = building.get('position_images');
           unitTypeModel = App.master.unit_type.findWhere({
             id: unitModel.get('unitType')
           });
@@ -121,7 +122,7 @@ define(['extm', 'src/apps/popup/popup-view'], function(Extm, PopupView) {
           unitModel.set('TwoDimage', unitVariantModel.get('url2dlayout_image'));
           unitModel.set('ThreeDimage', unitVariantModel.get('url3dlayout_image'));
           unitModel.set('floorLayoutimage', floorLayoutimage);
-          unitModel.set('BuildingPositionimage', buildingModel.get('positioninproject').image_url);
+          unitModel.set('BuildingPositionimage', position_images[value.get('unitAssigned')]);
           if (unitModel.get('views_name') !== "") {
             viewsArray = unitModel.get('views_name');
             for (_k = 0, _len2 = viewsArray.length; _k < _len2; _k++) {
