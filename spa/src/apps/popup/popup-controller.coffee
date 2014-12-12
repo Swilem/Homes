@@ -94,7 +94,7 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
                     )
                     viewModelArray = []
                     facingModelArray = []
-                    position_images = building.get('position_images')
+                    position_images = buildingModel.get('position_images')
                     unitTypeModel = App.master.unit_type.findWhere({id:unitModel.get 'unitType'})
                     unitTypeModelName = unitTypeModel.get('name' ).split(' ')
                     unitVariantModel = App.master.unit_variant.findWhere({id:unitModel.get 'unitVariant'})
@@ -106,7 +106,7 @@ define [ 'extm', 'src/apps/popup/popup-view' ], ( Extm, PopupView )->
                     unitModel.set 'TwoDimage' , unitVariantModel.get('url2dlayout_image')
                     unitModel.set 'ThreeDimage' , unitVariantModel.get('url3dlayout_image')
                     unitModel.set 'floorLayoutimage' , floorLayoutimage
-                    unitModel.set 'BuildingPositionimage' , position_images[value.get('unitAssigned')]
+                    unitModel.set 'BuildingPositionimage' , position_images[unitModel.get('unitAssigned')]
                     if unitModel.get('views_name') != ""
                         viewsArray = unitModel.get('views_name')
                         for element in viewsArray
