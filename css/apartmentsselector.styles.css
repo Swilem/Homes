@@ -11211,7 +11211,6 @@ input.checkbox:empty {
 input.checkbox:empty ~ label {
   position: relative;
   float: left;
-  text-indent: 25px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -11219,6 +11218,8 @@ input.checkbox:empty ~ label {
   user-select: none;
   font-weight: 400;
   font-size: 87%;
+  height: 19px;
+  padding-left: 25px;
 }
 input.checkbox:empty ~ label:before {
   position: absolute;
@@ -11822,6 +11823,10 @@ polygon.selected-flat + text {
   opacity: 1 !important;
   fill: #000 !important;
 }
+.fadeout {
+  fill: #ff6600 !important;
+  color: #000 !important;
+}
 rect.range,
 polygon.range {
   fill: #FF6600 !important;
@@ -12284,7 +12289,7 @@ a.im-clear-button {
   -webkit-box-shadow: 0 0 10px #000;
 }
 #print-modal-content {
-  margin: 68px 0;
+  margin: 50px 0;
   border: none;
   height: 100%;
   overflow: hidden;

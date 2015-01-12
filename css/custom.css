@@ -8564,7 +8564,6 @@ input.checkbox:empty {
 input.checkbox:empty ~ label {
   position: relative;
   float: left;
-  text-indent: 25px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -8572,6 +8571,8 @@ input.checkbox:empty ~ label {
   user-select: none;
   font-weight: 400;
   font-size: 87%;
+  height: 19px;
+  padding-left: 25px;
 }
 input.checkbox:empty ~ label:before {
   position: absolute;
