@@ -1326,10 +1326,14 @@ define [ 'marionette' ], ( Marionette )->
                         trClass = "milestoneReached"
                         percentageValue = Math.round((parseInt(agreementValue) * ((parseFloat(element.payment_percentage))/100)))
                         percentageValue1 = Math.round((parseInt(agreementValue1) * ((parseFloat(element.payment_percentage))/100)))
+                        sales_tax = Math.round(parseInt(salestax) * (parseFloat(element.payment_percentage)/100))
+                        sales_tax1 = Math.round(parseInt(salestax1) * (parseFloat(element.payment_percentage)/100))
+                        total = parseInt(percentageValue) + parseInt(sales_tax)
+                        total1 = parseInt(percentageValue1) + parseInt(sales_tax1)
                         if discountClass == "" 
-                            amtalue = percentageValue1
+                            amtalue = total1
                         else
-                            amtalue = percentageValue
+                            amtalue = total
                         count = count + amtalue
                     else
                         trClass = ""
