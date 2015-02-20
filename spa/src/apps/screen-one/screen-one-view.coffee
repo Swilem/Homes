@@ -267,22 +267,16 @@ define [ 'marionette' ], ( Marionette )->
 
                 
 
-                if App.defaults['unitType'] == 'All'
-                    budget_val = $(".cs-selected").text().split(' ')
-                    if(budget_val[1]=='lakhs')
-                        budget_price = budget_val[0].split('-')
-                        budget_price[0] = budget_price[0] + ('00000')
-                        budget_price[1] = budget_price[1]+ ('00000')
-                        budget_price = budget_price.join('-')
-                    App.defaults['budget'] = $(".cs-selected").text()
-                    App.backFilter['screen1'].push 'budget'
-                    App.screenOneFilter['value'] = $(".cs-selected").text()
-                    App.screenOneFilter['key'] = 'budget'
-                else
-                    App.defaults['budget'] = 'All'
+                # if App.defaults['unitType'] == 'All'
+                #     App.defaults['budget'] = $(".cs-selected").text()
+                    
+                # else
+                #     App.defaults['budget'] = 'All'
 
-                $('#screen-two-region').addClass 'section'
+                
                 @trigger 'unit:type:clicked'
+
+
 
 
             'click .cs-selected':(e)->

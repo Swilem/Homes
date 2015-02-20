@@ -437,134 +437,137 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             'click .tower-link':(e)->
                 id = e.target.id
                 str1 = id.replace( /[^\d.]/g, '' )
-                buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
-                if buildigmodel == undefined || buildigmodel == ""
-                    return false
-                floorUnitsArray = []
-                myArray = []
-                # screenonearray = App.backFilter['screen1']
-                # for element in screenonearray
-                #     if App.defaults[element] != 'All'
+                App.defaults['building'] = str1
+                $('#screen-three-region').addClass 'section'
+                @trigger 'unit:count:selected'
+                # buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
+                # if buildigmodel == undefined || buildigmodel == ""
+                #     return false
+                # floorUnitsArray = []
+                # myArray = []
+                # # screenonearray = App.backFilter['screen1']
+                # # for element in screenonearray
+                # #     if App.defaults[element] != 'All'
+                # #         key = App.defaults.hasOwnProperty(element)
+                # #         if key == true
+                # #             console.log App.defaults[element]
+                # #             myArray.push({key:element,value:App.defaults[element]})
+                # $.map(App.defaults, (value, index)->
+                #     if value!='All'
+                #         myArray.push({key:index,value:value})
+
+                #     )
+                # status = App.master.status.findWhere({'name':'Available'})
+                # unitslen = App.master.unit.where({'status':status.get('id')})
+
+
+                
+                # floorCollunits = []
+                # $.each(unitslen, (index,value1)->
+                #     flag = 0
+                #     $.each(myArray, (index,value)->
+                #         paramKey = {}
+                #         paramKey[value.key] = value.value
+                #         if value.key == 'budget'
+                #             buildingModel = App.master.building.findWhere({'id':value1.get 'building'})
+                #             floorRise = buildingModel.get 'floorrise'
+                #             floorRiseValue = floorRise[value1.get 'floor']
+                #             unitVariantmodel = App.master.unit_variant.findWhere({'id':value1.get 'unitVariant'})
+                #             #unitPrice = (parseInt( unitVariantmodel.get('persqftprice')) + parseInt(floorRiseValue)) * parseInt(unitVariantmodel.get 'sellablearea')
+                #             unitPrice = value1.get 'unitPrice'
+                #             budget_arr = value.value.split(' ')
+                #             budget_price = budget_arr[0].split('-')
+                #             budget_price[0] = budget_price[0]+'00000'
+                #             budget_price[1] = budget_price[1]+'00000'
+                #             if parseInt(unitPrice) >= parseInt(budget_price[0]) && parseInt(unitPrice) <= parseInt(budget_price[1])
+                #                 flag++
+                #         else 
+                #             # if value.key == 'unittypeback'
+                #             #     value.key = 'unitVariant'
+                #             tempnew = []
+                            
+                #             if value.key == 'view' ||  value.key == 'apartment_views'
+                #                 tempnew = []
+                #                 value.key = 'apartment_views'
+                #                 tempnew = value1.get(value.key)
+                #                 if tempnew != ""
+                #                     tempnew = tempnew.map((item)->
+                #                         return parseInt(item))
+                #             else if value.key == 'facing'
+                #                 tempnew = []
+                #                 tempnew = value1.get(value.key)
+                #                 if tempnew.length != 0
+                #                     tempnew = tempnew.map((item)->
+                #                         return parseInt(item))
+                #             temp = []
+                #             temp.push value.value
+                #             tempstring = temp.join(',')
+                #             initvariant = tempstring.split(',').map((item)->
+                #                 return parseInt(item)
+                #             )
+                            
+                #             if initvariant.length >= 1
+                #                 for element in initvariant
+                #                     if value1.get(value.key) == parseInt(element)
+                #                         flag++ 
+                #                     else if $.inArray(parseInt(element),tempnew) >=0 
+                #                         flag++ 
+
+                #             else
+                #                 if value1.get(value.key) == parseInt(value.value)
+                #                     flag++
+                            
+
+
+                #     )
+                #     if flag >= myArray.length
+                #         floorCollunits.push(value1)
+
+
+
+
+
+                # )
+                # floorColl  = new Backbone.Collection floorCollunits
+                
+                # units = floorColl.where({building:parseInt(str1)})
+                
+                # if units.length != 0
+                #     App.layout.screenThreeRegion.el.innerHTML = ""
+                #     App.layout.screenFourRegion.el.innerHTML = ""
+                #     $('#screen-three-region').removeClass 'section'
+                #     $('#screen-four-region').removeClass 'section' 
+                #     screentwoArray  = App.backFilter['screen2']
+                #     for element in screentwoArray
                 #         key = App.defaults.hasOwnProperty(element)
                 #         if key == true
-                #             console.log App.defaults[element]
-                #             myArray.push({key:element,value:App.defaults[element]})
-                $.map(App.defaults, (value, index)->
-                    if value!='All'
-                        myArray.push({key:index,value:value})
-
-                    )
-                status = App.master.status.findWhere({'name':'Available'})
-                unitslen = App.master.unit.where({'status':status.get('id')})
-
-
-                
-                floorCollunits = []
-                $.each(unitslen, (index,value1)->
-                    flag = 0
-                    $.each(myArray, (index,value)->
-                        paramKey = {}
-                        paramKey[value.key] = value.value
-                        if value.key == 'budget'
-                            buildingModel = App.master.building.findWhere({'id':value1.get 'building'})
-                            floorRise = buildingModel.get 'floorrise'
-                            floorRiseValue = floorRise[value1.get 'floor']
-                            unitVariantmodel = App.master.unit_variant.findWhere({'id':value1.get 'unitVariant'})
-                            #unitPrice = (parseInt( unitVariantmodel.get('persqftprice')) + parseInt(floorRiseValue)) * parseInt(unitVariantmodel.get 'sellablearea')
-                            unitPrice = value1.get 'unitPrice'
-                            budget_arr = value.value.split(' ')
-                            budget_price = budget_arr[0].split('-')
-                            budget_price[0] = budget_price[0]+'00000'
-                            budget_price[1] = budget_price[1]+'00000'
-                            if parseInt(unitPrice) >= parseInt(budget_price[0]) && parseInt(unitPrice) <= parseInt(budget_price[1])
-                                flag++
-                        else 
-                            # if value.key == 'unittypeback'
-                            #     value.key = 'unitVariant'
-                            tempnew = []
-                            
-                            if value.key == 'view' ||  value.key == 'apartment_views'
-                                tempnew = []
-                                value.key = 'apartment_views'
-                                tempnew = value1.get(value.key)
-                                if tempnew != ""
-                                    tempnew = tempnew.map((item)->
-                                        return parseInt(item))
-                            else if value.key == 'facing'
-                                tempnew = []
-                                tempnew = value1.get(value.key)
-                                if tempnew.length != 0
-                                    tempnew = tempnew.map((item)->
-                                        return parseInt(item))
-                            temp = []
-                            temp.push value.value
-                            tempstring = temp.join(',')
-                            initvariant = tempstring.split(',').map((item)->
-                                return parseInt(item)
-                            )
-                            
-                            if initvariant.length >= 1
-                                for element in initvariant
-                                    if value1.get(value.key) == parseInt(element)
-                                        flag++ 
-                                    else if $.inArray(parseInt(element),tempnew) >=0 
-                                        flag++ 
-
-                            else
-                                if value1.get(value.key) == parseInt(value.value)
-                                    flag++
-                            
-
-
-                    )
-                    if flag >= myArray.length
-                        floorCollunits.push(value1)
-
-
-
-
-
-                )
-                floorColl  = new Backbone.Collection floorCollunits
-                
-                units = floorColl.where({building:parseInt(str1)})
-                
-                if units.length != 0
-                    App.layout.screenThreeRegion.el.innerHTML = ""
-                    App.layout.screenFourRegion.el.innerHTML = ""
-                    $('#screen-three-region').removeClass 'section'
-                    $('#screen-four-region').removeClass 'section' 
-                    screentwoArray  = App.backFilter['screen2']
-                    for element in screentwoArray
-                        key = App.defaults.hasOwnProperty(element)
-                        if key == true
-                            App.defaults[element] = 'All'
-                    screenthreeArray  = App.backFilter['screen3']
-                    for element in screenthreeArray
-                        key = App.defaults.hasOwnProperty(element)
-                        if key == true
-                            App.defaults[element] = 'All'
-                    # console.log App.defaults['unittypeback']
-                    # App.defaults['unitVariant'] = App.defaults['unittypeback']
-                    # App.navigate "screen-two"
-                    App.currentStore.unit.reset UNITS
-                    App.currentStore.building.reset BUILDINGS
-                    App.currentStore.unit_type.reset UNITTYPES
-                    App.currentStore.unit_variant.reset UNITVARIANTS
-                    App.currentStore.terrace.reset TERRACEOPTIONS
-                    App.currentStore.view.reset VIEWS
-                    App.currentStore.facings.reset FACINGS
+                #             App.defaults[element] = 'All'
+                #     screenthreeArray  = App.backFilter['screen3']
+                #     for element in screenthreeArray
+                #         key = App.defaults.hasOwnProperty(element)
+                #         if key == true
+                #             App.defaults[element] = 'All'
+                #     # console.log App.defaults['unittypeback']
+                #     # App.defaults['unitVariant'] = App.defaults['unittypeback']
+                #     # App.navigate "screen-two"
+                #     App.currentStore.unit.reset UNITS
+                #     App.currentStore.building.reset BUILDINGS
+                #     App.currentStore.unit_type.reset UNITTYPES
+                #     App.currentStore.unit_variant.reset UNITVARIANTS
+                #     App.currentStore.terrace.reset TERRACEOPTIONS
+                #     App.currentStore.view.reset VIEWS
+                #     App.currentStore.facings.reset FACINGS
                     
-                    App.filter(params={})
-                    msgbus.showApp 'header'
-                    .insideRegion  App.headerRegion
-                        .withOptions()
-                    #App.filter(params={})
-                    @trigger 'show:updated:building' , $('#'+e.target.id ).attr('data-id')
-                else
-                    text = "This Tower does not contain any apartments as per your current selection"
-                    locationData = m.getLocationData(id)
-                    m.showTooltip(locationData,text)
+                #     App.filter(params={})
+                #     msgbus.showApp 'header'
+                #     .insideRegion  App.headerRegion
+                #         .withOptions()
+                #     #App.filter(params={})
+                #     @trigger 'show:updated:building' , $('#'+e.target.id ).attr('data-id')
+                # else
+                #     text = "This Tower does not contain any apartments as per your current selection"
+                #     locationData = m.getLocationData(id)
+                #     m.showTooltip(locationData,text)
 
 
 
@@ -777,6 +780,12 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             # $('.specialFilter').empty()
             # $('.specialFilter').addClass 'hidden'
             # $('.b-modal').addClass 'hidden'
+            setTimeout( ()->
+                    $('#screen-one-region').addClass 'hidden'
+                , 5000)
+            $('#screen-two-region').addClass 'section animated fadeIn'
+            $('#screen-one-region').addClass 'animated fadeOut'
+            
             viewtagsArray = []
             entrancetagsArray = []
             terracetagsArray = []
