@@ -2387,7 +2387,7 @@ define(['marionette'], function(Marionette) {
       return unitChildView.__super__.constructor.apply(this, arguments);
     }
 
-    unitChildView.prototype.template = '<div class="pull-left light"> <h5 class="rangeName bold m-t-5">Floor {{floor}}</h5> <div class="unitNo">{{name}}</div> <div class="small">{{unittypename}} {{sellablearea}} {{sqft}} {{currency}}</div> </div> <input type="hidden" id="flag{{id}}" name="flag{{id}}" value="0"/> <input type="hidden" id="select{{id}}" name="select{{id}}" value="0"/> <div class="clearfix"></div>';
+    unitChildView.prototype.template = '<div class="pull-left light"> <h5 class="rangeName bold m-t-5">{{name}} : <span class="small">Floor {{floor}}</span> : <span class="small">{{unittypename}} {{sellablearea}} {{sqft}} {{currency}}</span></h5> </div> <input type="hidden" id="flag{{id}}" name="flag{{id}}" value="0"/> <input type="hidden" id="select{{id}}" name="select{{id}}" value="0"/> <div class="clearfix"></div>';
 
     unitChildView.prototype.className = 'check';
 

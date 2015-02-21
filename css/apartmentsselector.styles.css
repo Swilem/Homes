@@ -10277,6 +10277,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 0 15px;
+  margin-bottom: 4px;
 }
 .boxLong.other {
   line-height: inherit;
@@ -12093,11 +12094,15 @@ select:-moz-focusring {
     font-size: 75%;
   }
 }
+.cbp-spmenu-right {
+  right: -350px;
+}
 .cbp-spmenu-vertical {
   background-color: #924506;
   border-left: 1px solid #c35c08;
   top: 50px;
   overflow: scroll;
+  width: 350px;
 }
 .cbp-spmenu-vertical > ul {
   list-style-type: none;
