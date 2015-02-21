@@ -32,7 +32,7 @@ define(['extm', 'src/apps/header/header-view'], function(Extm, HeaderView) {
     };
 
     HeaderController.prototype._getHeader = function() {
-      var btnClass, buildingModel, f, first, flag, floorriserange, myArray, param, paramkey, range, templateArr, templateString, textClass, track, trackArray, units;
+      var btnClass, f, flag, myArray, param, paramkey, templateArr, templateString, textClass, track, trackArray, units;
       templateArr = [];
       flag = 0;
       myArray = [];
@@ -122,23 +122,6 @@ define(['extm', 'src/apps/header/header-view'], function(Extm, HeaderView) {
         templateArr.push('<span>All</span>');
       }
       if (flag === 1) {
-        buildingModel = App.master.building.findWhere({
-          id: App.defaults['building']
-        });
-        floorriserange = buildingModel.get('floorriserange');
-        first = _.first(trackArray);
-        if (parseInt(first) >= parseInt(floorriserange[0].start) && parseInt(first) <= parseInt(floorriserange[0].end)) {
-          range = 'Lowrise';
-          templateArr.push('<span>' + range + '</span>');
-        }
-        if (parseInt(first) >= parseInt(floorriserange[1].start) && parseInt(first) <= parseInt(floorriserange[1].end)) {
-          range = 'Midrise';
-          templateArr.push('<span>' + range + '</span>');
-        }
-        if (parseInt(first) >= parseInt(floorriserange[2].start) && parseInt(first) <= parseInt(floorriserange[2].end)) {
-          range = 'Highrise';
-          templateArr.push('<span>' + range + '</span>');
-        }
         templateString = templateArr;
       } else {
         templateString = templateArr;

@@ -119,7 +119,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                 collection : @Collection[1]
 
             
-            
+            console.log @Collection[1]
             @layout.buildingRegion.$el.empty();
             @layout.unitRegion.$el.empty();
             @layout.buildingRegion.$el.append(itemview1.render().el ); 
@@ -131,7 +131,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                 speed: 800
                 # continuous:true
             )
-            sudoSlider.goToSlide(unitModel.get('unitAssigned'));
+            # sudoSlider.goToSlide(unitModel.get('unitAssigned'));
             msgbus.showApp 'header'
             .insideRegion  App.headerRegion
                 .withOptions()
@@ -634,6 +634,17 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
 
 
                 )
+
+            unitColl.each ( value)->
+
+                unitType = App.master.unit_type.findWhere({id:value.get('unitType')})
+                        
+                value.set "unittypename" , unitType.get "name"
+                unitVariant = App.master.unit_variant.findWhere({id:value.get('unitVariant')})
+                value.set "sellablearea" , unitVariant.get "sellablearea"
+                value.set "sqft" , unitVariant.get "Sq.ft."
+
+            
             # $.each(uniqunitAssigned, (index,value)->
             #     # floorColl1 = _.reject(floorUnitsArray, (model)->
             #     #         return model.get('unitType') == 14 || model.get('unitType') == 16

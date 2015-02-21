@@ -87,17 +87,17 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
                         <div class="col-md-5 col-lg-4 hidden-xs hidden-sm hidden-md hidden-lg">
                             
-                    		<div class="legend text-center m-b-20">
+                            <div class="legend text-center m-b-20">
                                 {{#unittypes}}
                                 <span class={{classname}}>.</span>{{name}}
                                 {{/unittypes}}
-                		    </div>
+                            </div>
 
                             <div class="towerTable">
                                 <div class="tableBody">
-                    				<div id="vs-container2" class="vs-container vs-triplelayout">
-                    				    <header class="vs-header" id="building-region"></header>
-                    				    <div id="unit-region"></div>
+                                    <div id="vs-container2" class="vs-container vs-triplelayout">
+                                        <header class="vs-header" id="building-region"></header>
+                                        <div id="unit-region"></div>
                                     </div>
                                 </div>
                             </div>
