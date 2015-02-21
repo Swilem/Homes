@@ -83,25 +83,25 @@ define [ 'extm', 'src/apps/header/header-view' ], ( Extm, HeaderView )->
             if templateArr.length == 0 
                 templateArr.push '<span>All</span>'
             if(flag==1)
-                buildingModel = App.master.building.findWhere({id:App.defaults['building']})
-                floorriserange = buildingModel.get 'floorriserange'
-                #floorriserange = [{"name":"low","start":"1","end":"2"},{"name":"medium","start":"3","end":"4"},{"name":"high","start":"5","end":"6"}]
+                # buildingModel = App.master.building.findWhere({id:App.defaults['building']})
+                # floorriserange = buildingModel.get 'floorriserange'
+                # #floorriserange = [{"name":"low","start":"1","end":"2"},{"name":"medium","start":"3","end":"4"},{"name":"high","start":"5","end":"6"}]
 
-                first = _.first(trackArray)
-                if parseInt(first) >= parseInt(floorriserange[0].start) &&  parseInt(first) <= parseInt(floorriserange[0].end)
-                    range = 'Lowrise'
-                    templateArr.push '<span>'+range+'</span>'
-
-
-
-                if parseInt(first) >= parseInt(floorriserange[1].start) &&  parseInt(first) <= parseInt(floorriserange[1].end)
-                    range = 'Midrise'
-                    templateArr.push '<span>'+range+'</span>'
+                # first = _.first(trackArray)
+                # if parseInt(first) >= parseInt(floorriserange[0].start) &&  parseInt(first) <= parseInt(floorriserange[0].end)
+                #     range = 'Lowrise'
+                #     templateArr.push '<span>'+range+'</span>'
 
 
-                if parseInt(first) >= parseInt(floorriserange[2].start) &&  parseInt(first) <= parseInt(floorriserange[2].end)
-                    range = 'Highrise'
-                    templateArr.push '<span>'+range+'</span>'
+
+                # if parseInt(first) >= parseInt(floorriserange[1].start) &&  parseInt(first) <= parseInt(floorriserange[1].end)
+                #     range = 'Midrise'
+                #     templateArr.push '<span>'+range+'</span>'
+
+
+                # if parseInt(first) >= parseInt(floorriserange[2].start) &&  parseInt(first) <= parseInt(floorriserange[2].end)
+                #     range = 'Highrise'
+                #     templateArr.push '<span>'+range+'</span>'
                 templateString  = templateArr
 
             else

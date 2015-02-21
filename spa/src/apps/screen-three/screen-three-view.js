@@ -138,19 +138,18 @@ define(['marionette'], function(Marionette) {
         position = unitModel.get('unitAssigned');
         rangeArrayVal = [];
         $.each(floorriserange, function(index, value) {
-          var end, i, start;
+          var end, i, start, _results;
           rangeArrayVal = [];
           i = 0;
           start = parseInt(value.start);
           end = parseInt(value.end);
+          _results = [];
           while (parseInt(start) <= parseInt(end)) {
             rangeArrayVal[i] = start;
             start = parseInt(start) + 1;
-            i++;
+            _results.push(i++);
           }
-          if (jQuery.inArray(parseInt(unitModel.get('floor')), rangeArrayVal) >= 0) {
-            return App.defaults['floor'] = rangeArrayVal.join(',');
-          }
+          return _results;
         });
         $.each(svgdata, function(index, value) {
           var ii;
@@ -165,7 +164,7 @@ define(['marionette'], function(Marionette) {
                 indexvalue1 = unitsarray[val1];
                 $.map(indexvalue1, function(index, value) {
                   return $.each(temp, function(ind, val) {
-                    return ('#' + val + value).attr('class', 'unselected-floor ');
+                    return $('#' + val + value).attr('class', 'unselected-floor ');
                   });
                 });
                 $.map(indexvalue, function(index, value) {
@@ -174,18 +173,18 @@ define(['marionette'], function(Marionette) {
                     floorArr = App.defaults['floor'].split(',');
                     return $.each(floorArr, function(ind, val) {
                       if (parseInt(value) === parseInt(val)) {
-                        $('#' + temp[ii] + value).attr('class', 'unit-hover range');
-                        return $('#' + temp1[ii] + value).attr('class', 'unit-hover range');
+                        $('#' + temp[ii] + value).attr('class', 'unit-hover ');
+                        return $('#' + temp1[ii] + value).attr('class', 'unit-hover ');
                       }
                     });
                   } else {
-                    $('#' + temp[ii] + value).attr('class', 'unit-hover range');
-                    return $('#' + temp1[ii] + value).attr('class', 'unit-hover range');
+                    $('#' + temp[ii] + value).attr('class', 'unit-hover ');
+                    return $('#' + temp1[ii] + value).attr('class', 'unit-hover ');
                   }
                 });
                 $("#" + e.target.id).attr('class', 'selected-flat');
                 $("#" + temp1[ii] + flatid).attr('class', 'selected-flat');
-                unit = indexvalue[parseInt(flatid)];
+                console.log(unit = indexvalue[parseInt(flatid)]);
                 unitModel = App.master.unit.findWhere({
                   id: parseInt(unit)
                 });
@@ -277,19 +276,18 @@ define(['marionette'], function(Marionette) {
         position = unitModel.get('unitAssigned');
         rangeArrayVal = [];
         $.each(floorriserange, function(index, value) {
-          var end, i, start;
+          var end, i, start, _results;
           rangeArrayVal = [];
           i = 0;
           start = parseInt(value.start);
           end = parseInt(value.end);
+          _results = [];
           while (parseInt(start) <= parseInt(end)) {
             rangeArrayVal[i] = start;
             start = parseInt(start) + 1;
-            i++;
+            _results.push(i++);
           }
-          if (jQuery.inArray(parseInt(unitModel.get('floor')), rangeArrayVal) >= 0) {
-            return App.defaults['floor'] = rangeArrayVal.join(',');
-          }
+          return _results;
         });
         $.each(svgdata, function(index, value) {
           var ii;
@@ -306,7 +304,7 @@ define(['marionette'], function(Marionette) {
                 unit = indexvalue[parseInt(flatid)];
                 $.map(indexvalue1, function(index, value) {
                   return $.each(temp, function(ind, val) {
-                    return ('#' + val + value).attr('class', 'unselected-floor ');
+                    return $('#' + val + value).attr('class', 'unselected-floor ');
                   });
                 });
                 $.map(indexvalue, function(index, value) {
@@ -315,8 +313,8 @@ define(['marionette'], function(Marionette) {
                     floorArr = App.defaults['floor'].split(',');
                     return $.each(floorArr, function(ind, val) {
                       if (parseInt(value) === parseInt(val)) {
-                        $('#' + temp[ii] + value).attr('class', 'unit-hover range');
-                        return $('#' + temp1[ii] + value).attr('class', 'unit-hover range');
+                        $('#' + temp[ii] + value).attr('class', 'unit-hover ');
+                        return $('#' + temp1[ii] + value).attr('class', 'unit-hover ');
                       }
                     });
                   } else {
@@ -480,11 +478,11 @@ define(['marionette'], function(Marionette) {
           }
         });
         if (checktrack === 1 && parseInt(unitModel.get('status')) === 9) {
-          return $("#" + e.target.id).attr('class', 'unit-hover range aviable');
+          return $("#" + e.target.id).attr('class', 'unit-hover  aviable');
         } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === 8 || parseInt(unitModel.get('status')) === 47)) {
-          return $("#" + e.target.id).attr('class', 'sold range');
+          return $("#" + e.target.id).attr('class', 'sold ');
         } else {
-          return $("#" + e.target.id).attr('class', 'other range');
+          return $("#" + e.target.id).attr('class', 'other ');
         }
       },
       'mouseover .unselected-floor': function(e) {
@@ -1977,6 +1975,7 @@ define(['marionette'], function(Marionette) {
     ScreenThreeLayout.prototype.onShowRangeData = function(unitModel, collection) {
       var buildinArray, building, buildingCollection, buildingModel, element, exceptionObject, floorLayoutimage, index, pos, trackposition, unitcoll, _i, _j, _len, _len1;
       $('#floorsvg').text("");
+      console.log(unitModel);
       position = unitModel.get('unitAssigned');
       object = this;
       unitcoll = collection.toArray();
@@ -2031,7 +2030,6 @@ define(['marionette'], function(Marionette) {
       }
       unitAssigedArray.push(unitModel.get('unitAssigned'));
       $('#' + unitModel.get('unitAssigned')).attr('class', 'position');
-      sudoSlider.goToSlide(unitModel.get('unitAssigned'));
       for (index = _j = 0, _len1 = rangeunitArray.length; _j < _len1; index = ++_j) {
         element = rangeunitArray[index];
         if (element === parseInt(unitModel.get('id'))) {

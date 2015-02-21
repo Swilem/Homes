@@ -85,7 +85,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
                     <div class="row m-l-0 m-r-0 m-t-20 bgClass">
 
-                        <div class="col-md-5 col-lg-4 hidden-xs hidden-sm hidden-md hidden-lg">
+                        <div class="col-md-5 col-lg-4">
                             
                     		<div class="legend text-center m-b-20">
                                 {{#unittypes}}
@@ -108,7 +108,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         </div>
                         
                         
-                        <div class="col-md-12 b-grey b-l visible-md visible-lg">
+                        <div class="col-md-7 col-lg-8 b-grey b-l visible-md visible-lg">
                             <div class="m-t-10 text-center">
                                <!--<h4 class="bold m-t-0">Where is this tower located in the project?</h4>
                                 <p class="light">This is a map of the entire project that shows the location of the tower selected (on the left).</p>-->
@@ -437,7 +437,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             'click .tower-link':(e)->
                 id = e.target.id
                 str1 = id.replace( /[^\d.]/g, '' )
-                App.defaults['building'] = str1
                 $('#screen-three-region').addClass 'section'
                 @trigger 'unit:count:selected'
                 # buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
@@ -780,12 +779,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             # $('.specialFilter').empty()
             # $('.specialFilter').addClass 'hidden'
             # $('.b-modal').addClass 'hidden'
-            # setTimeout( ()->
-            #         $('#screen-one-region').addClass 'hidden'
-            #     , 5000)
-            $('#screen-two-region').addClass 'section animated fadeIn'
-            $('#screen-one-region').addClass 'animated zoom-out'
-            
             viewtagsArray = []
             entrancetagsArray = []
             terracetagsArray = []
@@ -1772,9 +1765,9 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             @showHighlightedTowers()
 
 
-            # $('html, body').delay(600).animate({
-            #     scrollTop: $('#screen-two-region').offset().top
-            # }, 'slow')
+            $('html, body').delay(600).animate({
+                scrollTop: $('#screen-two-region').offset().top
+            }, 'slow')
 
 
             tagsArray = []

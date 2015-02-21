@@ -106,6 +106,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
       itemview2 = new ScreenThreeView.UnitTypeView({
         collection: this.Collection[1]
       });
+      console.log(this.Collection[1]);
       this.layout.buildingRegion.$el.empty();
       this.layout.unitRegion.$el.empty();
       this.layout.buildingRegion.$el.append(itemview1.render().el);
@@ -116,7 +117,6 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
         responsive: true,
         speed: 800
       });
-      sudoSlider.goToSlide(unitModel.get('unitAssigned'));
       msgbus.showApp('header').insideRegion(App.headerRegion).withOptions();
       return this.layout.triggerMethod("show:range:data", unitModel, this.Collection[1]);
     };

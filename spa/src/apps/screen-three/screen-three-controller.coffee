@@ -119,7 +119,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                 collection : @Collection[1]
 
             
-            
+            console.log @Collection[1]
             @layout.buildingRegion.$el.empty();
             @layout.unitRegion.$el.empty();
             @layout.buildingRegion.$el.append(itemview1.render().el ); 
@@ -131,7 +131,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                 speed: 800
                 # continuous:true
             )
-            sudoSlider.goToSlide(unitModel.get('unitAssigned'));
+            # sudoSlider.goToSlide(unitModel.get('unitAssigned'));
             msgbus.showApp 'header'
             .insideRegion  App.headerRegion
                 .withOptions()

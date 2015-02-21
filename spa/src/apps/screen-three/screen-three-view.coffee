@@ -274,8 +274,8 @@ define [ 'marionette' ], ( Marionette )->
                                         rangeArrayVal[i] = start
                                         start = parseInt(start) + 1
                                         i++
-                                    if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
-                                        App.defaults['floor'] = rangeArrayVal.join(',')
+                                    # if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
+                                    #     App.defaults['floor'] = rangeArrayVal.join(',')
 
 
 
@@ -293,7 +293,7 @@ define [ 'marionette' ], ( Marionette )->
                                 $.map(indexvalue1, (index,value)->
                                     $.each(temp, (ind,val)->
 
-                                            ('#'+val+value).attr('class', 'unselected-floor ')
+                                            $('#'+val+value).attr('class', 'unselected-floor ')
                                             
                                         )
                                    
@@ -305,8 +305,8 @@ define [ 'marionette' ], ( Marionette )->
                                                         floorArr  = App.defaults['floor'].split(',')
                                                         $.each(floorArr, (ind,val)->
                                                             if parseInt(value) == parseInt(val)
-                                                                $('#'+temp[ii]+value).attr('class', 'unit-hover range')
-                                                                $('#'+temp1[ii]+value).attr('class', 'unit-hover range')
+                                                                $('#'+temp[ii]+value).attr('class', 'unit-hover ')
+                                                                $('#'+temp1[ii]+value).attr('class', 'unit-hover ')
                                                                
 
 
@@ -314,14 +314,14 @@ define [ 'marionette' ], ( Marionette )->
 
                                                             )
                                                     else
-                                                        $('#'+temp[ii]+value).attr('class', 'unit-hover range')
-                                                        $('#'+temp1[ii]+value).attr('class', 'unit-hover range')
+                                                        $('#'+temp[ii]+value).attr('class', 'unit-hover ')
+                                                        $('#'+temp1[ii]+value).attr('class', 'unit-hover ')
 
 
                                 )
                                 $("#"+e.target.id).attr('class','selected-flat')
                                 $("#"+temp1[ii]+flatid).attr('class','selected-flat')
-                                unit = indexvalue[parseInt(flatid)]
+                                console.log unit = indexvalue[parseInt(flatid)]
                                 unitModel = App.master.unit.findWhere(id:parseInt(unit))
                                 position = unitModel.get('unitAssigned')
                                 for element , index in unitAssigedArray
@@ -427,8 +427,8 @@ define [ 'marionette' ], ( Marionette )->
                                         rangeArrayVal[i] = start
                                         start = parseInt(start) + 1
                                         i++
-                                    if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
-                                        App.defaults['floor'] = rangeArrayVal.join(',')
+                                    # if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
+                                    #     # App.defaults['floor'] = rangeArrayVal.join(',')
 
 
 
@@ -450,7 +450,7 @@ define [ 'marionette' ], ( Marionette )->
                                 $.map(indexvalue1, (index,value)->
                                    $.each(temp, (ind,val)->
 
-                                        ('#'+val+value).attr('class', 'unselected-floor ')
+                                        $('#'+val+value).attr('class', 'unselected-floor ')
                                             
                                     )
                                     
@@ -461,8 +461,8 @@ define [ 'marionette' ], ( Marionette )->
                                                         floorArr  = App.defaults['floor'].split(',')
                                                         $.each(floorArr, (ind,val)->
                                                             if parseInt(value) == parseInt(val)
-                                                                $('#'+temp[ii]+value).attr('class', 'unit-hover range')
-                                                                $('#'+temp1[ii]+value).attr('class', 'unit-hover range')
+                                                                $('#'+temp[ii]+value).attr('class', 'unit-hover ')
+                                                                $('#'+temp1[ii]+value).attr('class', 'unit-hover ')
                                                                 
 
 
@@ -634,11 +634,11 @@ define [ 'marionette' ], ( Marionette )->
                         )
                 )       
                 if checktrack == 1 && parseInt(unitModel.get('status')) == 9
-                    $("#"+e.target.id).attr('class','unit-hover range aviable')
+                    $("#"+e.target.id).attr('class','unit-hover  aviable')
                 else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == 8 || parseInt(unitModel.get('status')) == 47 )
-                    $("#"+e.target.id).attr('class','sold range')
+                    $("#"+e.target.id).attr('class','sold ')
                 else
-                    $("#"+e.target.id).attr('class','other range')
+                    $("#"+e.target.id).attr('class','other ')
                                     
 
                                
@@ -2135,7 +2135,7 @@ define [ 'marionette' ], ( Marionette )->
         onShowRangeData:(unitModel,collection)->
             $('#floorsvg').text ""
             
-
+            console.log unitModel
             position = unitModel.get('unitAssigned')
             object = @
             unitcoll = collection.toArray()
@@ -2185,7 +2185,7 @@ define [ 'marionette' ], ( Marionette )->
                         
             unitAssigedArray.push unitModel.get('unitAssigned')
             $('#'+unitModel.get('unitAssigned')).attr('class','position')
-            sudoSlider.goToSlide(unitModel.get('unitAssigned'));
+            # sudoSlider.goToSlide(unitModel.get('unitAssigned'));
             for element , index in rangeunitArray
                 if element == parseInt(unitModel.get('id'))
                     $("#select"+unitModel.get('id')).val '1'
