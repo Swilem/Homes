@@ -1802,9 +1802,9 @@ define [ 'marionette' ], ( Marionette )->
 
 
 
-            $('html, body').delay(600).animate({
-                scrollTop: $('#screen-three-region').offset().top
-            }, 'slow');
+            # $('html, body').delay(600).animate({
+            #     scrollTop: $('#screen-three-region').offset().top
+            # }, 'slow');
 
             tagsArray = []
             testtext = App.defaults['unitVariant']
@@ -2732,6 +2732,9 @@ define [ 'marionette' ], ( Marionette )->
 
 
         onShow :->
+            $('#screen-three-region').addClass 'section animated fadeIn'
+            $('#screen-two-region').addClass 'animated fadeOut'
+
             $("#flatno").text ""
             $("#towerno").text ""
             $("#unittypename").text ""

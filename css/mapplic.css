@@ -10,7 +10,7 @@
 .im-element * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
 .im-element {
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	/*border: 1px solid rgba(0, 0, 0, 0.1);*/
 	border-radius: 3px;
 	font-size: 0;
 	overflow: hidden;
@@ -18,8 +18,8 @@
 }
 
 .im-container {
-	background-color: #f4f4f4;
-	background-image: url(../images/noisy_grid.png);
+	/*background-color: #f4f4f4;*/
+	/*background-image: url(../images/noisy_grid.png);*/
 	display: inline-block;
 	overflow: hidden;
 	position: relative;

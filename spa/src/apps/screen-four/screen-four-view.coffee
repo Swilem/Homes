@@ -657,9 +657,9 @@ define [ 'marionette' ], ( Marionette )->
             # scr.src = '../wp-content/themes/apartmentselector/js/src/preload/jquery.remodal.js'
             # document.body.appendChild(scr)
             
-            $('html, body').delay(600).animate({
-                scrollTop: $('#screen-four-region').offset().top
-            }, 'slow')
+            # $('html, body').delay(600).animate({
+            #     scrollTop: $('#screen-four-region').offset().top
+            # }, 'slow')
             cookieOldValue = $.cookie("key")
             if cookieOldValue == undefined || $.cookie("key") == ""
                 cookieOldValue = []

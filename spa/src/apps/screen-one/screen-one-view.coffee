@@ -235,10 +235,9 @@ define [ 'marionette' ], ( Marionette )->
                     <div class="introTxt text-center">To get started, either:</div>-->
 
                     <div class="row m-l-0 m-r-0 bgClass">
-                        <div class="col-md-5 col-lg-4">
+                        <div class="col-md-5 col-lg-4 hidden-xs hidden-sm hidden-md hidden-lg">
                             <div class="text-center subTxt">Choose a preference</div>
                             <div class="grid-container"></div>
-                            <!--<h5 class="text-center m-t-20 m-b-20 bold">OR</h5>-->
         	                <div id="showbudget" class="hidden"><!--<div class="text-center subTxt">Choose a budget</div>-->
                             <section>
                                 <select class="cs-select cs-skin-underline" id="budgetValue">
@@ -251,7 +250,7 @@ define [ 'marionette' ], ( Marionette )->
                                 <a href="#screen-two-region" class="btn btn-default btn-lg disabled" id="finalButton">Show Apartments</a>
                             </div>
                         </div>
-                        <div class="col-md-7 col-lg-8 b-grey b-l visible-md visible-lg">
+                        <div class="col-md-12 b-grey b-l ">
                             <div id="mapplic_new1" class="towersMap center-block"></div>
                         </div><input type="hidden" name="currency" id="currency" class="demo" data-a-sign="Rs. " data-m-dec=""  data-d-group="2" >
                     </div>'
