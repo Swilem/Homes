@@ -7606,7 +7606,7 @@ h5 {
 }
 .boxLong {
   width: 100%;
-  height: 25px;
+  height: auto;
   padding: 0 15px;
 }
 .boxLong.other {
