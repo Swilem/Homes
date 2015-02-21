@@ -1937,6 +1937,21 @@ define [ 'marionette' ], ( Marionette )->
 
             @loadsvg(floorid)
 
+        loadtooltip:(evt)=>
+            SVGDocument = evt.target.ownerDocument;
+            SVGRoot = SVGDocument.documentElement;
+            TrueCoords = SVGRoot.createSVGPoint();
+
+            toolTip = SVGDocument.getElementById('ToolTip');
+            tipBox = SVGDocument.getElementById('tipbox');
+            tipText = SVGDocument.getElementById('tipText');
+            tipTitle = SVGDocument.getElementById('tipTitle');
+            tipDesc = SVGDocument.getElementById('tipDesc');
+            
+
+            
+            SVGRoot.addEventListener('mousemove', ShowTooltip, false);
+           
         loadsvg:(floorid)->
             buildingCollection  = Marionette.getOption( @, 'buildingCollection' )
             buildinArray = buildingCollection.toArray()
@@ -1978,6 +1993,7 @@ define [ 'marionette' ], ( Marionette )->
                         unitsarray = value.units
                         svg_position = value.svgposition
                         $('#positionsvg').load(svgposition,  (x)->
+                           
                             value.svgposition.sort( (a,b)->
                                 b - a
 
@@ -2752,6 +2768,7 @@ define [ 'marionette' ], ( Marionette )->
 
 
         onShow :->
+
             $('#screen-three-region').addClass 'section easeIn'
             $('#screen-two-region').removeClass 'zoomIn'
             $('#screen-two-region').addClass 'easeOut'
