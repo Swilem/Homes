@@ -12097,6 +12097,7 @@ select:-moz-focusring {
   background-color: #924506;
   border-left: 1px solid #c35c08;
   top: 50px;
+  overflow: scroll;
 }
 .cbp-spmenu-vertical > ul {
   list-style-type: none;
