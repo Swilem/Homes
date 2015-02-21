@@ -26,7 +26,11 @@ define [ 'marionette' ], ( Marionette )->
                 
     class ScreenThreeLayout extends Marionette.LayoutView
 
-        template : '<div class="hidden">
+        template : '<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+                        <div  id="unit-region"></div>
+                    </nav>
+
+                        <div class="hidden">
                         <h3 class="text-center light m-t-0 m-b-20 unittype hidden animated pulse">We found <span class="bold text-primary"> {{countUnits }} </span> apartments that matched your selection.</h3>
                         <h3 class="text-center light m-t-0 m-b-20 budget hidden animated pulse">We found <span class="bold text-primary"> {{countUnits }} </span>  apartments in your budget of <strong>{{selection}}</strong></h3>
                         <h3 class="text-center light m-t-0 m-b-20 refresh hidden animated pulse">You just refreshed the page. You are now seeing <span class="bold text-primary">All</span> apartments across all the towers.</h3>
@@ -89,12 +93,13 @@ define [ 'marionette' ], ( Marionette )->
 
                     <div class="row m-l-0 m-r-0">
 
+                        
+
                         <div class="col-md-5 col-lg-4 hidden-xs hidden-sm hidden-md hidden-lg">
                             <div id="vs-container" class="vs-container">
                                 <header class="vs-header" id="building-region"></header>
                                     <div id="layoutmsg" class="alrtMsg animated pulse"></div>
                                 <div id="floorsvg" class="floorSvg"></div>
-                                <div  id="unit-region"></div>
                             </div>
 
                             <div class="h-align-middle m-t-20 m-b-20">
@@ -2734,9 +2739,20 @@ define [ 'marionette' ], ( Marionette )->
 
 
         onShow :->
-            $('#screen-three-region').addClass 'section animated zoomIn'
+            $('#screen-three-region').addClass 'section easeIn'
             $('#screen-two-region').removeClass 'zoomIn'
-            $('#screen-two-region').addClass 'zoom-out'
+            $('#screen-two-region').addClass 'easeOut'
+
+            menuRight = document.getElementById("cbp-spmenu-s2")
+            showRightPush = document.getElementById("showRightPush")
+            body = document.body
+
+            showRightPush.onclick = ->
+              classie.toggle this, "active"
+              classie.toggle body, "cbp-spmenu-push-toleft"
+              classie.toggle menuRight, "cbp-spmenu-open"
+              disableOther "showRightPush"
+              return
 
             $("#flatno").text ""
             $("#towerno").text ""

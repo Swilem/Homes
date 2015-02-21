@@ -479,6 +479,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
       var ajaxurl, buidlingValue, building, capability, clonefacings, cloneterraces, cloneviews, defer, entrance, entranceArrayText, globalUnitVariants, globalfacing, globalfacingInt, globalterrace, globalterraceInt, globalviewInt, globalviews, i, mainnewarr, mainunique, mainunitTypeArray1, originalOfacings, originalOterraces, originalOviews, originalfacings, originalterraces, originalviews, params, scr, selector, status, teraace, terraceArrayText, testtext, unitVariantArrayColl, unitVariantArrayText, unitVariantsArray, units1, unittypetext, usermodel, view, viewArrayText;
       $('#screen-two-region').addClass('section animated zoomIn');
       $('#screen-one-region').addClass('animated zoom-out');
+      $('#screen-one-region .im-map-image').addClass('animated zoom-out');
       viewtagsArray = [];
       entrancetagsArray = [];
       terracetagsArray = [];

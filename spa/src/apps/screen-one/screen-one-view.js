@@ -262,6 +262,13 @@ define(['marionette'], function(Marionette) {
 
     ScreenOneView.prototype.events = {
       'click #finalButton': function(e) {
+        $('#screen-one-region').addClass('easeOut');
+        if (App.defaults['unitType'] === 'All') {
+          App.defaults['budget'] = $(".cs-selected").text();
+          App.defaults['budget'] = 'All';
+        } else {
+          App.defaults['budget'] = 'All';
+        }
         return this.trigger('unit:type:clicked');
       },
       'click .cs-selected': function(e) {

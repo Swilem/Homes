@@ -7424,7 +7424,7 @@ h5 {
   border: 1px solid #dfe1e5;
   cursor: pointer;
   position: relative;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 0 auto;
   font-weight: 700;
   -webkit-transition: all 0.3s ease-out;
   /* Chrome 1-25, Safari 3.2+ */
@@ -7606,9 +7606,8 @@ h5 {
 }
 .boxLong {
   width: 100%;
-  height: 5vw;
-  min-height: 65px;
-  padding: 1vw 15px;
+  height: 25px;
+  padding: 0 15px;
 }
 .boxLong.other {
   line-height: inherit;
@@ -9300,11 +9299,11 @@ body {
   }
 }
 .easeOut {
-  -webkit-animation: fadeout 0.5s;
-  -moz-animation: fadeout 0.5s;
-  -ms-animation: fadeout 0.5s;
-  -o-animation: fadeout 0.5s;
-  animation: fadeout 0.5s;
+  -webkit-animation: fadeout 1s;
+  -moz-animation: fadeout 1s;
+  -ms-animation: fadeout 1s;
+  -o-animation: fadeout 1s;
+  animation: fadeout 1s;
 }
 @keyframes fadeout {
   from {
@@ -9429,6 +9428,7 @@ select:-moz-focusring {
   background-color: #924506;
   border-left: 1px solid #c35c08;
   top: 50px;
+  overflow: scroll;
 }
 .cbp-spmenu-vertical > ul {
   list-style-type: none;
@@ -9732,4 +9732,11 @@ a.im-clear-button {
 .zoomIn {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
+}
+.im-map-image {
+  -webkit-animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -ms-animation: fadein 1s;
+  -o-animation: fadein 1s;
+  animation: fadein 1s;
 }

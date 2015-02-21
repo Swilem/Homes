@@ -87,11 +87,11 @@ body{
 }
 
 .easeOut {
-    -webkit-animation: fadeout 0.5s; 
-       -moz-animation: fadeout 0.5s; 
-        -ms-animation: fadeout 0.5s; 
-         -o-animation: fadeout 0.5s; 
-            animation: fadeout 0.5s;
+    -webkit-animation: fadeout 1s; 
+       -moz-animation: fadeout 1s; 
+        -ms-animation: fadeout 1s; 
+         -o-animation: fadeout 1s; 
+            animation: fadeout 1s;
 }
 
 @keyframes fadeout {
@@ -168,6 +168,7 @@ select:-moz-focusring {
 	background-color: darken(@color-primary, 25%);
 	border-left: 1px solid darken(@color-primary, 15%);
 	top: 50px;
+	overflow: scroll;
 	& > ul{
 		list-style-type: none;
 		padding-bottom: 0;
@@ -473,4 +474,8 @@ a.im-clear-button{
 .zoomIn {
   -webkit-animation-name: zoomIn;
           animation-name: zoomIn;
+}
+
+.im-map-image{
+	.easeIn;
 }

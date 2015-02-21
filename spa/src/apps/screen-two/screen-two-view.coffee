@@ -785,6 +785,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             #     , 5000)
             $('#screen-two-region').addClass 'section animated zoomIn'
             $('#screen-one-region').addClass 'animated zoom-out'
+            $('#screen-one-region .im-map-image').addClass 'animated zoom-out'
             
             viewtagsArray = []
             entrancetagsArray = []

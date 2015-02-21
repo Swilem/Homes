@@ -265,8 +265,9 @@ define [ 'marionette' ], ( Marionette )->
 
         events:
             'click #finalButton':(e)->
-
                 
+                # $('#screen-one-region').addClass 'easeOut'
+                # $('#screen-one-region .im-map-image').addClass 'easeOut'
 
                 # if App.defaults['unitType'] == 'All'
                 #     App.defaults['budget'] = $(".cs-selected").text()
