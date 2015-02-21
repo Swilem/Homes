@@ -3,7 +3,7 @@ define [ 'marionette' ], ( Mariontte )->
 
     class HeaderView extends Marionette.ItemView
 
-        template : '<div class="backBtn {{textClass}}">
+        template : '<div class="backBtn hidden {{textClass}}">
                         <a  class="back text-white"><span class="glyphicon glyphicon-chevron-left "></span></a>
         		    </div>
 

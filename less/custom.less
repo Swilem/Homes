@@ -31,8 +31,8 @@ Version:        0.1.0
 
 
 body{
-	background-color: @color-white;
-	background-image: url('../images/manaslake.png');
+	// background-color: @color-white;
+	// background-image: url('../images/manaslake.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: 15px 80px;
@@ -126,7 +126,7 @@ body{
 
 #screen-two-region, #screen-three-region, #screen-four-region{
 	&.section{
-		border-top: 1px solid @gray-lighter;
+		// border-top: 1px solid @gray-lighter;
 		min-height: 100vh;
 		position: absolute;
 		width: 100%;
@@ -444,4 +444,33 @@ a.im-clear-button{
 	opacity: 1;
 	transition: all 0.5s linear;
 	transform: scale3d(1, 1, 1);
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
 }

@@ -26,68 +26,70 @@ define [ 'marionette' ], ( Marionette )->
                 
     class ScreenThreeLayout extends Marionette.LayoutView
 
-        template : '<h3 class="text-center light m-t-0 m-b-20 unittype hidden animated pulse">We found <span class="bold text-primary"> {{countUnits }} </span> apartments that matched your selection.</h3>
-                    <h3 class="text-center light m-t-0 m-b-20 budget hidden animated pulse">We found <span class="bold text-primary"> {{countUnits }} </span>  apartments in your budget of <strong>{{selection}}</strong></h3>
-                    <h3 class="text-center light m-t-0 m-b-20 refresh hidden animated pulse">You just refreshed the page. You are now seeing <span class="bold text-primary">All</span> apartments across all the towers.</h3>
-                    <div class="text-center subTxt m-b-20 All hidden animated pulse">You are seeing <span class="bold text-primary">All</span> apartments in the selected floor range of the tower.</div>
-                    <div class="introTxt text-center">These apartments are available in different size variations on different floors of the tower. Click on any available apartment for more details. <!--<br><em>(You can scroll between towers to see other options.)</em>--></div>
-                    <div class="introTxt text-center light">
-                        You are seeing 
-                        <div id="tagslist1" class="taglist">
-                          <ul></ul>
+        template : '<div class="hidden">
+                        <h3 class="text-center light m-t-0 m-b-20 unittype hidden animated pulse">We found <span class="bold text-primary"> {{countUnits }} </span> apartments that matched your selection.</h3>
+                        <h3 class="text-center light m-t-0 m-b-20 budget hidden animated pulse">We found <span class="bold text-primary"> {{countUnits }} </span>  apartments in your budget of <strong>{{selection}}</strong></h3>
+                        <h3 class="text-center light m-t-0 m-b-20 refresh hidden animated pulse">You just refreshed the page. You are now seeing <span class="bold text-primary">All</span> apartments across all the towers.</h3>
+                        <div class="text-center subTxt m-b-20 All hidden animated pulse">You are seeing <span class="bold text-primary">All</span> apartments in the selected floor range of the tower.</div>
+                        <div class="introTxt text-center">These apartments are available in different size variations on different floors of the tower. Click on any available apartment for more details. <!--<br><em>(You can scroll between towers to see other options.)</em>--></div>
+                        <div class="introTxt text-center light">
+                            You are seeing 
+                            <div id="tagslist1" class="taglist">
+                              <ul></ul>
+                            </div>
+                            <span class="text-primary variantToggle"></span>variants of your apartment selection
                         </div>
-                        <span class="text-primary variantToggle"></span>variants of your apartment selection
+
+                        <div class="variantBox">
+                            <div class="grid-container">
+                                <div class="pull-left m-l-15">
+                                    <input type="checkbox" name="unselectall" id="unselectall" class="checkbox" value="0" checked/>
+                                    <label for="unselectall">Select/Unselect All</label>
+                                </div>
+                                <div class="text-right"><span class="variantClose glyphicon glyphicon-remove text-grey"></span></div>
+                                <div class="clearfix"></div>
+                            
+                                {{#unitVariants}}
+                                <div class="grid-block-3 {{filtername}}" >
+                                    <a class="grid-link2 {{selected}}" href="#" id="gridlink{{id}}" data-id="{{id}}" data-count = "{{count}}">
+                                        {{name}}<input type="hidden" name="checklink{{id}}"   id="checklink{{id}}"   value="1" />
+                                        <h5><span> {{filter}} : </span> {{count}}</h5>
+                                    </a>
+                                </div>
+                                {{/unitVariants}}
+
+                                <div class="variantAction m-t-5 m-b-20">
+                                    <a class="btn btn-primary m-r-10 done">DONE</a>
+                                    <a class="btn btn-default cancel">CANCEL</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="special introTxt text-center hidden ">
+                            <div>
+                                Click <a class="special bold hidden" id="filterModalscren3">here</a> to set <span class="bold"> Additional Filters</span>
+                            </div>
+                            
+                            View:
+                            <div id="viewtaglist2" class="taglist2">
+                              <ul></ul>
+                            </div>
+
+                            Entrance:
+                            <div id="entrancetaglist2" class="taglist2">
+                              <ul></ul>
+                            </div>
+
+                            Terrace:
+                            <div id="terracetaglist2" class="taglist2">
+                              <ul></ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="variantBox">
-                        <div class="grid-container">
-                            <div class="pull-left m-l-15">
-                                <input type="checkbox" name="unselectall" id="unselectall" class="checkbox" value="0" checked/>
-                                <label for="unselectall">Select/Unselect All</label>
-                            </div>
-                            <div class="text-right"><span class="variantClose glyphicon glyphicon-remove text-grey"></span></div>
-                            <div class="clearfix"></div>
-                        
-                            {{#unitVariants}}
-                            <div class="grid-block-3 {{filtername}}" >
-                                <a class="grid-link2 {{selected}}" href="#" id="gridlink{{id}}" data-id="{{id}}" data-count = "{{count}}">
-                                    {{name}}<input type="hidden" name="checklink{{id}}"   id="checklink{{id}}"   value="1" />
-                                    <h5><span> {{filter}} : </span> {{count}}</h5>
-                                </a>
-                            </div>
-                            {{/unitVariants}}
+                    <div class="row m-l-0 m-r-0">
 
-                            <div class="variantAction m-t-5 m-b-20">
-                                <a class="btn btn-primary m-r-10 done">DONE</a>
-                                <a class="btn btn-default cancel">CANCEL</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="special introTxt text-center hidden ">
-                        <div>
-                            Click <a class="special bold hidden" id="filterModalscren3">here</a> to set <span class="bold"> Additional Filters</span>
-                        </div>
-                        
-                        View:
-                        <div id="viewtaglist2" class="taglist2">
-                          <ul></ul>
-                        </div>
-
-                        Entrance:
-                        <div id="entrancetaglist2" class="taglist2">
-                          <ul></ul>
-                        </div>
-
-                        Terrace:
-                        <div id="terracetaglist2" class="taglist2">
-                          <ul></ul>
-                        </div>
-                    </div>
-
-                    <div class="row m-l-0 m-r-0 m-t-20 bgClass">
-
-                        <div class="col-md-5 col-lg-4">
+                        <div class="col-md-5 col-lg-4 hidden-xs hidden-sm hidden-md hidden-lg">
                             <div id="vs-container" class="vs-container">
                                 <header class="vs-header" id="building-region"></header>
                                     <div id="layoutmsg" class="alrtMsg animated pulse"></div>
@@ -100,9 +102,9 @@ define [ 'marionette' ], ( Marionette )->
                             </div>
                         </div>
 
-                        <div class="col-md-7 col-lg-8 b-grey b-l visible-md visible-lg rightTowerSvg">
+                        <div class="col-md-12 visible-md visible-lg rightTowerSvg">
                             
-                            <div class="svgLegend">
+                            <div class="svgLegend hidden">
                                 <div class="row">
                                     <div class="col-sm-6"><span class="legendBox available"></span> Available</div>
                                     <!--<div class="col-sm-4"><span class="legendBox sold"></span> Sold/Blocked</div>-->
@@ -2732,8 +2734,9 @@ define [ 'marionette' ], ( Marionette )->
 
 
         onShow :->
-            $('#screen-three-region').addClass 'section animated fadeIn'
-            $('#screen-two-region').addClass 'animated fadeOut'
+            $('#screen-three-region').addClass 'section animated zoomIn'
+            $('#screen-two-region').removeClass 'zoomIn'
+            $('#screen-two-region').addClass 'zoom-out'
 
             $("#flatno").text ""
             $("#towerno").text ""
