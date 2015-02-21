@@ -9350,6 +9350,9 @@ body {
 #screen-four-region.section {
   border-top: 1px solid #eeeeee;
   min-height: 100vh;
+  position: absolute;
+  width: 100%;
+  top: 0;
 }
 .safari #screen-two-region.section,
 .safari #screen-three-region.section,
@@ -9700,4 +9703,14 @@ a.im-clear-button {
 }
 .salesLogout {
   width: 75px;
+}
+.zoom-out {
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  transform: scale3d(0.3, 0.3, 0.3);
+}
+.zoom-in.section {
+  opacity: 1;
+  transition: all 0.5s linear;
+  transform: scale3d(1, 1, 1);
 }
