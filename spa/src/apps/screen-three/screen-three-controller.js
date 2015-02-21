@@ -663,155 +663,18 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
       });
       trackposition = [];
       unitArray = [];
-      unitColl = new Backbone.Collection(unitsCollection);
-      unitAssigned = unitColl.pluck("unitAssigned");
+      console.log(unitColl = new Backbone.Collection(unitsCollection));
+      console.log(unitAssigned = unitColl.pluck("unitAssigned"));
       uniqunitAssignedval = _.uniq(unitAssigned);
       uniqunitAssigned = _.without(uniqunitAssignedval, 0);
       uniqunitAssigned.sort(function(a, b) {
         return a - b;
       });
-      $.each(uniqunitAssigned, function(index, value) {
-        var disabled, floorColl, maxcount, maxunits, unitAssgendModels, unitAssgendModelsColl;
-        floorColl = new Backbone.Collection(floorUnitsArray);
-        if (App.defaults['building'] === "All") {
-          unitAssgendModels = floorColl.where({
-            unitAssigned: value,
-            building: buildingvalue
-          });
-        } else {
-          unitAssgendModels = floorColl.where({
-            unitAssigned: value
-          });
-        }
-        $.each(unitAssgendModels, function(index, value) {
-          var unitType, unitVariant;
-          unitType = App.master.unit_type.findWhere({
-            id: value.get('unitType')
-          });
-          if (value.get('unitType') === 16) {
-            value.set("unittypename", "Not Released");
-            value.set("sellablearea", "");
-            return value.set("sqft", "");
-          } else if (value.get('unitType') === 14) {
-            value.set("unittypename", unitType.get("name"));
-            value.set("sellablearea", "");
-            return value.set("sqft", "");
-          } else {
-            value.set("unittypename", unitType.get("name"));
-            unitVariant = App.master.unit_variant.findWhere({
-              id: value.get('unitVariant')
-            });
-            value.set("sellablearea", unitVariant.get("sellablearea"));
-            return value.set("sqft", unitVariant.get("Sq.ft."));
-          }
-        });
-        unitAssgendModels = _.uniq(unitAssgendModels);
-        unitAssgendModels.sort(function(a, b) {
-          return b.get('floor') - a.get('floor');
-        });
-        maxcount = [];
-        maxunits = [];
-        track = 0;
-        $.each(unitAssgendModels, function(index, value1) {
-          flag = 0;
-          $.each(myArray, function(index, value) {
-            var budget_arr, budget_price, buildingModel, element, floorRise, floorRiseValue, initvariant, paramKey, temp, tempnew, tempstring, unitPrice, unitVariantmodel, _i, _len, _results;
-            paramKey = {};
-            paramKey[value.key] = value.value;
-            if (value.key === 'budget') {
-              buildingModel = App.master.building.findWhere({
-                'id': value1.get('building')
-              });
-              floorRise = buildingModel.get('floorrise');
-              floorRiseValue = floorRise[value1.get('floor')];
-              unitVariantmodel = App.master.unit_variant.findWhere({
-                'id': value1.get('unitVariant')
-              });
-              unitPrice = value1.get('unitPrice');
-              budget_arr = value.value.split(' ');
-              budget_price = budget_arr[0].split('-');
-              budget_price[0] = budget_price[0] + '00000';
-              budget_price[1] = budget_price[1] + '00000';
-              if (parseInt(unitPrice) >= parseInt(budget_price[0]) && parseInt(unitPrice) <= parseInt(budget_price[1])) {
-                return flag++;
-              }
-            } else if (value.key !== 'floor') {
-              tempnew = [];
-              if (value.key === 'view' || value.key === 'apartment_views') {
-                tempnew = [];
-                value.key = 'apartment_views';
-                tempnew = value1.get(value.key);
-                if (tempnew !== "") {
-                  tempnew = tempnew.map(function(item) {
-                    return parseInt(item);
-                  });
-                }
-              } else if (value.key === 'facing') {
-                tempnew = [];
-                tempnew = value1.get(value.key);
-                if (tempnew.length !== 0) {
-                  tempnew = tempnew.map(function(item) {
-                    return parseInt(item);
-                  });
-                }
-              }
-              temp = [];
-              temp.push(value.value);
-              tempstring = temp.join(',');
-              initvariant = tempstring.split(',').map(function(item) {
-                return parseInt(item);
-              });
-              if (initvariant.length >= 1) {
-                _results = [];
-                for (_i = 0, _len = initvariant.length; _i < _len; _i++) {
-                  element = initvariant[_i];
-                  if (value1.get(value.key) === parseInt(element)) {
-                    _results.push(flag++);
-                  } else if ($.inArray(parseInt(element), tempnew) >= 0) {
-                    _results.push(flag++);
-                  } else {
-                    _results.push(void 0);
-                  }
-                }
-                return _results;
-              } else {
-                if (value1.get(value.key) === parseInt(value.value)) {
-                  return flag++;
-                }
-              }
-            }
-          });
-          if (flag >= myArray.length - 1) {
-            track = 1;
-          }
-          if (myArray.length === 0) {
-            track = 1;
-          }
-          if (value1.get('status') === 9 && value1.get('unitType') !== 14 && value1.get('unitType') !== 16) {
-            return maxunits = App.currentStore.unit.where({
-              unitAssigned: value
-            });
-          }
-        });
-        disabled = disabled;
-        unitAssgendModelsColl = new Backbone.Collection(unitAssgendModels);
-        if (maxunits.length === 0) {
-          trackposition.push(value);
-        }
-        return unitArray.push({
-          id: value,
-          units: unitAssgendModelsColl,
-          count: maxunits.length,
-          disabled: disabled
-        });
+      maxvalue = "";
+      unitArray.push({
+        units: unitColl
       });
-      unitArray.sort(function(a, b) {
-        return a.id - b.id;
-      });
-      maxvalue = _.max(unitArray, function(model) {
-        return model.count;
-      });
-      newunitCollection = new Backbone.Collection(unitArray);
+      console.log(newunitCollection = new Backbone.Collection(unitArray));
       buildingModel = App.master.building.where({
         id: parseInt(buildingvalue)
       });

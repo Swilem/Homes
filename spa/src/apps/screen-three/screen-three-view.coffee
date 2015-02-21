@@ -2892,22 +2892,22 @@ define [ 'marionette' ], ( Marionette )->
         childViewContainer : '.unitSlider'
 
         onShow:->
-                container = $("#unitsSlider");
-                height = container.height("auto").height();
-                container.height("auto");
-                sudoSlider = $("#unitsSlider").sudoSlider(
-                    customLink: "a"
-                    prevNext: false
-                    responsive: true
-                    speed: 800
+                # container = $("#unitsSlider");
+                # height = container.height("auto").height();
+                # container.height("auto");
+                # # sudoSlider = $("#unitsSlider").sudoSlider(
+                #     customLink: "a"
+                #     prevNext: false
+                #     responsive: true
+                #     speed: 800
 
-                    # continuous:true
-                )
-                maxcoll = @collection.toArray()
-                maxvalue = _.max(maxcoll,  (model)->
-                    model.get('count')
-                )
-                sudoSlider.goToSlide(maxvalue.get('id'))
+                #     # continuous:true
+                # )
+                # maxcoll = @collection.toArray()
+                # maxvalue = _.max(maxcoll,  (model)->
+                #     model.get('count')
+                # )
+                # sudoSlider.goToSlide(maxvalue.get('id'))
 
 
 
