@@ -85,19 +85,19 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
                     <div class="row m-l-0 m-r-0">
 
-                        <div class="col-md-5 col-lg-4">
+                        <div class="col-md-5 col-lg-4 hidden-xs hidden-sm hidden-md hidden-lg">
                             
-                    		<div class="legend text-center m-b-20">
+                            <div class="legend text-center m-b-20">
                                 {{#unittypes}}
                                 <span class={{classname}}>.</span>{{name}}
                                 {{/unittypes}}
-                		    </div>
+                            </div>
 
                             <div class="towerTable">
                                 <div class="tableBody">
-                    				<div id="vs-container2" class="vs-container vs-triplelayout">
-                    				    <header class="vs-header" id="building-region"></header>
-                    				    <div id="unit-region"></div>
+                                    <div id="vs-container2" class="vs-container vs-triplelayout">
+                                        <header class="vs-header" id="building-region"></header>
+                                        <div id="unit-region"></div>
                                     </div>
                                 </div>
                             </div>
@@ -108,9 +108,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         </div>
                         
                         
-
                         <div class="col-md-12 visible-md visible-lg">
-
                             <div class="m-t-10 text-center">
                                <!--<h4 class="bold m-t-0">Where is this tower located in the project?</h4>
                                 <p class="light">This is a map of the entire project that shows the location of the tower selected (on the left).</p>-->
@@ -439,6 +437,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             'click .tower-link':(e)->
                 id = e.target.id
                 str1 = id.replace( /[^\d.]/g, '' )
+                App.defaults['building'] = str1
                 $('#screen-three-region').addClass 'section'
                 @trigger 'unit:count:selected'
                 # buildigmodel = App.master.building.findWhere({id:parseInt(str1)})
@@ -781,7 +780,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             # $('.specialFilter').empty()
             # $('.specialFilter').addClass 'hidden'
             # $('.b-modal').addClass 'hidden'
-
             # setTimeout( ()->
             #         $('#screen-one-region').addClass 'hidden'
             #     , 5000)
@@ -789,7 +787,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             $('#screen-one-region').addClass 'animated zoom-out'
             $('#screen-one-region .im-map-image').addClass 'animated zoom-out'
             
-
             viewtagsArray = []
             entrancetagsArray = []
             terracetagsArray = []
@@ -1776,9 +1773,9 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             @showHighlightedTowers()
 
 
-            $('html, body').delay(600).animate({
-                scrollTop: $('#screen-two-region').offset().top
-            }, 'slow')
+            # $('html, body').delay(600).animate({
+            #     scrollTop: $('#screen-two-region').offset().top
+            # }, 'slow')
 
 
             tagsArray = []

@@ -2534,7 +2534,7 @@ define [ 'marionette' ], ( Marionette )->
                     </div>
                     <input type="hidden" id="flag{{id}}" name="flag{{id}}" value="0"/>
                     <input type="hidden" id="select{{id}}" name="select{{id}}" value="0"/>
-                    <div class="clearfix"></div>'
+                   '
 
 
 
