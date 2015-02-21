@@ -670,6 +670,18 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
       uniqunitAssigned.sort(function(a, b) {
         return a - b;
       });
+      unitColl.each(function(value) {
+        var unitType, unitVariant;
+        unitType = App.master.unit_type.findWhere({
+          id: value.get('unitType')
+        });
+        value.set("unittypename", unitType.get("name"));
+        unitVariant = App.master.unit_variant.findWhere({
+          id: value.get('unitVariant')
+        });
+        value.set("sellablearea", unitVariant.get("sellablearea"));
+        return value.set("sqft", unitVariant.get("Sq.ft."));
+      });
       maxvalue = "";
       unitArray.push({
         units: unitColl

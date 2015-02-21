@@ -121,11 +121,11 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ff', 'f', 'fff', 'ffff'];
+        temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
         temp1 = ['tt', 't', 'ttt', 'tttt'];
         temp2 = ['cc', 'cc', 'ccc', 'cccc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff'];
+          temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
           temp1 = ['t', 'tt'];
           temp2 = ['c', 'cc'];
         }
@@ -164,10 +164,9 @@ define(['marionette'], function(Marionette) {
                 indexvalue = unitsarray[position];
                 indexvalue1 = unitsarray[val1];
                 $.map(indexvalue1, function(index, value) {
-                  $('#f' + value).attr('class', 'unselected-floor ');
-                  $('#ff' + value).attr('class', 'unselected-floor ');
-                  $('#fff' + value).attr('class', 'unselected-floor ');
-                  return $('#ffff' + value).attr('class', 'unselected-floor ');
+                  return $.each(temp, function(ind, val) {
+                    return ('#' + val + value).attr('class', 'unselected-floor ');
+                  });
                 });
                 $.map(indexvalue, function(index, value) {
                   var floorArr;
@@ -201,7 +200,6 @@ define(['marionette'], function(Marionette) {
                 }
                 unitAssigedArray.push(unitModel.get('unitAssigned'));
                 $('#' + unitModel.get('unitAssigned')).attr('class', 'position');
-                sudoSlider.goToSlide(unitModel.get('unitAssigned'));
                 for (index = _j = 0, _len1 = rangeunitArray.length; _j < _len1; index = ++_j) {
                   element = rangeunitArray[index];
                   if (element === parseInt(unit)) {
@@ -262,11 +260,11 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ff', 'f', 'fff', 'ffff'];
+        temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
         temp1 = ['tt', 't', 'ttt', 'tttt'];
         temp2 = ['cc', 'cc', 'ccc', 'cccc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff'];
+          temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
           temp1 = ['t', 'tt'];
           temp2 = ['c', 'cc'];
         }
@@ -307,10 +305,9 @@ define(['marionette'], function(Marionette) {
                 flatid = $('#' + e.target.id).attr('data-id');
                 unit = indexvalue[parseInt(flatid)];
                 $.map(indexvalue1, function(index, value) {
-                  $('#f' + value).attr('class', 'unselected-floor ');
-                  $('#ff' + value).attr('class', 'unselected-floor ');
-                  $('#fff' + value).attr('class', 'unselected-floor ');
-                  return $('#ffff' + value).attr('class', 'unselected-floor ');
+                  return $.each(temp, function(ind, val) {
+                    return ('#' + val + value).attr('class', 'unselected-floor ');
+                  });
                 });
                 $.map(indexvalue, function(index, value) {
                   var floorArr;
@@ -363,11 +360,11 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ff', 'f', 'fff', 'ffff'];
+        temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
         temp1 = ['tt', 't', 'ttt', 'tttt'];
         temp2 = ['cc', 'cc', 'ccc', 'cccc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff'];
+          temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
           temp1 = ['t', 'tt'];
           temp2 = ['c', 'cc'];
         }
@@ -440,11 +437,11 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ff', 'f', 'fff', 'ffff'];
+        temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
         temp1 = ['tt', 't', 'ttt', 'tttt'];
         temp2 = ['cc', 'cc', 'ccc', 'cccc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff'];
+          temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
           temp1 = ['t', 'tt'];
           temp2 = ['c', 'cc'];
         }
@@ -517,11 +514,11 @@ define(['marionette'], function(Marionette) {
         svgposition = "";
         unitvalues = "";
         indexvalue = "";
-        temp = ['ff', 'f', 'fff', 'ffff'];
+        temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
         temp1 = ['tt', 't', 'ttt', 'tttt'];
         temp2 = ['cc', 'cc', 'ccc', 'cccc'];
         if (parseInt(building.get('id')) === 11) {
-          temp = ['f', 'ff'];
+          temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
           temp1 = ['t', 'tt'];
           temp2 = ['c', 'cc'];
         }
@@ -1804,11 +1801,11 @@ define(['marionette'], function(Marionette) {
       unitvalues = "";
       indexvalue = "";
       $('#positionsvg').text("");
-      temp = ['ff', 'f', 'fff', 'ffff'];
+      temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
       temp1 = ['tt', 't', 'ttt', 'tttt'];
       temp2 = ['cc', 'cc', 'ccc', 'cccc'];
       if (parseInt(building.get('id')) === 11) {
-        temp = ['f', 'ff'];
+        temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
         temp1 = ['t', 'tt'];
         temp2 = ['c', 'cc'];
       }
@@ -1824,6 +1821,7 @@ define(['marionette'], function(Marionette) {
               value.svgposition.sort(function(a, b) {
                 return b - a;
               });
+              console.log(value.svgposition);
               return $.each(value.svgposition, function(index1, val1) {
                 var i, rangClass;
                 indexvalue = unitsarray[val1];
@@ -1832,25 +1830,6 @@ define(['marionette'], function(Marionette) {
                   $('#' + temp[ii] + value).attr('data-value', index);
                   $('#' + temp[ii] + value).attr('data-idvalue', temp[ii]);
                   return $('#' + temp[ii] + value).attr('data-position', val1);
-                });
-                $.map(indexvalue, function(index1, value1) {
-                  var floorArr, tempid, tempidval;
-                  if (App.defaults['floor'] !== "All") {
-                    floorArr = App.defaults['floor'].split(',');
-                    if (floorid === val1) {
-                      tempid = $('[data-position="' + floorid + '"]')[0].id;
-                      tempidval = $('#' + tempid).attr('data-idvalue');
-                      return $.each(floorArr, function(ind, val) {
-                        if (parseInt(value1) === parseInt(val)) {
-                          $('#' + tempidval + value1).attr('class', 'unit-hover range');
-                          return $('#' + tempidval + value1).attr('class', 'unit-hover range');
-                        }
-                      });
-                    }
-                  } else {
-                    $('#' + temp[ii] + value1).attr('class', 'unit-hover range');
-                    return $('#' + temp1[ii] + value1).attr('class', 'unit-hover range');
-                  }
                 });
                 $.map(indexvalue, function(index, value) {
                   var idvalue, text, textid, unit, unittpe;
@@ -2410,12 +2389,21 @@ define(['marionette'], function(Marionette) {
       return unitChildView.__super__.constructor.apply(this, arguments);
     }
 
-    unitChildView.prototype.template = '<div class="pull-left light"> <h5 class="rangeName bold m-t-5">Floor {{floor}}</h5> </div> <div class="pull-right text-center"> <div class="unitNo">{{name}}</div> <div class="small">{{unittypename}} {{sellablearea}} {{sqft}}</div> </div> <input type="hidden" id="flag{{id}}" name="flag{{id}}" value="0"/> <input type="hidden" id="select{{id}}" name="select{{id}}" value="0"/> <div class="clearfix"></div>';
+    unitChildView.prototype.template = '<div class="pull-left light"> <h5 class="rangeName bold m-t-5">Floor {{floor}}</h5> </div> <div class="pull-right text-center"> <div class="unitNo">{{name}}</div> <div class="small">{{unittypename}} {{sellablearea}} {{sqft}} {{currency}}</div> </div> <input type="hidden" id="flag{{id}}" name="flag{{id}}" value="0"/> <input type="hidden" id="select{{id}}" name="select{{id}}" value="0"/> <div class="clearfix"></div>';
 
     unitChildView.prototype.className = 'check';
 
     unitChildView.prototype.initialize = function() {
       return this.$el.prop("id", 'unitcheck' + this.model.get("id"));
+    };
+
+    unitChildView.prototype.serializeData = function() {
+      var data;
+      data = unitChildView.__super__.serializeData.call(this);
+      $('#currency2').autoNumeric('init');
+      $('#currency2').autoNumeric('set', this.model.get('unitPrice'));
+      data.currency = $('#currency2').val();
+      return data;
     };
 
     unitChildView.prototype.events = {
@@ -2445,7 +2433,7 @@ define(['marionette'], function(Marionette) {
           svgposition = "";
           unitvalues = "";
           indexvalue = "";
-          temp = ['ff', 'f', 'fff', 'ffff'];
+          temp = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
           temp1 = ['tt', 't', 'ttt', 'tttt'];
           temp2 = ['cc', 'cc', 'ccc', 'cccc'];
           idValue = "";
@@ -2461,10 +2449,9 @@ define(['marionette'], function(Marionette) {
                   indexvalue = unitsarray[position];
                 }
                 return $.map(indexvalue1, function(index, value) {
-                  $('#f' + value).attr('class', 'unit-hover');
-                  $('#ff' + value).attr('class', 'unit-hover');
-                  $('#fff' + value).attr('class', 'unit-hover');
-                  return $('#ffff' + value).attr('class', 'unit-hover');
+                  return $.each(temp, function(ind, val) {
+                    return $('#' + val + value).attr('class', 'unselected-floor ');
+                  });
                 });
               });
             }
@@ -2472,16 +2459,13 @@ define(['marionette'], function(Marionette) {
           obj = this;
           idvalue = "";
           $.each(indexvalue, function(index, value) {
-            if (parseInt($('#f' + index).attr('data-value')) === obj.model.get('id')) {
-              return idvalue = $('#f' + index).attr('data-idvalue');
-            } else if (parseInt($('#ff' + index).attr('data-value')) === obj.model.get('id')) {
-              return idvalue = $('#ff' + index).attr('data-idvalue');
-            } else if (parseInt($('#fff' + index).attr('data-value')) === obj.model.get('id')) {
-              return idvalue = $('#fff' + index).attr('data-idvalue');
-            } else if (parseInt($('#ffff' + index).attr('data-value')) === obj.model.get('id')) {
-              return idvalue = $('#ffff' + index).attr('data-idvalue');
-            }
+            return $.each(temp, function(ind, val) {
+              if (parseInt($('#' + val + index).attr('data-value')) === obj.model.get('id')) {
+                return idvalue = $('#' + val + index).attr('data-idvalue');
+              }
+            });
           });
+          console.log(idvalue);
           $('#screen-four-region').removeClass('section');
           App.layout.screenFourRegion.el.innerHTML = "";
           App.navigate("screen-three");
@@ -2536,14 +2520,10 @@ define(['marionette'], function(Marionette) {
                   }
                 });
               } else {
-                $('#f' + value).attr('class', 'unit-hover');
-                $('#t' + value).text("");
-                $('#ff' + value).attr('class', 'unit-hover');
-                $('#tt' + value).text("");
-                $('#fff' + value).attr('class', 'unit-hover');
-                $('#ttt' + value).text("");
-                $('#ffff' + value).attr('class', 'unit-hover');
-                return $('#tttt' + value).text("");
+                return $.each(temp, function(ind, val) {
+                  $('#' + val + value).attr('class', 'unit-hover');
+                  return $('#t' + value).text("");
+                });
               }
             });
             $.map(indexvalue, function(index, value) {

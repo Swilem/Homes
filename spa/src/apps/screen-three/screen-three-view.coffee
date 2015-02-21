@@ -250,12 +250,12 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f','fff','ffff']
+                temp = ['a','b','c','d','e','f','g','h']
                 temp1 = ['tt','t','ttt','tttt']
                 temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
-                        temp = ['f','ff']
+                        temp = ['a','b','c','d','e','f','g','h']
                         temp1 = ['t','tt']
                         temp2 = ['c','cc']
                 id = $('#'+e.target.id).attr('data-value')
@@ -291,10 +291,12 @@ define [ 'marionette' ], ( Marionette )->
                                 indexvalue1 = unitsarray[val1]
                                 
                                 $.map(indexvalue1, (index,value)->
-                                    $('#f'+value).attr('class', 'unselected-floor ')
-                                    $('#ff'+value).attr('class', 'unselected-floor ')
-                                    $('#fff'+value).attr('class', 'unselected-floor ')
-                                    $('#ffff'+value).attr('class', 'unselected-floor ')
+                                    $.each(temp, (ind,val)->
+
+                                            ('#'+val+value).attr('class', 'unselected-floor ')
+                                            
+                                        )
+                                   
                                     
 
                                 )
@@ -330,7 +332,7 @@ define [ 'marionette' ], ( Marionette )->
                                                         
                                 unitAssigedArray.push unitModel.get('unitAssigned')
                                 $('#'+unitModel.get('unitAssigned')).attr('class','position')
-                                sudoSlider.goToSlide(unitModel.get('unitAssigned'));
+                                # sudoSlider.goToSlide(unitModel.get('unitAssigned'));
                                 for element , index in rangeunitArray
                                                     if element == parseInt(unit)
                                                         $("#select"+unit).val '1'
@@ -401,12 +403,12 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f','fff','ffff']
+                temp = ['a','b','c','d','e','f','g','h']
                 temp1 = ['tt','t','ttt','tttt']
                 temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
-                        temp = ['f','ff']
+                        temp = ['a','b','c','d','e','f','g','h']
                         temp1 = ['t','tt']
                         temp2 = ['c','cc']
                 id = $('#'+e.target.id).attr('data-value')
@@ -446,10 +448,11 @@ define [ 'marionette' ], ( Marionette )->
                                 unit = indexvalue[parseInt(flatid)]
                                 
                                 $.map(indexvalue1, (index,value)->
-                                    $('#f'+value).attr('class', 'unselected-floor ')
-                                    $('#ff'+value).attr('class', 'unselected-floor ')
-                                    $('#fff'+value).attr('class', 'unselected-floor ')
-                                    $('#ffff'+value).attr('class', 'unselected-floor ')
+                                   $.each(temp, (ind,val)->
+
+                                        ('#'+val+value).attr('class', 'unselected-floor ')
+                                            
+                                    )
                                     
 
                                 )
@@ -519,12 +522,12 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f','fff','ffff']
+                temp = ['a','b','c','d','e','f','g','h']
                 temp1 = ['tt','t','ttt','tttt']
                 temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
-                        temp = ['f','ff']
+                        temp = ['a','b','c','d','e','f','g','h']
                         temp1 = ['t','tt']
                         temp2 = ['c','cc']
                 id = $('#'+e.target.id).attr('data-value')
@@ -591,12 +594,12 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f','fff','ffff']
+                temp = ['a','b','c','d','e','f','g','h']
                 temp1 = ['tt','t','ttt','tttt']
                 temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
-                        temp = ['f','ff']
+                        temp = ['a','b','c','d','e','f','g','h']
                         temp1 = ['t','tt']
                         temp2 = ['c','cc']
                 id = $('#'+e.target.id).attr('data-value')
@@ -676,12 +679,12 @@ define [ 'marionette' ], ( Marionette )->
                 svgposition = ""
                 unitvalues = ""
                 indexvalue = ""
-                temp = ['ff','f','fff','ffff']
+                temp = ['a','b','c','d','e','f','g','h']
                 temp1 = ['tt','t','ttt','tttt']
                 temp2 = ['cc','cc','ccc','cccc']
                 
                 if  parseInt(building.get('id')) == 11
-                        temp = ['f','ff']
+                        temp = ['a','b','c','d','e','f','g','h']
                         temp1 = ['t','tt']
                         temp2 = ['c','cc']
                 id = $('#'+e.target.id).attr('data-value')
@@ -1950,12 +1953,12 @@ define [ 'marionette' ], ( Marionette )->
             unitvalues = ""
             indexvalue = ""
             $('#positionsvg').text ""
-            temp = ['ff','f','fff','ffff']
+            temp = ['a','b','c','d','e','f','g','h']
             temp1 = ['tt','t','ttt','tttt']
             temp2 = ['cc','cc','ccc','cccc']
             
             if  parseInt(building.get('id')) == 11
-                    temp = ['f','ff']
+                    temp = ['a','b','c','d','e','f','g','h']
                     temp1 = ['t','tt']
                     temp2 = ['c','cc']
             $.each(svgdata, (index,value)->
@@ -1972,6 +1975,7 @@ define [ 'marionette' ], ( Marionette )->
                                 b - a
 
                                 )
+                            console.log  value.svgposition
                             $.each(value.svgposition, (index1,val1)->
                                 indexvalue = unitsarray[val1]
                                 
@@ -1983,28 +1987,28 @@ define [ 'marionette' ], ( Marionette )->
                                             $('#'+temp[ii]+value).attr('data-position', val1)
                                             
                                 )
-                                $.map(indexvalue, (index1,value1)->
-                                            if App.defaults['floor'] != "All"
-                                                floorArr  = App.defaults['floor'].split(',')
-                                                if floorid == val1
-                                                    tempid = $('[data-position="'+floorid+'"]')[0].id
-                                                    tempidval = $('#'+tempid).attr('data-idvalue')
-                                                    $.each(floorArr, (ind,val)->
-                                                        if parseInt(value1) == parseInt(val)
-                                                            $('#'+tempidval+value1).attr('class', 'unit-hover range')
-                                                            $('#'+tempidval+value1).attr('class', 'unit-hover range')
+                                # $.map(indexvalue, (index1,value1)->
+                                #             if App.defaults['floor'] != "All"
+                                #                 floorArr  = App.defaults['floor'].split(',')
+                                #                 if floorid == val1
+                                #                     tempid = $('[data-position="'+floorid+'"]')[0].id
+                                #                     tempidval = $('#'+tempid).attr('data-idvalue')
+                                #                     $.each(floorArr, (ind,val)->
+                                #                         if parseInt(value1) == parseInt(val)
+                                #                             $('#'+tempidval+value1).attr('class', 'unit-hover range')
+                                #                             $('#'+tempidval+value1).attr('class', 'unit-hover range')
                                                             
 
 
 
 
 
-                                                     )
-                                            else 
-                                                $('#'+temp[ii]+value1).attr('class', 'unit-hover range')
-                                                $('#'+temp1[ii]+value1).attr('class', 'unit-hover range')
+                                #                      )
+                                #             else 
+                                #                 $('#'+temp[ii]+value1).attr('class', 'unit-hover range')
+                                #                 $('#'+temp1[ii]+value1).attr('class', 'unit-hover range')
 
-                                )
+                                # )
                                 $.map(indexvalue, (index,value)->
                                             if App.unit['name'] != ""
                                                 if parseInt($('#'+temp[ii]+value).attr('data-value'))  == App.unit['name']
@@ -2519,7 +2523,7 @@ define [ 'marionette' ], ( Marionette )->
                     </div>
                     <div class="pull-right text-center">
                         <div class="unitNo">{{name}}</div>
-                        <div class="small">{{unittypename}} {{sellablearea}} {{sqft}}</div>
+                        <div class="small">{{unittypename}} {{sellablearea}} {{sqft}} {{currency}}</div>
                     </div>
                     <input type="hidden" id="flag{{id}}" name="flag{{id}}" value="0"/>
                     <input type="hidden" id="select{{id}}" name="select{{id}}" value="0"/>
@@ -2531,6 +2535,13 @@ define [ 'marionette' ], ( Marionette )->
 
         initialize :->
             @$el.prop("id", 'unitcheck'+@model.get("id"))
+
+        serializeData:->
+            data = super()
+            $('#currency2').autoNumeric('init')
+            $('#currency2').autoNumeric('set', @model.get('unitPrice'));
+            data.currency = $('#currency2').val()
+            data                 
 
         events:
 
@@ -2558,7 +2569,7 @@ define [ 'marionette' ], ( Marionette )->
                     svgposition = ""
                     unitvalues = ""
                     indexvalue = ""
-                    temp = ['ff','f','fff','ffff']
+                    temp = ['a','b','c','d','e','f','g','h']
                     temp1 = ['tt','t','ttt','tttt']
                     temp2 = ['cc','cc','ccc','cccc']
                     idValue = ""
@@ -2574,10 +2585,12 @@ define [ 'marionette' ], ( Marionette )->
                                         indexvalue = unitsarray[position]
 
                                     $.map(indexvalue1,  (index,value)->
-                                        $('#f'+value).attr('class', 'unit-hover')
-                                        $('#ff'+value).attr('class', 'unit-hover')
-                                        $('#fff'+value).attr('class', 'unit-hover')
-                                        $('#ffff'+value).attr('class', 'unit-hover')
+                                       
+                                        $.each(temp, (ind,val)->
+
+                                            $('#'+val+value).attr('class', 'unselected-floor ')
+                                            
+                                        )
 
 
                                     )
@@ -2598,16 +2611,16 @@ define [ 'marionette' ], ( Marionette )->
                     obj = @
                     idvalue = ""
                     $.each(indexvalue, (index,value)->
-                        if parseInt($('#f'+index).attr('data-value'))  == obj.model.get('id')
-                           idvalue = $('#f'+index).attr('data-idvalue')
-                        else if parseInt($('#ff'+index).attr('data-value'))  == obj.model.get('id')
-                           idvalue = $('#ff'+index).attr('data-idvalue')
-                        else if parseInt($('#fff'+index).attr('data-value'))  == obj.model.get('id')
-                           idvalue = $('#fff'+index).attr('data-idvalue')
-                        else if parseInt($('#ffff'+index).attr('data-value'))  == obj.model.get('id')
-                           idvalue = $('#ffff'+index).attr('data-idvalue')
-
+                        $.each(temp, (ind,val)->
+                            if parseInt($('#'+val+index).attr('data-value'))  == obj.model.get('id')
+                                idvalue = $('#'+val+index).attr('data-idvalue')
+                            
+                                            
                         )
+                        
+
+                    )
+                    console.log idvalue
                     $('#screen-four-region').removeClass 'section'
                     App.layout.screenFourRegion.el.innerHTML = ""
                     App.navigate "screen-three"
@@ -2660,14 +2673,14 @@ define [ 'marionette' ], ( Marionette )->
 
                                 )
                             else
-                                $('#f'+value).attr('class', 'unit-hover')
-                                $('#t'+value).text ""
-                                $('#ff'+value).attr('class', 'unit-hover')
-                                $('#tt'+value).text ""
-                                $('#fff'+value).attr('class', 'unit-hover')
-                                $('#ttt'+value).text ""
-                                $('#ffff'+value).attr('class', 'unit-hover')
-                                $('#tttt'+value).text ""
+                                $.each(temp, (ind,val)->
+                                    $('#'+val+value).attr('class', 'unit-hover')
+                                    $('#t'+value).text ""
+                                    
+                                                    
+                                )
+
+                               
 
                         )
                         $.map(indexvalue,  (index,value)->
