@@ -229,12 +229,14 @@ define [ 'marionette' ], ( Marionette )->
     class ScreenOneView extends Marionette.CompositeView
 
                             
-        template : '<h3 class="light text-center m-t-0">3 STEPS TO FINDING YOUR APARTMENT</h3>
+        template : '<div class="hidden">
+                    <h3 class="light text-center m-t-0">3 STEPS TO FINDING YOUR APARTMENT</h3>
                     <h4 class="text-center introTxt">We at Skyi have built a unique apartment selector for you.<br>Of the hundreds of apartments available you can now find the one that best fits your requirements.</h4>
                     <!--<div class="text-center introTxt">The apartment selector helps you find your ideal home. Browse through available apartments and find the location, size, budget and layout that best suit you.</div>
                     <div class="introTxt text-center">To get started, either:</div>-->
+                        </div>
 
-                    <div class="row m-l-0 m-r-0 bgClass">
+                    <div class="row m-l-0 m-r-0">
                         <div class="col-md-5 col-lg-4 hidden-xs hidden-sm hidden-md hidden-lg">
                             <div class="text-center subTxt">Choose a preference</div>
                             <div class="grid-container"></div>
@@ -250,7 +252,7 @@ define [ 'marionette' ], ( Marionette )->
                                 <a href="#screen-two-region" class="btn btn-default btn-lg disabled" id="finalButton">Show Apartments</a>
                             </div>
                         </div>
-                        <div class="col-md-12 b-grey b-l ">
+                        <div class="col-md-12">
                             <div id="mapplic_new1" class="towersMap center-block"></div>
                         </div><input type="hidden" name="currency" id="currency" class="demo" data-a-sign="Rs. " data-m-dec=""  data-d-group="2" >
                     </div>'
@@ -263,8 +265,9 @@ define [ 'marionette' ], ( Marionette )->
 
         events:
             'click #finalButton':(e)->
-
                 
+                # $('#screen-one-region').addClass 'easeOut'
+                # $('#screen-one-region .im-map-image').addClass 'easeOut'
 
                 # if App.defaults['unitType'] == 'All'
                 #     App.defaults['budget'] = $(".cs-selected").text()

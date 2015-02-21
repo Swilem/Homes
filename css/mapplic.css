@@ -33,8 +33,8 @@
 }
 
 .im-container.loading {
-	background-color: #eee;
-	background-image: url(../images/loader.gif);
+	/*background-color: #eee;*/
+	/*background-image: url(../images/loader.gif);*/
 	background-repeat: no-repeat;
 	background-position: center;
 }

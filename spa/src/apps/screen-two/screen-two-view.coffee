@@ -17,7 +17,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
     class ScreenTwoLayout extends Marionette.LayoutView
 
-        template : '<div class="">
+        template : '<div class="hidden">
                         <h3 class="text-center light m-t-0 m-b-20 unittype hidden animated pulse">We found <span class="bold text-primary"> {{unitsCount }} </span> apartments that matched your selection</h3>
                         <h3 class="text-center light m-t-0 m-b-20 budget hidden animated pulse">We found <span class="bold text-primary"> {{unitsCount }} </span>  apartments in your budget of <strong>{{selection}}</strong></h3>
                         <h3 class="text-center light m-t-0 m-b-20 refresh hidden animated pulse">You are now seeing <span class="bold text-primary">All</span> apartments across all the towers.</h3>
@@ -83,7 +83,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         
                     </div>
 
-                    <div class="row m-l-0 m-r-0 m-t-20 bgClass">
+                    <div class="row m-l-0 m-r-0">
 
                         <div class="col-md-5 col-lg-4">
                             
@@ -108,7 +108,9 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         </div>
                         
                         
-                        <div class="col-md-7 col-lg-8 b-grey b-l visible-md visible-lg">
+
+                        <div class="col-md-12 visible-md visible-lg">
+
                             <div class="m-t-10 text-center">
                                <!--<h4 class="bold m-t-0">Where is this tower located in the project?</h4>
                                 <p class="light">This is a map of the entire project that shows the location of the tower selected (on the left).</p>-->
@@ -779,6 +781,15 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             # $('.specialFilter').empty()
             # $('.specialFilter').addClass 'hidden'
             # $('.b-modal').addClass 'hidden'
+
+            # setTimeout( ()->
+            #         $('#screen-one-region').addClass 'hidden'
+            #     , 5000)
+            $('#screen-two-region').addClass 'section animated zoomIn'
+            $('#screen-one-region').addClass 'animated zoom-out'
+            $('#screen-one-region .im-map-image').addClass 'animated zoom-out'
+            
+
             viewtagsArray = []
             entrancetagsArray = []
             terracetagsArray = []

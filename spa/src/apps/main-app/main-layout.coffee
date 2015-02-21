@@ -44,21 +44,7 @@ define [ 'extm'], ( Extm)->
             You have clicked on a box!
         </div>
         <!--<div>dfsfsfs</div>-->
-        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
-            <h3>My Menu</h3>
-            <ul>
-                <li><a href="#"><span class="glyphicon glyphicon-heart"></span> Wishlist</a>
-                    <div id="comparetext" class="compareTxt">
-                        Compare Apartments here!<br>You can compare up to 4 apartments.
-                    </div><input type="hidden" name="currency_main" id="currency_main" class="demo" data-a-sign="Rs. " data-m-dec=""  data-d-group="2" >
-                    <ul class="menuWishlist" id="showWishlist">
-                    </ul>
-                </li>
-                <a href="#" id="compare" class="compareBtn">COMPARE</a>
-            </ul>
-            
 
-        </nav>
         
         <div class="prntLoader hidden"></div>
 
@@ -233,7 +219,7 @@ define [ 'extm'], ( Extm)->
             'click #compare':(e)->
                 win = window.open(SITEURL+"/wishlist/#wishList", '_blank')
                 win.focus()
-                menuRight = document.getElementById("cbp-spmenu-s2")
+                # menuRight = document.getElementById("cbp-spmenu-s2")
                 menuTop = document.getElementById("cbp-spmenu-s3")
                 showTop = document.getElementById("showTop")
                 showRightPush = document.getElementById("showRightPush")

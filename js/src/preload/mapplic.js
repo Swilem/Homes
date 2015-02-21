@@ -9,7 +9,7 @@
 
         self.o = {
             id: 0,
-            height: 420,
+            height: 720,
             width: 0
         };
 

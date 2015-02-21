@@ -3,13 +3,13 @@ define [ 'marionette' ], ( Mariontte )->
 
     class HeaderView extends Marionette.ItemView
 
-        template : '<div class="backBtn {{textClass}}">
-                        <a  class="back text-white"><span class="glyphicon glyphicon-chevron-left "></span></a>
+        template : '<div class="backBtn hidden {{textClass}}">
+                        <a  class="back text-white hidden"><span class="glyphicon glyphicon-chevron-left "></span></a>
         		    </div>
 
                     <div class="rightBtns  {{btnClass}}">
                         <a  id="showTop" class="text-white hidden"><span class="glyphicon glyphicon-filter"></span></a>
-                        <a id="showRightPush" class="text-white hidden "><span class="glyphicon glyphicon-user"></span></a>
+                        <a id="showRightPush" class="text-white"><span class="glyphicon glyphicon-th-list"></span></a>
                     </div>
 
                     <div class="text-center">
