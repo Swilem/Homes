@@ -625,8 +625,8 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
             )
             trackposition = []
             unitArray= []
-            unitColl = new Backbone.Collection unitsCollection
-            unitAssigned = unitColl.pluck("unitAssigned")
+            console.log unitColl = new Backbone.Collection unitsCollection
+            console.log unitAssigned = unitColl.pluck("unitAssigned")
             uniqunitAssignedval = _.uniq(unitAssigned)
             uniqunitAssigned = _.without(uniqunitAssignedval, 0)
             uniqunitAssigned.sort( (a,b)->
@@ -634,106 +634,106 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
 
 
                 )
-            $.each(uniqunitAssigned, (index,value)->
-                # floorColl1 = _.reject(floorUnitsArray, (model)->
-                #         return model.get('unitType') == 14 || model.get('unitType') == 16
-                #     )
-                floorColl =  new Backbone.Collection floorUnitsArray
-                if App.defaults['building'] == "All"
+            # $.each(uniqunitAssigned, (index,value)->
+            #     # floorColl1 = _.reject(floorUnitsArray, (model)->
+            #     #         return model.get('unitType') == 14 || model.get('unitType') == 16
+            #     #     )
+            #     floorColl =  new Backbone.Collection floorUnitsArray
+            #     if App.defaults['building'] == "All"
                      
-                    unitAssgendModels = floorColl.where({unitAssigned:value,building:buildingvalue})
-                else
-                    unitAssgendModels = floorColl.where({unitAssigned:value})
-                $.each(unitAssgendModels, (index,value)->
-                    unitType = App.master.unit_type.findWhere({id:value.get('unitType')})
+            #         unitAssgendModels = floorColl.where({unitAssigned:value,building:buildingvalue})
+            #     else
+            #         unitAssgendModels = floorColl.where({unitAssigned:value})
+            #     $.each(unitAssgendModels, (index,value)->
+            #         unitType = App.master.unit_type.findWhere({id:value.get('unitType')})
                         
-                    if value.get('unitType') == 16
-                        value.set "unittypename" , "Not Released"
-                        value.set "sellablearea" ,  ""
-                        value.set "sqft" , ""
-                    else if value.get('unitType') == 14
-                        value.set "unittypename" , unitType.get "name"
-                        value.set "sellablearea" ,  ""
-                        value.set "sqft" , ""
+            #         if value.get('unitType') == 16
+            #             value.set "unittypename" , "Not Released"
+            #             value.set "sellablearea" ,  ""
+            #             value.set "sqft" , ""
+            #         else if value.get('unitType') == 14
+            #             value.set "unittypename" , unitType.get "name"
+            #             value.set "sellablearea" ,  ""
+            #             value.set "sqft" , ""
 
-                    else
+            #         else
 
-                        value.set "unittypename" , unitType.get "name"
-                        unitVariant = App.master.unit_variant.findWhere({id:value.get('unitVariant')})
-                        value.set "sellablearea" , unitVariant.get "sellablearea"
-                        value.set "sqft" , unitVariant.get "Sq.ft."
+            #             value.set "unittypename" , unitType.get "name"
+            #             unitVariant = App.master.unit_variant.findWhere({id:value.get('unitVariant')})
+            #             value.set "sellablearea" , unitVariant.get "sellablearea"
+            #             value.set "sqft" , unitVariant.get "Sq.ft."
 
-                )
-                unitAssgendModels = _.uniq(unitAssgendModels)
-                unitAssgendModels.sort( (a,b)->
-                    b.get('floor') - a.get('floor')
+            #     )
+            #     unitAssgendModels = _.uniq(unitAssgendModels)
+            #     unitAssgendModels.sort( (a,b)->
+            #         b.get('floor') - a.get('floor')
 
-                )
-                maxcount = []
-                maxunits = []  
-                track = 0  
+            #     )
+            #     maxcount = []
+            #     maxunits = []  
+            #     track = 0  
                 
-                $.each(unitAssgendModels, (index,value1)->
-                    flag = 0
-                    $.each(myArray, (index,value)->
-                        paramKey = {}
-                        paramKey[value.key] = value.value
-                        if value.key == 'budget'
-                            buildingModel = App.master.building.findWhere({'id':value1.get 'building'})
-                            floorRise = buildingModel.get 'floorrise'
-                            floorRiseValue = floorRise[value1.get 'floor']
-                            unitVariantmodel = App.master.unit_variant.findWhere({'id':value1.get 'unitVariant'})
-                            #unitPrice = (parseInt( unitVariantmodel.get('persqftprice')) + parseInt(floorRiseValue)) * parseInt(unitVariantmodel.get 'sellablearea')
-                            unitPrice = value1.get 'unitPrice'
-                            budget_arr = value.value.split(' ')
-                            budget_price = budget_arr[0].split('-')
-                            budget_price[0] = budget_price[0]+'00000'
-                            budget_price[1] = budget_price[1]+'00000'
-                            if parseInt(unitPrice) >= parseInt(budget_price[0]) && parseInt(unitPrice) <= parseInt(budget_price[1])
-                                flag++
-                        else if value.key != 'floor'
-                            tempnew = []
+            #     $.each(unitAssgendModels, (index,value1)->
+            #         flag = 0
+            #         $.each(myArray, (index,value)->
+            #             paramKey = {}
+            #             paramKey[value.key] = value.value
+            #             if value.key == 'budget'
+            #                 buildingModel = App.master.building.findWhere({'id':value1.get 'building'})
+            #                 floorRise = buildingModel.get 'floorrise'
+            #                 floorRiseValue = floorRise[value1.get 'floor']
+            #                 unitVariantmodel = App.master.unit_variant.findWhere({'id':value1.get 'unitVariant'})
+            #                 #unitPrice = (parseInt( unitVariantmodel.get('persqftprice')) + parseInt(floorRiseValue)) * parseInt(unitVariantmodel.get 'sellablearea')
+            #                 unitPrice = value1.get 'unitPrice'
+            #                 budget_arr = value.value.split(' ')
+            #                 budget_price = budget_arr[0].split('-')
+            #                 budget_price[0] = budget_price[0]+'00000'
+            #                 budget_price[1] = budget_price[1]+'00000'
+            #                 if parseInt(unitPrice) >= parseInt(budget_price[0]) && parseInt(unitPrice) <= parseInt(budget_price[1])
+            #                     flag++
+            #             else if value.key != 'floor'
+            #                 tempnew = []
                             
-                            if value.key == 'view' ||  value.key == 'apartment_views'
-                                tempnew = []
-                                value.key = 'apartment_views'
-                                tempnew = value1.get(value.key)
-                                if tempnew != ""
-                                    tempnew = tempnew.map((item)->
-                                        return parseInt(item))
-                            else if value.key == 'facing'
-                                tempnew = []
-                                tempnew = value1.get(value.key)
-                                if tempnew.length != 0
-                                    tempnew = tempnew.map((item)->
-                                        return parseInt(item))
-                            temp = []
-                            temp.push value.value
-                            tempstring = temp.join(',')
-                            initvariant = tempstring.split(',').map((item)->
-                                return parseInt(item)
-                            )
+            #                 if value.key == 'view' ||  value.key == 'apartment_views'
+            #                     tempnew = []
+            #                     value.key = 'apartment_views'
+            #                     tempnew = value1.get(value.key)
+            #                     if tempnew != ""
+            #                         tempnew = tempnew.map((item)->
+            #                             return parseInt(item))
+            #                 else if value.key == 'facing'
+            #                     tempnew = []
+            #                     tempnew = value1.get(value.key)
+            #                     if tempnew.length != 0
+            #                         tempnew = tempnew.map((item)->
+            #                             return parseInt(item))
+            #                 temp = []
+            #                 temp.push value.value
+            #                 tempstring = temp.join(',')
+            #                 initvariant = tempstring.split(',').map((item)->
+            #                     return parseInt(item)
+            #                 )
                             
-                            if initvariant.length >= 1
-                                for element in initvariant
-                                    if value1.get(value.key) == parseInt(element)
-                                        flag++ 
-                                    else if $.inArray(parseInt(element),tempnew) >=0 
-                                        flag++ 
+            #                 if initvariant.length >= 1
+            #                     for element in initvariant
+            #                         if value1.get(value.key) == parseInt(element)
+            #                             flag++ 
+            #                         else if $.inArray(parseInt(element),tempnew) >=0 
+            #                             flag++ 
 
-                            else
-                                if value1.get(value.key) == parseInt(value.value)
-                                    flag++
+            #                 else
+            #                     if value1.get(value.key) == parseInt(value.value)
+            #                         flag++
                             
 
 
-                    )
-                    if flag >= myArray.length - 1
-                        track = 1
-                    if myArray.length == 0
-                        track = 1
-                    if  value1.get('status') == 9 && value1.get('unitType') != 14 && value1.get('unitType') != 16
-                        maxunits = App.currentStore.unit.where({unitAssigned:value})
+            #         )
+            #         if flag >= myArray.length - 1
+            #             track = 1
+            #         if myArray.length == 0
+            #             track = 1
+            #         if  value1.get('status') == 9 && value1.get('unitType') != 14 && value1.get('unitType') != 16
+            #             maxunits = App.currentStore.unit.where({unitAssigned:value})
 
                     
                     
@@ -742,25 +742,27 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
 
 
 
-                )
-                disabled = disabled
-                unitAssgendModelsColl = new Backbone.Collection unitAssgendModels
-                if maxunits.length == 0
-                    trackposition.push(value)
-                unitArray.push({id:value,units:unitAssgendModelsColl,count:maxunits.length,disabled:disabled})
+            #     )
+            #     disabled = disabled
+            #     unitAssgendModelsColl = new Backbone.Collection unitAssgendModels
+            #     if maxunits.length == 0
+            #         trackposition.push(value)
+            #     unitArray.push({id:value,units:unitAssgendModelsColl,count:maxunits.length,disabled:disabled})
 
 
 
-            )
-            unitArray.sort( (a,b)->
-                a.id - b.id
+            # )
+            # unitArray.sort( (a,b)->
+            #     a.id - b.id
 
-            )
+            # )
             
-            maxvalue = _.max(unitArray,  (model)->
-                model.count
-            )
-            newunitCollection = new Backbone.Collection unitArray
+            # maxvalue = _.max(unitArray,  (model)->
+            #     model.count
+            # )
+            maxvalue = ""
+            unitArray.push({units:unitColl})
+            console.log newunitCollection = new Backbone.Collection unitArray
             buildingModel = App.master.building.where(id:parseInt(buildingvalue))
             buildingCollection = new Backbone.Collection buildingModel
             mainnewarr = ""
