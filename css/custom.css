@@ -9434,6 +9434,7 @@ select:-moz-focusring {
   top: 50px;
   overflow: scroll;
   width: 350px;
+  padding-bottom: 30px;
 }
 .cbp-spmenu-vertical > ul {
   list-style-type: none;
