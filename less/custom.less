@@ -430,3 +430,54 @@ a.im-clear-button{
 .salesLogout{
     width: 75px;
 }
+
+.block{
+	display: block;
+}
+
+
+/* Booking Styles */
+.page-heading{
+	margin-top: 10px;
+}
+
+.accordion{
+	max-width: 850px;
+	margin: auto;
+}
+.accordion-group{
+	box-shadow: 0 -1px 1px lighten(@color-grey, 30%);
+	.acc-title{
+		background: @gray-lighter;
+		padding: 15px;
+		h4{
+			margin: 0;
+		}
+	}
+
+	.acc-body{
+		height: 0px;
+		opacity: 0;
+		display: none;
+		.ease;
+	}
+
+	&.open{
+		.acc-title{
+			// color: @brand-primary;
+			color: @color-white;
+			background: @brand-primary;
+			box-shadow: 0 2px 1px lighten(@color-grey, 30%);
+			h4{
+				font-weight: 600;
+			}
+		}
+		.acc-body{
+			padding: 20px;
+			height: auto;
+			display: block;
+			opacity: 1;
+		}
+	}
+
+}

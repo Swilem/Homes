@@ -38,9 +38,16 @@ define [ 'marionette' ], ( Marionette )->
                     <option value="nepal">Nepal</option>
                     </select>
 
-                    <input type="submit" name="payment" id="payment" value="Continue to Payment" />
                     </form>
 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button id="payment" class="next-one btn btn-primary btn-block">
+                                Continue to Payment
+                            </button>
+                        </div>
                     </div>'
 
 
@@ -59,6 +66,8 @@ define [ 'marionette' ], ( Marionette )->
 
 
                     })
+                $('.accordion-group.three').removeClass('open')
+                $('.accordion-group.four').addClass('open')
 
         onShow:->
             $('#birthdate').datepicker({

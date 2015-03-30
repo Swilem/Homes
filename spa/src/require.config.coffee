@@ -106,7 +106,7 @@ requirejs.config
         autoNumeric : ['jquery']
         printPreview : ['jquery']
         bpopup : ['jquery']
-        jqueryui :[ 'jquery' ] 
+        jqueryui :[ 'jquery' ]
 
 
 

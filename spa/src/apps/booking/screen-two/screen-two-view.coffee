@@ -7,9 +7,14 @@ define [ 'marionette' ], ( Marionette )->
                         <span>Building name : </span><span class="building_name"></span>
                         <span>Amount recievable as on Date : </span><span class="rec"></span>
                         <span>Final cost : </span><span class="final_cost"></span>
+                    </div>
 
-                    <input type="button" name="accept" id="accept" value="Accept 
-                    Terms and Conditions" />
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button id="accept" class="next-one btn btn-primary btn-block">
+                                Accept Terms and Conditions
+                            </button>
+                        </div>
                     </div>'
 
 
@@ -18,6 +23,8 @@ define [ 'marionette' ], ( Marionette )->
                 msgbus.showApp 'booking:screen:three'
                 .insideRegion  App.layout.screenThreeRegion
                     .withOptions()
+                $('.accordion-group.two').removeClass('open')
+                $('.accordion-group.three').addClass('open')
 
 
 
