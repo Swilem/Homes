@@ -50,7 +50,10 @@ requirejs.config({
     autoNumeric: 'src/bower_components/autoNumeric/autoNumeric',
     printPreview: 'src/bower_components/preload/jquery.print-preview',
     bpopup: 'src/bower_components/bpopup/jquery.bpopup.min',
-    collapse: 'src/bower_components/bootstrap/js/collapse'
+    collapse: 'src/bower_components/bootstrap/js/collapse',
+    handlebars: 'src/bower_components/handlebars/handlebars',
+    parsleyjs: 'src/bower_components/parsleyjs/dist/parsley.min',
+    jqueryui: 'src/bower_components/jquery-ui/jquery-ui.min'
   },
   shim: {
     jquery: ['underscore'],
@@ -97,6 +100,7 @@ requirejs.config({
     JqueryPriceFormat: ['jquery'],
     autoNumeric: ['jquery'],
     printPreview: ['jquery'],
-    bpopup: ['jquery']
+    bpopup: ['jquery'],
+    jqueryui: ['jquery']
   }
 });

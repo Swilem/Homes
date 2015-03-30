@@ -1113,3 +1113,66 @@ function get_building_unit_assigned_to_position($building,$flatposition){
          return arrayToObject($flats_in_position);
    
 } 
+
+function create_order($arr){
+
+    global $wpdb;
+
+    $orders = $wpdb->prefix . "orders";
+    $order_meta = $wpdb->prefix . "orders_meta";
+
+    $meta_id = $wpdb->insert(
+                                $orders,
+                                array(
+                                    'unit_id'                     => $arr['id'],
+                                    'payment_id'                  => 0                                ),
+                                array(
+                                    '%d',
+                                    '%d'
+                                )
+                            );
+
+    foreach ($arr as $key => $value) {
+       $meta_id = $wpdb->insert(
+                                    $order_meta,
+                                    array(
+                                        'order_id'                     => $meta_id,
+                                        'meta_key'                     => $key,
+                                        'meta_value'                   => $value           
+
+                                        ),
+                                    array(
+                                        '%d',
+                                        '%s',
+                                        '%s'
+                                    )
+                                );
+
+    }
+
+    $resposne = change_status($arr['id'],8);
+
+    if($resposne)
+        return $resposne;
+
+    else
+        return new WP_Error( 'order_not_saved', __( 'Order_not_saved.' ));
+
+
+  
+
+}
+
+function change_status($id,$status){
+
+    $unit_status = update_post_meta($id,"unit_status",$status);
+
+    if($unit_status)
+        return $unit_status;
+
+    else
+        return new WP_Error( 'status_not_saved', __( 'Status_not_saved.' ));
+
+
+
+}

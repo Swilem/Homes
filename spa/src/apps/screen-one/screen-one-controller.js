@@ -47,9 +47,6 @@ define(['extm', 'src/apps/screen-one/screen-one-view'], function(Extm, ScreenOne
       status = App.currentStore.status.findWhere({
         'name': 'Available'
       });
-      units = App.currentStore.unit.where({
-        'status': status.get('id')
-      });
       priceUnits = App.currentStore.unit;
       priceUnits.each(function(item) {
         var buildingModel, floorRise, floorRiseValue, unitPrice, unitVariantmodel;

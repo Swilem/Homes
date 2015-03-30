@@ -46,6 +46,9 @@ require_once (get_template_directory().'/classes/autoload.php');
 require_once (get_template_directory().'/ajax-module.php');
 //pdf generator library
 require_once (get_template_directory().'/functions/tcpdf_include.php');
+
+///added by Surekha
+require_once (get_template_directory().'/apis/unit.api.php');
 $bust = '?'.BUST; 
 
 //formatted echo using pre tags can be used to echo out data for testing purpose
@@ -309,7 +312,7 @@ function get_current_version() {
 function is_single_page_app( $module_name ) {
 
     // add slugs of SPA pages here
-    $spa_pages = array( 'apartment-selector','apartmentsselector','wishlist' );
+    $spa_pages = array( 'apartment-selector','apartmentsselector','wishlist' ,'booking');
 
     return in_array( $module_name, $spa_pages );
 
@@ -634,24 +637,6 @@ function generate_pdf_data($unit_id,$tower_id,$wishlist){
    return $output_link;
 }
 
-/*add_action('wp_login', 'check_user_login11');
 
-function check_user_login(){
-
-    if ( is_user_logged_in() ) 
-    { 
-
-       
-        ?>
-        <SCRIPT TYPE="text/javascript">
-        localStorage.setItem("login", 1)
-        
-        </SCRIPT>
-        <?php
-
-    }
-
-
-}*/
 
 

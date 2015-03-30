@@ -40,7 +40,6 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
             collection = new UnitsCollection()
             status = App.currentStore.status.findWhere({'name':'Available'})
 
-            units = App.currentStore.unit.where({'status':status.get('id')})
             priceUnits = App.currentStore.unit
             priceUnits.each ( item)->
                 #calculating the price value
