@@ -1125,6 +1125,7 @@ function create_order($arr){
                                 $orders,
                                 array(
                                     'unit_id'                     => $arr['id'],
+                                    'user_id'                     => $arr['user_id'],
                                     'payment_id'                  => 0                                ),
                                 array(
                                     '%d',

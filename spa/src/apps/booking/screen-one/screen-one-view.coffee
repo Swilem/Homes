@@ -26,8 +26,20 @@ define [ 'marionette' ], ( Marionette )->
 
    		onShow:->
    			usermodel = new Backbone.Model USER
-   			console.log usermodel
    			if parseInt(usermodel.get('id')) != 0
+			    $.ajax(
+			    	type : 'POST',
+			    	url : SITEURL+'/wp-json/unitstatus/'+unit_id,
+			    	data : '',
+			    	success:(response)->
+			    		console.log "success"
+			    	error:(response)->
+			    		console.log "error"
+
+
+
+
+			    )
    				$('.socailMedia').hide()
    				$('.userinfo').text 'Hello '+usermodel.get('display_name')
    				msgbus.showApp 'booking:screen:two'

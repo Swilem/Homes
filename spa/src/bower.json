@@ -14,7 +14,9 @@
     "bootstrap-tour": "~0.9.3",
     "requirejs": "~2.1.14",
     "almond": "~0.2.9",
-    "jqueryui": "~1.10.4"
+    "jqueryui": "~1.10.4",
+    "jquery-ui": "~1.11.4",
+    "parsleyjs": "~2.0.7"
   },
   "devDependencies": {
     "spin": "~1.1.6",

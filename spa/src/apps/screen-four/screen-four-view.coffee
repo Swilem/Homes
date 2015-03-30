@@ -542,33 +542,26 @@ define [ 'marionette' ], ( Marionette )->
 				)
 
 		onShow:->
-			#@trigger "get:perSqft:price"
 			$('#buy').on('click' , ()->
 				unit = App.master.unit.findWhere({id:parseInt(App.unit['name'])})
 				building = App.master.building.findWhere({id:parseInt(unit.get('building'))})
 					
-				$.ajax({
-						type : 'POST',
-						url : SITEURL+'/wp-json/unitstatus/'+unit.get('id'),
-						data : '',
-						success:(response)->
-							if discountClass == ""
-								finalvalue = $('.finalvalue').text()
-							else
-								finalvalue = $('.finalvalue1').text()
-							recamount = $('.rec').text()
-							str = 'unit_id='+unit.get('id')+'&building='+building.get('name')+'&unit_name='+unit.get('name')+'&finalcost='+finalvalue+'&recAmount='+recamount
+				if discountClass == ""
+					finalvalue = $('.finalvalue').text()
+				else
+					finalvalue = $('.finalvalue1').text()
+				recamount = $('.rec').text()
+				str = 'unit_id='+unit.get('id')+'&building='+building.get('name')+'&unit_name='+unit.get('name')+'&finalcost='+finalvalue+'&recAmount='+recamount
 
-							query  = encodeURIComponent(str)
-							url  = SITEURL+'/booking?'+query
-							window.open(url,'_blank')
+				query  = encodeURIComponent(str)
+				url  = SITEURL+'/booking?'+query
+				window.open(url,'_blank')
 							
-						error :(response)->
-							console.log('failed')
+					
 
 
 
-					})
+					
 					
 
 			)

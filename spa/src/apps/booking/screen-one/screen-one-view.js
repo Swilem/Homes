@@ -16,8 +16,18 @@ define(['marionette'], function(Marionette) {
     ScreenOneView.prototype.onShow = function() {
       var usermodel;
       usermodel = new Backbone.Model(USER);
-      console.log(usermodel);
       if (parseInt(usermodel.get('id')) !== 0) {
+        $.ajax({
+          type: 'POST',
+          url: SITEURL + '/wp-json/unitstatus/' + unit_id,
+          data: '',
+          success: function(response) {
+            return console.log("success");
+          },
+          error: function(response) {
+            return console.log("error");
+          }
+        });
         $('.socailMedia').hide();
         $('.userinfo').text('Hello ' + usermodel.get('display_name'));
         return msgbus.showApp('booking:screen:two').insideRegion(App.layout.screenTwoRegion).withOptions();

@@ -336,34 +336,23 @@ define(['marionette'], function(Marionette) {
     ScreenFourLayout.prototype.onShow = function() {
       var buildingModel, capability, cookieOldValue, costSheetArray, count, flag, milestoneselectedValue, unitModel, usermodel;
       $('#buy').on('click', function() {
-        var building, unit;
+        var building, finalvalue, query, recamount, str, unit, url;
         unit = App.master.unit.findWhere({
           id: parseInt(App.unit['name'])
         });
         building = App.master.building.findWhere({
           id: parseInt(unit.get('building'))
         });
-        return $.ajax({
-          type: 'POST',
-          url: SITEURL + '/wp-json/unitstatus/' + unit.get('id'),
-          data: '',
-          success: function(response) {
-            var finalvalue, query, recamount, str, url;
-            if (discountClass === "") {
-              finalvalue = $('.finalvalue').text();
-            } else {
-              finalvalue = $('.finalvalue1').text();
-            }
-            recamount = $('.rec').text();
-            str = 'unit_id=' + unit.get('id') + '&building=' + building.get('name') + '&unit_name=' + unit.get('name') + '&finalcost=' + finalvalue + '&recAmount=' + recamount;
-            query = encodeURIComponent(str);
-            url = SITEURL + '/booking?' + query;
-            return window.open(url, '_blank');
-          },
-          error: function(response) {
-            return console.log('failed');
-          }
-        });
+        if (discountClass === "") {
+          finalvalue = $('.finalvalue').text();
+        } else {
+          finalvalue = $('.finalvalue1').text();
+        }
+        recamount = $('.rec').text();
+        str = 'unit_id=' + unit.get('id') + '&building=' + building.get('name') + '&unit_name=' + unit.get('name') + '&finalcost=' + finalvalue + '&recAmount=' + recamount;
+        query = encodeURIComponent(str);
+        url = SITEURL + '/booking?' + query;
+        return window.open(url, '_blank');
       });
       $(".discountToggle").click(function() {
         $(".discountBox").slideToggle();

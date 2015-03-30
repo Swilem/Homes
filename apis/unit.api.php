@@ -50,6 +50,7 @@ class Unit_API
             'state'         => $_REQUEST['state'],
             'zipcode'       => $_REQUEST['zipcode'],
             'country'       => $_REQUEST['zipcode'],
+            'user_id'       => $_REQUEST['user_id']
 
 
 

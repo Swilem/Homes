@@ -4,12 +4,13 @@ define [ 'marionette' ], ( Marionette )->
 
         template : '<div>
                     <form id="store_order" parsley-validate>
+                    <input type="hidden" required  name="user_id" id="user_id" value="'+unit_id+'" />
                     <span>First name : </span>
-                    <input type="text" required name="first_name" id="first_name" value="" />
+                    <input type="text" required data-parsley-type="alphanum" name="first_name" id="first_name" value="" />
                     <span>Last name : </span>
-                    <input type="text" required name="last_name" id="last_name" value="" />
+                    <input type="text" required data-parsley-type="alphanum" name="last_name" id="last_name" value="" />
                     <span>Email : </span>
-                    <input type="email" aj-field-type="number" data-parsley-trigger="change" required name="email" id="email" value="" />
+                    <input type="email" type="number" data-parsley-trigger="change" required name="email" id="email" value="" />
                     <span>Phone : </span>
                     <input type="text" required name="phone" id="phone" value="" />
                     <span>Birthdate : </span>
@@ -24,11 +25,11 @@ define [ 'marionette' ], ( Marionette )->
                     <span>Address : </span>
                     <input type="text" name="address" required id="address" value="" />
                     <span>City : </span>
-                    <input type="text" name="city"  requiredid="city" value="" />
+                    <input type="text" name="city"  data-parsley-type="alphanum"requiredid="city" value="" />
                     <span>State : </span>
-                    <input type="text" name="state" required id="state" value="" />
+                    <input type="text" name="state" data-parsley-type="alphanum" required id="state" value="" />
                     <span>Zipcode : </span>
-                    <input type="text" name="zipcode" aj-field-type="number" requiredid="zipcode" value="" />
+                    <input type="text" name="zipcode" type="number" requiredid="zipcode" value="" />
                     <span>Country : </span>
                     <select name="country" id="country" required>
                     <option value=""></option>
