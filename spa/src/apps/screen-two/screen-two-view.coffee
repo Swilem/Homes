@@ -756,6 +756,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
             'click #screen-two-button':(e)->
                 #rangeArray = []
+                App.unit['name'] = ""
                 $('#screen-three-region').addClass 'section'
                 @trigger 'unit:count:selected'
 

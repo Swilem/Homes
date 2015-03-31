@@ -35,11 +35,14 @@ define [ 'marionette' ], ( Marionette )->
 						</div>
 					</div>
 
-					<div class="text-center">
-						<button class="next-one btn btn-primary">
-			                Next
-			            </button>
-				    </div>'
+
+					<div class="row">
+   						<div class="col-md-2 col-md-offset-5">
+							<button class="next-one btn disabled btn-default btn-block">
+				                Next
+				            </button>
+				        </div>
+					'
 
    		onShow:->
    			usermodel = new Backbone.Model USER
@@ -57,6 +60,8 @@ define [ 'marionette' ], ( Marionette )->
 
 
 			    )
+			    $(".next-one").removeClass 'disabled btn-default'
+			    $('.next-one').addClass 'btn-primary'
    				$('.socailMedia').hide()
    				$('.userinfo').text 'Welcome '+usermodel.get('display_name')
    				msgbus.showApp 'booking:screen:two'
