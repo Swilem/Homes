@@ -3,51 +3,104 @@ define [ 'marionette' ], ( Marionette )->
    class ScreenThreeView extends Marionette.ItemView
 
         template : '<div>
-                    <form id="store_order" parsley-validate>
-                    <input type="hidden" required  name="user_id" id="user_id" value="'+unit_id+'" />
-                    <span>First name : </span>
-                    <input type="text" required data-parsley-type="alphanum" name="first_name" id="first_name" value="" />
-                    <span>Last name : </span>
-                    <input type="text" required data-parsley-type="alphanum" name="last_name" id="last_name" value="" />
-                    <span>Email : </span>
-                    <input type="email" type="number" data-parsley-trigger="change" required name="email" id="email" value="" />
-                    <span>Phone : </span>
-                    <input type="text" required name="phone" id="phone" value="" />
-                    <span>Birthdate : </span>
-                    <input type="text" required name="birthdate" id="birthdate" value="" />
-                    <span>Nationality: </span>
-                    <select name="nationality" id="nationality" required>
-                    <option value=""></option>
-                    <option value="indian">Indian</option>
-                    <option value="poi">POI/OCI</option>
-                    <option value="nri">NRI</option>
-                    </select>
-                    <span>Address : </span>
-                    <input type="text" name="address" required id="address" value="" />
-                    <span>City : </span>
-                    <input type="text" name="city"  data-parsley-type="alphanum"requiredid="city" value="" />
-                    <span>State : </span>
-                    <input type="text" name="state" data-parsley-type="alphanum" required id="state" value="" />
-                    <span>Zipcode : </span>
-                    <input type="text" name="zipcode" type="number" requiredid="zipcode" value="" />
-                    <span>Country : </span>
-                    <select name="country" id="country" required>
-                    <option value=""></option>
-                    <option value="india">India</option>
-                    <option value="china">China</option>
-                    <option value="nepal">Nepal</option>
-                    </select>
+                        <div class="alert alert-warning">All fields are mandatory</div>
+                        <form id="store_order" parsley-validate class="details-form">
+                            <input type="hidden" required  name="user_id" id="user_id" value="'+unit_id+'" />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>First Name: </label>
+                                        <input type="text" placeholder="Enter First Name" class="form-control" required data-parsley-type="alphanum" name="first_name" id="first_name" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Last Name: </label>
+                                        <input type="text" placeholder="Enter Last Name" class="form-control" required data-parsley-type="alphanum" name="last_name" id="last_name" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Email: </label>
+                                        <input type="email" placeholder="Enter Email Address" class="form-control" type="number" data-parsley-trigger="change" required name="email" id="email" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Phone: </label>
+                                        <input type="text" placeholder="Enter Phone Number" class="form-control" required name="phone" id="phone" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Birthdate: </label>
+                                        <input type="text" placeholder="Enter Date of Birth" class="form-control" required name="birthdate" id="birthdate" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Nationality: </label>
+                                        <select class="form-control" name="nationality" id="nationality" required>
+                                            <option value="">Select Nationality</option>
+                                            <option value="indian">Indian</option>
+                                            <option value="poi">POI/OCI</option>
+                                            <option value="nri">NRI</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Address: </label>
+                                        <input type="text" class="form-control" placeholder="Enter Address" name="address" required id="address" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>City: </label>
+                                        <input type="text" class="form-control" name="city"  placeholder="Enter City"  data-parsley-type="alphanum" required id="city" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>State: </label>
+                                        <input type="text" class="form-control" name="state" placeholder="Enter State" data-parsley-type="alphanum" required id="state" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Zipcode: </label>
+                                        <input type="text" class="form-control" name="zipcode" placeholder="Enter Zipcode" type="number" required id="zipcode" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Country: </label>
+                                        <select class="form-control" name="country" id="country" required>
+                                            <option value="">Select Country</option>
+                                            <option value="india">India</option>
+                                            <option value="china">China</option>
+                                            <option value="nepal">Nepal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
 
-                    </form>
+                                </div>
+                            </div>
+                        </form>
 
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <button id="payment" class="next-one btn btn-primary btn-block">
-                                Continue to Payment
-                            </button>
-                        </div>
+                    <div class="text-center">
+                        <button id="payment" class="next-three btn btn-primary">
+                            Continue to Payment
+                        </button>
                     </div>'
 
 
@@ -68,7 +121,7 @@ define [ 'marionette' ], ( Marionette )->
 
 
                     })
-                    
+
 
         onShow:->
             $('#birthdate').datepicker({

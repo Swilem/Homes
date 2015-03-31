@@ -35,13 +35,14 @@ define [ 'marionette' ], ( Marionette )->
 						</div>
 					</div>
 
+
 					<div class="row">
    						<div class="col-md-2 col-md-offset-5">
 							<button class="next-one btn disabled btn-default btn-block">
 				                Next
 				            </button>
 				        </div>
-				    </div>'
+					'
 
    		onShow:->
    			usermodel = new Backbone.Model USER
