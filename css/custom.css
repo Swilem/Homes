@@ -9701,3 +9701,51 @@ a.im-clear-button {
 .salesLogout {
   width: 75px;
 }
+.block {
+  display: block;
+}
+/* Booking Styles */
+.page-heading {
+  margin-top: 10px;
+}
+.accordion {
+  max-width: 850px;
+  margin: auto;
+}
+.accordion-group {
+  box-shadow: 0 -1px 1px #dfe1e5;
+}
+.accordion-group .acc-title {
+  background: #eeeeee;
+  padding: 15px;
+}
+.accordion-group .acc-title h4 {
+  margin: 0;
+}
+.accordion-group .acc-body {
+  height: 0px;
+  opacity: 0;
+  display: none;
+  -webkit-transition: all 0.3s ease-out;
+  /* Chrome 1-25, Safari 3.2+ */
+  -moz-transition: all 0.3s ease-out;
+  /* Firefox 4-15 */
+  -o-transition: all 0.3s ease-out;
+  /* Opera 10.50–12.00 */
+  transition: all 0.3s ease-out;
+  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+.accordion-group.open .acc-title {
+  color: #ffffff;
+  background: #ff6600;
+  box-shadow: 0 2px 1px #dfe1e5;
+}
+.accordion-group.open .acc-title h4 {
+  font-weight: 600;
+}
+.accordion-group.open .acc-body {
+  padding: 20px;
+  height: auto;
+  display: block;
+  opacity: 1;
+}
