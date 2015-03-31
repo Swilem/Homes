@@ -35,12 +35,10 @@ define [ 'marionette' ], ( Marionette )->
 						</div>
 					</div>
 
-					<div class="row">
-   						<div class="col-md-2 col-md-offset-5">
-							<button class="next-one btn btn-primary btn-block">
-				                Next
-				            </button>
-				        </div>
+					<div class="text-center">
+						<button class="next-one btn btn-primary">
+			                Next
+			            </button>
 				    </div>'
 
    		onShow:->

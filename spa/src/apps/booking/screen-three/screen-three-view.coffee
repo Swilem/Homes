@@ -42,12 +42,10 @@ define [ 'marionette' ], ( Marionette )->
 
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <button id="payment" class="next-one btn btn-primary btn-block">
-                                Continue to Payment
-                            </button>
-                        </div>
+                    <div class="text-center">
+                        <button id="payment" class="next-three btn btn-primary">
+                            Continue to Payment
+                        </button>
                     </div>'
 
 

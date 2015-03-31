@@ -52,7 +52,7 @@ define [ 'marionette' ], ( Marionette )->
                               <input type="checkbox">I accept the <a href="http://manaslake.com/terms-conditions/" target="blank">Terms and Conditions</a>.
                             </label>
                         </div>                        
-                        <button id="accept" class="next-one btn btn-primary">
+                        <button id="accept" class="next-two btn btn-primary">
                             NEXT
                         </button>
                     </div>'
