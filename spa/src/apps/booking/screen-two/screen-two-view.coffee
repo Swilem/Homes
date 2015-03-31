@@ -49,16 +49,23 @@ define [ 'marionette' ], ( Marionette )->
                     <div class="text-center">
                         <div class="checkbox">
                             <label>
-                              <input type="checkbox">I accept the <a href="http://manaslake.com/terms-conditions/" target="blank">Terms and Conditions</a>.
+                              <input type="checkbox" id="acceptvalue">I accept the <a href="http://manaslake.com/terms-conditions/" target="blank">Terms and Conditions</a>.
                             </label>
                         </div>                        
-                        <button id="accept" class="next-one btn btn-primary">
+                        <button id="accept" class="next-one btn disabled btn-default">
                             NEXT
                         </button>
                     </div>'
 
 
         events:
+            'click #acceptvalue':(e)->
+                if $(e.target).prop('checked') == true
+                    $('#accept').removeClass 'disabled btn-default'
+                    $('#accept').addClass 'btn-primary'
+                else
+                    $('#accept').addClass 'disabled btn-default'
+                    $('#accept').removeClass 'btn-primary'
             'click #accept':(e)->
                 msgbus.showApp 'booking:screen:three'
                 .insideRegion  App.layout.screenThreeRegion

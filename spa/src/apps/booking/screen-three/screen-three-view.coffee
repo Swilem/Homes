@@ -60,14 +60,15 @@ define [ 'marionette' ], ( Marionette )->
                         url : SITEURL+'/wp-json/units/'+unit_id,
                         data : $('#store_order').serialize(),
                         success:(response)->
+                            $('.accordion-group.three').removeClass('open')
+                            $('.accordion-group.four').addClass('open')
                             
                         error :(response)->
 
 
 
                     })
-                $('.accordion-group.three').removeClass('open')
-                $('.accordion-group.four').addClass('open')
+                    
 
         onShow:->
             $('#birthdate').datepicker({

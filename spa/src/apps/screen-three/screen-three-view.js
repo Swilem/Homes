@@ -43,6 +43,9 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenThreeLayout.prototype.events = {
+      'click .onhold': function(e) {
+        return $('.onhold_msg').text('Some message');
+      },
       'click .other': function(e) {
         $("#" + e.target.id).parent().removeAttr('data-target');
         return this.showLayoutMsg();
@@ -337,7 +340,7 @@ define(['marionette'], function(Marionette) {
         return this.trigger("load:range:data", unitModel);
       },
       'mouseover .unit-hover': function(e) {
-        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
+        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, status_hold, status_sold, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -408,16 +411,24 @@ define(['marionette'], function(Marionette) {
         status = App.currentStore.status.findWhere({
           'name': 'Available'
         });
+        status_hold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        status_sold = App.currentStore.status.findWhere({
+          'name': 'Sold'
+        });
         if (checktrack === 1 && parseInt(unitModel.get('status')) === parseInt(status.get('id '))) {
           return $("#" + e.target.id).attr('class', 'unit-hover aviable');
-        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === 8 || parseInt(unitModel.get('status')) === 47)) {
+        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === parseInt(status_sold.get('id ')) || parseInt(unitModel.get('status')) === 47)) {
           return $("#" + e.target.id).attr('class', 'sold');
+        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === parseInt(status_hold.get('id ')) || parseInt(unitModel.get('status')) === 47)) {
+          return $("#" + e.target.id).attr('class', 'onhold');
         } else {
           return $("#" + e.target.id).attr('class', 'other');
         }
       },
       'mouseover .range': function(e) {
-        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
+        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, status_hold, status_sold, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -488,16 +499,24 @@ define(['marionette'], function(Marionette) {
         status = App.currentStore.status.findWhere({
           'name': 'Available'
         });
+        status_hold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        status_sold = App.currentStore.status.findWhere({
+          'name': 'Sold'
+        });
         if (checktrack === 1 && parseInt(unitModel.get('status')) === parseInt(status.get('id'))) {
           return $("#" + e.target.id).attr('class', 'unit-hover range aviable');
-        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === 8 || parseInt(unitModel.get('status')) === 47)) {
+        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === parseInt(status_sold.get('id')) || parseInt(unitModel.get('status')) === 47)) {
           return $("#" + e.target.id).attr('class', 'sold range');
+        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === parseInt(status_hold.get('id')) || parseInt(unitModel.get('status')) === 47)) {
+          return $("#" + e.target.id).attr('class', 'onhold range');
         } else {
           return $("#" + e.target.id).attr('class', 'other range');
         }
       },
       'mouseover .unselected-floor': function(e) {
-        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
+        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, status_hold, status_sold, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -568,11 +587,19 @@ define(['marionette'], function(Marionette) {
         status = App.currentStore.status.findWhere({
           'name': 'Available'
         });
+        status_hold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        status_sold = App.currentStore.status.findWhere({
+          'name': 'Sold'
+        });
         checktrack = this.checkSelection(unitModel);
         if (checktrack === 1 && parseInt(unitModel.get('status')) === parseInt(status.get('id'))) {
           return $("#" + e.target.id).attr('class', 'unselected-floor aviable');
-        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === 8 || parseInt(unitModel.get('status')) === 47)) {
+        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === parseInt(status_sold.get('id')) || parseInt(unitModel.get('status')) === 47)) {
           return $("#" + e.target.id).attr('class', 'sold ');
+        } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === parseInt(status_hold.get('id')) || parseInt(unitModel.get('status')) === 47)) {
+          return $("#" + e.target.id).attr('class', 'onhold ');
         } else {
           return $("#" + e.target.id).attr('class', 'other ');
         }
@@ -2433,7 +2460,7 @@ define(['marionette'], function(Marionette) {
 
     unitChildView.prototype.events = {
       'click ': function(e) {
-        var buildingModel, check, element, idValue, idvalue, index, indexvalue, obj, screenThreeLayout, status, status_sold, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues, _i, _len;
+        var buildingModel, check, element, idValue, idvalue, index, indexvalue, obj, screenThreeLayout, status, status_hold, status_sold, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues, _i, _len;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -2456,6 +2483,12 @@ define(['marionette'], function(Marionette) {
         status_sold = App.currentStore.status.findWhere({
           'name': 'Sold'
         });
+        status_hold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        if (check === 1 && parseInt(this.model.get('status')) === parseInt(status_hold.get('id'))) {
+          $('.onhold_msg').text('some message');
+        }
         if (check === 1 && parseInt(this.model.get('status')) === parseInt(status.get('id'))) {
           buildingModel = App.master.building.findWhere({
             id: parseInt(this.model.get('building'))
@@ -2628,7 +2661,7 @@ define(['marionette'], function(Marionette) {
     };
 
     unitChildView.prototype.onShow = function() {
-      var flag, myArray, obj, status, status_sold, track;
+      var flag, myArray, obj, status, status_onold, status_sold, track;
       $("#flatno").text("");
       $("#towerno").text("");
       $("#unittypename").text("");
@@ -2733,11 +2766,16 @@ define(['marionette'], function(Marionette) {
       status_sold = App.currentStore.status.findWhere({
         'name': 'Sold'
       });
+      status_onold = App.currentStore.status.findWhere({
+        'name': 'On Hold'
+      });
       if (track === 1 && parseInt(this.model.get('status')) === parseInt(status.get('id')) && this.model.get('unitType') !== 14 && this.model.get('unitType') !== 16) {
         $('#unitcheck' + this.model.get("id")).addClass('boxLong filtered');
         return $('#flag' + this.model.get("id")).val('1');
       } else if (track === 1 && parseInt(this.model.get('status')) === parseInt(status_sold.get('id')) && this.model.get('unitType') !== 14 && this.model.get('unitType') !== 16) {
         return $('#unitcheck' + this.model.get("id")).addClass('boxLong sold');
+      } else if (track === 1 && parseInt(this.model.get('status')) === parseInt(status_onold.get('id')) && this.model.get('unitType') !== 14 && this.model.get('unitType') !== 16) {
+        return $('#unitcheck' + this.model.get("id")).addClass('boxLong onhold');
       } else {
         $('#unitcheck' + this.model.get("id")).addClass('boxLong other');
         return $('#unitcheck' + this.model.get("id")).text(this.model.get('unitTypeName'));
@@ -2754,7 +2792,7 @@ define(['marionette'], function(Marionette) {
       return UnitView.__super__.constructor.apply(this, arguments);
     }
 
-    UnitView.prototype.template = '<div class="unitContainer"></div>';
+    UnitView.prototype.template = '<div class="onhold_msg"></div><div class="unitContainer"></div>';
 
     UnitView.prototype.childView = unitChildView;
 

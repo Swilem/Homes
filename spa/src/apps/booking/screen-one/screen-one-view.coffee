@@ -37,7 +37,7 @@ define [ 'marionette' ], ( Marionette )->
 
 					<div class="row">
    						<div class="col-md-2 col-md-offset-5">
-							<button class="next-one btn btn-primary btn-block">
+							<button class="next-one btn disabled btn-default btn-block">
 				                Next
 				            </button>
 				        </div>
@@ -59,6 +59,8 @@ define [ 'marionette' ], ( Marionette )->
 
 
 			    )
+			    $(".next-one").removeClass 'disabled btn-default'
+			    $('.next-one').addClass 'btn-primary'
    				$('.socailMedia').hide()
    				$('.userinfo').text 'Welcome '+usermodel.get('display_name')
    				msgbus.showApp 'booking:screen:two'

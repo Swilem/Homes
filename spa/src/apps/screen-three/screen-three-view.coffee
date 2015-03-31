@@ -180,6 +180,8 @@ define [ 'marionette' ], ( Marionette )->
         
 
         events:
+            'click .onhold':(e)->
+               $('.onhold_msg').text 'Some message'
             'click .other':(e)->
                 $( "#"+e.target.id ).parent().removeAttr('data-target')
                 @showLayoutMsg()
@@ -559,10 +561,14 @@ define [ 'marionette' ], ( Marionette )->
                         )
                 )    
                 status = App.currentStore.status.findWhere({'name':'Available'})
+                status_hold = App.currentStore.status.findWhere({'name':'On Hold'})
+                status_sold = App.currentStore.status.findWhere({'name':'Sold'})
                 if checktrack == 1 && parseInt(unitModel.get('status')) == parseInt(status.get('id ')) 
                     $("#"+e.target.id).attr('class','unit-hover aviable')
-                else if checktrack == 1 && ( parseInt(unitModel.get('status')) == 8 || parseInt(unitModel.get('status')) == 47 )
+                else if checktrack == 1 && ( parseInt(unitModel.get('status')) == parseInt(status_sold.get('id '))  || parseInt(unitModel.get('status')) == 47 )
                     $("#"+e.target.id).attr('class','sold')
+                else if checktrack == 1 && ( parseInt(unitModel.get('status')) == parseInt(status_hold.get('id ')) || parseInt(unitModel.get('status')) == 47 )
+                    $("#"+e.target.id).attr('class','onhold')
                 else
                     $("#"+e.target.id).attr('class','other')
 
@@ -632,10 +638,14 @@ define [ 'marionette' ], ( Marionette )->
                         )
                 )       
                 status = App.currentStore.status.findWhere({'name':'Available'})
+                status_hold = App.currentStore.status.findWhere({'name':'On Hold'})
+                status_sold = App.currentStore.status.findWhere({'name':'Sold'})
                 if checktrack == 1 && parseInt(unitModel.get('status')) == parseInt(status.get('id')) 
                     $("#"+e.target.id).attr('class','unit-hover range aviable')
-                else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == 8 || parseInt(unitModel.get('status')) == 47 )
+                else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == parseInt(status_sold.get('id')) || parseInt(unitModel.get('status')) == 47 )
                     $("#"+e.target.id).attr('class','sold range')
+                else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == parseInt(status_hold.get('id')) || parseInt(unitModel.get('status')) == 47 )
+                    $("#"+e.target.id).attr('class','onhold range')
                 else
                     $("#"+e.target.id).attr('class','other range')
                                     
@@ -718,12 +728,16 @@ define [ 'marionette' ], ( Marionette )->
 
                 )
                 status = App.currentStore.status.findWhere({'name':'Available'})
+                status_hold = App.currentStore.status.findWhere({'name':'On Hold'})
+                status_sold = App.currentStore.status.findWhere({'name':'Sold'})
                 
                 checktrack = @checkSelection(unitModel)
                 if checktrack == 1 && parseInt(unitModel.get('status')) == parseInt(status.get('id')) 
                     $("#"+e.target.id).attr('class','unselected-floor aviable')
-                else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == 8 || parseInt(unitModel.get('status')) == 47 )
+                else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == parseInt(status_sold.get('id'))  || parseInt(unitModel.get('status')) == 47 )
                     $("#"+e.target.id).attr('class','sold ')
+                else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == parseInt(status_hold.get('id'))  || parseInt(unitModel.get('status')) == 47 )
+                    $("#"+e.target.id).attr('class','onhold ')
                 else
                     $("#"+e.target.id).attr('class','other ')
                                     
@@ -2592,7 +2606,9 @@ define [ 'marionette' ], ( Marionette )->
                 check = screenThreeLayout.checkSelection(@model)
                 status = App.currentStore.status.findWhere({'name':'Available'})
                 status_sold = App.currentStore.status.findWhere({'name':'Sold'})
-            
+                status_hold = App.currentStore.status.findWhere({'name':'On Hold'})
+                if check == 1 && parseInt(@model.get('status')) == parseInt(status_hold.get('id'))
+                    $('.onhold_msg').text 'some message'
                 if check == 1 && parseInt(@model.get('status')) == parseInt(status.get('id'))
                     buildingModel = App.master.building.findWhere({id:parseInt(@model.get('building'))})
                     svgdata = buildingModel.get('svgdata')
@@ -2858,11 +2874,14 @@ define [ 'marionette' ], ( Marionette )->
                 track = 1
             status = App.currentStore.status.findWhere({'name':'Available'})
             status_sold = App.currentStore.status.findWhere({'name':'Sold'})
+            status_onold = App.currentStore.status.findWhere({'name':'On Hold'})
             if track==1 && parseInt(@model.get('status')) == parseInt(status.get('id')) && @model.get('unitType') != 14 && @model.get('unitType') != 16
                 $('#unitcheck'+@model.get("id")).addClass 'boxLong filtered'
                 $('#flag'+@model.get("id")).val '1'
             else if track==1 &&  parseInt(@model.get('status')) == parseInt(status_sold.get('id')) && @model.get('unitType') != 14 && @model.get('unitType') != 16
                 $('#unitcheck'+@model.get("id")).addClass 'boxLong sold'
+            else if track==1 &&  parseInt(@model.get('status')) == parseInt(status_onold.get('id')) && @model.get('unitType') != 14 && @model.get('unitType') != 16
+                $('#unitcheck'+@model.get("id")).addClass 'boxLong onhold'
             else
                 $('#unitcheck'+@model.get("id")).addClass 'boxLong other'
                 $('#unitcheck'+@model.get("id")).text @model.get 'unitTypeName'
@@ -2888,7 +2907,7 @@ define [ 'marionette' ], ( Marionette )->
 
     class UnitView extends Marionette.CompositeView
 
-        template : '<div class="unitContainer"></div>'
+        template : '<div class="onhold_msg"></div><div class="unitContainer"></div>'
 
 
 

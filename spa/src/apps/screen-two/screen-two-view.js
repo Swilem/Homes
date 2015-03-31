@@ -595,6 +595,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         }
       },
       'click #screen-two-button': function(e) {
+        App.unit['name'] = "";
         $('#screen-three-region').addClass('section');
         return this.trigger('unit:count:selected');
       }
