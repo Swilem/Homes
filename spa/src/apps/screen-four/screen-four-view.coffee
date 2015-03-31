@@ -195,7 +195,13 @@ define [ 'marionette' ], ( Marionette )->
 								</div><!-- e: invoice items -->
 
 							</section><!-- e: invoice financials -->
-						<input type="button" name="buy" id="buy" value="Buy" / >
+
+							<div class="text-center">
+								<button name="buy" id="buy" class="buy btn btn-primary">
+					                Apply Now
+					            </button>
+						    </div>
+
 						</div><!-- e: invoice -->
 					</div>
 

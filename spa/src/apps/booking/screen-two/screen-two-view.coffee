@@ -54,7 +54,6 @@ define [ 'marionette' ], ( Marionette )->
                         </div>                        
 
                         <button id="accept" class="next-one btn disabled btn-default">
-
                             NEXT
                         </button>
                     </div>'

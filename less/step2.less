@@ -192,13 +192,22 @@
 		}
 	}
 	&.sold{
-		border-color: lighten(@color-grey, 30%);
+		background: lighten(@color-danger, 30%);
 		color: darken(@color-danger, 10%);
 		cursor: default;
 		opacity: 0.8;
 		&:hover{
 			border-color: lighten(@color-grey, 30%);
 			color: darken(@color-danger, 10%);
+		}
+	}
+	&.onhold{
+		background: lighten(@color-warning, 30%);
+		color: darken(@color-warning, 10%);
+		opacity: 0.8;
+		&:hover{
+			border-color: lighten(@color-grey, 30%);
+			color: darken(@color-warning, 10%);
 		}
 	}
 	&.threeBHK, &.twoBHK, &.oneBHK, &.multiBHK{

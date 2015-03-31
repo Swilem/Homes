@@ -10177,7 +10177,7 @@ h5 {
 .box.sold,
 .boxLong.sold,
 .boxBlank.sold {
-  border-color: #dfe1e5;
+  background: #f4cecd;
   color: #c9302c;
   cursor: default;
   opacity: 0.8;
@@ -10187,6 +10187,19 @@ h5 {
 .boxBlank.sold:hover {
   border-color: #dfe1e5;
   color: #c9302c;
+}
+.box.onhold,
+.boxLong.onhold,
+.boxBlank.onhold {
+  background: #fceedb;
+  color: #ec971f;
+  opacity: 0.8;
+}
+.box.onhold:hover,
+.boxLong.onhold:hover,
+.boxBlank.onhold:hover {
+  border-color: #dfe1e5;
+  color: #ec971f;
 }
 .box.threeBHK .unitCount:after,
 .boxLong.threeBHK .unitCount:after,
@@ -10617,6 +10630,31 @@ a.special {
 }
 #layoutmsg.alrtMsg {
   width: 100%;
+}
+.onhold_msg {
+  margin: auto;
+  font-family: 'kievit';
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  margin-top: 10.5px;
+  margin-bottom: 10.5px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  width: 40%;
+  color: #d9534f;
+  color: #f0ad4e;
+}
+.onhold_msg small,
+.onhold_msg .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+.onhold_msg small,
+.onhold_msg .small {
+  font-size: 75%;
 }
 .flatContainer .vs-wrapper {
   background-color: #ffffff;
@@ -11877,6 +11915,24 @@ rect.other:hover {
   transition: all 0.3s ease-out;
   /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
+polygon.onhold,
+rect.onhold {
+  fill: #ECD21F !important;
+  cursor: default;
+  opacity: 0.8;
+  -webkit-transition: all 0.3s ease-out;
+  /* Chrome 1-25, Safari 3.2+ */
+  -moz-transition: all 0.3s ease-out;
+  /* Firefox 4-15 */
+  -o-transition: all 0.3s ease-out;
+  /* Opera 10.50–12.00 */
+  transition: all 0.3s ease-out;
+  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+polygon.onhold:hover,
+rect.onhold:hover {
+  fill: #ECD21F !important;
+}
 text {
   pointer-events: none;
 }
@@ -12347,6 +12403,70 @@ a.im-clear-button {
 }
 .salesLogout {
   width: 75px;
+}
+.block {
+  display: block;
+}
+/* Booking Styles */
+.page-heading {
+  margin-top: 10px;
+}
+.accordion {
+  max-width: 850px;
+  margin: auto;
+}
+.accordion-group {
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
+}
+.accordion-group .acc-title {
+  background: #eeeeee;
+  padding: 15px;
+}
+.accordion-group .acc-title h4 {
+  margin: 0;
+}
+.accordion-group .acc-body {
+  height: 0px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: 0;
+  -webkit-transition: all 0.3s ease-out;
+  /* Chrome 1-25, Safari 3.2+ */
+  -moz-transition: all 0.3s ease-out;
+  /* Firefox 4-15 */
+  -o-transition: all 0.3s ease-out;
+  /* Opera 10.50–12.00 */
+  transition: all 0.3s ease-out;
+  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+.accordion-group.open .acc-title {
+  color: #ffffff;
+  background: #ff6600;
+  box-shadow: 0 2px 1px #dfe1e5;
+}
+.accordion-group.open .acc-title h4 {
+  font-weight: 600;
+}
+.accordion-group.open .acc-body {
+  padding: 20px;
+  height: auto;
+  opacity: 1;
+  overflow: visible;
+  z-index: 5;
+}
+.details-form label {
+  font-weight: normal;
+}
+.alert-warning {
+  padding: 10px 15px;
+}
+.parsley-errors-list {
+  padding: 0;
+  list-style-type: none;
+}
+.parsley-errors-list .parsley-required {
+  font-size: 87%;
+  color: #d9534f;
 }
 
 /** apartmentselector Less file. Include all of your files here **/
