@@ -30,33 +30,26 @@
     <![endif]-->
 
   <script type="text/javascript">
+
+   
   
-  function getUrlParameter(sParam)
-  {
-      var sPageURL = window.location.search.substring(1);
-      sPageURL = decodeURIComponent(sPageURL)
-      var sURLVariables = sPageURL.split('&');
-      for (var i = 0; i < sURLVariables.length; i++) 
-      {
-          var sParameterName = sURLVariables[i].split('=');
-          if (sParameterName[0] == sParam) 
-          {
-              return decodeURIComponent(sParameterName[1]);
-          }
-      }
-  }  
-  var unit_id = getUrlParameter('unit_id');
-  var unit_name = getUrlParameter('unit_name');
-  var finalcost = getUrlParameter('finalcost');
-  var recAmount = getUrlParameter('recAmount');
-  var building = getUrlParameter('building');
  
+    var unit_id = localStorage.getItem('unit_id');
+    var unit_name = localStorage.getItem('unit_name');
+    var finalcost = localStorage.getItem('finalcost');
+    var recAmount = localStorage.getItem('recAmount');
+    var building = localStorage.getItem('building');
+
+  
+
+  
 
     </script>
 
     <?php wp_head(); ?>
      
 </head>
+
 <body class="booking cbp-spmenu-push">
 
   <!-- #header-region -->

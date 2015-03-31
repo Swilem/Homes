@@ -560,10 +560,12 @@ define [ 'marionette' ], ( Marionette )->
 				else
 					finalvalue = finalvalue1
 				recamount = reccount
-				console.log str = 'unit_id='+unit.get('id')+'&building='+building.get('name')+'&unit_name='+unit.get('name')+'&finalcost='+finalvalue+'&recAmount='+recamount
-
-				query  = encodeURIComponent(str)
-				url  = SITEURL+'/booking?'+query
+				localStorage.setItem('unit_id',unit.get('id'))
+				localStorage.setItem('building',building.get('name'))
+				localStorage.setItem('unit_name',unit.get('name'))
+				localStorage.setItem('finalcost',finalvalue)
+				localStorage.setItem('recAmount',recamount)
+				url  = SITEURL+'/booking'
 				window.open(url,'_blank')
 							
 					
