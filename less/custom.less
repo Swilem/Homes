@@ -446,7 +446,7 @@ a.im-clear-button{
 	margin: auto;
 }
 .accordion-group{
-	box-shadow: 0 -1px 1px lighten(@color-grey, 30%);
+	box-shadow: 0 0px 6px rgba(0,0,0,0.2);
 	.acc-title{
 		background: @gray-lighter;
 		padding: 15px;
@@ -458,7 +458,8 @@ a.im-clear-button{
 	.acc-body{
 		height: 0px;
 		opacity: 0;
-		display: none;
+		overflow: hidden;
+		z-index: 0;
 		.ease;
 	}
 
@@ -475,8 +476,9 @@ a.im-clear-button{
 		.acc-body{
 			padding: 20px;
 			height: auto;
-			display: block;
 			opacity: 1;
+			overflow: visible;
+			z-index: 5;
 		}
 	}
 

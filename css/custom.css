@@ -9713,7 +9713,7 @@ a.im-clear-button {
   margin: auto;
 }
 .accordion-group {
-  box-shadow: 0 -1px 1px #dfe1e5;
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
 }
 .accordion-group .acc-title {
   background: #eeeeee;
@@ -9725,7 +9725,8 @@ a.im-clear-button {
 .accordion-group .acc-body {
   height: 0px;
   opacity: 0;
-  display: none;
+  overflow: hidden;
+  z-index: 0;
   -webkit-transition: all 0.3s ease-out;
   /* Chrome 1-25, Safari 3.2+ */
   -moz-transition: all 0.3s ease-out;
@@ -9746,6 +9747,7 @@ a.im-clear-button {
 .accordion-group.open .acc-body {
   padding: 20px;
   height: auto;
-  display: block;
   opacity: 1;
+  overflow: visible;
+  z-index: 5;
 }

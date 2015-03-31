@@ -11,7 +11,7 @@ define(['marionette'], function(Marionette) {
       return ScreenTwoView.__super__.constructor.apply(this, arguments);
     }
 
-    ScreenTwoView.prototype.template = '<div class="costshett"> <span>Flat name : </span><span class="flat_name"></span> <span>Building name : </span><span class="building_name"></span> <span>Amount recievable as on Date : </span><span class="rec"></span> <span>Final cost : </span><span class="final_cost"></span> </div> <div class="row"> <div class="col-md-6 col-md-offset-3"> <button id="accept" class="next-one btn btn-primary btn-block"> Accept Terms and Conditions </button> </div> </div>';
+    ScreenTwoView.prototype.template = '<div class="costshett"> <div class="unitDetails"> <div class="row"> <div class="col-md-6"> <div class="unitBox chargeArea"> <h3 class="building_name"></h3> <h4 class="titles"> Building Name </h4> </div> </div> <div class="col-md-6"> <div class="unitBox chargeArea"> <h3 class="flat_name"></h3> <h4 class="titles"> Flat No. </h4> </div> </div> </div> <div class="row"> <div class="col-md-6"> <div class="unitBox chargeArea"> <h3 class="final_cost"></h3> <h4 class="titles"> Final cost </h4> </div> </div> <div class="col-md-6"> <div class="unitBox unitNmbr"> <h3 class="rec"></h3> <h4 class="titles"> Amount recievable as on Date </h4> </div> </div> </div> </div> </div> <div class="text-center"> <div class="checkbox"> <label> <input type="checkbox">I accept the <a href="http://manaslake.com/terms-conditions/" target="blank">Terms and Conditions</a>. </label> </div> <button id="accept" class="next-one btn btn-primary"> NEXT </button> </div>';
 
     ScreenTwoView.prototype.events = {
       'click #accept': function(e) {
