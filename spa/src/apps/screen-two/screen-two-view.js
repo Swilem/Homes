@@ -51,7 +51,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         return $('.im-tooltip').hide();
       },
       'mouseover a.tower-link': function(e) {
-        var buildigmodel, buildingarray, buildingmodes, countunits, currency, differnecearr, floorCollunits, floorUnitsArray, floorarray, id, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, phasemodel, phasemodelint, selectorname, status, str1, text, units, units1, unitslen, unittypemodel, unittypetext;
+        var buildigmodel, buildingarray, buildingmodes, countunits, currency, differnecearr, floorCollunits, floorUnitsArray, floorarray, id, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, phasemodel, phasemodelint, selectorname, status, status_onhold, str1, text, units, units1, unitslen, unittypemodel, unittypetext;
         id = e.target.id;
         str1 = id.replace(/[^\d.]/g, '');
         floorUnitsArray = [];
@@ -86,8 +86,11 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         status = App.master.status.findWhere({
           'name': 'Available'
         });
-        unitslen = App.master.unit.where({
-          'status': status.get('id')
+        status_onhold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        unitslen = _.filter(App.master.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
         floorCollunits = [];
         $.each(unitslen, function(index, value1) {
@@ -177,8 +180,8 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         }
         units = new Backbone.Collection(floorCollunits);
         mainunitTypeArray1 = [];
-        units1 = App.master.unit.where({
-          'status': status.get('id')
+        units1 = _.filter(App.master.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
         $.each(units1, function(index, value) {
           var unitTypemodel;
@@ -194,13 +197,8 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
           var classname;
           if (!mainunique[item.id]) {
             if (item.id !== 14 && item.id !== 16) {
-              status = App.master.status.findWhere({
-                'name': 'Available'
-              });
-              count = units.where({
-                unitType: item.id,
-                'status': status.get('id'),
-                'building': parseInt(str1)
+              count = _.filter(units, function(num) {
+                return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && parseInt(num.get('building')) === parseInt(str1) && num.get('unitType') === item.id;
               });
               if (parseInt(item.id) === 9) {
                 classname = 'twoBHK';
@@ -295,7 +293,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         return e.preventDefault();
       },
       'click .tower-link': function(e) {
-        var buildigmodel, element, floorColl, floorCollunits, floorUnitsArray, id, key, locationData, myArray, params, screenthreeArray, screentwoArray, status, str1, text, units, unitslen, _i, _j, _len, _len1;
+        var buildigmodel, element, floorColl, floorCollunits, floorUnitsArray, id, key, locationData, myArray, params, screenthreeArray, screentwoArray, status, status_onhold, str1, text, units, unitslen, _i, _j, _len, _len1;
         id = e.target.id;
         str1 = id.replace(/[^\d.]/g, '');
         buildigmodel = App.master.building.findWhere({
@@ -317,8 +315,11 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         status = App.master.status.findWhere({
           'name': 'Available'
         });
-        unitslen = App.master.unit.where({
-          'status': status.get('id')
+        status_onhold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        unitslen = _.filter(App.master.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
         floorCollunits = [];
         $.each(unitslen, function(index, value1) {
@@ -610,7 +611,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
     };
 
     ScreenTwoLayout.prototype.onShow = function() {
-      var ajaxurl, buidlingValue, building, capability, clonefacings, cloneterraces, cloneviews, defer, entrance, entranceArrayText, globalUnitVariants, globalfacing, globalfacingInt, globalterrace, globalterraceInt, globalviewInt, globalviews, i, mainnewarr, mainunique, mainunitTypeArray1, originalOfacings, originalOterraces, originalOviews, originalfacings, originalterraces, originalviews, params, scr, selector, status, teraace, terraceArrayText, testtext, unitVariantArrayColl, unitVariantArrayText, unitVariantsArray, units1, unittypetext, usermodel, view, viewArrayText;
+      var ajaxurl, buidlingValue, building, capability, clonefacings, cloneterraces, cloneviews, defer, entrance, entranceArrayText, globalUnitVariants, globalfacing, globalfacingInt, globalterrace, globalterraceInt, globalviewInt, globalviews, i, mainnewarr, mainunique, mainunitTypeArray1, originalOfacings, originalOterraces, originalOviews, originalfacings, originalterraces, originalviews, params, scr, selector, status, status_onhold, teraace, terraceArrayText, testtext, unitVariantArrayColl, unitVariantArrayText, unitVariantsArray, units1, unittypetext, usermodel, view, viewArrayText;
       viewtagsArray = [];
       entrancetagsArray = [];
       terracetagsArray = [];
@@ -707,8 +708,11 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
         status = App.master.status.findWhere({
           'name': 'Available'
         });
-        units1 = App.master.unit.where({
-          'status': status.get('id')
+        status_onhold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        units1 = _.filter(App.master.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
         $.each(units1, function(index, value) {
           var unitType;
@@ -724,12 +728,8 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
           var classname;
           if (!mainunique[item.id]) {
             if (item.id !== 14 && item.id !== 16) {
-              status = App.master.status.findWhere({
-                'name': 'Available'
-              });
-              count = App.currentStore.unit.where({
-                unitType: item.id,
-                'status': status.get('id')
+              count = _.filter(App.currentStore.unit.toArray(), function(num) {
+                return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
               });
               if (parseInt(item.id) === 9) {
                 classname = 'twoBHK';
@@ -841,8 +841,11 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -858,12 +861,8 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = App.currentStore.unit.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(App.currentStore.unit.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -1004,8 +1003,11 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -1021,12 +1023,8 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = floorCollection.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(floorCollection.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -1161,8 +1159,11 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -1178,12 +1179,8 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = units.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(units.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -1321,8 +1318,11 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -1338,12 +1338,8 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = floorCollection.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(floorCollection.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -1599,7 +1595,7 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
       });
       i = 1;
       building = Marionette.getOption(this, 'buildingColl').toArray();
-      console.log(buidlingValue = _.first(building));
+      buidlingValue = _.first(building);
       while (window['mapplic' + i] !== void 0) {
         params = window['mapplic' + i];
         selector = '#mapplic' + i;

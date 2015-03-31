@@ -7,7 +7,7 @@ define [ 'marionette' ], ( Marionette )->
                         <span>Building name : </span><span class="building_name"></span>
                         <span>Amount recievable as on Date : </span><span class="rec"></span>
                         <span>Final cost : </span><span class="final_cost"></span>
-                    </div>
+                    <input type="hidden" name="currency" id="currency" class="demo" data-a-sign="Rs. " data-m-dec=""  data-d-group="2" ></div>
 
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
@@ -31,8 +31,12 @@ define [ 'marionette' ], ( Marionette )->
         onShow:->
             $('.flat_name').text unit_name
             $('.building_name').text building
-            $('.rec').text recAmount
-            $('.final_cost').text finalcost
+            $('#currency').autoNumeric('init')
+            $('#currency').autoNumeric('set', recAmount);
+            $('.rec').text $('#currency').val()
+            $('#currency').autoNumeric('init')
+            $('#currency').autoNumeric('set', finalcost);
+            $('.final_cost').text $('#currency').val()
 
 
 

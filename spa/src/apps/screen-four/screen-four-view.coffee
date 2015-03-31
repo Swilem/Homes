@@ -6,6 +6,9 @@ define [ 'marionette' ], ( Marionette )->
 	agreementValue1 = ""
 	infraid = ""
 	discountClass = ""
+	finalvalue = ""
+	finalvalue1 = ""
+	reccount = ""
 	class ScreenFourLayout extends Marionette.LayoutView
 
 		template : '<div class="page-container row-fluid">
@@ -547,11 +550,11 @@ define [ 'marionette' ], ( Marionette )->
 				building = App.master.building.findWhere({id:parseInt(unit.get('building'))})
 					
 				if discountClass == ""
-					finalvalue = $('.finalvalue').text()
+					finalvalue = finalvalue
 				else
-					finalvalue = $('.finalvalue1').text()
-				recamount = $('.rec').text()
-				str = 'unit_id='+unit.get('id')+'&building='+building.get('name')+'&unit_name='+unit.get('name')+'&finalcost='+finalvalue+'&recAmount='+recamount
+					finalvalue = finalvalue1
+				recamount = reccount
+				console.log str = 'unit_id='+unit.get('id')+'&building='+building.get('name')+'&unit_name='+unit.get('name')+'&finalcost='+finalvalue+'&recAmount='+recamount
 
 				query  = encodeURIComponent(str)
 				url  = SITEURL+'/booking?'+query
@@ -1329,7 +1332,7 @@ define [ 'marionette' ], ( Marionette )->
 
 
 				table = ""
-				count = 0
+				reccount = 0
 				SettingModel = new Backbone.Model SETTINGS
 				servicetax = SettingModel.get('service_tax')
 				salestax = Math.round((parseInt(agreementValue) * (parseFloat(servicetax)/100)))
@@ -1360,7 +1363,7 @@ define [ 'marionette' ], ( Marionette )->
 							amtalue = total1
 						else
 							amtalue = total
-						count = count + amtalue
+						reccount = reccount + amtalue
 					else
 						trClass = ""
 					if flag == 1
@@ -1389,15 +1392,15 @@ define [ 'marionette' ], ( Marionette )->
 				$('.rec').autoNumeric('init')
 				
 
-				recount = $('.rec').autoNumeric('set', count)
-				reccount = recount.text()
+				recount = $('.rec').autoNumeric('set', reccount)
+				count = recount.text()
 				# $('#rec' ).text reccount
 				# $('.rec' ).text reccount
 				if parseInt($('#payment' ).val()) == 0
 					addon = 0
 
 				else
-					addon = $('#payment' ).val() - count
+					addon = $('#payment' ).val() - reccount
 				$('.actpayment').autoNumeric('init')
 				$('.actpayment').autoNumeric('set', $('#payment' ).val())
 				$('.addonpay').autoNumeric('init')

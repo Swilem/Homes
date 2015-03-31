@@ -50,6 +50,7 @@
   var finalcost = getUrlParameter('finalcost');
   var recAmount = getUrlParameter('recAmount');
   var building = getUrlParameter('building');
+ 
 
     </script>
 

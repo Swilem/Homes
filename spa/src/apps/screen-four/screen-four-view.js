@@ -3,13 +3,16 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(['marionette'], function(Marionette) {
-  var ScreenFourLayout, UnitMainView, UnitTypeChildView, UnitTypeView, UnitsView, agreementValue, agreementValue1, discountClass, infraid, object, perFlag;
+  var ScreenFourLayout, UnitMainView, UnitTypeChildView, UnitTypeView, UnitsView, agreementValue, agreementValue1, discountClass, finalvalue, finalvalue1, infraid, object, perFlag, reccount;
   perFlag = 0;
   object = "";
   agreementValue = "";
   agreementValue1 = "";
   infraid = "";
   discountClass = "";
+  finalvalue = "";
+  finalvalue1 = "";
+  reccount = "";
   ScreenFourLayout = (function(_super) {
     __extends(ScreenFourLayout, _super);
 
@@ -336,7 +339,7 @@ define(['marionette'], function(Marionette) {
     ScreenFourLayout.prototype.onShow = function() {
       var buildingModel, capability, cookieOldValue, costSheetArray, count, flag, milestoneselectedValue, unitModel, usermodel;
       $('#buy').on('click', function() {
-        var building, finalvalue, query, recamount, str, unit, url;
+        var building, query, recamount, str, unit, url;
         unit = App.master.unit.findWhere({
           id: parseInt(App.unit['name'])
         });
@@ -344,12 +347,12 @@ define(['marionette'], function(Marionette) {
           id: parseInt(unit.get('building'))
         });
         if (discountClass === "") {
-          finalvalue = $('.finalvalue').text();
+          finalvalue = finalvalue;
         } else {
-          finalvalue = $('.finalvalue1').text();
+          finalvalue = finalvalue1;
         }
-        recamount = $('.rec').text();
-        str = 'unit_id=' + unit.get('id') + '&building=' + building.get('name') + '&unit_name=' + unit.get('name') + '&finalcost=' + finalvalue + '&recAmount=' + recamount;
+        recamount = reccount;
+        console.log(str = 'unit_id=' + unit.get('id') + '&building=' + building.get('name') + '&unit_name=' + unit.get('name') + '&finalcost=' + finalvalue + '&recAmount=' + recamount);
         query = encodeURIComponent(str);
         url = SITEURL + '/booking?' + query;
         return window.open(url, '_blank');
@@ -541,7 +544,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenFourLayout.prototype.generateCostSheet = function() {
-      var SettingModel, actualcost, addon, agreement, agreement1, basicCost, basicCost1, buildingModel, costSheetArray, count, date, discount, element, finalcost, finalcost1, finalvalue, finalvalue1, floorRise, floorRiseValue, id, id1, index, infraArray, infratxt, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestoneCollection, milestonemodel, milestonename, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, milstoneModelName, paymentColl, percentageValue, persefttext, persq, pervalue, phone, planselectedValue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, selected, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, table1, temp_stamp_duty, tempstamp_duty, totalcost, totalcost1, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, usermodel, vat, vat1, _i, _j, _k, _len, _len1, _len2;
+      var SettingModel, actualcost, addon, agreement, agreement1, basicCost, basicCost1, buildingModel, costSheetArray, count, date, discount, element, finalcost, finalcost1, floorRise, floorRiseValue, id, id1, index, infraArray, infratxt, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestoneCollection, milestonemodel, milestonename, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, milstoneModelName, paymentColl, percentageValue, persefttext, persq, pervalue, phone, planselectedValue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, selected, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, table1, temp_stamp_duty, tempstamp_duty, totalcost, totalcost1, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, usermodel, vat, vat1, _i, _j, _k, _len, _len1, _len2;
       $('#costSheetTable').text("");
       $('#costSheetTableprint').text("");
       costSheetArray = [];
@@ -867,7 +870,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenFourLayout.prototype.generatePaymentSchedule = function(id) {
-      var SettingModel, addon, amtalue, buildingModel, count, element, flag, index, milesotneVal, milestoneColl, milestoneCollection, milestoneModel, milestonecompletion, milestonemodel, milestonename, milestones, milestonesArray, milestonesArrayColl, milstoneModelName, paymentColl, percentageValue, percentageValue1, proposed_date, reccount, recount, sales_tax, sales_tax1, salestax, salestax1, servicetax, table, total, total1, trClass, unitModel, _i, _j, _len, _len1, _results;
+      var SettingModel, addon, amtalue, buildingModel, count, element, flag, index, milesotneVal, milestoneColl, milestoneCollection, milestoneModel, milestonecompletion, milestonemodel, milestonename, milestones, milestonesArray, milestonesArrayColl, milstoneModelName, paymentColl, percentageValue, percentageValue1, proposed_date, recount, sales_tax, sales_tax1, salestax, salestax1, servicetax, table, total, total1, trClass, unitModel, _i, _j, _len, _len1, _results;
       flag = 0;
       $('#rec').text("");
       $('.rec').text("");
@@ -908,7 +911,7 @@ define(['marionette'], function(Marionette) {
           $('.currentmile').text(milstoneModelName.get('name'));
         }
         table = "";
-        count = 0;
+        reccount = 0;
         SettingModel = new Backbone.Model(SETTINGS);
         servicetax = SettingModel.get('service_tax');
         salestax = Math.round(parseInt(agreementValue) * (parseFloat(servicetax) / 100));
@@ -939,7 +942,7 @@ define(['marionette'], function(Marionette) {
             } else {
               amtalue = total;
             }
-            count = count + amtalue;
+            reccount = reccount + amtalue;
           } else {
             trClass = "";
           }
@@ -952,12 +955,12 @@ define(['marionette'], function(Marionette) {
           table += '  <span class="msPercent">' + element.payment_percentage + '%</span> <li class="milestoneList ' + trClass + '"> <div class="msName">' + milestoneModel.get('name') + '</div> <div class="msVal discCol' + discountClass + '"> <div><span class="label">Amount: </span><span class="percentageValue' + index + ' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div> <div><span class="label">Service Tax: </span><span class="service' + index + ' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div> <div>Total: <span class="total' + index + '" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div> </div> <div class="msVal"> <div><span class="label">Amount: </span><span class="percentageValue1' + index + ' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div> <div><span class="label">Service Tax: </span><span class="service1' + index + ' label" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div> <div>Total: <span class="total1' + index + '" data-m-dec="" data-a-sign="Rs. " data-d-group="2"></span></div> </div> <span class="barBg" style="width:' + element.payment_percentage + '%"></span> </li> <div class="clearfix"></div>';
         }
         $('.rec').autoNumeric('init');
-        recount = $('.rec').autoNumeric('set', count);
-        reccount = recount.text();
+        recount = $('.rec').autoNumeric('set', reccount);
+        count = recount.text();
         if (parseInt($('#payment').val()) === 0) {
           addon = 0;
         } else {
-          addon = $('#payment').val() - count;
+          addon = $('#payment').val() - reccount;
         }
         $('.actpayment').autoNumeric('init');
         $('.actpayment').autoNumeric('set', $('#payment').val());
@@ -1013,7 +1016,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenFourLayout.prototype.updated = function() {
-      var SettingModel, addon, agreement, agreement1, basicCost, buildingModel, costSheetArray, count, discount, element, finalcost, finalvalue, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
+      var SettingModel, addon, agreement, agreement1, basicCost, buildingModel, costSheetArray, count, discount, element, finalcost, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
       $('.infra1').autoNumeric('init');
       $('.infra1').autoNumeric('set', $('#infra1').val());
       $('.infra').autoNumeric('init');
@@ -1179,7 +1182,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenFourLayout.prototype.updated1 = function() {
-      var SettingModel, addon, agreement, agreement1, basicCost, basicCost1, buildingModel, costSheetArray, count, discount, element, finalcost, finalcost1, finalvalue1, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, totalcost1, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
+      var SettingModel, addon, agreement, agreement1, basicCost, basicCost1, buildingModel, costSheetArray, count, discount, element, finalcost, finalcost1, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, totalcost1, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
       $('.infra1').autoNumeric('init');
       $('.infra1').autoNumeric('set', $('#infra1').val());
       $('.infra').autoNumeric('init');
@@ -1347,7 +1350,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenFourLayout.prototype.persqft1 = function() {
-      var SettingModel, addon, agreement, agreement1, basicCost, basicCost1, buildingModel, costSheetArray, count, discount, element, finalcost, finalcost1, finalvalue1, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, totalcost1, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
+      var SettingModel, addon, agreement, agreement1, basicCost, basicCost1, buildingModel, costSheetArray, count, discount, element, finalcost, finalcost1, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, totalcost1, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
       $('.sqftprice1').autoNumeric('init');
       $('.sqftprice1').autoNumeric('set', $('#sqftprice1').val());
       $('.sqftprice').autoNumeric('init');
@@ -1532,7 +1535,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenFourLayout.prototype.persqft = function() {
-      var SettingModel, addon, agreement, agreement1, basicCost, buildingModel, costSheetArray, count, discount, element, finalcost, finalvalue, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
+      var SettingModel, addon, agreement, agreement1, basicCost, buildingModel, costSheetArray, count, discount, element, finalcost, floorRise, floorRiseValue, id1, infraArray, maintenance, membership_fees, membership_feesColl, membershipfees, milesotneVal, milestoneColl, milestonemodel, milestones, milestonesArray, milestonesArrayColl, milestoneselectedValue, paymentColl, percentageValue, pervalue, ratePerSqFtPrice, ratepersqftfloorval, reg_amt, reg_amt1, revisedhidden, revisedrate, sales_tax, sales_tax1, servicetax, servicetax1, shift, stamp_duty, stamp_dutyy, table, temp_stamp_duty, tempstamp_duty, totalcost, uniVariantModel, unitModel, unitTypeMemeber, unitVariantMemeber, unitVariantMemeberColl, univariantmem, vat, vat1, _i, _len;
       $('.sqftprice1').autoNumeric('init');
       $('.sqftprice1').autoNumeric('set', $('#sqftprice1').val());
       $('.sqftprice').autoNumeric('init');

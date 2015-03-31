@@ -39,6 +39,7 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
             modelArray = Array()
             collection = new UnitsCollection()
             status = App.currentStore.status.findWhere({'name':'Available'})
+            status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
 
             priceUnits = App.currentStore.unit
             priceUnits.each ( item)->
@@ -57,7 +58,11 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
             priceRange = ['10-40 lakhs ','40-70 lakhs ','70-100 lakhs ','1-1.3 crores ']
             priceArray = []
             rangeArray = []
-            units = App.currentStore.unit.where({'status':status.get('id')})
+            temp = App.currentStore.unit.toArray();
+            units  = _.filter(temp,  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+            )
             $.each(units , (index,value)->
                 
                 unitTypemodel = App.currentStore.unit_type.findWhere({'id':value.get 'unitType'})

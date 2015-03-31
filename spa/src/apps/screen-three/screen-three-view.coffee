@@ -557,8 +557,9 @@ define [ 'marionette' ], ( Marionette )->
                                 
                                 
                         )
-                )       
-                if checktrack == 1 && parseInt(unitModel.get('status')) == 9
+                )    
+                status = App.currentStore.status.findWhere({'name':'Available'})
+                if checktrack == 1 && parseInt(unitModel.get('status')) == parseInt(status.get('id ')) 
                     $("#"+e.target.id).attr('class','unit-hover aviable')
                 else if checktrack == 1 && ( parseInt(unitModel.get('status')) == 8 || parseInt(unitModel.get('status')) == 47 )
                     $("#"+e.target.id).attr('class','sold')
@@ -630,7 +631,8 @@ define [ 'marionette' ], ( Marionette )->
                                 
                         )
                 )       
-                if checktrack == 1 && parseInt(unitModel.get('status')) == 9
+                status = App.currentStore.status.findWhere({'name':'Available'})
+                if checktrack == 1 && parseInt(unitModel.get('status')) == parseInt(status.get('id')) 
                     $("#"+e.target.id).attr('class','unit-hover range aviable')
                 else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == 8 || parseInt(unitModel.get('status')) == 47 )
                     $("#"+e.target.id).attr('class','sold range')
@@ -715,9 +717,10 @@ define [ 'marionette' ], ( Marionette )->
                         )
 
                 )
+                status = App.currentStore.status.findWhere({'name':'Available'})
                 
                 checktrack = @checkSelection(unitModel)
-                if checktrack == 1 && parseInt(unitModel.get('status')) == 9
+                if checktrack == 1 && parseInt(unitModel.get('status')) == parseInt(status.get('id')) 
                     $("#"+e.target.id).attr('class','unselected-floor aviable')
                 else if checktrack == 1 &&  ( parseInt(unitModel.get('status')) == 8 || parseInt(unitModel.get('status')) == 47 )
                     $("#"+e.target.id).attr('class','sold ')
@@ -989,8 +992,12 @@ define [ 'marionette' ], ( Marionette )->
                 mainnewarr =  []
                 mainunique = {}
                 mainunitTypeArray1 = []
-                status = App.master.status.findWhere({'name':'Available'})
-                units1 = App.master.unit.where({'status':status.get('id')})
+                status = App.currentStore.status.findWhere({'name':'Available'})
+                status_onhold = App.currentStore.status.findWhere({'name':'On Hold'}) 
+                units1  = _.filter(App.master.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                )
                 $.each(units1, (index,value)->
                     unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                     mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -998,10 +1005,13 @@ define [ 'marionette' ], ( Marionette )->
                 $.each(mainunitTypeArray1, (key,item)->
                     if (!mainunique[item.id])
                         if item.id != 14 && item.id != 16
-                            status = App.master.status.findWhere({'name':'Available'})
+                            count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                num.get('unitType') == item.id
 
-                            count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id')})
 
+                            )
                             if parseInt(item.id) == 9
                                 classname = 'twoBHK'
                             else
@@ -1121,7 +1131,11 @@ define [ 'marionette' ], ( Marionette )->
                     App.filter()
                     mainunitTypeArray1 = []
                     status = App.master.status.findWhere({'name':'Available'})
-                    units1 = App.master.unit.where({'status':status.get('id')})
+                    status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                    units1  = _.filter(App.master.unit.toArray(),  (num)->
+                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                    )
                     $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1129,10 +1143,13 @@ define [ 'marionette' ], ( Marionette )->
                     $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -1253,7 +1270,11 @@ define [ 'marionette' ], ( Marionette )->
                             $('#unselectview').prop('checked',false)
                         mainunitTypeArray1 = []
                         status = App.master.status.findWhere({'name':'Available'})
-                        units1 = App.master.unit.where({'status':status.get('id')})
+                        status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                        units1  = _.filter(App.master.unit.toArray(),  (num)->
+                            return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                        )   
                         $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1261,10 +1282,13 @@ define [ 'marionette' ], ( Marionette )->
                         $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(floorCollection.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = floorCollection.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -1388,7 +1412,11 @@ define [ 'marionette' ], ( Marionette )->
                             $('#unselectview').prop('checked',false)
                         mainunitTypeArray1 = []
                         status = App.master.status.findWhere({'name':'Available'})
-                        units1 = App.master.unit.where({'status':status.get('id')})
+                        status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                        units1  = _.filter(App.master.unit.toArray(),  (num)->
+                            return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                        )
                         $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1396,10 +1424,13 @@ define [ 'marionette' ], ( Marionette )->
                         $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(units.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = units.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -1521,7 +1552,11 @@ define [ 'marionette' ], ( Marionette )->
                             $('#unselectview').prop('checked',false)
                         mainunitTypeArray1 = []
                         status = App.master.status.findWhere({'name':'Available'})
-                        units1 = App.master.unit.where({'status':status.get('id')})
+                        status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                        units1  = _.filter(App.master.unit.toArray(),  (num)->
+                            return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                        )
                         $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1529,10 +1564,13 @@ define [ 'marionette' ], ( Marionette )->
                         $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(floorCollection.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = floorCollection.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -2265,11 +2303,12 @@ define [ 'marionette' ], ( Marionette )->
 
             if myArray.length == 0
                 track = 1
-            
-            if track==1 && model.get('status') == 9 && model.get('unitType') != 14 && model.get('unitType') != 16
+            status = App.currentStore.status.findWhere({'name':'Available'})
+            status_sold = App.currentStore.status.findWhere({'name':'Sold'})
+            if track==1 && parseInt(model.get('status')) == parseInt(status.get('id')) && model.get('unitType') != 14 && model.get('unitType') != 16
                 $('#unitcheck'+model.get("id")).addClass 'boxLong filtered'
                 $('#flag'+model.get("id")).val '1'
-            else if track==1 &&  model.get('status') == 8 && model.get('unitType') != 14 && model.get('unitType') != 16
+            else if track==1 &&  parseInt(model.get('status')) == parseInt(status.get('id')) && model.get('unitType') != 14 && model.get('unitType') != 16
                 $('#unitcheck'+model.get("id")).addClass 'boxLong sold'
             else
                 $('#unitcheck'+model.get("id")).addClass 'boxLong other'
@@ -2551,7 +2590,10 @@ define [ 'marionette' ], ( Marionette )->
                 $('#towerview').text ""
                 screenThreeLayout = new ScreenThreeLayout()
                 check = screenThreeLayout.checkSelection(@model)
-                if check == 1 && @model.get('status') == 9
+                status = App.currentStore.status.findWhere({'name':'Available'})
+                status_sold = App.currentStore.status.findWhere({'name':'Sold'})
+            
+                if check == 1 && parseInt(@model.get('status')) == parseInt(status.get('id'))
                     buildingModel = App.master.building.findWhere({id:parseInt(@model.get('building'))})
                     svgdata = buildingModel.get('svgdata')
                     #svgdata = [[svposition:[1],svgfile:"../wp-content/uploads/2014/08/image/floor-pos-1.svg",units:{1:{1:49,2:55,3:61,4:67,5:73,6:80,7:85,8:90,9:98,10:113,11:142,12:152}}]]
@@ -2625,9 +2667,9 @@ define [ 'marionette' ], ( Marionette )->
                         else
                             $("#select"+element).val '0'
                             $('#unitcheck'+element).removeClass 'selected'
-                            if unitModel.get('status') == 9
+                            if parseInt(unitModel.get('status')) == parseInt(status.get('id'))
                                 $("#"+element).attr('class','unit-hover aviable ')
-                            else if unitModel.get('status') == 8
+                            else if parseInt(unitModel.get('status')) == parseInt(status_sold.get('id'))
                                 $("#"+element).attr('class','unit-hover sold ')
                             rangeunitArray = []
                     if  parseInt($("#select"+@model.get('id')).val()) == 0
@@ -2704,9 +2746,9 @@ define [ 'marionette' ], ( Marionette )->
                         rangeunitArray=[]
                         $("#select"+@model.get('id')).val "0"
                         $('#unitcheck'+@model.get('id')).removeClass 'selected'
-                        if unitModel.get('status') == 9
+                        if parseInt(unitModel.get('status')) == parseInt(status.get('id'))
                             $("#"+@model.get("id")).attr('class','unit-hover aviable ')
-                        else if unitModel.get('status') == 8
+                        else if parseInt(unitModel.get('status')) == parseInt(status_sold.get('id'))
                             $("#"+@model.get("id")).attr('class','unit-hover sold ')
                     if parseInt($("#select"+@model.get('id')).val()) == 0
                         $("#screen-three-button").addClass 'disabled btn-default'
@@ -2814,11 +2856,12 @@ define [ 'marionette' ], ( Marionette )->
 
             if myArray.length == 0
                 track = 1
-            
-            if track==1 && @model.get('status') == 9 && @model.get('unitType') != 14 && @model.get('unitType') != 16
+            status = App.currentStore.status.findWhere({'name':'Available'})
+            status_sold = App.currentStore.status.findWhere({'name':'Sold'})
+            if track==1 && parseInt(@model.get('status')) == parseInt(status.get('id')) && @model.get('unitType') != 14 && @model.get('unitType') != 16
                 $('#unitcheck'+@model.get("id")).addClass 'boxLong filtered'
                 $('#flag'+@model.get("id")).val '1'
-            else if track==1 &&  @model.get('status') == 8 && @model.get('unitType') != 14 && @model.get('unitType') != 16
+            else if track==1 &&  parseInt(@model.get('status')) == parseInt(status_sold.get('id')) && @model.get('unitType') != 14 && @model.get('unitType') != 16
                 $('#unitcheck'+@model.get("id")).addClass 'boxLong sold'
             else
                 $('#unitcheck'+@model.get("id")).addClass 'boxLong other'

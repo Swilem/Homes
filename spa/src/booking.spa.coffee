@@ -2,7 +2,7 @@
 # eg: define 'plugins-loader', ['src/bower_component/pluginname'], ->
 
 # add your required plugins here.
-define 'plugin-loader', ['handlebars','parsleyjs','jqueryui'], ->
+define 'plugin-loader', ['handlebars','parsleyjs','jqueryui','autoNumeric'], ->
 
     # add your marionette apps here
 define 'apps-loader', [

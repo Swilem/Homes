@@ -198,7 +198,11 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
             myArray1 = []
             units = App.master.unit
             status = App.currentStore.status.findWhere({'name':'Available'})
-            Countunits = App.currentStore.unit.where({'status':status.get('id')})
+            status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+            Countunits  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+            )
             $.map(App.defaults, (value, index)->
                 if value!='All' 
                     if  index != 'unitVariant' 
@@ -208,7 +212,6 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
 
             )
             flag  = 0
-            status = App.master.status.findWhere({'name':'Available'})
             unitslen = App.master.unit.toArray()
             unitslen1 = App.master.unit.where({'building':parseInt(App.defaults['building'])})
 
@@ -454,7 +457,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                     key  =  $.inArray(parseInt(value),viewtemp1)
                     count = []
                     $.each(floorCollunits1, (ind,val)->
-                        if parseInt(val.get('status')) == parseInt(status.get('id'))
+                        if parseInt(val.get('status')) == parseInt(status.get('id')) || parseInt(val.get('status')) == parseInt(status_onhold.get('id'))
                             apartment = val.get('apartment_views')
                             if val.get('apartment_views') !="" && val.get('apartment_views').length !=0
                                 apartment = apartment.map((item)->
@@ -493,7 +496,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                     key  = $.inArray(parseInt(value),facingtemp1)
                     count = []
                     $.each(floorCollunits1, (ind,val)->
-                        if parseInt(val.get('status')) == parseInt(status.get('id'))
+                        if parseInt(val.get('status')) == parseInt(status.get('id')) || parseInt(val.get('status')) == parseInt(status_onhold.get('id'))
                             facing = val.get('facing')
                             facing = facing.map((item)->
                                 return parseInt(item)
@@ -531,7 +534,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                     key  = $.inArray(parseInt(value),terracetemp1) 
                     count = []
                     $.each(floorCollunits1, (ind,val)->
-                        if parseInt(val.get('status')) == parseInt(status.get('id'))
+                        if parseInt(val.get('status')) == parseInt(status.get('id')) ||  parseInt(val.get('status')) == parseInt(status_onhold.get('id')) 
                             if parseInt(value) == val.get('terrace') 
                                 count.push(val)
 
@@ -559,7 +562,13 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
             
             $.each(uniqUnitvariant, (index,value)->
                 unitVarinatModel = App.master.unit_variant.findWhere({id:value})
-                count = units.where({'unitVariant':value,'status':status.get('id')})
+                count  = _.filter(units.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                num.get('unitVariant') == value
+
+
+                            )
                 key  = $.inArray(value,flooruniqUnitvariant)
                 selected = ""
                 if App.defaults['unitType'] != "All"
@@ -732,7 +741,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
                         track = 1
                     if myArray.length == 0
                         track = 1
-                    if  value1.get('status') == 9 && value1.get('unitType') != 14 && value1.get('unitType') != 16
+                    if  parseInt(value1.get('status')) == parseInt(status.get('id')) || parseInt(value1.get('status')) == parseInt(status_onhold.get('id')) && value1.get('unitType') != 14 && value1.get('unitType') != 16
                         maxunits = App.currentStore.unit.where({unitAssigned:value})
 
                     

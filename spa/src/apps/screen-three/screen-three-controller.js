@@ -153,7 +153,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
     };
 
     ScreenThreeController.prototype._getUnits = function() {
-      var Countunits, buildingArray, buildingArrayModel, buildingCollection, buildingModel, buildings, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, flag, floorArray, floorCollectionCur, floorCollunits, floorCollunits1, floorCountArray, floorUnitsArray, flooruniqUnitvariant, floorunitvariant, mainnewarr, maxvalue, myArray, myArray1, newunitCollection, param, paramkey, range, status, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, track, trackArray, trackposition, uniqBuildings, uniqUnitvariant, uniqfacings, uniqterrace, uniqunitAssigned, uniqunitAssignedval, uniqviews, unitArray, unitAssigned, unitColl, unitVariantID, unitVariantModels, units, units1, unitsArray, unitsCollection, unitscur, unitsfilter, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
+      var Countunits, buildingArray, buildingArrayModel, buildingCollection, buildingModel, buildings, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, flag, floorArray, floorCollectionCur, floorCollunits, floorCollunits1, floorCountArray, floorUnitsArray, flooruniqUnitvariant, floorunitvariant, mainnewarr, maxvalue, myArray, myArray1, newunitCollection, param, paramkey, range, status, status_onhold, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, track, trackArray, trackposition, uniqBuildings, uniqUnitvariant, uniqfacings, uniqterrace, uniqunitAssigned, uniqunitAssignedval, uniqviews, unitArray, unitAssigned, unitColl, unitVariantID, unitVariantModels, units, units1, unitsArray, unitsCollection, unitscur, unitsfilter, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
       buildingArray = [];
       unitArray = [];
       unitsArray = [];
@@ -173,8 +173,11 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
       status = App.currentStore.status.findWhere({
         'name': 'Available'
       });
-      Countunits = App.currentStore.unit.where({
-        'status': status.get('id')
+      status_onhold = App.currentStore.status.findWhere({
+        'name': 'On Hold'
+      });
+      Countunits = _.filter(App.currentStore.unit.toArray(), function(num) {
+        return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
       });
       $.map(App.defaults, function(value, index) {
         if (value !== 'All') {
@@ -193,9 +196,6 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
         }
       });
       flag = 0;
-      status = App.master.status.findWhere({
-        'name': 'Available'
-      });
       unitslen = App.master.unit.toArray();
       unitslen1 = App.master.unit.where({
         'building': parseInt(App.defaults['building'])
@@ -467,7 +467,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
           count = [];
           $.each(floorCollunits1, function(ind, val) {
             var apartment;
-            if (parseInt(val.get('status')) === parseInt(status.get('id'))) {
+            if (parseInt(val.get('status')) === parseInt(status.get('id')) || parseInt(val.get('status')) === parseInt(status_onhold.get('id'))) {
               apartment = val.get('apartment_views');
               if (val.get('apartment_views') !== "" && val.get('apartment_views').length !== 0) {
                 apartment = apartment.map(function(item) {
@@ -509,7 +509,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
           count = [];
           $.each(floorCollunits1, function(ind, val) {
             var facing;
-            if (parseInt(val.get('status')) === parseInt(status.get('id'))) {
+            if (parseInt(val.get('status')) === parseInt(status.get('id')) || parseInt(val.get('status')) === parseInt(status_onhold.get('id'))) {
               facing = val.get('facing');
               facing = facing.map(function(item) {
                 return parseInt(item);
@@ -548,7 +548,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
           key = $.inArray(parseInt(value), terracetemp1);
           count = [];
           $.each(floorCollunits1, function(ind, val) {
-            if (parseInt(val.get('status')) === parseInt(status.get('id'))) {
+            if (parseInt(val.get('status')) === parseInt(status.get('id')) || parseInt(val.get('status')) === parseInt(status_onhold.get('id'))) {
               if (parseInt(value) === val.get('terrace')) {
                 return count.push(val);
               }
@@ -578,9 +578,8 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
         unitVarinatModel = App.master.unit_variant.findWhere({
           id: value
         });
-        count = units.where({
-          'unitVariant': value,
-          'status': status.get('id')
+        count = _.filter(units.toArray(), function(num) {
+          return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitVariant') === value;
         });
         key = $.inArray(value, flooruniqUnitvariant);
         selected = "";
@@ -787,7 +786,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
           if (myArray.length === 0) {
             track = 1;
           }
-          if (value1.get('status') === 9 && value1.get('unitType') !== 14 && value1.get('unitType') !== 16) {
+          if (parseInt(value1.get('status')) === parseInt(status.get('id')) || parseInt(value1.get('status')) === parseInt(status_onhold.get('id')) && value1.get('unitType') !== 14 && value1.get('unitType') !== 16) {
             return maxunits = App.currentStore.unit.where({
               unitAssigned: value
             });
