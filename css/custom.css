@@ -7984,6 +7984,31 @@ a.special {
 #layoutmsg.alrtMsg {
   width: 100%;
 }
+.onhold_msg {
+  margin: auto;
+  font-family: 'kievit';
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  margin-top: 10.5px;
+  margin-bottom: 10.5px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  width: 40%;
+  color: #d9534f;
+  color: #f0ad4e;
+}
+.onhold_msg small,
+.onhold_msg .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+.onhold_msg small,
+.onhold_msg .small {
+  font-size: 75%;
+}
 .flatContainer .vs-wrapper {
   background-color: #ffffff;
 }
