@@ -115,6 +115,7 @@ define [ 'marionette' ], ( Marionette )->
                         success:(response,status,xhr)=>
                             $('.accordion-group.three').removeClass('open')
                             $('.accordion-group.four').addClass('open')
+                            $('.accordion-group.three').addClass('viewed')
                             
                         error :(response)=>
                             if xhr.status == 408
@@ -138,6 +139,10 @@ define [ 'marionette' ], ( Marionette )->
                 maxDate: new Date(),
                 yearRange: "-100:+0",
             });
+
+            $('.two.viewed > .acc-title').click ->
+                $('.accordion-group').removeClass('open')
+                $('.accordion-group.two').addClass('open')
 
 
 

@@ -10678,6 +10678,9 @@ a.im-clear-button {
   overflow: visible;
   z-index: 5;
 }
+.accordion-group.viewed .acc-title {
+  cursor: pointer;
+}
 .details-form label {
   font-weight: normal;
 }

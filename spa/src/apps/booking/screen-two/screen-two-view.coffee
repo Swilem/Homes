@@ -86,6 +86,8 @@ define [ 'marionette' ], ( Marionette )->
             $('#currency').autoNumeric('set', finalcost);
             $('.final_cost').text $('#currency').val()
 
+            
+
 
 
 

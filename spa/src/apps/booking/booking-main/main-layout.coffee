@@ -45,7 +45,7 @@ define [ 'extm'], ( Extm)->
                                 <h4 class="text-center introTxt">Complete your booking securely through our payment gateway.</h4>
                             <div class="session"></div>
                             <div class="accordion">
-                                <div class="accordion-group one open">
+                                <div class="accordion-group one open viewed">
                                     <div class="acc-title">
                                         <h4>1. Sign In</h4>
                                     </div>
@@ -89,8 +89,7 @@ define [ 'extm'], ( Extm)->
                         </div>
                     </div>'
 
-        # onShow:->
-            
+                 
 
 
 
