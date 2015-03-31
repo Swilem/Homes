@@ -37,7 +37,7 @@ define(['extm', 'src/apps/screen-one/screen-one-view'], function(Extm, ScreenOne
     };
 
     ScreenOneController.prototype._getUnitTypeCollection = function() {
-      var Model, UnitsCollection, classname, collection, element, i, modelArray, newUnits, noPrefereceModel, priceArray, priceRange, priceUnits, rangeArray, status, units, _i, _len;
+      var Model, UnitsCollection, classname, collection, element, i, modelArray, newUnits, noPrefereceModel, priceArray, priceRange, priceUnits, rangeArray, status, status_onhold, temp, units, _i, _len;
       Model = Backbone.Model.extend({});
       UnitsCollection = Backbone.Collection.extend({
         model: Model
@@ -46,6 +46,9 @@ define(['extm', 'src/apps/screen-one/screen-one-view'], function(Extm, ScreenOne
       collection = new UnitsCollection();
       status = App.currentStore.status.findWhere({
         'name': 'Available'
+      });
+      status_onhold = App.currentStore.status.findWhere({
+        'name': 'On Hold'
       });
       priceUnits = App.currentStore.unit;
       priceUnits.each(function(item) {
@@ -67,8 +70,9 @@ define(['extm', 'src/apps/screen-one/screen-one-view'], function(Extm, ScreenOne
       priceRange = ['10-40 lakhs ', '40-70 lakhs ', '70-100 lakhs ', '1-1.3 crores '];
       priceArray = [];
       rangeArray = [];
-      units = App.currentStore.unit.where({
-        'status': status.get('id')
+      temp = App.currentStore.unit.toArray();
+      units = _.filter(temp, function(num) {
+        return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
       });
       $.each(units, function(index, value) {
         var NewUnitCollection, budget_price, element, elementArray, max_coll, max_val, min_val, unitTypemodel, _i, _len;

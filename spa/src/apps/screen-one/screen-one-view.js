@@ -28,7 +28,7 @@ define(['marionette'], function(Marionette) {
     };
 
     UnitTypeView.prototype.unitTypeSelected = function(evt) {
-      var buildings, element, index, masterbuilding, newColl, newUnits, status, uniqBuildings, unitTypeModel, unitTypeString, _i, _j, _len, _len1;
+      var buildings, element, index, masterbuilding, newColl, newUnits, status, status_onhold, uniqBuildings, unitTypeModel, unitTypeString, _i, _j, _len, _len1;
       $('#printmapplic1').text("");
       if (this.model.get('id') === 'nopreferences') {
         if (parseInt($("#check" + this.model.get('id')).val()) === 0) {
@@ -143,9 +143,11 @@ define(['marionette'], function(Marionette) {
       status = App.currentStore.status.findWhere({
         'name': 'Available'
       });
-      newUnits = App.currentStore.unit.where({
-        unitType: parseInt(App.defaults['unitType']),
-        status: status.get('id')
+      status_onhold = App.currentStore.status.findWhere({
+        'name': 'On Hold'
+      });
+      newUnits = _.filter(App.currentStore.unit.toArray(), function(num) {
+        return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === parseInt(App.defaults['unitType']);
       });
       newColl = new Backbone.Collection(newUnits);
       buildings = newColl.pluck("building");
@@ -371,7 +373,7 @@ define(['marionette'], function(Marionette) {
         return $('.im-tooltip').hide();
       },
       'mouseover .tower-over': function(e) {
-        var buildigmodel, buildingarray, buildingmodes, countunits, currency, differnecearr, element, floorCollunits, floorUnitsArray, floorarray, id, key, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, phasemodel, phasemodelint, screenonearray, selectorname, status, str1, text, units, units1, unitslen, unittypemodel, unittypetext, _i, _len;
+        var buildigmodel, buildingarray, buildingmodes, countunits, currency, differnecearr, element, floorCollunits, floorUnitsArray, floorarray, id, key, locationData, mainnewarr, mainunique, mainunitTypeArray1, min, minmodel, myArray, phasemodel, phasemodelint, screenonearray, selectorname, status, status_onhold, str1, text, units, units1, unitslen, unittypemodel, unittypetext, _i, _len;
         $('#printmapplic1').text("");
         e.preventDefault();
         id = e.target.id;
@@ -413,8 +415,11 @@ define(['marionette'], function(Marionette) {
         status = App.master.status.findWhere({
           'name': 'Available'
         });
-        unitslen = App.master.unit.where({
-          'status': status.get('id')
+        status_onhold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        unitslen = _.filter(App.master.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
         floorCollunits = [];
         $.each(unitslen, function(index, value1) {
@@ -486,8 +491,8 @@ define(['marionette'], function(Marionette) {
         }
         units = new Backbone.Collection(floorCollunits);
         mainunitTypeArray1 = [];
-        units1 = App.master.unit.where({
-          'status': status.get('id')
+        units1 = _.filter(App.master.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
         $.each(units1, function(index, value) {
           var unitTypemodel;
@@ -503,13 +508,8 @@ define(['marionette'], function(Marionette) {
           var classname, count;
           if (!mainunique[item.id]) {
             if (item.id !== 14 && item.id !== 16) {
-              status = App.master.status.findWhere({
-                'name': 'Available'
-              });
-              count = units.where({
-                unitType: item.id,
-                'status': status.get('id'),
-                'building': parseInt(str1)
+              count = _.filter(units, function(num) {
+                return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && parseInt(num.get('building')) === parseInt(str1) && num.get('unitType') === item.id;
               });
               if (parseInt(item.id) === 9) {
                 classname = 'twoBHK';

@@ -20,7 +20,7 @@ define(['marionette'], function(Marionette) {
         $.ajax({
           type: 'POST',
           url: SITEURL + '/wp-json/unitstatus/' + unit_id,
-          data: '',
+          data: 'user_id=' + usermodel.get('id'),
           success: function(response) {
             return console.log("success");
           },

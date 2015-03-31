@@ -49,7 +49,7 @@ define [ 'marionette' ], ( Marionette )->
 			    $.ajax(
 			    	type : 'POST',
 			    	url : SITEURL+'/wp-json/unitstatus/'+unit_id,
-			    	data : '',
+			    	data : 'user_id='+usermodel.get('id')
 			    	success:(response)->
 			    		console.log "success"
 			    	error:(response)->

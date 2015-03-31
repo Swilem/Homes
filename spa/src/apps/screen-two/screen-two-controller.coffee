@@ -204,12 +204,22 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
             myArray1 = []
             MainCollection = new Backbone.Model()
             status = App.currentStore.status.findWhere({'name':'Available'})
+            status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
             key =  _.isEmpty(paramid)
             if key == true
-                units = App.currentStore.unit.where({'status':status.get('id')})
+                units  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                )
             else
-               units = App.currentStore.unit.where({'status':status.get('id')}) 
-            Countunits = App.currentStore.unit.where({'status':status.get('id')})
+               units  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                ) 
+            Countunits  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+            )
             param = {}
             paramkey = {}
             flag = 0
@@ -230,8 +240,11 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
 
             )
             
-            status = App.master.status.findWhere({'name':'Available'})
-            unitslen = App.currentStore.unit.where({'status':status.get('id')})
+            unitslen  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+            ) 
+            
             unitslen1 = App.master.unit.toArray()
 
 
@@ -466,7 +479,7 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                     key  =  $.inArray(parseInt(value),viewtemp1)
                     count = []
                     $.each(floorCollunits1, (ind,val)->
-                        if parseInt(val.get('status')) == parseInt(status.get('id'))
+                        if parseInt(val.get('status')) == parseInt(status.get('id')) || parseInt(val.get('status')) == parseInt(status_onhold.get('id'))
 
                             apartment = val.get('apartment_views')
                             if val.get('apartment_views') !="" && val.get('apartment_views').length !=0
@@ -504,7 +517,7 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                     key  = $.inArray(parseInt(value),facingtemp1)
                     count = []
                     $.each(floorCollunits1, (ind,val)->
-                        if parseInt(val.get('status')) == parseInt(status.get('id'))
+                        if parseInt(val.get('status')) == parseInt(status.get('id')) || parseInt(val.get('status')) == parseInt(status_onhold.get('id'))
                             facing = val.get('facing')
                             facing = facing.map((item)->
                                 return parseInt(item)
@@ -542,7 +555,7 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                     key  = $.inArray(parseInt(value),terracetemp1) 
                     count = []
                     $.each(floorCollunits1, (ind,val)->
-                        if parseInt(val.get('status')) == parseInt(status.get('id'))
+                        if parseInt(val.get('status')) == parseInt(status.get('id')) || parseInt(val.get('status')) == parseInt(status_onhold.get('id'))
                             if parseInt(value) == parseInt(val.get('terrace')) 
                                 count.push(val)
 
@@ -570,7 +583,12 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
             
             $.each(uniqUnitvariant, (index,value)->
                 unitVarinatModel = App.master.unit_variant.findWhere({id:value})
-                count = floorCollection.where({'unitVariant':value,'status':status.get('id')})
+                count  = _.filter(floorCollection.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                    parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                    num.get('unitVariant') == value
+
+                )
                 key  = $.inArray(value,flooruniqUnitvariant)
                 if App.defaults['unitType'] != "All"
                     unittypemodel = App.master.unit_type.findWhere({id:parseInt(App.defaults['unitType'])})
@@ -601,7 +619,10 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
 
             )
             mainunitTypeArray1 = []
-            units1 = App.master.unit.where({'status':status.get('id')})
+            units1  = _.filter(App.master.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+            )
             $.each(units1, (index,value)->
 
                 if buildingArray.indexOf(value.get 'building') ==  -1
@@ -624,7 +645,14 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
             $.each(mainunitTypeArray1, (key,item)->
                 if (!mainunique[item.id])
                     if item.id != 14 && item.id != 16
-                        status = App.master.status.findWhere({'name':'Available'})
+                        
+                        count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                num.get('unitType') == item.id
+
+
+                        )
 
                         count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id')})
 
@@ -665,7 +693,6 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                 lclassname = ""
                 mclassname = ""
                 hclassname = ""
-                status = App.currentStore.status.findWhere({'name':'Available'})
                 totalunits = App.currentStore.unit.where({'building':value})
                 buildingModel = App.master.building.findWhere({id:buildingid})
                 floorriserange = buildingModel.get 'floorriserange'
@@ -695,8 +722,14 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                 $.each(mainunitTypeArray, (key,item)->
                     if (!lunique[item.id])
                         lunitTypeArray = []
-                        status = App.currentStore.status.findWhere({'name':'Available'})
-                        count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id'),building:buildingid})
+                        count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                parseInt(num.get('building')) == parseInt(buildingid) &&
+                                num.get('unitType') == item.id
+
+
+                        )
                         $.each(count, (index,value)->
                             #lowUnits = App.currentStore.range.findWhere({name:'low'})
                             if (value.get('floor') >= parseInt(floorriserange[0].start) &&  value.get('floor') <= parseInt(floorriserange[0].end)) && item.id == value.get('unitType')
@@ -735,8 +768,14 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                 $.each(mainunitTypeArray, (key,item)->
                     if (!munique[item.id])
                         munitTypeArray = []
-                        status = App.currentStore.status.findWhere({'name':'Available'})
-                        count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id'),building:buildingid})
+                        count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                parseInt(num.get('building')) == parseInt(buildingid) &&
+                                num.get('unitType') == item.id
+
+
+                        )
                         $.each(count, (index,value)->
                             if (value.get('floor') >= parseInt(floorriserange[1].start) &&  value.get('floor') <= parseInt(floorriserange[1].end)) && item.id == value.get('unitType')
                                 munitTypeArray.push value
@@ -772,9 +811,14 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
 
                     if (!hunique[item.id])
                         hunitTypeArray = []
-                        status = App.currentStore.status.findWhere({'name':'Available'})
-                        count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id'),building:buildingid})
+                        count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                parseInt(num.get('building')) == parseInt(buildingid) &&
+                                num.get('unitType') == item.id
 
+
+                            )
                         $.each(count, (index,value)->
                             if (value.get('floor') >= parseInt(floorriserange[2].start) &&  value.get('floor') <= parseInt(floorriserange[2].end)) && item.id == value.get('unitType')
                                 hunitTypeArray.push value
@@ -808,11 +852,21 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
 
 
 
-                availableunits = App.currentStore.unit.where({'building':value,'status':status.get('id')})
+                availableunits  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                        num.get('building') == value
+
+                )
                 totalfloorcollection = new Backbone.Collection(totalunits)
                 floors = totalfloorcollection.pluck("floor")
                 uniqFloors = _.uniq(floors)
-                newunits = App.currentStore.unit.where({'building':value,'status':status.get('id')})
+                newunits  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                        num.get('building') == value
+
+                )
                 buildingUnits.push({id:buildingid,count:newunits.length,name:'tower'+buildingid})
                 lowArray = Array()
                 mediumArray = Array()
@@ -839,8 +893,14 @@ define [ 'extm', 'src/apps/screen-two/screen-two-view' ], ( Extm, ScreenTwoView 
                 )
                 $.each(unitTypeArray, (key,item)->
                     if (!unique[item.id])
-                        status = App.currentStore.status.findWhere({'name':'Available'})
-                        count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id'),'building':buildingid})
+                        count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                parseInt(num.get('building')) == parseInt(buildingid) &&
+                                num.get('unitType') == item.id
+
+
+                            )
                         if parseInt(item.id) == 9
                             classname = 'twoBHK m-l-20'
                         else

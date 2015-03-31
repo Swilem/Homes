@@ -43,6 +43,8 @@ define [ 'marionette' ], ( Marionette )->
                         </div>
 
                     </div>
+                    <input type="hidden" name="currency" id="currency" class="demo" data-a-sign="Rs. " data-m-dec=""  data-d-group="2" >
+
 
                     <div class="text-center">
                         <div class="checkbox">
@@ -69,8 +71,12 @@ define [ 'marionette' ], ( Marionette )->
         onShow:->
             $('.flat_name').text unit_name
             $('.building_name').text building
-            $('.rec').text recAmount
-            $('.final_cost').text finalcost
+            $('#currency').autoNumeric('init')
+            $('#currency').autoNumeric('set', recAmount);
+            $('.rec').text $('#currency').val()
+            $('#currency').autoNumeric('init')
+            $('#currency').autoNumeric('set', finalcost);
+            $('.final_cost').text $('#currency').val()
 
 
 

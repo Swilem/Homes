@@ -246,7 +246,11 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
                     )
                 status = App.master.status.findWhere({'name':'Available'})
-                unitslen = App.master.unit.where({'status':status.get('id')})
+                status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                unitslen  = _.filter(App.master.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                )
 
 
                 
@@ -330,7 +334,10 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                     floorCollunits = floorarray
                 units  = new Backbone.Collection floorCollunits
                 mainunitTypeArray1 = []
-                units1 = App.master.unit.where({'status':status.get('id')})
+                units1  = _.filter(App.master.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                )
                 $.each(units1, (index,value)->
                     unitTypemodel = App.master.unit_type.findWhere({id:value.get 'unitType'})
                     mainunitTypeArray1.push({id:unitTypemodel.get('id'),name: unitTypemodel.get('name')})
@@ -339,10 +346,15 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                 $.each(mainunitTypeArray1, (key,item)->
                     if (!mainunique[item.id])
                         if item.id != 14 && item.id != 16
-                            status = App.master.status.findWhere({'name':'Available'})
+                            count  = _.filter(units,  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                parseInt(num.get('building')) == parseInt(str1) &&
+                                num.get('unitType') == item.id
 
-                            count = units.where({unitType:item.id,'status':status.get('id'),'building':parseInt(str1)})
 
+                            )
+                            
                             if parseInt(item.id) == 9
                                 classname = 'twoBHK'
                             else
@@ -455,7 +467,11 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
                     )
                 status = App.master.status.findWhere({'name':'Available'})
-                unitslen = App.master.unit.where({'status':status.get('id')})
+                status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                unitslen  = _.filter(App.master.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                )
 
 
                 
@@ -883,7 +899,11 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                 mainunique = {}
                 mainunitTypeArray1 = []
                 status = App.master.status.findWhere({'name':'Available'})
-                units1 = App.master.unit.where({'status':status.get('id')})
+                status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                units1  = _.filter(App.master.unit.toArray(),  (num)->
+                    return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                )
                 $.each(units1, (index,value)->
                     unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                     mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -891,10 +911,13 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                 $.each(mainunitTypeArray1, (key,item)->
                     if (!mainunique[item.id])
                         if item.id != 14 && item.id != 16
-                            status = App.master.status.findWhere({'name':'Available'})
+                            count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                num.get('unitType') == item.id
 
-                            count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id')})
 
+                            )
                             if parseInt(item.id) == 9
                                 classname = 'twoBHK'
                             else
@@ -1016,7 +1039,11 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                     App.filter()
                     mainunitTypeArray1 = []
                     status = App.master.status.findWhere({'name':'Available'})
-                    units1 = App.master.unit.where({'status':status.get('id')})
+                    status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                    units1  = _.filter(App.master.unit.toArray(),  (num)->
+                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                    )
                     $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1024,10 +1051,13 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                     $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(App.currentStore.unit.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = App.currentStore.unit.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -1167,7 +1197,11 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             $('#selectview').prop('checked',false)
                         mainunitTypeArray1 = []
                         status = App.master.status.findWhere({'name':'Available'})
-                        units1 = App.master.unit.where({'status':status.get('id')})
+                        status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                        units1  = _.filter( App.master.unit.toArray(),  (num)->
+                            return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                        )
                         $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1175,10 +1209,13 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(floorCollection.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = floorCollection.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -1311,7 +1348,11 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             $('#selectview').prop('checked',false)
                         mainunitTypeArray1 = []
                         status = App.master.status.findWhere({'name':'Available'})
-                        units1 = App.master.unit.where({'status':status.get('id')})
+                        status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                        units1  = _.filter(App.master.unit.toArray(),  (num)->
+                            return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                        )
                         $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1319,10 +1360,13 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(units.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = units.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -1459,7 +1503,11 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             $('#selectview').prop('checked',false)
                         mainunitTypeArray1 = []
                         status = App.master.status.findWhere({'name':'Available'})
-                        units1 = App.master.unit.where({'status':status.get('id')})
+                        status_onhold = App.currentStore.status.findWhere({'name':'On Hold'})
+                        units1  = _.filter(App.master.unit.toArray(),  (num)->
+                            return (parseInt(num.get('status')) == parseInt(status.get('id')) || parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) 
+
+                        )
                         $.each(units1, (index,value)->
                             unitType = App.master.unit_type.findWhere({id:value.get 'unitType'})
                             mainunitTypeArray1.push({id:unitType.get('id'),name: unitType.get('name')})
@@ -1467,10 +1515,13 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         $.each(mainunitTypeArray1, (key,item)->
                             if (!mainunique[item.id])
                                 if item.id != 14 && item.id != 16
-                                    status = App.master.status.findWhere({'name':'Available'})
+                                    count  = _.filter(floorCollection.toArray(),  (num)->
+                                        return (parseInt(num.get('status')) == parseInt(status.get('id')) || 
+                                        parseInt(num.get('status')) == parseInt(status_onhold.get('id'))) &&
+                                        num.get('unitType') == item.id
 
-                                    count = floorCollection.where({unitType:item.id,'status':status.get('id')})
 
+                                    )
                                     if parseInt(item.id) == 9
                                         classname = 'twoBHK'
                                     else
@@ -1740,7 +1791,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
             i = 1
             building = Marionette.getOption( @, 'buildingColl' ).toArray()
-            console.log buidlingValue = _.first(building)
+            buidlingValue = _.first(building)
             while (window['mapplic' + i] != undefined)
                 params = window['mapplic' + i]
                 selector = '#mapplic' + i

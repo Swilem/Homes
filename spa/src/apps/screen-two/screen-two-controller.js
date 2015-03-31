@@ -151,7 +151,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
     };
 
     ScreenTwoController.prototype._getUnitsCountCollection = function(paramid) {
-      var Countunits, MainCollection, ModelActualArr, arrayvalue, buildingArray, buildingArrayModel, buildingCollection, buildingUnits, buildingsactual, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, flag, floorCollection, floorCollectionCur, floorCollectionmaster, floorCollunits, floorCollunits1, floorUnitsArray, flooruniqUnitvariant, floorunitvariant, highLength, hnewarr, i, index, itemCollection, j, key, keycheck, lnewarr, mainArray, mainnewarr, mainunique, mainunitTypeArray, mainunitTypeArray1, mainunitsTypeArray, mnewarr, modelArr, modelIdArr, myArray, myArray1, param, paramkey, status, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, uniqUnitvariant, uniqfacings, uniqterrace, uniqviews, unitColl, unitVariantID, unitVariantModels, units, units1, unitsactual, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
+      var Countunits, MainCollection, ModelActualArr, arrayvalue, buildingArray, buildingArrayModel, buildingCollection, buildingUnits, buildingsactual, buildingvalue, capability, facingID, facingModels, facingtemp, facingtemp1, flag, floorCollection, floorCollectionCur, floorCollectionmaster, floorCollunits, floorCollunits1, floorUnitsArray, flooruniqUnitvariant, floorunitvariant, highLength, hnewarr, i, index, itemCollection, j, key, keycheck, lnewarr, mainArray, mainnewarr, mainunique, mainunitTypeArray, mainunitTypeArray1, mainunitsTypeArray, mnewarr, modelArr, modelIdArr, myArray, myArray1, param, paramkey, status, status_onhold, templateArr, templateString, tempunitvarinat, terraceID, terraceModels, terracetemp, terracetemp1, uniqUnitvariant, uniqfacings, uniqterrace, uniqviews, unitColl, unitVariantID, unitVariantModels, units, units1, unitsactual, unitslen, unitslen1, unitvariant, unitvarinatColl, usermodel, viewID, viewModels, viewtemp, viewtemp1;
       if (paramid == null) {
         paramid = {};
       }
@@ -170,18 +170,21 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
       status = App.currentStore.status.findWhere({
         'name': 'Available'
       });
+      status_onhold = App.currentStore.status.findWhere({
+        'name': 'On Hold'
+      });
       key = _.isEmpty(paramid);
       if (key === true) {
-        units = App.currentStore.unit.where({
-          'status': status.get('id')
+        units = _.filter(App.currentStore.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
       } else {
-        units = App.currentStore.unit.where({
-          'status': status.get('id')
+        units = _.filter(App.currentStore.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
       }
-      Countunits = App.currentStore.unit.where({
-        'status': status.get('id')
+      Countunits = _.filter(App.currentStore.unit.toArray(), function(num) {
+        return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
       });
       param = {};
       paramkey = {};
@@ -210,11 +213,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
           }
         }
       });
-      status = App.master.status.findWhere({
-        'name': 'Available'
-      });
-      unitslen = App.currentStore.unit.where({
-        'status': status.get('id')
+      unitslen = _.filter(App.currentStore.unit.toArray(), function(num) {
+        return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
       });
       unitslen1 = App.master.unit.toArray();
       $.each(unitslen1, function(index, value1) {
@@ -476,7 +476,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
           count = [];
           $.each(floorCollunits1, function(ind, val) {
             var apartment;
-            if (parseInt(val.get('status')) === parseInt(status.get('id'))) {
+            if (parseInt(val.get('status')) === parseInt(status.get('id')) || parseInt(val.get('status')) === parseInt(status_onhold.get('id'))) {
               apartment = val.get('apartment_views');
               if (val.get('apartment_views') !== "" && val.get('apartment_views').length !== 0) {
                 apartment = apartment.map(function(item) {
@@ -518,7 +518,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
           count = [];
           $.each(floorCollunits1, function(ind, val) {
             var facing;
-            if (parseInt(val.get('status')) === parseInt(status.get('id'))) {
+            if (parseInt(val.get('status')) === parseInt(status.get('id')) || parseInt(val.get('status')) === parseInt(status_onhold.get('id'))) {
               facing = val.get('facing');
               facing = facing.map(function(item) {
                 return parseInt(item);
@@ -557,7 +557,7 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
           key = $.inArray(parseInt(value), terracetemp1);
           count = [];
           $.each(floorCollunits1, function(ind, val) {
-            if (parseInt(val.get('status')) === parseInt(status.get('id'))) {
+            if (parseInt(val.get('status')) === parseInt(status.get('id')) || parseInt(val.get('status')) === parseInt(status_onhold.get('id'))) {
               if (parseInt(value) === parseInt(val.get('terrace'))) {
                 return count.push(val);
               }
@@ -587,9 +587,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         unitVarinatModel = App.master.unit_variant.findWhere({
           id: value
         });
-        count = floorCollection.where({
-          'unitVariant': value,
-          'status': status.get('id')
+        count = _.filter(floorCollection.toArray(), function(num) {
+          return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitVariant') === value;
         });
         key = $.inArray(value, flooruniqUnitvariant);
         if (App.defaults['unitType'] !== "All") {
@@ -627,8 +626,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         return a - b;
       });
       mainunitTypeArray1 = [];
-      units1 = App.master.unit.where({
-        'status': status.get('id')
+      units1 = _.filter(App.master.unit.toArray(), function(num) {
+        return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
       });
       $.each(units1, function(index, value) {
         var unitType;
@@ -658,8 +657,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         var classname, count;
         if (!mainunique[item.id]) {
           if (item.id !== 14 && item.id !== 16) {
-            status = App.master.status.findWhere({
-              'name': 'Available'
+            count = _.filter(App.currentStore.unit.toArray(), function(num) {
+              return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
             });
             count = App.currentStore.unit.where({
               unitType: item.id,
@@ -706,9 +705,6 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         lclassname = "";
         mclassname = "";
         hclassname = "";
-        status = App.currentStore.status.findWhere({
-          'name': 'Available'
-        });
         totalunits = App.currentStore.unit.where({
           'building': value
         });
@@ -725,13 +721,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
           var count;
           if (!lunique[item.id]) {
             lunitTypeArray = [];
-            status = App.currentStore.status.findWhere({
-              'name': 'Available'
-            });
-            count = App.currentStore.unit.where({
-              unitType: item.id,
-              'status': status.get('id'),
-              building: buildingid
+            count = _.filter(App.currentStore.unit.toArray(), function(num) {
+              return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && parseInt(num.get('building')) === parseInt(buildingid) && num.get('unitType') === item.id;
             });
             $.each(count, function(index, value) {
               if ((value.get('floor') >= parseInt(floorriserange[0].start) && value.get('floor') <= parseInt(floorriserange[0].end)) && item.id === value.get('unitType')) {
@@ -777,13 +768,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
           var count;
           if (!munique[item.id]) {
             munitTypeArray = [];
-            status = App.currentStore.status.findWhere({
-              'name': 'Available'
-            });
-            count = App.currentStore.unit.where({
-              unitType: item.id,
-              'status': status.get('id'),
-              building: buildingid
+            count = _.filter(App.currentStore.unit.toArray(), function(num) {
+              return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && parseInt(num.get('building')) === parseInt(buildingid) && num.get('unitType') === item.id;
             });
             $.each(count, function(index, value) {
               if ((value.get('floor') >= parseInt(floorriserange[1].start) && value.get('floor') <= parseInt(floorriserange[1].end)) && item.id === value.get('unitType')) {
@@ -829,13 +815,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
           var count;
           if (!hunique[item.id]) {
             hunitTypeArray = [];
-            status = App.currentStore.status.findWhere({
-              'name': 'Available'
-            });
-            count = App.currentStore.unit.where({
-              unitType: item.id,
-              'status': status.get('id'),
-              building: buildingid
+            count = _.filter(App.currentStore.unit.toArray(), function(num) {
+              return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && parseInt(num.get('building')) === parseInt(buildingid) && num.get('unitType') === item.id;
             });
             $.each(count, function(index, value) {
               if ((value.get('floor') >= parseInt(floorriserange[2].start) && value.get('floor') <= parseInt(floorriserange[2].end)) && item.id === value.get('unitType')) {
@@ -874,16 +855,14 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
             return hunique[item.id] = item;
           }
         });
-        availableunits = App.currentStore.unit.where({
-          'building': value,
-          'status': status.get('id')
+        availableunits = _.filter(App.currentStore.unit.toArray(), function(num) {
+          return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('building') === value;
         });
         totalfloorcollection = new Backbone.Collection(totalunits);
         floors = totalfloorcollection.pluck("floor");
         uniqFloors = _.uniq(floors);
-        newunits = App.currentStore.unit.where({
-          'building': value,
-          'status': status.get('id')
+        newunits = _.filter(App.currentStore.unit.toArray(), function(num) {
+          return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('building') === value;
         });
         buildingUnits.push({
           id: buildingid,
@@ -919,13 +898,8 @@ define(['extm', 'src/apps/screen-two/screen-two-view'], function(Extm, ScreenTwo
         $.each(unitTypeArray, function(key, item) {
           var classname, count;
           if (!unique[item.id]) {
-            status = App.currentStore.status.findWhere({
-              'name': 'Available'
-            });
-            count = App.currentStore.unit.where({
-              unitType: item.id,
-              'status': status.get('id'),
-              'building': buildingid
+            count = _.filter(App.currentStore.unit.toArray(), function(num) {
+              return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && parseInt(num.get('building')) === parseInt(buildingid) && num.get('unitType') === item.id;
             });
             if (parseInt(item.id) === 9) {
               classname = 'twoBHK m-l-20';

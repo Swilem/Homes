@@ -337,7 +337,7 @@ define(['marionette'], function(Marionette) {
         return this.trigger("load:range:data", unitModel);
       },
       'mouseover .unit-hover': function(e) {
-        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
+        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -405,7 +405,10 @@ define(['marionette'], function(Marionette) {
             });
           }
         });
-        if (checktrack === 1 && parseInt(unitModel.get('status')) === 9) {
+        status = App.currentStore.status.findWhere({
+          'name': 'Available'
+        });
+        if (checktrack === 1 && parseInt(unitModel.get('status')) === parseInt(status.get('id '))) {
           return $("#" + e.target.id).attr('class', 'unit-hover aviable');
         } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === 8 || parseInt(unitModel.get('status')) === 47)) {
           return $("#" + e.target.id).attr('class', 'sold');
@@ -414,7 +417,7 @@ define(['marionette'], function(Marionette) {
         }
       },
       'mouseover .range': function(e) {
-        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
+        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -482,7 +485,10 @@ define(['marionette'], function(Marionette) {
             });
           }
         });
-        if (checktrack === 1 && parseInt(unitModel.get('status')) === 9) {
+        status = App.currentStore.status.findWhere({
+          'name': 'Available'
+        });
+        if (checktrack === 1 && parseInt(unitModel.get('status')) === parseInt(status.get('id'))) {
           return $("#" + e.target.id).attr('class', 'unit-hover range aviable');
         } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === 8 || parseInt(unitModel.get('status')) === 47)) {
           return $("#" + e.target.id).attr('class', 'sold range');
@@ -491,7 +497,7 @@ define(['marionette'], function(Marionette) {
         }
       },
       'mouseover .unselected-floor': function(e) {
-        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
+        var buildinArray, building, buildingCollection, buildingModel, checktrack, flatid, floorriserange, id, indexvalue, pos, status, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -559,8 +565,11 @@ define(['marionette'], function(Marionette) {
             });
           }
         });
+        status = App.currentStore.status.findWhere({
+          'name': 'Available'
+        });
         checktrack = this.checkSelection(unitModel);
-        if (checktrack === 1 && parseInt(unitModel.get('status')) === 9) {
+        if (checktrack === 1 && parseInt(unitModel.get('status')) === parseInt(status.get('id'))) {
           return $("#" + e.target.id).attr('class', 'unselected-floor aviable');
         } else if (checktrack === 1 && (parseInt(unitModel.get('status')) === 8 || parseInt(unitModel.get('status')) === 47)) {
           return $("#" + e.target.id).attr('class', 'sold ');
@@ -713,7 +722,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenThreeLayout.prototype.onShow = function() {
-      var $columns_number, capability, clonefacings, cloneterraces, cloneviews, entrance, entranceArrayText, globalUnitVariants, globalfacing, globalfacingInt, globalterrace, globalterraceInt, globalviewInt, globalviews, mainnewarr, mainunique, mainunitTypeArray1, objectele, originalOfacings, originalOterraces, originalOviews, originalfacings, originalterraces, originalviews, selectedArray, status, teraace, terraceArrayText, testtext, unitVariantArrayColl, unitVariantArrayText, unitVariantsArray, units1, unittypetext, usermodel, view, viewArrayText;
+      var $columns_number, capability, clonefacings, cloneterraces, cloneviews, entrance, entranceArrayText, globalUnitVariants, globalfacing, globalfacingInt, globalterrace, globalterraceInt, globalviewInt, globalviews, mainnewarr, mainunique, mainunitTypeArray1, objectele, originalOfacings, originalOterraces, originalOviews, originalfacings, originalterraces, originalviews, selectedArray, status, status_onhold, teraace, terraceArrayText, testtext, unitVariantArrayColl, unitVariantArrayText, unitVariantsArray, units1, unittypetext, usermodel, view, viewArrayText;
       unitAssigedArray = [];
       objectele = "this";
       viewtagsArray = [];
@@ -808,11 +817,14 @@ define(['marionette'], function(Marionette) {
         mainnewarr = [];
         mainunique = {};
         mainunitTypeArray1 = [];
-        status = App.master.status.findWhere({
+        status = App.currentStore.status.findWhere({
           'name': 'Available'
         });
-        units1 = App.master.unit.where({
-          'status': status.get('id')
+        status_onhold = App.currentStore.status.findWhere({
+          'name': 'On Hold'
+        });
+        units1 = _.filter(App.master.unit.toArray(), function(num) {
+          return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
         });
         $.each(units1, function(index, value) {
           var unitType;
@@ -828,12 +840,8 @@ define(['marionette'], function(Marionette) {
           var classname;
           if (!mainunique[item.id]) {
             if (item.id !== 14 && item.id !== 16) {
-              status = App.master.status.findWhere({
-                'name': 'Available'
-              });
-              count = App.currentStore.unit.where({
-                unitType: item.id,
-                'status': status.get('id')
+              count = _.filter(App.currentStore.unit.toArray(), function(num) {
+                return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
               });
               if (parseInt(item.id) === 9) {
                 classname = 'twoBHK';
@@ -945,8 +953,11 @@ define(['marionette'], function(Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -962,12 +973,8 @@ define(['marionette'], function(Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = App.currentStore.unit.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(App.currentStore.unit.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -1087,8 +1094,11 @@ define(['marionette'], function(Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -1104,12 +1114,8 @@ define(['marionette'], function(Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = floorCollection.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(floorCollection.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -1227,8 +1233,11 @@ define(['marionette'], function(Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -1244,12 +1253,8 @@ define(['marionette'], function(Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = units.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(units.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -1366,8 +1371,11 @@ define(['marionette'], function(Marionette) {
           status = App.master.status.findWhere({
             'name': 'Available'
           });
-          units1 = App.master.unit.where({
-            'status': status.get('id')
+          status_onhold = App.currentStore.status.findWhere({
+            'name': 'On Hold'
+          });
+          units1 = _.filter(App.master.unit.toArray(), function(num) {
+            return parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'));
           });
           $.each(units1, function(index, value) {
             var unitType;
@@ -1383,12 +1391,8 @@ define(['marionette'], function(Marionette) {
             var classname;
             if (!mainunique[item.id]) {
               if (item.id !== 14 && item.id !== 16) {
-                status = App.master.status.findWhere({
-                  'name': 'Available'
-                });
-                count = floorCollection.where({
-                  unitType: item.id,
-                  'status': status.get('id')
+                count = _.filter(floorCollection.toArray(), function(num) {
+                  return (parseInt(num.get('status')) === parseInt(status.get('id')) || parseInt(num.get('status')) === parseInt(status_onhold.get('id'))) && num.get('unitType') === item.id;
                 });
                 if (parseInt(item.id) === 9) {
                   classname = 'twoBHK';
@@ -2074,7 +2078,7 @@ define(['marionette'], function(Marionette) {
     };
 
     ScreenThreeLayout.prototype.checkClassSelection = function(model) {
-      var flag, myArray, track;
+      var flag, myArray, status, status_sold, track;
       myArray = [];
       $.map(App.defaults, function(value, index) {
         if (value !== 'All' && index !== 'floor') {
@@ -2159,10 +2163,16 @@ define(['marionette'], function(Marionette) {
       if (myArray.length === 0) {
         track = 1;
       }
-      if (track === 1 && model.get('status') === 9 && model.get('unitType') !== 14 && model.get('unitType') !== 16) {
+      status = App.currentStore.status.findWhere({
+        'name': 'Available'
+      });
+      status_sold = App.currentStore.status.findWhere({
+        'name': 'Sold'
+      });
+      if (track === 1 && parseInt(model.get('status')) === parseInt(status.get('id')) && model.get('unitType') !== 14 && model.get('unitType') !== 16) {
         $('#unitcheck' + model.get("id")).addClass('boxLong filtered');
         return $('#flag' + model.get("id")).val('1');
-      } else if (track === 1 && model.get('status') === 8 && model.get('unitType') !== 14 && model.get('unitType') !== 16) {
+      } else if (track === 1 && parseInt(model.get('status')) === parseInt(status.get('id')) && model.get('unitType') !== 14 && model.get('unitType') !== 16) {
         return $('#unitcheck' + model.get("id")).addClass('boxLong sold');
       } else {
         $('#unitcheck' + model.get("id")).addClass('boxLong other');
@@ -2423,7 +2433,7 @@ define(['marionette'], function(Marionette) {
 
     unitChildView.prototype.events = {
       'click ': function(e) {
-        var buildingModel, check, element, idValue, idvalue, index, indexvalue, obj, screenThreeLayout, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues, _i, _len;
+        var buildingModel, check, element, idValue, idvalue, index, indexvalue, obj, screenThreeLayout, status, status_sold, svgdata, svgposition, temp, temp1, temp2, unitModel, unitvalues, _i, _len;
         $("#flatno").text("");
         $("#towerno").text("");
         $("#unittypename").text("");
@@ -2440,7 +2450,13 @@ define(['marionette'], function(Marionette) {
         $('#towerview').text("");
         screenThreeLayout = new ScreenThreeLayout();
         check = screenThreeLayout.checkSelection(this.model);
-        if (check === 1 && this.model.get('status') === 9) {
+        status = App.currentStore.status.findWhere({
+          'name': 'Available'
+        });
+        status_sold = App.currentStore.status.findWhere({
+          'name': 'Sold'
+        });
+        if (check === 1 && parseInt(this.model.get('status')) === parseInt(status.get('id'))) {
           buildingModel = App.master.building.findWhere({
             id: parseInt(this.model.get('building'))
           });
@@ -2505,9 +2521,9 @@ define(['marionette'], function(Marionette) {
             } else {
               $("#select" + element).val('0');
               $('#unitcheck' + element).removeClass('selected');
-              if (unitModel.get('status') === 9) {
+              if (parseInt(unitModel.get('status')) === parseInt(status.get('id'))) {
                 $("#" + element).attr('class', 'unit-hover aviable ');
-              } else if (unitModel.get('status') === 8) {
+              } else if (parseInt(unitModel.get('status')) === parseInt(status_sold.get('id'))) {
                 $("#" + element).attr('class', 'unit-hover sold ');
               }
               rangeunitArray = [];
@@ -2584,9 +2600,9 @@ define(['marionette'], function(Marionette) {
             rangeunitArray = [];
             $("#select" + this.model.get('id')).val("0");
             $('#unitcheck' + this.model.get('id')).removeClass('selected');
-            if (unitModel.get('status') === 9) {
+            if (parseInt(unitModel.get('status')) === parseInt(status.get('id'))) {
               $("#" + this.model.get("id")).attr('class', 'unit-hover aviable ');
-            } else if (unitModel.get('status') === 8) {
+            } else if (parseInt(unitModel.get('status')) === parseInt(status_sold.get('id'))) {
               $("#" + this.model.get("id")).attr('class', 'unit-hover sold ');
             }
           }
@@ -2612,7 +2628,7 @@ define(['marionette'], function(Marionette) {
     };
 
     unitChildView.prototype.onShow = function() {
-      var flag, myArray, obj, track;
+      var flag, myArray, obj, status, status_sold, track;
       $("#flatno").text("");
       $("#towerno").text("");
       $("#unittypename").text("");
@@ -2711,10 +2727,16 @@ define(['marionette'], function(Marionette) {
       if (myArray.length === 0) {
         track = 1;
       }
-      if (track === 1 && this.model.get('status') === 9 && this.model.get('unitType') !== 14 && this.model.get('unitType') !== 16) {
+      status = App.currentStore.status.findWhere({
+        'name': 'Available'
+      });
+      status_sold = App.currentStore.status.findWhere({
+        'name': 'Sold'
+      });
+      if (track === 1 && parseInt(this.model.get('status')) === parseInt(status.get('id')) && this.model.get('unitType') !== 14 && this.model.get('unitType') !== 16) {
         $('#unitcheck' + this.model.get("id")).addClass('boxLong filtered');
         return $('#flag' + this.model.get("id")).val('1');
-      } else if (track === 1 && this.model.get('status') === 8 && this.model.get('unitType') !== 14 && this.model.get('unitType') !== 16) {
+      } else if (track === 1 && parseInt(this.model.get('status')) === parseInt(status_sold.get('id')) && this.model.get('unitType') !== 14 && this.model.get('unitType') !== 16) {
         return $('#unitcheck' + this.model.get("id")).addClass('boxLong sold');
       } else {
         $('#unitcheck' + this.model.get("id")).addClass('boxLong other');
