@@ -7530,7 +7530,7 @@ h5 {
 .box.sold,
 .boxLong.sold,
 .boxBlank.sold {
-  border-color: #dfe1e5;
+  background: #f4cecd;
   color: #c9302c;
   cursor: default;
   opacity: 0.8;
@@ -7540,6 +7540,19 @@ h5 {
 .boxBlank.sold:hover {
   border-color: #dfe1e5;
   color: #c9302c;
+}
+.box.onhold,
+.boxLong.onhold,
+.boxBlank.onhold {
+  background: #fceedb;
+  color: #ec971f;
+  opacity: 0.8;
+}
+.box.onhold:hover,
+.boxLong.onhold:hover,
+.boxBlank.onhold:hover {
+  border-color: #dfe1e5;
+  color: #ec971f;
 }
 .box.threeBHK .unitCount:after,
 .boxLong.threeBHK .unitCount:after,
@@ -9229,6 +9242,24 @@ rect.other:hover {
   /* Opera 10.50–12.00 */
   transition: all 0.3s ease-out;
   /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+polygon.onhold,
+rect.onhold {
+  fill: #ECD21F !important;
+  cursor: default;
+  opacity: 0.8;
+  -webkit-transition: all 0.3s ease-out;
+  /* Chrome 1-25, Safari 3.2+ */
+  -moz-transition: all 0.3s ease-out;
+  /* Firefox 4-15 */
+  -o-transition: all 0.3s ease-out;
+  /* Opera 10.50–12.00 */
+  transition: all 0.3s ease-out;
+  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+polygon.onhold:hover,
+rect.onhold:hover {
+  fill: #ECD21F !important;
 }
 text {
   pointer-events: none;
