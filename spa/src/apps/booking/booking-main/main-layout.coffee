@@ -43,7 +43,7 @@ define [ 'extm'], ( Extm)->
                         <div class="page-container">
                             <h3 class="light text-center m-t-0 step1">4 STEPS TO BUYING YOUR APARTMENT</h3>
                                 <h4 class="text-center introTxt">Complete your booking securely through our payment gateway.</h4>
-
+                            <div class="session"></div>
                             <div class="accordion">
                                 <div class="accordion-group one open">
                                     <div class="acc-title">

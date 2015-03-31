@@ -1150,8 +1150,8 @@ function create_order($arr){
                                 );
 
     }
-
-    $resposne = change_status($arr['id'],8);
+    $status_id = get_status_id('Sold');
+    $resposne = change_status($arr['id'],$status_id);
 
     if($resposne)
         return $resposne;
@@ -1227,5 +1227,22 @@ function cron_check_seesion(){
        }
        
     }
+
+}
+
+function get_status_id($key){
+
+    global $wpdb;
+
+    $orders = $wpdb->prefix . "sp_defaults";
+
+    $query = $wpdb->get_row('SELECT * from $table where master_type="unit-status" and
+                value="'.$key.'"');
+
+    $resp = "";
+    if($query){
+        $resp = $query->id;
+    }
+    return $resp;
 
 }

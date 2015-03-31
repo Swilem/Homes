@@ -56,22 +56,34 @@ class Unit_API
 
             );
 
-        $response = create_order($array);
+        if(isset($_SESSION['booking'.$_REQUEST['user_id'].$id])){
 
-        if(is_wp_error($response)){
-            $response = new WP_JSON_Response( $response );
-            $response->set_status(404);
+            $response = create_order($array);
 
-        }
-        else
-        {
-            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
-             $response = new WP_JSON_Response( $response );
+            if(is_wp_error($response)){
+                $response = new WP_JSON_Response( $response );
+                $response->set_status(404);
+
             }
-            $response->set_status( 200 );
+            else
+            {
+                if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+                 $response = new WP_JSON_Response( $response );
+                }
+                $response->set_status( 200 );
+            }
+
+            return $response;
+
+        }
+        else{
+            $status_id = get_status_id('Available');
+            $response = change_status($id,$status_id,$user_id);
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(408);
         }
 
-        return $response;
+        
 
 
     }
@@ -80,7 +92,8 @@ class Unit_API
 
 
         $user_id = $_REQUEST['user_id'];
-        $response = change_status($id,110,$user_id);
+        $status_id = get_status_id('On Hold');
+        $response = change_status($id,$status_id,$user_id);
 
         if(is_wp_error($response)){
             $response = new WP_JSON_Response( $response );

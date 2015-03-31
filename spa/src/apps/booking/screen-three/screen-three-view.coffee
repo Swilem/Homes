@@ -5,18 +5,18 @@ define [ 'marionette' ], ( Marionette )->
         template : '<div>
                         <div class="alert alert-warning">All fields are mandatory</div>
                         <form id="store_order" parsley-validate class="details-form">
-                            <input type="hidden" required  name="user_id" id="user_id" value="'+unit_id+'" />
+                            <input type="hidden"  required  name="user_id" id="user_id" value="'+unit_id+'" />
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>First Name: </label>
-                                        <input type="text" placeholder="Enter First Name" class="form-control" required data-parsley-type="alphanum" name="first_name" id="first_name" value="" />
+                                        <input type="text" pattern="^[a-zA-z]*$" data-parsley-error-message="Enter only characters" placeholder="Enter First Name" class="form-control" required data-parsley-type="alphanum" name="first_name" id="first_name" value="" />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Last Name: </label>
-                                        <input type="text" placeholder="Enter Last Name" class="form-control" required data-parsley-type="alphanum" name="last_name" id="last_name" value="" />
+                                        <input type="text" placeholder="Enter Last Name" class="form-control" required pattern="^[a-zA-z]*$" data-parsley-error-message="Enter only characters" name="last_name" id="last_name" value="" />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -30,7 +30,7 @@ define [ 'marionette' ], ( Marionette )->
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Phone: </label>
-                                        <input type="text" placeholder="Enter Phone Number" class="form-control" required name="phone" id="phone" value="" />
+                                        <input type="text" placeholder="Enter Phone Number" class="form-control" required name="phone" id="phone" data-parsley-type="number" value="" />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -61,13 +61,13 @@ define [ 'marionette' ], ( Marionette )->
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>City: </label>
-                                        <input type="text" class="form-control" name="city"  placeholder="Enter City"  data-parsley-type="alphanum" required id="city" value="" />
+                                        <input type="text" class="form-control" name="city"  placeholder="Enter City"  pattern="^[a-zA-z]*$" data-parsley-error-message="Enter only characters" required id="city" value="" />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>State: </label>
-                                        <input type="text" class="form-control" name="state" placeholder="Enter State" data-parsley-type="alphanum" required id="state" value="" />
+                                        <input type="text" class="form-control" name="state" placeholder="Enter State" pattern="^[a-zA-z]*$" data-parsley-error-message="Enter only characters" required id="state" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ define [ 'marionette' ], ( Marionette )->
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Zipcode: </label>
-                                        <input type="text" class="form-control" name="zipcode" placeholder="Enter Zipcode" type="number" required id="zipcode" value="" />
+                                        <input type="text" class="form-control" name="zipcode" placeholder="Enter Zipcode" data-parsley-type="number" required id="zipcode" value="" />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -112,11 +112,18 @@ define [ 'marionette' ], ( Marionette )->
                         type : 'POST',
                         url : SITEURL+'/wp-json/units/'+unit_id,
                         data : $('#store_order').serialize(),
-                        success:(response)->
+                        success:(response,status,xhr)=>
                             $('.accordion-group.three').removeClass('open')
                             $('.accordion-group.four').addClass('open')
                             
-                        error :(response)->
+                        error :(response)=>
+                            if xhr.status == 408
+                                App.layout.screenOneRegion.el.innerHTML = ""
+                                App.layout.screenTwoRegion.el.innerHTML = ""
+                                App.layout.screenThreeRegion.el.innerHTML = ""
+                                App.layout.screenFourRegion.el.innerHTML = ""
+                                $('.accordion').hide()
+                                $('.session').text 'Your session has expired'
 
 
 
