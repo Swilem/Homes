@@ -1164,16 +1164,68 @@ function create_order($arr){
 
 }
 
-function change_status($id,$status){
+function change_status($id,$status,$user_id = ""){
 
     $unit_status = update_post_meta($id,"unit_status",$status);
 
-    if($unit_status)
+    
+    if(!is_wp_error($unit_status))
+    {
+        set_session($id,$user_id);
         return $unit_status;
+    }
+        
 
     else
         return new WP_Error( 'status_not_saved', __( 'Status_not_saved.' ));
 
 
+
+}
+
+
+function set_session($id,$user_id){
+    
+   
+    if(isset($_SESSION['booking']['booking'.$user_id.$id])){
+
+        return true;
+    }
+    else
+    {
+        session_start();
+        $_SESSION['booking'][] = array(
+
+                'booking'.$user_id.$id => array(
+                    'user_id' => $user_id,
+                    'unit_id' => $id,
+                    'time'    => time()
+            )
+        );
+        return true;
+    }
+
+    
+
+    
+
+}
+// cron_check_seesion();
+function cron_check_seesion(){
+
+    
+    foreach ($_SESSION['booking'] as $key => $value) {
+
+
+       foreach ($value as $key_val => $val) {
+
+        if(intval(time() - $val['time']) > 1800 )
+                unset($_SESSION['booking'][$key][$key_val]);
+
+          
+          
+       }
+       
+    }
 
 }

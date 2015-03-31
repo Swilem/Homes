@@ -79,9 +79,10 @@ class Unit_API
     public function change_status($id){
 
 
-        $response = change_status($id,110);
+        $user_id = $_REQUEST['user_id'];
+        $response = change_status($id,110,$user_id);
 
-         if(is_wp_error($response)){
+        if(is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
             $response->set_status(404);
 
