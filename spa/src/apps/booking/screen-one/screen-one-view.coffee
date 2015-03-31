@@ -37,7 +37,7 @@ define [ 'marionette' ], ( Marionette )->
 
 
 					<div class="text-center">
-						<button class="next-one btn disabled btn-default btn-block">
+						<button class="next-one btn disabled btn-default">
 			                Next
 			            </button>
 				     </div>
