@@ -1270,7 +1270,7 @@ function get_status_id($key){
 
     $table = $wpdb->prefix . "sp_defaults";
 
-    $query = $wpdb->get_row('SELECT * from wp_2_sp_defaults where master_type="unit-status" and
+    $query = $wpdb->get_row('SELECT * from wp_5_sp_defaults where master_type="unit-status" and
                 value="'.$key.'"');
 
   

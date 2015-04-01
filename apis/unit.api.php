@@ -59,6 +59,7 @@ class Unit_API
   
  
         $flag = 0;
+        
         foreach ($_SESSION['booking'] as $key => $value) {
 
         
@@ -66,8 +67,8 @@ class Unit_API
             foreach ($value as $key_val => $val) {
 
                 
-
-                if($key_val != $_SESSION['booking']['booking'.$user_id.$id])
+                
+                if($key_val == $_SESSION['booking']['booking'.$user_id.$id])
 
                     $flag = 1 ;
 
@@ -128,7 +129,7 @@ class Unit_API
         $status_id = get_status_id('On Hold');
         $response = change_status($id,$status_id,$user_id);
 
-        
+
 
         if(is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
