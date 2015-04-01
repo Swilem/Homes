@@ -9820,7 +9820,8 @@ a.im-clear-button {
   padding: 0;
   list-style-type: none;
 }
-.parsley-errors-list .parsley-required {
+.parsley-errors-list .parsley-required,
+.parsley-errors-list .parsley-custom-error-message {
   font-size: 87%;
   color: #d9534f;
 }
