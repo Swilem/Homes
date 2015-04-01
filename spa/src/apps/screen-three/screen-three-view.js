@@ -44,7 +44,7 @@ define(['marionette'], function(Marionette) {
 
     ScreenThreeLayout.prototype.events = {
       'click .onhold': function(e) {
-        return $('.onhold_msg').text('Some message');
+        return $('.onhold_msg').text('Try after some time');
       },
       'click .other': function(e) {
         $("#" + e.target.id).parent().removeAttr('data-target');
@@ -2487,7 +2487,7 @@ define(['marionette'], function(Marionette) {
           'name': 'On Hold'
         });
         if (check === 1 && parseInt(this.model.get('status')) === parseInt(status_hold.get('id'))) {
-          $('.onhold_msg').text('some message');
+          $('.onhold_msg').text('Try after some time');
         }
         if (check === 1 && parseInt(this.model.get('status')) === parseInt(status.get('id'))) {
           buildingModel = App.master.building.findWhere({

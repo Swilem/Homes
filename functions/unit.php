@@ -1151,9 +1151,9 @@ function create_order($arr){
 
     }
     $status_id = get_status_id('Sold');
-    $resposne = change_status($arr['id'],$status_id);
+    $resposne = update_post_meta($arr['id'],"unit_status",$status_id);
 
-    if($resposne)
+    if(!is_wp_error($resposne))
         return $resposne;
 
     else
@@ -1164,15 +1164,15 @@ function create_order($arr){
 
 }
 
-function change_status($id,$status,$user_id = ""){
+function change_status($id,$status,$user_id){
 
     $unit_status = update_post_meta($id,"unit_status",$status);
 
     
     if(!is_wp_error($unit_status))
     {
-        set_session($id,$user_id);
-        return $unit_status;
+        $response = set_session($id,$user_id);
+        return $response;
     }
         
 
@@ -1186,11 +1186,40 @@ function change_status($id,$status,$user_id = ""){
 
 function set_session($id,$user_id){
     
-   
-    if(isset($_SESSION['booking']['booking'.$user_id.$id])){
 
-        return true;
+    
+    $flag = 0;
+    foreach ($_SESSION['booking'] as $key => $value) {
+
+
+       foreach ($value as $key_val => $val) {
+
+          
+            if($key_val == $_SESSION['booking']['booking'.$user_id.$id]){
+
+                    if(intval(time() - $val['time']) > 120 )
+                    {
+                        unset($_SESSION['booking'][$key][$key_val]);
+                        $flag = 1;
+                        
+            
+                    }
+
+            }
+                        
+           
+
+          
+          
+       }
+       
     }
+
+
+    if($flag ==1){
+        
+        return array();
+    } 
     else
     {
         session_start();
@@ -1204,22 +1233,25 @@ function set_session($id,$user_id){
         );
         return true;
     }
+   
+    
 
     
 
     
 
 }
-// cron_check_seesion();
+
 function cron_check_seesion(){
 
-    
-    foreach ($_SESSION['booking'] as $key => $value) {
+   
+     session_start();
+     foreach ($_SESSION['booking'] as $key => $value) {
 
 
        foreach ($value as $key_val => $val) {
 
-        if(intval(time() - $val['time']) > 1800 )
+        if(intval(time() - $val['time']) > 120 )
                 unset($_SESSION['booking'][$key][$key_val]);
 
           
@@ -1227,22 +1259,26 @@ function cron_check_seesion(){
        }
        
     }
+   
 
 }
 
 function get_status_id($key){
 
+   
     global $wpdb;
 
-    $orders = $wpdb->prefix . "sp_defaults";
+    $table = $wpdb->prefix . "sp_defaults";
 
-    $query = $wpdb->get_row('SELECT * from $table where master_type="unit-status" and
+    $query = $wpdb->get_row('SELECT * from wp_2_sp_defaults where master_type="unit-status" and
                 value="'.$key.'"');
 
+  
     $resp = "";
-    if($query){
+    if(!is_null($query)){
         $resp = $query->id;
     }
+   
     return $resp;
 
 }

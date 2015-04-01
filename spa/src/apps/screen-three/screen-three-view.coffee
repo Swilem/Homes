@@ -181,7 +181,7 @@ define [ 'marionette' ], ( Marionette )->
 
         events:
             'click .onhold':(e)->
-               $('.onhold_msg').text 'Some message'
+               $('.onhold_msg').text 'Try after some time'
             'click .other':(e)->
                 $( "#"+e.target.id ).parent().removeAttr('data-target')
                 @showLayoutMsg()
@@ -2608,7 +2608,7 @@ define [ 'marionette' ], ( Marionette )->
                 status_sold = App.currentStore.status.findWhere({'name':'Sold'})
                 status_hold = App.currentStore.status.findWhere({'name':'On Hold'})
                 if check == 1 && parseInt(@model.get('status')) == parseInt(status_hold.get('id'))
-                    $('.onhold_msg').text 'some message'
+                    $('.onhold_msg').text 'Try after some time'
                 if check == 1 && parseInt(@model.get('status')) == parseInt(status.get('id'))
                     buildingModel = App.master.building.findWhere({id:parseInt(@model.get('building'))})
                     svgdata = buildingModel.get('svgdata')

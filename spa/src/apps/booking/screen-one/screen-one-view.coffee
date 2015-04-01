@@ -62,6 +62,12 @@ define [ 'marionette' ], ( Marionette )->
    		onShow:->
 
    			usermodel = new Backbone.Model USER
+   			units = new Backbone.Collection UNITS
+   			console.log unitmodel = units.findWhere({'id':parseInt(unit_id)})
+   			if parseInt(unitmodel.get('status')) == 8
+   				$('.accordion').hide()
+   				$('.session').text 'Sold out'
+			
 
    			if parseInt(usermodel.get('id')) != 0
 			    $.ajax(
@@ -70,8 +76,14 @@ define [ 'marionette' ], ( Marionette )->
 			    	data : 'user_id='+usermodel.get('id')
 			    	success:(response)->
 			    		console.log "success"
-			    	error:(response)->
-			    		console.log "error"
+			    	error :(response,status,xhr)=>
+                        if response.status == 408
+                            App.layout.screenOneRegion.el.innerHTML = ""
+                            App.layout.screenTwoRegion.el.innerHTML = ""
+                            App.layout.screenThreeRegion.el.innerHTML = ""
+                            App.layout.screenFourRegion.el.innerHTML = ""
+                            $(".main-layout").hide()
+                            $(".session").text "Your session has expired"
 
 
 

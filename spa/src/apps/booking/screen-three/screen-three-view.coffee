@@ -1,4 +1,4 @@
-define [ 'marionette' ], ( Marionette )->
+define [ "marionette" ], ( Marionette )->
 
    class ScreenThreeView extends Marionette.ItemView
 
@@ -6,6 +6,7 @@ define [ 'marionette' ], ( Marionette )->
                         <div class="alert alert-warning">All fields are mandatory</div>
                         <form id="store_order" parsley-validate class="details-form">
                             <input type="hidden"  required  name="user_id" id="user_id" value="'+unit_id+'" />
+                            <input type="hidden"  required  name="recAmount" id="recAmount" value="'+recAmount+'" />
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
@@ -67,7 +68,45 @@ define [ 'marionette' ], ( Marionette )->
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>State: </label>
-                                        <input type="text" class="form-control" name="state" placeholder="Enter State" pattern="^[a-zA-z]*$" data-parsley-error-message="Enter only characters" required id="state" value="" />
+                                        <select name="state" required id="state" class="form-control">
+                                        <option value=""></option>
+<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+<option value="Andhra Pradesh">Andhra Pradesh</option>
+<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+<option value="Assam">Assam</option>
+<option value="Bihar">Bihar</option>
+<option value="Chandigarh">Chandigarh</option>
+<option value="Chhattisgarh">Chhattisgarh</option>
+<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+<option value="Daman and Diu">Daman and Diu</option>
+<option value="Delhi">Delhi</option>
+<option value="Goa">Goa</option>
+<option value="Gujarat">Gujarat</option>
+<option value="Haryana">Haryana</option>
+<option value="Himachal Pradesh">Himachal Pradesh</option>
+<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+<option value="Jharkhand">Jharkhand</option>
+<option value="Karnataka">Karnataka</option>
+<option value="Kerala">Kerala</option>
+<option value="Lakshadweep">Lakshadweep</option>
+<option value="Madhya Pradesh">Madhya Pradesh</option>
+<option value="Maharashtra">Maharashtra</option>
+<option value="Manipur">Manipur</option>
+<option value="Meghalaya">Meghalaya</option>
+<option value="Mizoram">Mizoram</option>
+<option value="Nagaland">Nagaland</option>
+<option value="Odisha">Odisha</option>
+<option value="Puducherry">Puducherry</option>
+<option value="Punjab">Punjab</option>
+<option value="Rajasthan">Rajasthan</option>
+<option value="Sikkim">Sikkim</option>
+<option value="Tamil Nadu">Tamil Nadu</option>
+<option value="Telengana">Telengana</option>
+<option value="Tripura">Tripura</option>
+<option value="Uttar Pradesh">Uttar Pradesh</option>
+<option value="Uttarakhand">Uttarakhand</option>
+<option value="West Bengal">West Bengal</option>
+</select>
                                     </div>
                                 </div>
                             </div>
@@ -84,8 +123,7 @@ define [ 'marionette' ], ( Marionette )->
                                         <select class="form-control" name="country" id="country" required>
                                             <option value="">Select Country</option>
                                             <option value="india">India</option>
-                                            <option value="china">China</option>
-                                            <option value="nepal">Nepal</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -101,29 +139,32 @@ define [ 'marionette' ], ( Marionette )->
                         <button id="payment" class="next-three btn btn-primary">
                             Continue to Payment
                         </button>
-                    </div>'
+                    </div><div class="loader"></div>'
 
 
         events:
-            'click #payment':(e)->
+            "click #payment":(e)->
+                $('.loader').show()
                 e.preventDefault()
-                if $('#store_order').parsley().validate()
+                if $("#store_order").parsley().validate()
                     $.ajax({
-                        type : 'POST',
-                        url : SITEURL+'/wp-json/units/'+unit_id,
-                        data : $('#store_order').serialize(),
+                        type : "POST",
+                        url : SITEURL+"/wp-json/units/"+unit_id,
+                        data : $("#store_order").serialize(),
                         success:(response,status,xhr)=>
-                            $('.accordion-group.three').removeClass('open')
-                            $('.accordion-group.four').addClass('open')
+                            $('.loader').hide()
+                            $(".accordion-group.three").removeClass("open")
+                            $(".accordion-group.four").addClass("open")
                             
-                        error :(response)=>
-                            if xhr.status == 408
+                        error :(response,status,xhr)=>
+                            $('.loader').hide()
+                            if response.status == 408
                                 App.layout.screenOneRegion.el.innerHTML = ""
                                 App.layout.screenTwoRegion.el.innerHTML = ""
                                 App.layout.screenThreeRegion.el.innerHTML = ""
                                 App.layout.screenFourRegion.el.innerHTML = ""
-                                $('.accordion').hide()
-                                $('.session').text 'Your session has expired'
+                                $(".accordion").hide()
+                                $(".session").text "Your session has expired"
 
 
 
@@ -131,8 +172,8 @@ define [ 'marionette' ], ( Marionette )->
 
 
         onShow:->
-            $('#birthdate').datepicker({
-                dateFormat : 'yy-mm-dd'
+            $("#birthdate").datepicker({
+                dateFormat : "yy-mm-dd"
                 changeYear: true,
                 changeMonth: true,
                 maxDate: new Date(),

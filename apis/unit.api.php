@@ -56,34 +56,67 @@ class Unit_API
 
             );
 
-        if(isset($_SESSION['booking'.$_REQUEST['user_id'].$id])){
+  
+ 
+        $flag = 0;
+        foreach ($_SESSION['booking'] as $key => $value) {
+
+        
+
+            foreach ($value as $key_val => $val) {
+
+                
+
+                if($key_val != $_SESSION['booking']['booking'.$user_id.$id])
+
+                    $flag = 1 ;
+
+            }
+        }
+
+        if($flag == 1){
 
             $response = create_order($array);
+             
 
-            if(is_wp_error($response)){
-                $response = new WP_JSON_Response( $response );
-                $response->set_status(404);
+                if(is_wp_error($response)){
+                    $response = new WP_JSON_Response( $response );
+                    $response->set_status(404);
 
-            }
-            else
-            {
-                if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
-                 $response = new WP_JSON_Response( $response );
+
                 }
-                $response->set_status( 200 );
-            }
+                else
+                {
+                    if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+                     $response = new WP_JSON_Response( $response );
+                    }
+                    $response->set_status( 200 );
+                }
 
-            return $response;
+       
 
         }
         else{
+                
             $status_id = get_status_id('Available');
             $response = change_status($id,$status_id,$user_id);
             $response = new WP_JSON_Response( $response );
             $response->set_status(408);
+
+               
         }
 
-        
+
+
+                    
+
+    
+
+       
+       
+    
+       
+         return $response;
 
 
     }
@@ -95,10 +128,20 @@ class Unit_API
         $status_id = get_status_id('On Hold');
         $response = change_status($id,$status_id,$user_id);
 
+        
+
         if(is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
             $response->set_status(404);
 
+        }
+        if(is_array($response)){
+            $status_id = get_status_id('Available');
+            $response = update_post_meta($id,"unit_status",$status_id);
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(408);
+
+            
         }
         else
         {
@@ -108,6 +151,7 @@ class Unit_API
             $response->set_status( 200 );
         }
 
+       
         return $response;
 
 

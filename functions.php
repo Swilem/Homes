@@ -638,6 +638,6 @@ function generate_pdf_data($unit_id,$tower_id,$wishlist){
    return $output_link;
 }
 
-
+add_action('cron_schedule_session_removal', 'cron_check_seesion', 2,0);
 
 
