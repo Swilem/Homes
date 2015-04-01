@@ -9807,6 +9807,9 @@ a.im-clear-button {
   overflow: visible;
   z-index: 5;
 }
+.accordion-group.viewed .acc-title {
+  cursor: pointer;
+}
 .details-form label {
   font-weight: normal;
 }
@@ -9817,7 +9820,8 @@ a.im-clear-button {
   padding: 0;
   list-style-type: none;
 }
-.parsley-errors-list .parsley-required {
+.parsley-errors-list .parsley-required,
+.parsley-errors-list .parsley-custom-error-message {
   font-size: 87%;
   color: #d9534f;
 }

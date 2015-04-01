@@ -25,8 +25,9 @@ define(["marionette"], function(Marionette) {
             success: (function(_this) {
               return function(response, status, xhr) {
                 $('.loader').hide();
-                $(".accordion-group.three").removeClass("open");
-                return $(".accordion-group.four").addClass("open");
+                $('.accordion-group.three').removeClass('open');
+                $('.accordion-group.four').addClass('open');
+                return $('.accordion-group.three').addClass('viewed');
               };
             })(this),
             error: (function(_this) {
@@ -48,12 +49,16 @@ define(["marionette"], function(Marionette) {
     };
 
     ScreenThreeView.prototype.onShow = function() {
-      return $("#birthdate").datepicker({
+      $("#birthdate").datepicker({
         dateFormat: "yy-mm-dd",
         changeYear: true,
         changeMonth: true,
         maxDate: new Date(),
         yearRange: "-100:+0"
+      });
+      return $('.two.viewed > .acc-title').click(function() {
+        $('.accordion-group').removeClass('open');
+        return $('.accordion-group.two').addClass('open');
       });
     };
 

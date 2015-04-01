@@ -42,10 +42,12 @@ define [ 'extm'], ( Extm)->
         template: '<div class="container ">
                         <div class="page-container">
                             <h3 class="session text-center"></h3>
-                            <div class="accordion">
+                            <div class="accordion ">
+
                                 <h3 class="light text-center m-t-0 step1">4 STEPS TO BUYING YOUR APARTMENT</h3>
                                 <h4 class="text-center introTxt">Complete your booking securely through our payment gateway.</h4>
-                                <div class="accordion-group one open">
+                                <div class="accordion-group one open viewed">
+
                                     <div class="acc-title">
                                         <h4>1. Sign In</h4>
                                     </div>
@@ -89,8 +91,7 @@ define [ 'extm'], ( Extm)->
                         </div>
                     </div>'
 
-        # onShow:->
-            
+                 
 
 
 

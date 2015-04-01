@@ -152,9 +152,12 @@ define [ "marionette" ], ( Marionette )->
                         url : SITEURL+"/wp-json/units/"+unit_id,
                         data : $("#store_order").serialize(),
                         success:(response,status,xhr)=>
+
                             $('.loader').hide()
-                            $(".accordion-group.three").removeClass("open")
-                            $(".accordion-group.four").addClass("open")
+                            $('.accordion-group.three').removeClass('open')
+                            $('.accordion-group.four').addClass('open')
+                            $('.accordion-group.three').addClass('viewed')
+
                             
                         error :(response,status,xhr)=>
                             $('.loader').hide()
@@ -179,6 +182,10 @@ define [ "marionette" ], ( Marionette )->
                 maxDate: new Date(),
                 yearRange: "-100:+0",
             });
+
+            $('.two.viewed > .acc-title').click ->
+                $('.accordion-group').removeClass('open')
+                $('.accordion-group.two').addClass('open')
 
 
 

@@ -99,8 +99,12 @@ define [ 'marionette' ], ( Marionette )->
 
    			$('.next-one').click ->
    			  $('.accordion-group.one').removeClass('open')
-   			  $('.accordion-group.two').addClass('open')
+   			  $('.accordion-group.two').addClass('open viewed')
    			  return
+
+   			$('.one.viewed > .acc-title').click ->
+   			    $('.accordion-group').removeClass('open')
+   			    $('.accordion-group.one').addClass('open')
 			
 
 
