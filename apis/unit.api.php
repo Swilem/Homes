@@ -59,7 +59,6 @@ class Unit_API
   
  
         $flag = 0;
-        
         foreach ($_SESSION['booking'] as $key => $value) {
 
         
@@ -68,7 +67,8 @@ class Unit_API
 
                 
                 
-                if($key_val == $_SESSION['booking']['booking'.$user_id.$id])
+
+                if($val['user_id'] == $user_id && $val['unit_id'] ==  $id)
 
                     $flag = 1 ;
 

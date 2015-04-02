@@ -49,7 +49,7 @@
     <?php wp_head(); ?>
      
 </head>
-<?php do_action( 'wordpress_social_login' ); ?>
+
 <body class="booking cbp-spmenu-push">
 
   <!-- #header-region -->

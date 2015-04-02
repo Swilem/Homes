@@ -1186,7 +1186,7 @@ function change_status($id,$status,$user_id){
 
 function set_session($id,$user_id){
     
-
+    $_SESSION['booking']  = array();
     
     $flag = 0;
     foreach ($_SESSION['booking'] as $key => $value) {
@@ -1195,7 +1195,9 @@ function set_session($id,$user_id){
        foreach ($value as $key_val => $val) {
 
           
-            if($key_val == $_SESSION['booking']['booking'.$user_id.$id]){
+           if($val['user_id'] == $user_id && $val['unit_id'] ==  $id){
+
+                
 
                     if(intval(time() - $val['time']) > 120 )
                     {

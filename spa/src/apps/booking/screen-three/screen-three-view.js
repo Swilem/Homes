@@ -15,9 +15,9 @@ define(["marionette"], function(Marionette) {
 
     ScreenThreeView.prototype.events = {
       "click #payment": function(e) {
-        $('.loader').show();
         e.preventDefault();
         if ($("#store_order").parsley().validate()) {
+          $('.loader').show();
           return $.ajax({
             type: "POST",
             url: SITEURL + "/wp-json/units/" + unit_id,

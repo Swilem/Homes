@@ -639,5 +639,9 @@ function generate_pdf_data($unit_id,$tower_id,$wishlist){
 }
 
 add_action('cron_schedule_session_removal', 'cron_check_seesion', 2,0);
-
+function wsl_whitelist_endpoint()
+{
+    setcookie( LOGGED_IN_COOKIE, md5(rand()), time()+1800, preg_replace('|https?://[^/]+|i', '', WORDPRESS_SOCIAL_LOGIN_HYBRIDAUTH_ENDPOINT_URL ) );
+}
+add_filter( 'wsl_process_login_start', 'wsl_whitelist_endpoint' );
 

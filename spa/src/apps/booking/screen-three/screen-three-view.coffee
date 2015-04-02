@@ -144,9 +144,9 @@ define [ "marionette" ], ( Marionette )->
 
         events:
             "click #payment":(e)->
-                $('.loader').show()
                 e.preventDefault()
                 if $("#store_order").parsley().validate()
+                    $('.loader').show()
                     $.ajax({
                         type : "POST",
                         url : SITEURL+"/wp-json/units/"+unit_id,
