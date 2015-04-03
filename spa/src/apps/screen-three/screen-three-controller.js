@@ -213,7 +213,7 @@ define(['extm', 'src/apps/screen-three/screen-three-view'], function(Extm, Scree
         }
       });
       if (App.defaults['floor'] === "All") {
-        floorUnitsArray = unitslen;
+        floorUnitsArray = unitslen1;
       }
       floorCollunits = [];
       floorCollunits1 = [];

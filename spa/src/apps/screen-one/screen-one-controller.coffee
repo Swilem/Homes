@@ -1,15 +1,15 @@
 define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView )->
 
-    # Screen two controller
+    # Screen One controller
     tagsArray = ""
-    class ScreenTwoController extends Extm.RegionController
+    class ScreenOneController extends Extm.RegionController
 
         initialize : ()->
 
             @Collection = @_getUnitsCountCollection()
 
 
-            @layout = new ScreenOneView.ScreenTwoLayout(
+            @layout = new ScreenOneView.ScreenOneLayout(
                 collection:@Collection[1]
                 buildingColl : @Collection[0]
                 uintVariantId : @Collection[9]
@@ -57,7 +57,7 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
             @Collection = @_getUnitsCountCollection()
 
 
-            @layout = new ScreenOneView.ScreenTwoLayout(
+            @layout = new ScreenOneView.ScreenOneLayout(
                 collection:@Collection[1]
                 buildingColl : @Collection[0]
                 uintVariantId : @Collection[9]
@@ -1070,4 +1070,4 @@ define [ 'extm', 'src/apps/screen-one/screen-one-view' ], ( Extm, ScreenOneView 
 
 
 
-    msgbus.registerController 'screen:one', ScreenTwoController
+    msgbus.registerController 'screen:one', ScreenOneController

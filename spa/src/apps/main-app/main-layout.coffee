@@ -25,8 +25,8 @@ define [ 'extm'], ( Extm)->
             .insideRegion  App.headerRegion
                 .withOptions()
 
-            msgbus.showApp 'screen:one'
-            .insideRegion  @layout.screenOneRegion
+            msgbus.showApp 'screen:two'
+            .insideRegion  @layout.screenTwoRegion
                 .withOptions()
 
         _getView: =>

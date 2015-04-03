@@ -233,7 +233,7 @@ define [ 'extm', 'src/apps/screen-three/screen-three-view' ], ( Extm, ScreenThre
 
             )
             if App.defaults['floor'] == "All"
-                floorUnitsArray = unitslen
+                floorUnitsArray = unitslen1
 
             floorCollunits = []
             floorCollunits1 = []

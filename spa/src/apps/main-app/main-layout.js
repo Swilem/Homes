@@ -30,7 +30,7 @@ define(['extm'], function(Extm) {
       var params;
       App.filter(params = {});
       msgbus.showApp('header').insideRegion(App.headerRegion).withOptions();
-      return msgbus.showApp('screen:one').insideRegion(this.layout.screenOneRegion).withOptions();
+      return msgbus.showApp('screen:two').insideRegion(this.layout.screenTwoRegion).withOptions();
     };
 
     MainController.prototype._getView = function() {

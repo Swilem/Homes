@@ -21,20 +21,15 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         <h3 class="text-center light m-t-0 m-b-20 unittype hidden animated pulse">We found <span class="bold text-primary"> {{unitsCount }} </span> apartments that matched your selection</h3>
                         <h3 class="text-center light m-t-0 m-b-20 budget hidden animated pulse">We found <span class="bold text-primary"> {{unitsCount }} </span>  apartments in your budget of <strong>{{selection}}</strong></h3>
                         <h3 class="text-center light m-t-0 m-b-20 refresh hidden animated pulse">You are now seeing <span class="bold text-primary">All</span> apartments across all the towers.</h3>
-
                         <!--<div class="text-center introTxt m-b-10">These apartments are spread over different towers. Each tower has three floor blocks. The number in the boxes indicate the number of apartments of your selection. Select one for more details.</div>-->
-
                         <div class="introTxt text-center">You are seeing 
                             <div id="tagslist" class="taglist">
                               <ul></ul>
                             </div>
                             <span class="text-primary variantToggle1"> </span>variants of your apartment selection
                         </div>
-
                         <div class="variantBox1">
-
                             <div class="grid-container">
-
                                 <div class="pull-left m-l-15">
                                     <input type="checkbox" name="selectall" id="selectall" class="checkbox" value="0" checked/>
                                     <label for="selectall">Select/Unselect All</label>
@@ -42,7 +37,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                                 <div class="text-right m-b-20">
                                     <span class="variantClose1 glyphicon glyphicon-remove text-grey"></span>
                                 </div>
-
                                 {{#unitVariants}}
                                 <div class="grid-block-3 {{classname}}" >
                                     <a class="grid-link {{selected}}" href="#" id="grid{{id}}" data-id="{{id}}" data-count = "{{count}}">
@@ -57,51 +51,42 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                                 </div>
                             </div>
                         </div>
-
                         <div class="special introTxt text-center hidden">
                             <div>
                                 Click <a class="special bold hidden" id="filterModal">here</a> to set <span class="bold"> Additional Filters</span>
                             </div>
-
                             View:
                             <div id="viewtaglist" class="special taglist2 hidden">
                               <ul></ul>
                             </div>
-
                             Entrance:
                             <div id="entrancetaglist" class="special taglist2 hidden">
                               <ul></ul>
                             </div>
-
                             Terrace:
                             <div id="terracetaglist" class="special taglist2 hidden">
                               <ul></ul>
                             </div>
                         
                         </div>
-
                         
                     </div>
-
                     <div class="row m-l-0 m-r-0 m-t-20 bgClass">
-
                         <div class="col-md-5 col-lg-4">
                             
-                    		<div class="legend text-center m-b-20">
+                            <div class="legend text-center m-b-20">
                                 {{#unittypes}}
                                 <span class={{classname}}>.</span>{{name}}
                                 {{/unittypes}}
-                		    </div>
-
+                            </div>
                             <div class="towerTable">
                                 <div class="tableBody">
-                    				<div id="vs-container2" class="vs-container vs-triplelayout">
-                    				    <!--<header class="vs-header" id="building-region"></header>-->
-                    				    <div id="unit-region"></div>
+                                    <div id="vs-container2" class="vs-container vs-triplelayout">
+                                        <header class="vs-header" id="building-region"></header>
+                                        <div id="unit-region"></div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="h-align-middle m-t-20 m-b-20">
                                 <a href="#screen-three-region" class="btn btn-default btn-lg disabled" id="screen-two-button">Show Apartments</a>
                             </div>
@@ -116,7 +101,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             </div>
                         </div><input type="hidden" name="currency1" id="currency1" class="demo" data-a-sign="Rs. "  data-m-dec=""  data-d-group="2">
                     </div>
-
                     <div class="specialFilter ">
                         <div class="bgClass">
                             <h3 class="text-center light">Choose from the options below to filter your selection</h3>
@@ -134,7 +118,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                                     {{/views}}
                                     <div class="clearfix"></div>
                                 </div>
-
                                 <div class="col-sm-3 b-r b-grey">
                                     <h4 class="bold blockTitle">Entrance</h4>
                                         {{#facings}}
@@ -142,7 +125,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                                     {{/facings}}
                                     <div class="clearfix"></div>
                                 </div>
-
                                 <div class="col-sm-4">
                                     <h4 class="bold blockTitle">Terrace</h4>
                                      {{#terrace}}   
@@ -151,20 +133,14 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                                 </div>
                             </div>
                               <div id="filtermsg" class="alrtMsg animated pulse"></div>  
-
                             <h4 id="unittypecount" class="text-center"></h4>
-
                             <div class="text-center m-t-10 m-b-10">
                                 <a id="donepopup" class="btn btn-primary btn-sm b-close">DONE</a>
-
                                <!-- <a id="cancelpopup" class="btn btn-primary btn-sm b-close">CANCEL</a>-->
-
                                
                             </div>
-
                         </div>
                     </div>
-
                    '
 
 
@@ -2289,7 +2265,6 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         </div>
                         <div class="clearfix"></div>
                     </div>                    
-
                     <input type="hidden" name="checkrange{{range}}{{buildingid}}"   id="checkrange{{range}}{{buildingid}}"       value="0" />                             </div>'
 
         className : 'towerSelect'
@@ -2298,6 +2273,28 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
 
 
+
+        
+
+
+
+
+
+
+    class UnitView extends Marionette.ItemView
+
+        template : '<div id="{{id}}" class="boxBlank">
+                        <div class="pull-left light text-center">
+                            <h4 class="rangeName bold m-t-5"></h4>
+                            <div class="small">{{name}}</div>
+                        </div>
+                        <div class="unitCount pull-right text-center">
+                            <h4 class="bold m-b-5 m-t-0">{{count}}</h4>
+                            <div class="small">FLATS</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    <input type="hidden" name="checkrange{id}}"   id="checkrange{{id}}"   value="0" />              
+                    </div>'  
 
         events:
 
@@ -2337,54 +2334,31 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                 
                 if @model.get('count') !=0
                     for element , index in rangeArray
-                        if element == @model.get('range')+@model.get('buildingid')
-                            $("#checkrange"+@model.get('range')+@model.get('buildingid')).val '1'
+                        if element == @model.get('id')
+                            $("#checkrange"+@model.get('id')).val '1'
                         else
                             $("#checkrange"+element).val '0'
-                            $('#range'+element).removeClass 'selected'
+                            $('#'+element).removeClass 'selected'
                             rangeArray = []
                     
-                    if  parseInt($("#checkrange"+@model.get('range')+@model.get('buildingid')).val()) == 0
-                        rangeArray.push @model.get('range')+@model.get('buildingid')
-                        $('#range'+@model.get('range')+@model.get('buildingid')).addClass 'selected'
+                    if  parseInt($("#checkrange"+@model.get('id')).val()) == 0
+                        rangeArray.push @model.get('range')+@model.get('id')
+                        $('#'+@model.get('id')).addClass 'selected'
 
-                        $("#checkrange"+@model.get('range')+@model.get('buildingid')).val "1"
-                        buildingModel = App.currentStore.building.findWhere({id:@model.get('buildingid')})
+                        $("#checkrange"+@model.get('id')).val "1"
+                        buildingModel = App.currentStore.building.findWhere({id:@model.get('id')})
                         floorriserange = buildingModel.get 'floorriserange'
-                        #floorriserange = [{"name":"low","start":"1","end":"2"},{"name":"medium","start":"3","end":"4"},{"name":"high","start":"5","end":"6"}]
-                        obj = @
-                        rangeArrayVal = []
-                        i = 0
-                        $.each(floorriserange, (index,value)->
-                            if obj.model.get('range') == value.name
-                                start = parseInt(value.start)
-                                end = parseInt(value.end)
-                                while parseInt(start) <= parseInt(end)
-                                    rangeArrayVal[i] = start
-                                    start = parseInt(start) + 1
-                                    i++
-                                rangeArrayVal
-
-
-
-                        )
-
-
-                        rangeString = rangeArrayVal.join(',')
-
-
-                        App.defaults['floor'] = rangeString
-                        App.backFilter['screen2'].push 'floor'
-                        App.defaults['building'] = parseInt(@model.get 'buildingid')
+                        
+                        App.defaults['building'] = parseInt(@model.get 'id')
                         App.backFilter['screen2'].push 'building'
                         $('#screen-two-button').removeClass 'disabled btn-default'
                         $("#screen-two-button").addClass 'btn-primary'
                         @trigger 'unit:count:selected'
                     else
                         rangeArray=[]
-                        $("#checkrange"+@model.get('range')+@model.get('buildingid')).val "0"
-                        $('#range'+@model.get('range')+@model.get('buildingid')).removeClass 'selected'
-                if parseInt($("#checkrange"+@model.get('range')+@model.get('buildingid')).val()) == 0
+                        $("#checkrange"+@model.get('id')).val "0"
+                        $('#'+@model.get('id')).removeClass 'selected'
+                if parseInt($("#checkrange"+@model.get('id')).val()) == 0
                     $("#screen-two-button").addClass 'disabled btn-default'
                     $("#screen-two-button").removeClass 'btn-primary'
                     return false
@@ -2392,86 +2366,17 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
 
 
+                 
+                    
 
 
+      
 
 
+       
 
 
-
-    class UnitView extends Marionette.ItemView
-
-        template : '<div class="vs-content">
-                            <div class="towerUnits">
-                                <div class="subHeader ">
-                                    <div class="row small light">
-                                        <div class="col-xs-5">
-                                            FLOOR<br>RANGE
-                                        </div>
-                                        <div class="col-xs-7 text-right">
-                                            NO. OF UNITS OF<br>YOUR SELECTION
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <!--<div class="towerDetails m-t-10">
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                           <h4 class="m-t-0 m-b-0 bold">Total Apartments</h4>
-                                           <h3 class="light m-t-0">{{totalunits}}</h3>
-                                        </div>
-
-                                        <div class="col-xs-4">
-                                           <h4 class="m-t-0 m-b-0 bold">Available Apartments</h4>
-                                           <h3 class="light m-t-0">{{availableunits}}</h3>
-                                        </div>
-                                        <div class="col-xs-4">
-                                           <h4 class="m-t-0 m-b-0 bold">Number of Floors</h4>
-                                           <h3 class="light m-t-0">{{totalfloors}}</h3>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 m-t-10">
-                                            <div class="col">
-                                                <p>Climb leg make muffins or sweet beast play time and hate dog or chew foot. Stretch climb leg. Play time give attitude for all of a sudden go crazy chase imaginary bugs lick butt. Claw drapes burrow under covers so hide when guests come over, inspect anything brought into the house hopped up on goofballs. Nap all day swat at dog and rub face on everything stick butt in face all of a sudden go crazy need to chase tail yet rub face on everything.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h4 class="m-t-0 m-b-5 text-primary"><span class="bold">VIEWS</span> for this tower</h4>
-                                    <div class="row m-b-20">
-                                        {{#views}}
-                                        <div class="col-sm-6">
-                                            {{#data}}<span class="glyphicon glyphicon-asterisk small text-grey"></span> {{name}}<br>{{/data}}
-                                        </div>
-                                        {{/views}}
-                                    </div>
-                                </div>-->
-                    </div>'
-
-
-
-        tagName : 'section'
-
-
-
-        childView : UnitViewChildView
-
-
-        childViewContainer : '.towerUnits'
-
-
-
-
-
-        initialize :->
-            @collection = @model.get 'units'
-            @$el.prop("id", 'tower'+@model.get("buildingid"))
-
-        onShow :->
-            $("#unit-region section").addClass "vs-current" if $("#unit-region section").length < 2
-            return
-
+       
 
 
 
@@ -2484,7 +2389,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
         childView : UnitView
 
-        className : "vs-wrapper"
+       
 
 
 
@@ -2499,21 +2404,3 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
     ScreenTwoLayout : ScreenTwoLayout
     UnitTypeChildView : UnitTypeChildView
     UnitTypeView : UnitTypeView
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

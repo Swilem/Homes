@@ -15,7 +15,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
     terracetagsArray = []
     object = 'this'
 
-    class ScreenTwoLayout extends Marionette.LayoutView
+    class ScreenOneLayout extends Marionette.LayoutView
 
         template : '<div class="">
                         <h3 class="text-center light m-t-0 m-b-20 unittype hidden animated pulse">We found <span class="bold text-primary"> {{unitsCount }} </span> apartments that matched your selection</h3>
@@ -58,7 +58,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             </div>
                         </div>
                         <div class="h-align-middle m-t-20 m-b-20">
-                                <a href="#screen-three-region" class="btn btn-primary btn-lg " id="screen-two-button">Show Apartments</a>
+                                <a href="#screen-three-region" class="btn btn-primary btn-lg " id="screen-one-button">Show Apartments</a>
                         </div>
                         <div class="special introTxt text-center hidden">
                             <div>
@@ -754,7 +754,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                     )
                     unitVariantString = value.toString()
 
-            'click #screen-two-button':(e)->
+            'click #screen-one-button':(e)->
                 #rangeArray = []
                 App.unit['name'] = ""
                 $('#screen-two-region').addClass 'section'
@@ -1704,7 +1704,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
             $("#floorlayoutbasic").text ""
             $('#printmapplic1').text ""
             $('#towerview').text ""
-            $('#screen-two-button').on('click',  ()->
+            $('#screen-one-button').on('click',  ()->
                 new jBox('Notice', 
                     content: 'Finding available apartments that match your selection...',
                     autoClose: 2000
@@ -2377,16 +2377,16 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         App.backFilter['screen2'].push 'floor'
                         App.defaults['building'] = parseInt(@model.get 'buildingid')
                         App.backFilter['screen2'].push 'building'
-                        $('#screen-two-button').removeClass 'disabled btn-default'
-                        $("#screen-two-button").addClass 'btn-primary'
+                        $('#screen-one-button').removeClass 'disabled btn-default'
+                        $("#screen-one-button").addClass 'btn-primary'
                         @trigger 'unit:count:selected'
                     else
                         rangeArray=[]
                         $("#checkrange"+@model.get('range')+@model.get('buildingid')).val "0"
                         $('#range'+@model.get('range')+@model.get('buildingid')).removeClass 'selected'
                 if parseInt($("#checkrange"+@model.get('range')+@model.get('buildingid')).val()) == 0
-                    $("#screen-two-button").addClass 'disabled btn-default'
-                    $("#screen-two-button").removeClass 'btn-primary'
+                    $("#screen-one-button").addClass 'disabled btn-default'
+                    $("#screen-one-button").removeClass 'btn-primary'
                     return false
 
 
@@ -2496,7 +2496,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
 
 
-    ScreenTwoLayout : ScreenTwoLayout
+    ScreenOneLayout : ScreenOneLayout
     UnitTypeChildView : UnitTypeChildView
     UnitTypeView : UnitTypeView
 
