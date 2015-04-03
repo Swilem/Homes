@@ -1839,6 +1839,8 @@ define(['marionette'], function(Marionette) {
                 });
                 $.map(indexvalue, function(index1, value1) {
                   var floorArr, tempid, tempidval;
+                  tempid = $('[data-position="' + val1 + '"]')[0].id;
+                  tempidval = $('#' + tempid).attr('data-idvalue');
                   if (App.defaults['floor'] !== "All") {
                     floorArr = App.defaults['floor'].split(',');
                     if (floorid === val1) {
@@ -1852,8 +1854,8 @@ define(['marionette'], function(Marionette) {
                       });
                     }
                   } else {
-                    $('#' + temp[ii] + value1).attr('class', 'unit-hover range');
-                    return $('#' + temp1[ii] + value1).attr('class', 'unit-hover range');
+                    $('#' + tempidval + value1).attr('class', 'unit-hover range');
+                    return $('#' + tempidval + value1).attr('class', 'unit-hover range');
                   }
                 });
                 $.map(indexvalue, function(index, value) {

@@ -2036,6 +2036,8 @@ define [ 'marionette' ], ( Marionette )->
                                             
                                 )
                                 $.map(indexvalue, (index1,value1)->
+                                            tempid = $('[data-position="'+val1+'"]')[0].id
+                                            tempidval = $('#'+tempid).attr('data-idvalue')
                                             if App.defaults['floor'] != "All"
                                                 floorArr  = App.defaults['floor'].split(',')
                                                 if floorid == val1
@@ -2053,8 +2055,8 @@ define [ 'marionette' ], ( Marionette )->
 
                                                      )
                                             else 
-                                                $('#'+temp[ii]+value1).attr('class', 'unit-hover range')
-                                                $('#'+temp1[ii]+value1).attr('class', 'unit-hover range')
+                                                $('#'+tempidval+value1).attr('class', 'unit-hover range')
+                                                $('#'+tempidval+value1).attr('class', 'unit-hover range')
 
                                 )
                                 $.map(indexvalue, (index,value)->
