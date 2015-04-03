@@ -266,22 +266,22 @@ define [ 'marionette' ], ( Marionette )->
                 App.unit['name'] = unitModel.get("id")
                 position = unitModel.get('unitAssigned')
                 rangeArrayVal = []
-                $.each(floorriserange, (index,value)->
-                                    rangeArrayVal = []
-                                    i = 0
+                # $.each(floorriserange, (index,value)->
+                #                     rangeArrayVal = []
+                #                     i = 0
 
-                                    start = parseInt(value.start)
-                                    end = parseInt(value.end)
-                                    while parseInt(start) <= parseInt(end)
-                                        rangeArrayVal[i] = start
-                                        start = parseInt(start) + 1
-                                        i++
-                                    if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
-                                        App.defaults['floor'] = rangeArrayVal.join(',')
+                #                     start = parseInt(value.start)
+                #                     end = parseInt(value.end)
+                #                     while parseInt(start) <= parseInt(end)
+                #                         rangeArrayVal[i] = start
+                #                         start = parseInt(start) + 1
+                #                         i++
+                #                     if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
+                #                         App.defaults['floor'] = rangeArrayVal.join(',')
 
 
 
-                )
+                # )
                 $.each(svgdata, (index,value)->
                     if $.inArray(position,value.svgposition ) >= 0 && value.svgposition != null
                         ii = 0
@@ -417,22 +417,22 @@ define [ 'marionette' ], ( Marionette )->
                 App.unit['name'] = unitModel.get("id")
                 position = unitModel.get('unitAssigned')
                 rangeArrayVal = []
-                $.each(floorriserange, (index,value)->
-                                    rangeArrayVal = []
-                                    i = 0
+                # $.each(floorriserange, (index,value)->
+                #                     rangeArrayVal = []
+                #                     i = 0
 
-                                    start = parseInt(value.start)
-                                    end = parseInt(value.end)
-                                    while parseInt(start) <= parseInt(end)
-                                        rangeArrayVal[i] = start
-                                        start = parseInt(start) + 1
-                                        i++
-                                    if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
-                                        App.defaults['floor'] = rangeArrayVal.join(',')
+                #                     start = parseInt(value.start)
+                #                     end = parseInt(value.end)
+                #                     while parseInt(start) <= parseInt(end)
+                #                         rangeArrayVal[i] = start
+                #                         start = parseInt(start) + 1
+                #                         i++
+                #                     if jQuery.inArray(parseInt(unitModel.get('floor')),rangeArrayVal) >= 0
+                #                         App.defaults['floor'] = rangeArrayVal.join(',')
 
 
 
-                )
+                # )
                 $.each(svgdata, (index,value)->
                     if $.inArray(position,value.svgposition ) >= 0 && value.svgposition != null
                         ii = 0

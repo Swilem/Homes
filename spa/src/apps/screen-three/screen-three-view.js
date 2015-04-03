@@ -140,21 +140,6 @@ define(['marionette'], function(Marionette) {
         App.unit['name'] = unitModel.get("id");
         position = unitModel.get('unitAssigned');
         rangeArrayVal = [];
-        $.each(floorriserange, function(index, value) {
-          var end, i, start;
-          rangeArrayVal = [];
-          i = 0;
-          start = parseInt(value.start);
-          end = parseInt(value.end);
-          while (parseInt(start) <= parseInt(end)) {
-            rangeArrayVal[i] = start;
-            start = parseInt(start) + 1;
-            i++;
-          }
-          if (jQuery.inArray(parseInt(unitModel.get('floor')), rangeArrayVal) >= 0) {
-            return App.defaults['floor'] = rangeArrayVal.join(',');
-          }
-        });
         $.each(svgdata, function(index, value) {
           var ii;
           if ($.inArray(position, value.svgposition) >= 0 && value.svgposition !== null) {
@@ -281,21 +266,6 @@ define(['marionette'], function(Marionette) {
         App.unit['name'] = unitModel.get("id");
         position = unitModel.get('unitAssigned');
         rangeArrayVal = [];
-        $.each(floorriserange, function(index, value) {
-          var end, i, start;
-          rangeArrayVal = [];
-          i = 0;
-          start = parseInt(value.start);
-          end = parseInt(value.end);
-          while (parseInt(start) <= parseInt(end)) {
-            rangeArrayVal[i] = start;
-            start = parseInt(start) + 1;
-            i++;
-          }
-          if (jQuery.inArray(parseInt(unitModel.get('floor')), rangeArrayVal) >= 0) {
-            return App.defaults['floor'] = rangeArrayVal.join(',');
-          }
-        });
         $.each(svgdata, function(index, value) {
           var ii;
           if ($.inArray(position, value.svgposition) >= 0 && value.svgposition !== null) {
