@@ -2293,7 +2293,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             <div class="small">FLATS</div>
                         </div>
                         <div class="clearfix"></div>
-                    <input type="hidden" name="checkrange{id}}"   id="checkrange{{id}}"   value="0" />              
+                    <input type="hidden" name="checkrange{{id}}"   id="checkrange{{id}}"   value="0" />              
                     </div>'  
 
         events:
@@ -2331,7 +2331,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                 msgbus.showApp 'header'
                 .insideRegion  App.headerRegion
                     .withOptions()
-                
+                console.log rangeArray
                 if @model.get('count') !=0
                     for element , index in rangeArray
                         if element == @model.get('id')
@@ -2342,7 +2342,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             rangeArray = []
                     
                     if  parseInt($("#checkrange"+@model.get('id')).val()) == 0
-                        rangeArray.push @model.get('range')+@model.get('id')
+                        rangeArray.push @model.get('id')
                         $('#'+@model.get('id')).addClass 'selected'
 
                         $("#checkrange"+@model.get('id')).val "1"
