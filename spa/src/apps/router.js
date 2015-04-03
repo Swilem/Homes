@@ -63,7 +63,6 @@ define(['marionette'], function(Marionette) {
       App.currentStore.building.reset(BUILDINGS);
       App.currentStore.unit_type.reset(UNITTYPES);
       App.currentStore.unit_variant.reset(UNITVARIANTS);
-      App.filter(params);
       return msgbus.showApp('screen:one').insideRegion(App.layout.screenOneRegion).withOptions();
     },
     show: function(params) {

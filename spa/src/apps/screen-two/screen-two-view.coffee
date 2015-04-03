@@ -96,7 +96,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                             <div class="towerTable">
                                 <div class="tableBody">
                     				<div id="vs-container2" class="vs-container vs-triplelayout">
-                    				    <header class="vs-header" id="building-region"></header>
+                    				    <!--<header class="vs-header" id="building-region"></header>-->
                     				    <div id="unit-region"></div>
                                     </div>
                                 </div>
@@ -2399,7 +2399,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
 
 
-    class UnitView extends Marionette.CompositeView
+    class UnitView extends Marionette.ItemView
 
         template : '<div class="vs-content">
                             <div class="towerUnits">

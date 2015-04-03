@@ -78,7 +78,12 @@ require [ 'plugin-loader'
     # global variable to keep track of the filtr the user has selected
     App.defaults = {"unitType" :'All','budget':'All' ,"building":'All',"unitVariant":'All','floor':'All','view':'All','facing':'All','terrace':'All','unittypeback':'All'}
 
-
+    localStorage.setItem('unit_variant_id',26);
+    unit_variant_id = localStorage.getItem('unit_variant_id');
+    temp = []
+    temp.push parseInt(unit_variant_id)
+    App.defaults['unitVariant'] = temp.join(',')
+  
     localStorage.setItem("refreshvalue", 1)
     refreshvalue = localStorage.getItem("refreshvalue")
     if parseInt(refreshvalue) == 1
