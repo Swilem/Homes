@@ -2353,6 +2353,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                         App.backFilter['screen2'].push 'building'
                         $('#screen-two-button').removeClass 'disabled btn-default'
                         $("#screen-two-button").addClass 'btn-primary'
+                        @showHighlightedBuildings(@model.get('id'))
                         @trigger 'unit:count:selected'
                     else
                         rangeArray=[]
@@ -2362,6 +2363,15 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
                     $("#screen-two-button").addClass 'disabled btn-default'
                     $("#screen-two-button").removeClass 'btn-primary'
                     return false
+
+
+        showHighlightedBuildings:(id)->
+            masterbuilding = App.master.building
+            masterbuilding.each ( index)->
+                $("#highlighttower"+index.get('id')).attr('class','overlay')
+            if id != ""
+                building = id
+                $("#highlighttower"+building).attr('class','overlay highlight')
 
 
 
